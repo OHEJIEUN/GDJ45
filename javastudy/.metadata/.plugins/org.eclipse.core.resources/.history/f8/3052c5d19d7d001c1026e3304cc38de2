@@ -54,39 +54,10 @@ public class Ex02_variable {
 		//    1) 8바이트
 		//    2) 실수 (기본 단위)
 		
-		double myWeight = 72.5;
-		System.out.println(myWeight);
 		
 		
-		// 7. char 타입
-		//    1) 2바이트
-		//    2) 문자
-		//    3) 문자는 실제로 저장될 때는 정수(문자의 코드값)로 처리
-
-		//       문자       코드값
-		//       '0'        48
-		//       'A'        65
-		//       'a'        97
-		
-		char myGender = 'M';
-		System.out.println(myGender);
 		
 		
-		// 7. boolean 타입
-		//    1) true, false 중 하나만 저장
-		//    2) 논리
-		
-		boolean isKorean = true;
-		System.out.println(isKorean);
-		
-		
-		// 8. String 클래스 타입
-		//    1) 기본 타입(primitive type)이 아님
-		//    2) 문자열
-		//    3) 참조 타입(reference type) : 데이터가 아닌 데이터의 참조 값(주소 값)을 저장
-		
-		String myName = "MIN";
-		System.out.println(myName);		
 		
 	}
 

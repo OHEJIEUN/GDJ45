@@ -30,7 +30,7 @@ public class Ex02_variable {
 		// 4. long 타입
 		//    1) 8바이트
 		//    2) 정수
-		//    3) suffix(접미사)가 L(l)
+		//    3) suffix (접미사)가 L(l)
 		
 		long myMoney = 50000L;
 		System.out.println(myMoney);
@@ -45,48 +45,11 @@ public class Ex02_variable {
 		// n비트    2의 n제곱  -(2의 n-1제곱) ~ (2의 n-1제곱) - 1
 		
 		
-		// 5. float 타입
-		//    1) 4바이트
-		//    2) 실수
-		//    3) suffix(접미사)가 F(f), 과거용
-		
-		// 6. double 타입
-		//    1) 8바이트
-		//    2) 실수 (기본 단위)
-		
-		double myWeight = 72.5;
-		System.out.println(myWeight);
 		
 		
-		// 7. char 타입
-		//    1) 2바이트
-		//    2) 문자
-		//    3) 문자는 실제로 저장될 때는 정수(문자의 코드값)로 처리
-
-		//       문자       코드값
-		//       '0'        48
-		//       'A'        65
-		//       'a'        97
-		
-		char myGender = 'M';
-		System.out.println(myGender);
 		
 		
-		// 7. boolean 타입
-		//    1) true, false 중 하나만 저장
-		//    2) 논리
 		
-		boolean isKorean = true;
-		System.out.println(isKorean);
-		
-		
-		// 8. String 클래스 타입
-		//    1) 기본 타입(primitive type)이 아님
-		//    2) 문자열
-		//    3) 참조 타입(reference type) : 데이터가 아닌 데이터의 참조 값(주소 값)을 저장
-		
-		String myName = "MIN";
-		System.out.println(myName);		
 		
 	}
 

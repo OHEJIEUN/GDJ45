@@ -86,7 +86,12 @@ public class Ex02_variable {
 		//    3) 참조 타입(reference type) : 데이터가 아닌 데이터의 참조 값(주소 값)을 저장
 		
 		String myName = "MIN";
-		System.out.println(myName);		
+		System.out.println(myName);
+		System.out.println(myName.hashCode());
+		
+		
+		
+		
 		
 	}
 
