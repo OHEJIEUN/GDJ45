@@ -52,15 +52,6 @@ public class Ex01_variable {
 		System.out.println('\'');  // '
 		System.out.println('\"');  // "
 		
-		// 문자열 (여러 글자)
-		System.out.println("hello");
-		System.out.println("a");
-		System.out.println("");  // 빈 문자열
-		
-		// 논리 (참, 거짓)
-		System.out.println(true);   // 참
-		System.out.println(false);  // 거짓
-		
 	}
 
 }
