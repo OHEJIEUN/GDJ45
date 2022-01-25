@@ -1,0 +1,24 @@
+package ex01_variable;
+
+// single comment - 한 줄짜리 주석(설명)
+/*
+    multiple comment
+    여러 줄의 주석
+*/
+
+/*
+    1. 자바 이름 규칙 (naming convention)
+        1) 프로젝트 : 마음대로
+        2) 패키지 : 모두 소문자로 작성
+        3) 클래스 : Upper Camel Case
+        4) 변수, 메소드 : Lower Camel Case
+        5) 상수 : Snake Case
+    2. Naming Convention
+        1) Upper Camel Case : MyName
+        2) Lower Camel Case : myName
+        3) Snake Case : MY_NAME
+*/
+
+public class Ex01_variable {
+
+}
