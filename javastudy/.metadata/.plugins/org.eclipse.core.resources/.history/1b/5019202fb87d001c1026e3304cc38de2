@@ -1,0 +1,25 @@
+package ex03_arithmetic;
+
+public class Ex02_operator {
+
+	public static void main(String[] args) {
+		
+		// 1씩 증가/감소하기
+		
+		int a = 10;
+		int b = 10;
+		
+		int res1 = a++;  // a를 res1에 저장한 뒤 a를 1 증가한다. (선사용 후증가)
+		int res2 = ++b;  // b를 1 증가시킨 뒤 res2에 저장한다.   (선증가 후사용)
+		
+		System.out.println(a);
+		System.out.println(res1);
+		
+		System.out.println(b);
+		System.out.println(res2);
+		
+		
+
+	}
+
+}

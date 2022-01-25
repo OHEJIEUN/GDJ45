@@ -1,0 +1,36 @@
+package ex03_arithmetic;
+
+public class Ex01_operator {
+
+	public static void main(String[] args) {
+		
+		// 숫자 연산
+		int a = 7;
+		int b = 2;
+		
+		int res1 = a + b;
+		int res2 = a - b;
+		int res3 = a * b;
+		int res4 = a / b;  // 몫
+		int res5 = a % b;  // 나머지
+		
+		System.out.println(res1);
+		System.out.println(res2);
+		System.out.println(res3);
+		System.out.println(res4);
+		System.out.println(res5);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+	}
+
+}

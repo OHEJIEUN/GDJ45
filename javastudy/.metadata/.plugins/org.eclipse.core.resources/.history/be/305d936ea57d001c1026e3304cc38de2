@@ -1,0 +1,10 @@
+package ex02_casting;
+
+public class Ex01_casting {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
