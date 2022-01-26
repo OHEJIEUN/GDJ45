@@ -7,7 +7,7 @@ public class Ex04_switch {
 		
 		// switch
 		// 1. 표현식의 결과 값에 따른 분기를 처리한다.
-		// 2. 표현식의 결과는 int, long, char, String이 가능하다.
+		// 2. 표현식의 결과는 int, char, String이 가능하다.
 		// 3. 표현식의 결과는 double, boolean이 불가능하다.
 		
 		
