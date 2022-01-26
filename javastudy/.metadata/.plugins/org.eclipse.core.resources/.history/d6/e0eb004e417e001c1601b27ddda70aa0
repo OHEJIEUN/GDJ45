@@ -1,0 +1,10 @@
+package ex04_logic;
+
+public class Ex01_compare {
+
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}
