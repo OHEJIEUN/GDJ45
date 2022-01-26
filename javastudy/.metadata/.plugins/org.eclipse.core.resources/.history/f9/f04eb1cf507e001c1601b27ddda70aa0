@@ -1,0 +1,14 @@
+package ex05_string;
+
+public class Ex02_equal {
+
+	public static void main(String[] args) {
+		
+		String name1 = "alice";
+		String name2 = "alice";
+		
+		System.out.println(name1 == name2);
+
+	}
+
+}
