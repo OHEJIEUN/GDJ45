@@ -47,9 +47,17 @@ public class Ex03_if_elseif {
 		else
 			System.out.println("겨울");
 		
-		
-		
-		
+		// 나머지 연산자 활용하기(modular 연산)
+		if(month < 1 || month > 12)
+			System.out.println("잘못된 정보");
+		else if(month % 12 <= 2)
+			System.out.println("겨울");
+		else if(month % 12 <= 5)
+			System.out.println("봄");
+		else if(month % 12 <= 8)
+			System.out.println("여름");
+		else
+			System.out.println("가을");
 
 	}
 
