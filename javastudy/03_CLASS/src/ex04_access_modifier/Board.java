@@ -31,12 +31,24 @@ public class Board {
 	
 	// void : 반환값/반환타입이 없을 때 사용
 	
+	// setter
+	// 1. 필드에 값을 저장하기 위한 메소드이다.
+	// 2. set + 필드명으로 메소드명을 결정한다.
 	public void setBoardNo(int boardNo) {
 		this.boardNo = boardNo;
-	}
-	
+	}	
 	public void setTitle(String title) {
 		this.title = title;
+	}
+	
+	// getter
+	// 1. 필드의 값을 반환하기 위한 메소드이다.
+	// 2. get + 필드명으로 메소드명을 결정한다.
+	public int getBoardNo() {
+		return boardNo;
+	}
+	public String getTitle() {
+		return title;
 	}
 	
 	public void info() {
@@ -45,3 +57,9 @@ public class Board {
 	}
 	
 }
+
+
+
+
+
+
