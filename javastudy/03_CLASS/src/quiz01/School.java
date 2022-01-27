@@ -7,24 +7,24 @@ public class School {
 	private String location;
 	
 	// constructor
-	public School(String name, String location) {
-		this.name = name;
-		this.location = location;
-	}
 	public School() {
 		
+	}
+	public School(String name, String location) {
+		super();
+		this.name = name;
+		this.location = location;
 	}
 	
 	// method
 	public String getName() {
 		return name;
 	}
-	public String getLocation() {
-		return location;
-	}
-	
 	public void setName(String name) {
 		this.name = name;
+	}
+	public String getLocation() {
+		return location;
 	}
 	public void setLocation(String location) {
 		this.location = location;
