@@ -19,6 +19,8 @@ public class CalculatorMain {
 		Calculator.mul(3, 4);
 		Calculator.div(4, 2);
 		Calculator.mod(5, 2);
+		Calculator.pow(2, 3);
+		Calculator.abs(-5);
 		
 	}
 

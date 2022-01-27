@@ -30,9 +30,19 @@ public class Calculator {
 	}
 	public static void pow(int a, int b) {
 		// a의 b제곱
+		// 2의 3제곱
+		// res = res * 2;
+		// res = res * 2;
+		// res = res * 2;
+		int res = 1;
+		for(int i = 0; i < b; i++)
+			res *= a;
+		System.out.println(a + "의 " + b + "제곱=" + res);
 	}
 	public static void abs(int a) {
 		// a의 절대값
+		int res = (a >= 0 ? a : -a);
+		System.out.println(a + "의 절대값=" + res);
 	}
 	
 }
