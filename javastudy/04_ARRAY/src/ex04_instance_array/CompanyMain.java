@@ -13,8 +13,11 @@ public class CompanyMain {
 		company.addEmployee(new Employee("김과장", "개발부"));
 		company.addEmployee(new Employee("박대리", "영업부"));
 		company.addEmployee(new Employee("최과장", "기술부"));
-		// company.addEmployee(new Employee("정부장", "개발부"));
+		company.addEmployee(new Employee("박대리", "개발부"));
 
+		// 직원 조회
+		company.inquiry("박대리");
+		
 		// 모든 직원 정보 출력
 		company.printAllEmployee();
 		

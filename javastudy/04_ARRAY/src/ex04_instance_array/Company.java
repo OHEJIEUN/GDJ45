@@ -3,7 +3,7 @@ package ex04_instance_array;
 public class Company {
 
 	private Employee[] employees;
-	private int idx;  // 인덱스(자동으로 최초 0값을 가짐)
+	private int idx;  // 인덱스(자동으로 최초 0값을 가짐), 실제로는 직원 수를 의미함.
 	
 	public Company(int n) {
 		employees = new Employee[n];
@@ -24,6 +24,22 @@ public class Company {
 				System.out.println(employee.getName() + "(" + employee.getDept() + ")");
 		}
 	}
+	
+	public void inquiry(String name) {
+		if(idx == 0) {
+			System.out.println("조회할 직원이 없습니다.");
+			return;
+		}
+		for(Employee employee : employees) {
+			if(employee != null) {
+				if(employee.getName().equals(name)) {
+					System.out.println("검색된 직원: " + employee.getName() + "(" + employee.getDept() + ")");
+				}
+			}
+		}
+	}
+	
+	
 	
 	
 	
