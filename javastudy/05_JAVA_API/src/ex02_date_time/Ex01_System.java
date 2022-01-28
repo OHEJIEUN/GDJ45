@@ -16,10 +16,8 @@ public class Ex01_System {
 		long begin = System.nanoTime();
 		int a = 1 + 2 + 3 + 4 + 5;
 		long end = System.nanoTime();
-		System.out.println(end - begin);
+		System.out.println((end - begin) + "ns");
 		
-		
-
 	}
 
 }
