@@ -18,6 +18,9 @@ public class CompanyMain {
 		// 직원 조회
 		company.inquiry("박대리");
 		
+		// 직원 해고
+		company.fireEmployee("박대리", "기획부");
+		
 		// 모든 직원 정보 출력
 		company.printAllEmployee();
 		
