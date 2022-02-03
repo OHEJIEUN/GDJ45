@@ -73,6 +73,62 @@ public class Ex01_String {
 		System.out.println(idx5);
 		System.out.println(idx6);
 		
+		// 문제. 파일명(butter.mp4)을 파일(butter), 확장자(mp4)로 분리하기
+		//       파일명에 타임스탬프 값 추가하기
+		String origin = "butter.mp4";
+		int dotIndex = origin.lastIndexOf(".");
+		String filename = origin.substring(0, dotIndex);
+		String extname = origin.substring(dotIndex + 1);
+		String uploadname = filename + "_" + System.currentTimeMillis() + "." + extname;
+		System.out.println(filename);
+		System.out.println(extname);
+		System.out.println(uploadname);
+		
+		// 6. 특정 패턴으로 시작하는가?
+		String[] notices = {
+				"[필독]공지사항1",
+				"공지사항2",
+				"[필독]공지사항3"
+		};
+		
+		for(int i = 0; i < notices.length; i++) {
+			if(notices[i].startsWith("[필독]")) {  // [필독]으로 시작하면 true, 아니면 false
+				System.out.println(notices[i]);
+			}
+		}
+		
+		// 7. 특정 패턴으로 끝나는가?
+		String[] files = {
+				"butter.mp4",
+				"dog.jpg",
+				"cat.jpg"
+		};
+		
+		for(int i = 0; i < files.length; i++) {
+			if(files[i].endsWith("jpg") == false) {  // "jpg"로 끝나면 true, 아니면 false
+				System.out.println(files[i] + " 파일은 첨부할 수 없습니다.");
+			}
+		}
+		
+		// 8. 불필요한 공백 제거(좌우 공백 제거)
+		String name = "  james  dean  ";
+		String name2 = name.trim();
+		System.out.println(name2);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 
 	}
 
