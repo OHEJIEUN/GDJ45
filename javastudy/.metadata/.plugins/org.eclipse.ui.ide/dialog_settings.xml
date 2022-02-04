@@ -8,4 +8,36 @@
 		<list key="ENABLED_TRANSFERS">
 		</list>
 	</section>
+	<section name="ExternalProjectImportWizard">
+		<item key="WizardProjectsImportPage.STORE_NESTED_PROJECTS" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_COPY_PROJECT_ID" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_ARCHIVE_SELECTED" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
+		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
+		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\Users\민경태\Downloads\mania1395_61fca3eb1f22f"/>
+			<item value="C:\Users\민경태\Downloads\mania1421_61fca43d636ab"/>
+			<item value="C:\Users\민경태\Downloads\PhoneBookProject"/>
+			<item value="C:\Users\민경태\Downloads\mania1419_61fca498e52fa"/>
+			<item value="C:\Users\민경태\Downloads\mania1418_61fca4386e1eb"/>
+			<item value="C:\Users\민경태\Downloads\mania1417_61fca49598a25"/>
+			<item value="C:\Users\민경태\Downloads\mania1416_61fca4bbd96f1"/>
+			<item value="C:\Users\민경태\Downloads\mania1415_61fca3e1e4026"/>
+			<item value="C:\Users\민경태\Downloads\mania1363_61fca25e9b1dc"/>
+			<item value="C:\Users\민경태\Downloads\mania1414_61fca402e5c4f"/>
+			<item value="C:\Users\민경태\Downloads\mania1413_61fca4727c5dd"/>
+			<item value="C:\Users\민경태\Downloads\mania1412_61fca60b33af3"/>
+			<item value="C:\Users\민경태\Downloads\mania1410_61fca5ee5227d"/>
+			<item value="C:\Users\민경태\Downloads\mania1409_61fca6cfc17ce"/>
+			<item value="C:\Users\민경태\Downloads\mania1408_61fca3c67a8bb"/>
+			<item value="C:\Users\민경태\Downloads\mania1405_61fca4b0cd927"/>
+			<item value="C:\Users\민경태\Downloads\mania1403_61fca4a87b7af"/>
+			<item value="C:\Users\민경태\Downloads\mania1397_61fca5bd0deb3"/>
+			<item value="C:\Users\민경태\Downloads\mania1402_61fca670b7d62"/>
+			<item value="C:\Users\민경태\Downloads\mania1401_61fca419bf9c2"/>
+		</list>
+		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
+			<item value=""/>
+		</list>
+	</section>
 </section>
