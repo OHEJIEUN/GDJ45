@@ -1,4 +1,4 @@
-﻿package test;
+﻿package prac1;
 
 import java.util.Scanner;
 
