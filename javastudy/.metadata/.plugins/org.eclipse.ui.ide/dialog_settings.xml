@@ -15,6 +15,7 @@
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\Users\민경태\Downloads\mania1400_61fce237d15a4"/>
 			<item value="C:\Users\민경태\Downloads\mania1395_61fca3eb1f22f"/>
 			<item value="C:\Users\민경태\Downloads\mania1421_61fca43d636ab"/>
 			<item value="C:\Users\민경태\Downloads\PhoneBookProject"/>
@@ -34,7 +35,6 @@
 			<item value="C:\Users\민경태\Downloads\mania1403_61fca4a87b7af"/>
 			<item value="C:\Users\민경태\Downloads\mania1397_61fca5bd0deb3"/>
 			<item value="C:\Users\민경태\Downloads\mania1402_61fca670b7d62"/>
-			<item value="C:\Users\민경태\Downloads\mania1401_61fca419bf9c2"/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
 			<item value=""/>
