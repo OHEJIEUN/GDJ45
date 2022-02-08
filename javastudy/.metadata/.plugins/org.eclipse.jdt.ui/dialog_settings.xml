@@ -45,8 +45,8 @@
 		<item key="OmitCallToSuper" value="false"/>
 	</section>
 	<section name="DialogBounds_GenerateConstructorUsingFieldsSelectionDialog">
-		<item key="DIALOG_X_ORIGIN" value="570"/>
-		<item key="DIALOG_Y_ORIGIN" value="149"/>
+		<item key="DIALOG_X_ORIGIN" value="1318"/>
+		<item key="DIALOG_Y_ORIGIN" value="189"/>
 		<item key="DIALOG_WIDTH" value="805"/>
 		<item key="DIALOG_HEIGHT" value="1067"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-18|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
@@ -62,8 +62,8 @@
 		<item key="RemoveFinal" value="false"/>
 	</section>
 	<section name="DialogBounds_GetterSetterTreeSelectionDialog">
-		<item key="DIALOG_X_ORIGIN" value="473"/>
-		<item key="DIALOG_Y_ORIGIN" value="210"/>
+		<item key="DIALOG_X_ORIGIN" value="1100"/>
+		<item key="DIALOG_Y_ORIGIN" value="217"/>
 		<item key="DIALOG_WIDTH" value="823"/>
 		<item key="DIALOG_HEIGHT" value="1089"/>
 		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-18|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
@@ -73,5 +73,15 @@
 		<item key="org.eclipse.jdt.internal.ui.typehierarchy.HierarchyInformationControlDIALOG_HEIGHT" value="920"/>
 		<item key="org.eclipse.jdt.internal.ui.typehierarchy.HierarchyInformationControlDIALOG_USE_PERSISTED_SIZE" value="true"/>
 		<item key="org.eclipse.jdt.internal.ui.typehierarchy.HierarchyInformationControlDIALOG_USE_PERSISTED_LOCATION" value="false"/>
+	</section>
+	<section name="AddUnimplementedConstructorsDialog">
+		<item key="OmitCallToSuper" value="false"/>
+	</section>
+	<section name="DialogBounds_AddUnimplementedConstructorsDialog">
+		<item key="DIALOG_X_ORIGIN" value="767"/>
+		<item key="DIALOG_Y_ORIGIN" value="464"/>
+		<item key="DIALOG_WIDTH" value="805"/>
+		<item key="DIALOG_HEIGHT" value="991"/>
+		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-18|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
 	</section>
 </section>
