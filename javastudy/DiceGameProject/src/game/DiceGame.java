@@ -17,12 +17,17 @@ public class DiceGame {
 		players[idx++] = player;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
+	public void play() {
+		int i = 0;
+		while(true) {
+			if(players[i].turn()) {
+				System.out.println(players[i].getName() + "님 승리!");
+				break;
+			} else {
+				i++;
+				i %= players.length;
+			}
+		}
+	}
 	
 }
