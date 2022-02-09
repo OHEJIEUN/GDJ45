@@ -12,10 +12,21 @@
     <fullyQualifiedTypeName name="java.time.format.DateTimeFormatter"/>
     <fullyQualifiedTypeName name="java.lang.StringBuilder"/>
     <fullyQualifiedTypeName name="phone.Phone"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="java.lang.Math"/>
     <fullyQualifiedTypeName name="prac1.BankAccount"/>
     <fullyQualifiedTypeName name="prac1.Gun"/>
     <fullyQualifiedTypeName name="ex02_is_a.Hybrid"/>
     <fullyQualifiedTypeName name="ex05_constructor.Alba"/>
+    <fullyQualifiedTypeName name="ex08_override.Espresso"/>
+    <fullyQualifiedTypeName name="ex07_constructor.Square"/>
+    <fullyQualifiedTypeName name="ex10_override.Regular"/>
+    <fullyQualifiedTypeName name="ex10_override.Temporary"/>
+    <fullyQualifiedTypeName name="java.lang.Override"/>
+    <fullyQualifiedTypeName name="ex12_upcasting.Tv"/>
+    <fullyQualifiedTypeName name="ex12_upcasting.Computer"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="ex13_upcasting.Company"/>
+    <fullyQualifiedTypeName name="ex13_upcasting.Regular"/>
+    <fullyQualifiedTypeName name="ex13_upcasting.Temporary"/>
+    <fullyQualifiedTypeName name="ex13_upcasting.Sales"/>
 </qualifiedTypeNameHistroy>
