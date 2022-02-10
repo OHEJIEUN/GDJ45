@@ -29,4 +29,16 @@
     <fullyQualifiedTypeName name="ex13_upcasting.Regular"/>
     <fullyQualifiedTypeName name="ex13_upcasting.Temporary"/>
     <fullyQualifiedTypeName name="ex13_upcasting.Sales"/>
+    <fullyQualifiedTypeName name="ex16_abstract.Shape"/>
+    <fullyQualifiedTypeName name="ex16_abstract.Rectangle"/>
+    <fullyQualifiedTypeName name="ex16_abstract.Circle"/>
+    <fullyQualifiedTypeName name="ex18_interface.Rectangle"/>
+    <fullyQualifiedTypeName name="ex18_interface.Circle"/>
+    <fullyQualifiedTypeName name="ex19_interface.SmartPhone"/>
+    <fullyQualifiedTypeName name="ex20_interface.Dog"/>
+    <fullyQualifiedTypeName name="ex20_interface.Cat"/>
+    <fullyQualifiedTypeName name="ex20_interface.Snake"/>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="game.DiceGame"/>
+    <fullyQualifiedTypeName name="game.Player"/>
 </qualifiedTypeNameHistroy>

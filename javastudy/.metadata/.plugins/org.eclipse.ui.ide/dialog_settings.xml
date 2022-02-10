@@ -15,36 +15,36 @@
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\Users\민경태\Downloads\mania1399_62026fce781e2"/>
+			<item value="C:\Users\민경태\Downloads\mania1395_62026e0d4dce6"/>
+			<item value="C:\Users\민경태\Downloads\DiceGameProject"/>
+			<item value="C:\Users\민경태\Downloads\mania1419_62023d24d33ea"/>
+			<item value="C:\Users\민경태\Downloads\mania1418_620278d8ee2fc"/>
+			<item value="C:\Users\민경태\Downloads\mania1417_620249365e1d1"/>
+			<item value="C:\Users\민경태\Downloads\mania1363_620246b7d8717"/>
+			<item value="C:\Users\민경태\Downloads\mania1414_62024b351664d"/>
+			<item value="C:\Users\민경태\Downloads\mania1412_62027a6991399"/>
+			<item value="C:\Users\민경태\Downloads\mania1410_620250eed09a6"/>
+			<item value="C:\Users\민경태\Downloads\mania1409_620277ebdbe4b"/>
+			<item value="C:\Users\민경태\Downloads\mania1403_6202804eaae45"/>
+			<item value="C:\Users\민경태\Downloads\mania1397_62027bcbb0b4f"/>
+			<item value="C:\Users\민경태\Downloads\mania1402_62025ce786360"/>
+			<item value="C:\Users\민경태\Downloads\mania1401_62026f1aa20d5"/>
+			<item value="C:\Users\민경태\Downloads\mania1396_620249e4b2718"/>
+			<item value="C:\GDJ45\javastudy\PhoneBookProject"/>
+			<item value="C:\GDJ45\javastudy\DiceGameProject"/>
 			<item value="C:\Users\민경태\Downloads\mania1400_61fce237d15a4"/>
 			<item value="C:\Users\민경태\Downloads\mania1395_61fca3eb1f22f"/>
-			<item value="C:\Users\민경태\Downloads\mania1421_61fca43d636ab"/>
-			<item value="C:\Users\민경태\Downloads\PhoneBookProject"/>
-			<item value="C:\Users\민경태\Downloads\mania1419_61fca498e52fa"/>
-			<item value="C:\Users\민경태\Downloads\mania1418_61fca4386e1eb"/>
-			<item value="C:\Users\민경태\Downloads\mania1417_61fca49598a25"/>
-			<item value="C:\Users\민경태\Downloads\mania1416_61fca4bbd96f1"/>
-			<item value="C:\Users\민경태\Downloads\mania1415_61fca3e1e4026"/>
-			<item value="C:\Users\민경태\Downloads\mania1363_61fca25e9b1dc"/>
-			<item value="C:\Users\민경태\Downloads\mania1414_61fca402e5c4f"/>
-			<item value="C:\Users\민경태\Downloads\mania1413_61fca4727c5dd"/>
-			<item value="C:\Users\민경태\Downloads\mania1412_61fca60b33af3"/>
-			<item value="C:\Users\민경태\Downloads\mania1410_61fca5ee5227d"/>
-			<item value="C:\Users\민경태\Downloads\mania1409_61fca6cfc17ce"/>
-			<item value="C:\Users\민경태\Downloads\mania1408_61fca3c67a8bb"/>
-			<item value="C:\Users\민경태\Downloads\mania1405_61fca4b0cd927"/>
-			<item value="C:\Users\민경태\Downloads\mania1403_61fca4a87b7af"/>
-			<item value="C:\Users\민경태\Downloads\mania1397_61fca5bd0deb3"/>
-			<item value="C:\Users\민경태\Downloads\mania1402_61fca670b7d62"/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
 			<item value=""/>
 		</list>
 	</section>
 	<section name="SaveAsDialogSettings">
-		<item key="DIALOG_X_ORIGIN" value="990"/>
-		<item key="DIALOG_Y_ORIGIN" value="436"/>
+		<item key="DIALOG_X_ORIGIN" value="1062"/>
+		<item key="DIALOG_Y_ORIGIN" value="63"/>
 		<item key="DIALOG_WIDTH" value="525"/>
 		<item key="DIALOG_HEIGHT" value="580"/>
-		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|5|0|맑은 고딕"/>
+		<item key="DIALOG_FONT_NAME" value="1|맑은 고딕|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|맑은 고딕"/>
 	</section>
 </section>
