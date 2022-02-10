@@ -17,8 +17,13 @@ public class Main {
 			if(hobby.equals("reading"))  // if(null.equals("reading"))
 				System.out.println("저와 취미가 같군요.");
 		}
-	}
-	
+		/*
+		for(String hobby : hobbies) {
+			if("reading".equals(hobby))
+				System.out.println("저와 취미가 같군요.");
+		}
+		*/
+	}	
 	public static void m2() {
 		// NumberFormatException : String을 Number타입으로 변환할 때 발생
 		Scanner sc = new Scanner(System.in);
