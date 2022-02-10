@@ -6,6 +6,21 @@ public class Main {
 
 	public static void main(String[] args) {
 		
+		// user1과 user2는 다른 참조값입니다
+		
+		// 변수            데이터       참조(주소)
+		//                 "admin"      1
+		//                 "123456"     2
+		// user1.userId    1            10
+		// user1.userPw    2
+		// user2.userId    1            20
+		// user2.userPw    2
+		// user1           10
+		// user2           20
+		
+		// user1 == user2 : false
+		// user1.userId == user2.userId : true
+		
 		User user1 = new User("admin", "123456");
 		User user2 = new User("admin", "123456");
 		

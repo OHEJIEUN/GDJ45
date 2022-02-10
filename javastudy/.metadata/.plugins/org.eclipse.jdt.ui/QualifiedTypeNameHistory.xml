@@ -24,7 +24,6 @@
     <fullyQualifiedTypeName name="java.lang.Override"/>
     <fullyQualifiedTypeName name="ex12_upcasting.Tv"/>
     <fullyQualifiedTypeName name="ex12_upcasting.Computer"/>
-    <fullyQualifiedTypeName name="java.util.Scanner"/>
     <fullyQualifiedTypeName name="ex13_upcasting.Company"/>
     <fullyQualifiedTypeName name="ex13_upcasting.Regular"/>
     <fullyQualifiedTypeName name="ex13_upcasting.Temporary"/>
@@ -38,7 +37,15 @@
     <fullyQualifiedTypeName name="ex20_interface.Dog"/>
     <fullyQualifiedTypeName name="ex20_interface.Cat"/>
     <fullyQualifiedTypeName name="ex20_interface.Snake"/>
-    <fullyQualifiedTypeName name="java.util.Arrays"/>
     <fullyQualifiedTypeName name="game.DiceGame"/>
     <fullyQualifiedTypeName name="game.Player"/>
+    <fullyQualifiedTypeName name="ex22_Object.User"/>
+    <fullyQualifiedTypeName name="java.lang.NullPointerException"/>
+    <fullyQualifiedTypeName name="java.util.Arrays"/>
+    <fullyQualifiedTypeName name="java.lang.ArithmeticException"/>
+    <fullyQualifiedTypeName name="org.graalvm.compiler.hotspot.aarch64.AArch64HotSpotCRuntimeCallEpilogueOp"/>
+    <fullyQualifiedTypeName name="java.util.Scanner"/>
+    <fullyQualifiedTypeName name="java.lang.NumberFormatException"/>
+    <fullyQualifiedTypeName name="java.util.InputMismatchException"/>
+    <fullyQualifiedTypeName name="java.lang.RuntimeException"/>
 </qualifiedTypeNameHistroy>
