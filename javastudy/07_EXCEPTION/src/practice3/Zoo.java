@@ -49,7 +49,7 @@ public class Zoo {
 	
 	// 조회
 	// 배열이 비어 있는 경우 "등록된 동물이 없습니다."
-	public void findAnimal() {
+	public void findAnimal() throws RuntimeException {
 		if(idx == 0)
 			throw new RuntimeException("등록된 동물이 없습니다.");
 		System.out.print("조회할 동물 이름 >>> ");
@@ -65,7 +65,7 @@ public class Zoo {
 	
 	// 전체
 	// 배열이 비어 있는 경우 "등록된 동물이 없습니다."
-	public void findAllAnimals() {
+	public void findAllAnimals() throws RuntimeException {
 		if(idx == 0)
 			throw new RuntimeException("등록된 동물이 없습니다.");
 		System.out.println("===전체 동물 목록===");
