@@ -72,9 +72,60 @@ public class BankAccount {
 		}
 	}
 	
+	// 이체를 위한 입금
+	private void deposit(long money) {  // long money : 입금하려는 금액
+		try {
+			if(money < 0)
+				throw new RuntimeException(money + "원 입금 불가");
+			balance += money;
+		} catch (RuntimeException e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	// 이체를 위한 출금
+	// 반환타입 long       : 실제로 출금된 금액
+	// 매개변수 long money : 출금하려는 금액
+	private long withdrawal(long money) {
+		try {
+			if(money < 0) {
+				throw new RuntimeException(money + "원 출금 불가");
+			} else if(money > balance)
+				throw new RuntimeException("잔고 부족");
+			balance -= money;
+		} catch(RuntimeException e) {
+			System.out.println(e.getMessage());
+			money = 0;
+		}
+		return money;
+	}
+	
 	// 이체
+	// 출금액 -> 입금액
+	public void transfer() {
+		System.out.println("***이체***");
+		System.out.print("이체할 예금주 >>> ");
+		String owner = sc.next();
+		for(int i = 0; i < idx; i++) {
+			if(owner.equals(accounts[i].owner)) {
+				System.out.print("이체할 금액 >>> ");
+				long money = sc.nextLong();
+				accounts[i].deposit(withdrawal(money));
+				return;
+			}
+		}
+		System.out.println(owner + " 예금주가 없습니다.");
+	}
 	
 	// 조회
+	public void inquiry() {
+		System.out.println("***조회***");
+		System.out.println("예금주 " + owner + " 계좌번호 " + accNo + " 잔고 " + balance + "원");
+		System.out.println("자주쓰는계좌목록");
+		for(int i = 0; i < idx; i++) {
+			System.out.println("예금주 " + accounts[i].owner + " 계좌번호 " + accounts[i].accNo + " 잔고 " + accounts[i].balance + "원");
+		}
+	}
 	
 	// 메뉴
 	public void menu() {
@@ -98,8 +149,8 @@ public class BankAccount {
 				case 1: addAccount(); break;
 				case 2: deposit(); break;
 				case 3: withdrawal(); break;
-				//case 4: transfer(); break;
-				//case 5: inquiry(); break;
+				case 4: transfer(); break;
+				case 5: inquiry(); break;
 				case 0: System.out.println("계좌관리종료"); return;
 				default: System.out.println("잘못된 선택입니다. 다시 시도하세요.");
 				}
