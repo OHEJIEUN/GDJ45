@@ -5,9 +5,6 @@ import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
-import lombok.Getter;
-
-@Getter
 public class Singer {
 
 	private String name;
@@ -84,6 +81,7 @@ public class Singer {
 	
 	public void findAllSongs() throws RuntimeException {
 		System.out.println("***전체노래조회***");
+		System.out.println("가수 " + name);
 		if(songs.isEmpty())
 			throw new RuntimeException("노래목록이 존재하지 않습니다.");
 		for(Song song : songs)
