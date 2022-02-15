@@ -4,11 +4,13 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NavigableMap;
 import java.util.Set;
+import java.util.TreeMap;
 
 public class Main {
 
-	public static void m1() {
+	public static void hashmap1() {
 		
 		// HashMap 생성
 		Map<String, String> dict = new HashMap<String, String>();
@@ -29,7 +31,7 @@ public class Main {
 		
 	}
 
-	public static void m2() {
+	public static void hashmap2() {
 		
 		// 국어, 영어, 수학 점수를 가지는 Map 생성하기
 		
@@ -46,7 +48,7 @@ public class Main {
 		
 	}
 	
-	public static void m3() {
+	public static void hashmap3() {
 		
 		// Map의 순회-1
 		// 1. 키를 모두 알아낸다.
@@ -78,7 +80,7 @@ public class Main {
 		
 	}
 	
-	public static void m4() {
+	public static void hashmap4() {
 		
 		// Map 순회-2
 		// 1. '키'-'값'을 하나의 단위로 Entry라고 한다.
@@ -138,10 +140,67 @@ public class Main {
 		List<Map<String, Object>> employees = Arrays.asList(employee1, employee2, employee3);
 		*/
 		
+		for(Map<String, Object> employee : employees)  // List
+			for(Map.Entry<String, Object> entry : employee.entrySet())  // Map
+				System.out.println(entry.getKey() + ":" + entry.getValue());
+		
+	}
+	
+	// 이진 트리(binary tree)
+	// 1. 모든 노드의 자식은 2개이다. (왼쪽, 오른쪽)
+	// 2. 왼쪽은 작은 값, 오른쪽은 큰 값이 저장된다.
+	public static void treemap1() {
+		
+		// TreeMap
+		// 1. key를 기준으로 왼쪽은 작은 값, 오른쪽은 큰 값이 저장된다.
+		// 2. 범위 연산(이상, 이하, 초과, 미만)이 필요한 경우 사용한다.
+		// 3. 자동으로 정렬되면서 저장된다.
+		// 4. TreeMap 타입으로 선언하면 범위 연산을 쉽게 호출할 수 있다.
+		
+		TreeMap<Integer, String> people = new TreeMap<Integer, String>();
+		
+		people.put(45, "민경태");
+		people.put(35, "김두식");
+		people.put(55, "최백호");
+		people.put(25, "박찬들");
+		
+		// 확인 -> 자동으로 key의 크기 순으로 저장되어 있음.
+		System.out.println(people);
+		
+		while(people.isEmpty() == false) {  // while( !people.isEmpty() ) {
+			Map.Entry<Integer, String> entry = people.pollFirstEntry();  // 작은 값을 Map에서 뺌
+			System.out.println(entry.getKey() + ":" + entry.getValue());
+		}
+		
+	}
+	
+	public static void treemap2() {
+		
+		// 기본 생성은 key순으로 오름차순 처리됨
+		TreeMap<Integer, String> people = new TreeMap<Integer, String>();
+		
+		people.put(45, "민경태");
+		people.put(35, "김두식");
+		people.put(55, "최백호");
+		people.put(25, "박찬들");
+		
+		// 정렬할 때 descendingMap 메소드를 사용
+		// 사용할 때마다 정렬이 바뀜
+		
+		// people의 key순으로 내림차순 처리된 map
+		NavigableMap<Integer, String> map = people.descendingMap();
+		for(Map.Entry<Integer, String> entry : map.entrySet())
+			System.out.println(entry.getKey() + ":" + entry.getValue());
+		
+		// 다시 오름차순을 하려면? descendingMap 메소드를 다시 사용
+		NavigableMap<Integer, String> map2 = map.descendingMap();
+		for(Map.Entry<Integer, String> entry : map2.entrySet())
+			System.out.println(entry.getKey() + ":" + entry.getValue());
+		
 	}
 	
 	public static void main(String[] args) {
-		quiz();
+		treemap2();
 	}
 
 }
