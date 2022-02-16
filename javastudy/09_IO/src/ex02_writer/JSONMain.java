@@ -2,8 +2,11 @@ package ex02_writer;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -100,13 +103,45 @@ public class JSONMain {
 			}
 		*/
 		
+		Map<String, Object> person = new HashMap<String, Object>();
+		
+		person.put("name", "민경태");   //
+		person.put("age", 45);          //
+		
+		Map<String, Object> info = new HashMap<String, Object>();
+		info.put("hobbies", Arrays.asList("넷플릭스", "디즈니플러스", "티빙"));
+		info.put("address", "서울시");
+		info.put("phone", "010-1111-1111");
+		
+		person.put("info", info);       //
+		
+		List<Map<String, String>> friends = new ArrayList<Map<String,String>>();
+		
+		Map<String, String> friend1 = new HashMap<String, String>();
+		friend1.put("name", "철수");
+		friend1.put("contact", "010-2222-2222");
+		
+		Map<String, String> friend2 = new HashMap<String, String>();
+		friend2.put("name", "영희");
+		friend2.put("contact", "010-3333-3333");
+		
+		friends.add(friend1);
+		friends.add(friend2);
+		person.put("friends", friends);  //
+		
+		JSONObject obj = new JSONObject(person);
+		
+		try (BufferedWriter bw = new BufferedWriter(new FileWriter("C:\\storage\\person.json"))) {
+			// bw.write(obj.toString());  // 한 줄로 파일 생성
+			obj.write(bw, 4, 0);  // 들여쓰기(4칸) 형식 갖춰서 파일 생성
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 	}
 	
-	
 	public static void main(String[] args) {
-		
-
-		
+		m2();
 	}
 
 }
