@@ -1,4 +1,4 @@
-package ex04_writer;
+package ex04_reader;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
