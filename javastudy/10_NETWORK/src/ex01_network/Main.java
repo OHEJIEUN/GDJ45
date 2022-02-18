@@ -7,9 +7,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.UnsupportedEncodingException;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.net.URLDecoder;
+import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 public class Main {
 
@@ -118,8 +122,48 @@ public class Main {
 		
 	}
 	
+	
+	// 인코딩/디코딩
+	// 인코딩 : UTF-8 사용하여 암호화
+	// 디코딩 : UTF-8 사용하여 복호화
+	public static void m4() {
+		
+		String str1 = "자바 JAVA !@#$";
+		String str2 = "자바+JAVA+!@#$";
+		
+		try {
+			
+			// 인코딩
+			
+			String encodedStr1 = URLEncoder.encode(str1, "UTF-8");
+			// encodedStr1 = %EC%9E%90%EB%B0%94+JAVA+%21%40%23%24
+
+			String encodedStr2 = URLEncoder.encode(str2, StandardCharsets.UTF_8);
+			// encodedStr2 = %EC%9E%90%EB%B0%94%2BJAVA%2B%21%40%23%24
+			
+			System.out.println(encodedStr1);
+			System.out.println(encodedStr2);
+			
+			
+			// 디코딩
+			String decodedStr1 = URLDecoder.decode(encodedStr1, "UTF-8");
+			// decodedStr1 = "자바 JAVA !@#$"
+			
+			String decodedStr2 = URLDecoder.decode(encodedStr2, StandardCharsets.UTF_8);
+			// decodedStr2 = "자바+JAVA+!@#$"
+			
+			System.out.println(decodedStr1);
+			System.out.println(decodedStr2);
+			
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		} 
+		
+	}
+	
+	
 	public static void main(String[] args) {
-		m3();
+		m4();
 	}
 
 }
