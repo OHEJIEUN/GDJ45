@@ -1,9 +1,16 @@
 package ex07_file;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.Scanner;
 
 public class Main {
 
@@ -87,8 +94,83 @@ public class Main {
 		
 	}
 	
+	public static void quiz2() {
+		
+		Scanner sc = new Scanner(System.in);
+		
+		System.out.print("삭제할 파일명 입력 >>> ");
+		String filename = sc.next();
+		
+		File file = new File("C:\\storage", filename);
+		
+		if(file.exists()) {
+			System.out.println(filename + " 파일이 삭제되었습니다.");
+			file.delete();
+		} else {
+			System.out.println(filename + " 파일이 존재하지 않습니다.");
+		}
+		
+		sc.close();
+		
+	}
+	
+	// File + 입출력 스트림 함께 사용하기
+	public static void m4() throws IOException {
+		
+		File dir = new File("C:\\storage");
+		
+		if ( !dir.exists() )
+			dir.mkdirs();
+		
+		BufferedWriter bw = new BufferedWriter(new FileWriter(dir.getPath() + File.separator + "m.txt"));
+		
+		bw.write("안녕하세요. 반갑습니다.");
+		
+		bw.close();
+		
+	}
+	
+	public static void quiz3() throws IOException {
+		
+		// C:\\storage\\m.txt 파일을
+		// C:\\upload 디렉토리로 이동하기
+		
+		// 원본 파일
+		// C:\\storage\\m.txt
+		File source = new File("C:\\storage\\m.txt");
+		
+		// 이동할 디렉터리
+		File dir = new File("C:\\upload");
+		if(!dir.exists())
+			dir.mkdirs();
+		
+		// 복사 파일
+		File copy = new File(dir, source.getName());
+		
+		// 복사하기
+		BufferedInputStream bis = new BufferedInputStream(new FileInputStream(source));
+		BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream(copy));
+		
+		byte[] b = new byte[1024];
+		int readCount;
+		
+		while((readCount = bis.read(b)) != -1)
+			bos.write(b, 0, readCount);
+		
+		// 스트림 닫기
+		bos.close();
+		bis.close();
+		
+		// 원본 파일 삭제
+		// 원본 파일과 복사본 파일의 크기가 동일하면 삭제
+		if(source.length() == copy.length()) {
+			source.deleteOnExit();
+		}
+		
+	}
+	
 	public static void main(String[] args) throws IOException {  // main 메소드를 호출하는 곳으로 예외 처리를 넘김. 자바가 처리함.
-		quiz1();
+		quiz3();
 	}
 
 }
