@@ -65,15 +65,21 @@ CREATE TABLE ORDERS(
     CONSTRAINTS ORDERS_PRODUCT_FK FOREIGN KEY(PRODUCT_NO) REFERENCES PRODUCT(PRODUCT_NO)
 );
 
+/*
+    1. 참조 관계의 테이블
+        1) 기본키를 가진 테이블 : 부모테이블
+        2) 외래키를 가진 테이블 : 자식테이블
+    
+    2. 참조 관계에서 삭제시 주의할 점
+        1) 자식테이블을 먼저 지운다. (외래키를 가진 테이블을 먼저 지운다.)
+        2) 부모테이블을 나중에 지운다.
+    
+    3. 테이블 삭제
+        DROP TABLE 테이블명;
+*/
 
+-- 외래키를 가진 '주문(ORDERS)테이블' 먼저 삭제
+DROP TABLE ORDERS;
 
-
-
-
-
-
-
-
-
-
-
+-- 기본키를 가진 '제품(PRODUCT)테이블' 나중에 삭제
+DROP TABLE PRODUCT;
