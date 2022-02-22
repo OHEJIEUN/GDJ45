@@ -1,0 +1,16 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<FKIndexAssociation class="oracle.dbtools.crest.model.design.relational.FKIndexAssociation" directorySegmentName="seg_0" id="0677B0E7-8638-A04F-DC37-9E9BF294C817" containerWithKeyObject="C2E3A5F8-C42E-E3C4-6900-B3456A05AA9C" localFKIndex="86232063-4D0C-C856-64AB-1F3D935D2D9D" name="ENROLL_STUDENT_FK">
+<createdBy>민경태</createdBy>
+<createdTime>2022-02-22 01:21:12 UTC</createdTime>
+<ownerDesignName>모델링</ownerDesignName>
+<referredTableLongName>STUDENT</referredTableLongName>
+<deleteRule>NO ACTION</deleteRule>
+<referredTableID>12E36CD4-F448-B4F2-E7FF-1D48251DBF0D</referredTableID>
+<keyObject>CF37517D-FA95-090B-3D75-43034F9D054D</keyObject>
+<referredKeyID>CF37517D-FA95-090B-3D75-43034F9D054D</referredKeyID>
+<mandatory>true</mandatory>
+<refColNames>STD_NO</refColNames>
+<transferable>true</transferable>
+<rely>false</rely>
+<columnDependencyConstraintGenerateInDDL>true</columnDependencyConstraintGenerateInDDL>
+</FKIndexAssociation>

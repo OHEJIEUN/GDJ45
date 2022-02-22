@@ -1,0 +1,69 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="86DD8F79-41DA-96FE-F697-DE47BF9CCE1D" name="PRODUCTS">
+<createdBy>민경태</createdBy>
+<createdTime>2022-02-22 06:31:18 UTC</createdTime>
+<ownerDesignName>모델링</ownerDesignName>
+<ordsAlias>table_4</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="PRODUCT_NO" id="1435B80C-F1C0-89A8-10B3-9ADE2FB8C8C5">
+<createdBy>민경태</createdBy>
+<createdTime>2022-02-22 06:31:52 UTC</createdTime>
+<ownerDesignName>모델링</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PRODUCT_NAME" id="67144882-5FCA-C68F-8918-B59306C41246">
+<createdBy>민경태</createdBy>
+<createdTime>2022-02-22 06:31:52 UTC</createdTime>
+<ownerDesignName>모델링</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>100 BYTE</dataTypeSize>
+<ownDataTypeParameters>100 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PRODUCT_PRICE" id="B6D919E8-79EA-DE8B-52C5-F64A4A85D2A9">
+<createdBy>민경태</createdBy>
+<createdTime>2022-02-22 06:31:52 UTC</createdTime>
+<ownerDesignName>모델링</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="PRODUCT_IMAGE" id="9252049F-EF7C-FE5D-0BCF-78341885C46A">
+<createdBy>민경태</createdBy>
+<createdTime>2022-02-22 06:31:52 UTC</createdTime>
+<ownerDesignName>모델링</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>300 BYTE</dataTypeSize>
+<ownDataTypeParameters>300 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="5812E04F-C4C1-4E21-64D3-8C598FE41C28" name="PRODUCTS_PK">
+<createdBy>민경태</createdBy>
+<createdTime>2022-02-22 06:31:52 UTC</createdTime>
+<ownerDesignName>모델링</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1435B80C-F1C0-89A8-10B3-9ADE2FB8C8C5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,81 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="17CEB7EF-3531-C7E2-D9B4-5C433DB40672" name="PROCEEDING">
+<createdBy>민경태</createdBy>
+<createdTime>2022-02-22 02:26:21 UTC</createdTime>
+<ownerDesignName>모델링</ownerDesignName>
+<ordsAlias>table_4</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="PCD_NO" id="1C7191BD-D3A4-9C03-C7C0-5F87C5DCBE32">
+<createdBy>민경태</createdBy>
+<createdTime>2022-02-22 02:27:31 UTC</createdTime>
+<ownerDesignName>모델링</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="EMP_NO" id="25575F46-390F-BD98-0627-CF4E22794405">
+<createdBy>민경태</createdBy>
+<createdTime>2022-02-22 02:27:31 UTC</createdTime>
+<ownerDesignName>모델링</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="F1E8CE66-B159-CFA9-F72B-3B8DFE1BDF96" referredColumn="3C34F18B-7DAD-9CC0-46A4-5D6CF1BD10E2"/>
+</associations>
+</Column>
+<Column name="PJT_NO" id="A3535538-8113-818D-EC9F-F9E0C6C35CA0">
+<createdBy>민경태</createdBy>
+<createdTime>2022-02-22 02:27:31 UTC</createdTime>
+<ownerDesignName>모델링</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="A069EFD4-01DC-6C6A-9D55-ACE05ADC5BFF" referredColumn="0C621195-BF12-0B57-7252-FF4E033FF784"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="0E9DFD50-7525-EA50-9198-3123FA895D43" name="PROCEEDING_PK">
+<createdBy>민경태</createdBy>
+<createdTime>2022-02-22 02:27:31 UTC</createdTime>
+<ownerDesignName>모델링</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="1C7191BD-D3A4-9C03-C7C0-5F87C5DCBE32"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="7299ABE4-0970-CD63-8AFD-47E77A46A3AF" name="PROCEEDING_EMPLOYEE_FK">
+<createdBy>민경태</createdBy>
+<createdTime>2022-02-22 02:28:24 UTC</createdTime>
+<ownerDesignName>모델링</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="25575F46-390F-BD98-0627-CF4E22794405"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="30AAB213-5784-EEEE-612D-3DABF9408111" name="PROCEEDING_PROJECT_FK">
+<createdBy>민경태</createdBy>
+<createdTime>2022-02-22 02:28:41 UTC</createdTime>
+<ownerDesignName>모델링</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A3535538-8113-818D-EC9F-F9E0C6C35CA0"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

@@ -1,0 +1,8 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<relationalModel class="oracle.dbtools.crest.model.design.relational.RelationalDesign" name="Relational_1" id="187C662A-EF96-6851-38BB-41B49E96F19D" mainViewID="2EE6562E-5FE9-2FCF-B8DA-0E8410832AF1">
+<createdBy>민경태</createdBy>
+<createdTime>2022-02-22 00:21:12 UTC</createdTime>
+<ownerDesignName>모델링</ownerDesignName>
+<shouldBeOpen>false</shouldBeOpen>
+<selectedRDBMSSite>32076570-2523-435C-2E92-BF29817DFF70</selectedRDBMSSite>
+</relationalModel>

@@ -1,0 +1,82 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="C2E3A5F8-C42E-E3C4-6900-B3456A05AA9C" name="ENROLL">
+<createdBy>민경태</createdBy>
+<createdTime>2022-02-22 01:18:19 UTC</createdTime>
+<ownerDesignName>모델링</ownerDesignName>
+<ordsAlias>table_5</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ENROLL_NO" id="78DD3D1A-B93D-35E8-2CE6-4FD97BB6929D">
+<createdBy>민경태</createdBy>
+<createdTime>2022-02-22 01:19:44 UTC</createdTime>
+<ownerDesignName>모델링</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="STD_NO" id="B4D12C16-3817-FABA-1177-F83A4CF8AD68">
+<createdBy>민경태</createdBy>
+<createdTime>2022-02-22 01:19:44 UTC</createdTime>
+<ownerDesignName>모델링</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="0677B0E7-8638-A04F-DC37-9E9BF294C817" referredColumn="0848C3FD-32D1-93E9-DD67-F67959B01EBC"/>
+</associations>
+</Column>
+<Column name="SUBJECT_CODE" id="4ABDF77D-C14E-484B-F71E-C939548E1AF5">
+<createdBy>민경태</createdBy>
+<createdTime>2022-02-22 01:19:44 UTC</createdTime>
+<ownerDesignName>모델링</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>1 BYTE</dataTypeSize>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="7279B794-7809-0E7D-D8BE-A084E9FADD18" referredColumn="AE9115FF-6346-FF1B-CE6D-87DF6CEE530E"/>
+</associations>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="D4F62195-084B-B7D1-9906-E976657969A8" name="ENROLL_PK">
+<createdBy>민경태</createdBy>
+<createdTime>2022-02-22 01:19:44 UTC</createdTime>
+<ownerDesignName>모델링</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="78DD3D1A-B93D-35E8-2CE6-4FD97BB6929D"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="86232063-4D0C-C856-64AB-1F3D935D2D9D" name="ENROLL_STUDENT_FK">
+<createdBy>민경태</createdBy>
+<createdTime>2022-02-22 01:21:12 UTC</createdTime>
+<ownerDesignName>모델링</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B4D12C16-3817-FABA-1177-F83A4CF8AD68"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="DE6DD3B5-540F-245F-045A-ECC21A982F6B" name="ENROLL_SUBJECT_FK">
+<createdBy>민경태</createdBy>
+<createdTime>2022-02-22 01:21:42 UTC</createdTime>
+<ownerDesignName>모델링</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4ABDF77D-C14E-484B-F71E-C939548E1AF5"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

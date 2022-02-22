@@ -1,0 +1,92 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="63F2B426-3277-2715-67B4-21AFDDFE90AB" name="ORDERS">
+<createdBy>민경태</createdBy>
+<createdTime>2022-02-22 06:29:54 UTC</createdTime>
+<ownerDesignName>모델링</ownerDesignName>
+<ordsAlias>table_3</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="ORDER_NO" id="95C6B6C9-7CFF-EDDE-A33E-ADF3AEA9273E">
+<createdBy>민경태</createdBy>
+<createdTime>2022-02-22 06:31:10 UTC</createdTime>
+<ownerDesignName>모델링</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="CUSTOMER_NO" id="D4EE54B9-A242-56CF-DBCE-8640A04C4B90">
+<createdBy>민경태</createdBy>
+<createdTime>2022-02-22 06:31:10 UTC</createdTime>
+<ownerDesignName>모델링</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="5AE55B53-E12C-5FF5-F5CD-079C01E23CA7" referredColumn="6A158015-3806-F4DB-6C6D-4B8C0EE9AAE2"/>
+</associations>
+</Column>
+<Column name="PRODUCT_NO" id="071747AB-49C3-A721-A8BF-2AE1A26C782F">
+<createdBy>민경태</createdBy>
+<createdTime>2022-02-22 06:31:10 UTC</createdTime>
+<ownerDesignName>모델링</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="9BA6362A-B101-86A5-463E-5D757FC33838" referredColumn="1435B80C-F1C0-89A8-10B3-9ADE2FB8C8C5"/>
+</associations>
+</Column>
+<Column name="ORDER_AMOUNT" id="B4E767DF-F620-677A-CCC1-5AF51533E51E">
+<createdBy>민경태</createdBy>
+<createdTime>2022-02-22 06:31:10 UTC</createdTime>
+<ownerDesignName>모델링</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="CA48B9D6-1144-CCEB-D611-499AFBE96816" name="ORDERS_PK">
+<createdBy>민경태</createdBy>
+<createdTime>2022-02-22 06:31:10 UTC</createdTime>
+<ownerDesignName>모델링</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="95C6B6C9-7CFF-EDDE-A33E-ADF3AEA9273E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="8192F679-A323-3423-49EA-D6C8E484B093" name="ORDERS_PRODUCTS_FK">
+<createdBy>민경태</createdBy>
+<createdTime>2022-02-22 06:35:28 UTC</createdTime>
+<ownerDesignName>모델링</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="071747AB-49C3-A721-A8BF-2AE1A26C782F"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="2F83DF53-8957-78F9-078B-7DD6B19EF090" name="ORDERS_CUSTOMER_FK">
+<createdBy>민경태</createdBy>
+<createdTime>2022-02-22 06:35:54 UTC</createdTime>
+<ownerDesignName>모델링</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="D4EE54B9-A242-56CF-DBCE-8640A04C4B90"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
