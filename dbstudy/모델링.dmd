@@ -1,8 +1,0 @@
-<?xml version = '1.0' encoding = 'UTF-8'?>
-<OSDM_Design class="oracle.dbtools.crest.model.design.Design" name="모델링" id="5FE00F1F-604E-554C-063E-BA785FEAAAEA" version="3.5">
-<createdBy>민경태</createdBy>
-<createdTime>2022-02-22 00:03:02 UTC</createdTime>
-<ownerDesignName>모델링</ownerDesignName>
-<capitalNames>false</capitalNames>
-<designId>5FE00F1F-604E-554C-063E-BA785FEAAAEA</designId>
-</OSDM_Design>
