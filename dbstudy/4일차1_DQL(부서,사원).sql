@@ -106,3 +106,39 @@ SELECT DEPT_NAME
 SELECT NAME
   FROM EMPLOYEE
  WHERE GENDER IS NOT NULL;
+
+
+-- 11. 부서테이블에서 부서명(DEPT_NAME)에 '무'가 포함된 부서의 모든 칼럼을 조회하시오.
+-- 만능문자 : %, _
+-- 문자 데이터를 대상으로 만능문자를 사용한다.
+SELECT DEPT_NO, DEPT_NAME, LOCATION
+  FROM DEPARTMENT
+ WHERE DEPT_NAME LIKE '%무%';
+
+
+-- 12. 사원테이블에서 사원명(NAME)이 '김'으로 시작하지 않는 사원의 사원명(NAME)을 조회하시오.
+SELECT NAME
+  FROM EMPLOYEE
+ WHERE NAME NOT LIKE '김%';
+
+
+-- 13. 사원테이블에서 급여(SALARY)가 높은 사원부터 낮은 사원순(내림차순)으로 사원명(NAME)과 급여(SALARY)를 조회하시오.
+SELECT NAME, SALARY
+  FROM EMPLOYEE
+ ORDER BY SALARY DESC;
+
+
+-- 14. 사원테이블의 모든 칼럼을 사원명(NAME)의 가나다순(오름차순)으로 조회하시오.
+SELECT EMP_NO, NAME, DEPART, POSITION, GENDER, HIRE_DATE, SALARY
+  FROM EMPLOYEE
+ ORDER BY NAME;  -- ASC은 생략 가능하다.
+
+
+-- 15. 사원테이블의 모든 칼럼을 부서(DEPART)별로 오름차순 정렬하되, 같은 부서내에서는 고용일(HIRE_DATE)의 오름차순으로 정렬하여 조회하시오.
+SELECT EMP_NO, NAME, DEPART, POSITION, GENDER, HIRE_DATE, SALARY
+  FROM EMPLOYEE
+ ORDER BY DEPART, HIRE_DATE;
+
+SELECT EMP_NO, NAME, DEPART, POSITION, GENDER, HIRE_DATE, SALARY
+  FROM EMPLOYEE
+ ORDER BY DEPART ASC, HIRE_DATE ASC;
