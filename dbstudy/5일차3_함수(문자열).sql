@@ -41,3 +41,29 @@ SELECT
   FROM
        EMPLOYEES;
 
+-- 5. 특정 문자열의 위치 반환
+--    INSTR(문자열, 찾을문자열) : 위치 시작은 1부터, 없으면 0
+SELECT
+       EMAIL
+     , INSTR(EMAIL, 'A')
+  FROM
+       EMPLOYEES;
+
+-- 6. 좌우 문자열 채우기
+--    1) LPAD(문자열, 전체폭, 채울문자)
+--    2) RPAD(문자열, 전체폭, 채울문자)
+SELECT
+       LPAD(NVL(DEPARTMENT_ID, 0), 3, '0')
+  FROM
+       EMPLOYEES;
+
+-- 7. 공백 제거
+--    1) LTRIM : 왼쪽 공백 제거
+--    2) RTRIM : 오른쪽 공백 제거
+--    3) TRIM  : 양쪽 공백 제거
+SELECT
+       LTRIM('   ORACLE')
+     , RTRIM('ORACLE   ')
+     , TRIM('   ORACLE   ')
+  FROM
+       DUAL;
