@@ -1,0 +1,112 @@
+-- 테이블 삭제
+DROP TABLE EMPLOYEE;
+DROP TABLE DEPARTMENT;
+
+-- DEPARTMENT 테이블 생성
+CREATE TABLE DEPARTMENT(
+    DEPT_NO   NUMBER NOT NULL,
+    DEPT_NAME VARCHAR2(15 BYTE) NOT NULL,
+    LOCATION  VARCHAR2(15 BYTE) NOT NULL
+);
+
+-- 기본키
+ALTER TABLE DEPARTMENT ADD CONSTRAINT DEPARTMENT_PK PRIMARY KEY(DEPT_NO);
+
+-- EMPLOYEE 테이블 생성
+CREATE TABLE EMPLOYEE(
+    EMP_NO    NUMBER NOT NULL,
+    NAME      VARCHAR2(20 BYTE) NOT NULL,
+    DEPART    NUMBER,
+    POSITION  VARCHAR2(20 BYTE),
+    GENDER    CHAR(2),
+    HIRE_DATE DATE,
+    SALARY    NUMBER
+);
+
+-- 기본키
+ALTER TABLE EMPLOYEE ADD CONSTRAINT EMPLOYEE_PK PRIMARY KEY(EMP_NO);
+
+-- 외래키
+ALTER TABLE EMPLOYEE 
+    ADD CONSTRAINT EMPLOYEE_DEPARTMENT_FK FOREIGN KEY(DEPART) 
+        REFERENCES DEPARTMENT(DEPT_NO);
+
+-- 데이터 삽입
+INSERT INTO DEPARTMENT VALUES(1, '영업부', '대구');
+INSERT INTO DEPARTMENT VALUES(2, '인사부', '서울');
+INSERT INTO DEPARTMENT VALUES(3, '총무부', '대구');
+INSERT INTO DEPARTMENT VALUES(4, '기획부', '서울');
+
+INSERT INTO EMPLOYEE(EMP_NO, NAME, DEPART, POSITION, GENDER, HIRE_DATE, SALARY)
+VALUES (1001, '구창민', 1, '과장', 'M', '95-05-01', 5000000);
+INSERT INTO EMPLOYEE(EMP_NO, NAME, DEPART, POSITION, GENDER, HIRE_DATE, SALARY)
+VALUES (1002, '김민서', 1, '사원', 'M', '17-09-01', 2500000);
+INSERT INTO EMPLOYEE(EMP_NO, NAME, DEPART, POSITION, GENDER, HIRE_DATE, SALARY)
+VALUES (1003, '이은영', 2, '부장', 'F', '90-09-01', 5500000);
+INSERT INTO EMPLOYEE(EMP_NO, NAME, DEPART, POSITION, GENDER, HIRE_DATE, SALARY)
+VALUES (1004, '한성일', 2, '과장', 'M', '93-04-01', 5000000);
+
+COMMIT;
+
+
+/*
+    조인(JOIN)
+    
+    1. 다중 테이블을 조회하는 방법이다.
+    2. 조회하거나 조건으로 사용할 칼럼이 서로 다른 테이블에 존재하는 경우에 조인을 사용한다.
+    3. 종류
+        1) 크로스 조인 : 카테젼 곱(각 테이블의 모든 행(row) 정보를 조합)
+        2) 내부 조인 : INNER JOIN, 각 테이블에 모두 존재하는 데이터를 대상으로 조인
+        3) 외부 조인 : OUTER JOIN, 한 테이블은 모든 데이터를 대상으로 하고 다른 테이블은 존재하는 데이터를 대상으로 조인
+    4. 형식
+       1) 콤마(,) 표기법
+           SELECT 조회할칼럼
+             FROM 테이블1, 테이블2
+            WHERE 테이블1.칼럼 = 테이블2.칼럼;  -- 조인조건
+       2) JOIN 문법
+           SELECT 조회할칼럼
+             FROM 테이블1 JOIN 테이블2
+               ON 테이블1.칼럼 = 테이블2.칼럼;  -- 조인조건
+*/
+
+
+-- 1. 크로스 조인 확인
+SELECT E.EMP_NO, E.NAME, E.DEPART, D.DEPT_NO, D.DEPT_NAME, D.LOCATION
+  FROM DEPARTMENT D CROSS JOIN EMPLOYEE E;
+
+SELECT E.EMP_NO, E.NAME, E.DEPART, D.DEPT_NO, D.DEPT_NAME, D.LOCATION
+  FROM DEPARTMENT D, EMPLOYEE E;
+
+
+-- 2. 사원번호(EMP_NO), 사원명(NAME), 부서명(DEPT_NAME)을 조회하시오.
+--    테이블이 2개 사용되어야 하므로 '조인'이다.
+--       EMPLOYEE   : EMP_NO, NAME
+--       DEPARTMENT : DEPT_NAME
+--       조인조건   : DEPARTMENT의 DEPT_NO와 EMPLOYEE의 DEPART 칼럼값이 일치하는 데이터
+
+-- 1) 조인 문법
+SELECT E.EMP_NO, E.NAME, D.DEPT_NAME
+  FROM DEPARTMENT D INNER JOIN EMPLOYEE E
+    ON D.DEPT_NO = E.DEPART;
+
+
+-- 2) 콤마 표기법
+SELECT E.EMP_NO, E.NAME, D.DEPT_NAME
+  FROM DEPARTMENT D, EMPLOYEE E
+ WHERE D.DEPT_NO = E.DEPART;
+
+
+-- 3. '대구'지역에서 근무하는 사원들의 사원번호(EMP_NO)와 사원명(NAME)을 조회하시오.
+--    조건인 '대구'는 DEPARTMENT테이블에서 확인, 조회할 칼럼인 사원번호와 사원명은 EMPLOYEE테이블에서 확인
+
+-- 1) 조인 문법
+SELECT E.EMP_NO, E.NAME
+  FROM DEPARTMENT D INNER JOIN EMPLOYEE E
+    ON D.DEPT_NO = E.DEPART  -- 조인조건
+ WHERE D.LOCATION = '대구';  -- 일반조건
+
+-- 2) 콤마 표기법
+SELECT E.EMP_NO, E.NAME
+  FROM DEPARTMENT D, EMPLOYEE E
+ WHERE D.DEPT_NO = E.DEPART  -- 조인조건
+   AND D.LOCATION = '대구';  -- 일반조건
