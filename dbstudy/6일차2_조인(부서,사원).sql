@@ -110,3 +110,74 @@ SELECT E.EMP_NO, E.NAME
   FROM DEPARTMENT D, EMPLOYEE E
  WHERE D.DEPT_NO = E.DEPART  -- 조인조건
    AND D.LOCATION = '대구';  -- 일반조건
+
+
+
+-- 아래 데이터를 수정 / 추가한다.
+-- 참조무결성이 위배된 데이터이기 때문에 외래키 제약조건을 잠시 중지하고 추가한다.
+
+ALTER TABLE EMPLOYEE DISABLE CONSTRAINT EMPLOYEE_DEPARTMENT_FK;
+
+UPDATE EMPLOYEE SET DEPART = NULL WHERE EMP_NO = 1002;
+
+INSERT INTO EMPLOYEE(EMP_NO, NAME, DEPART, POSITION, GENDER, HIRE_DATE, SALARY)
+VALUES (1005, '김미나', 5, '사원', 'F', '18-05-01', 1800000);
+
+COMMIT;
+
+
+-- 4. 사원번호(EMP_NO), 사원명(NAME), 부서명(DEPT_NAME)을 조회하시오.
+--    배정 받은 부서가 없는 경우 NULL로 조회되도록 하시오.
+
+-- 풀이)
+-- 배정 받은 부서가 없으면 조회되지 않는 INNER JOIN
+-- 1001  구창민  영업부
+-- 1003  이은영  인사부
+-- 1004  한성일  인사부
+SELECT E.EMP_NO, E.NAME, D.DEPT_NAME
+  FROM DEPARTMENT D INNER JOIN EMPLOYEE E
+    ON D.DEPT_NO = E.DEPART;
+    
+-- 따라서 이 문제는 내부 조인으로 풀 수 없다.
+
+
+-- 배정 받은 부서가 없어도 사원테이블에 존재하는 데이터는 모두 조회할 수 있는 OUTER JOIN
+-- 1001  구창민  영업부
+-- 1002  김민서  NULL
+-- 1003  이은영  인사부
+-- 1004  한성일  인사부
+-- 1005  김미나  NULL
+
+-- * 사원테이블에 존재하는 데이터는 모두 조회 : 사원테이블이 왼쪽인지 오른쪽인지 판단
+--   사원테이블이 왼쪽에 있으면   '왼쪽 외부 조인'   : LEFT OUTER JOIN
+--   사원테이블이 오른쪽에 있으면 '오른쪽 외부 조인' : RIGHT OUTER JOIN
+
+-- 1) 조인 문법
+SELECT E.EMP_NO, E.NAME, D.DEPT_NAME
+  FROM DEPARTMENT D RIGHT OUTER JOIN EMPLOYEE E
+    ON D.DEPT_NO = E.DEPART;
+
+
+-- 2) 콤마 표기법
+SELECT E.EMP_NO, E.NAME, D.DEPT_NAME
+  FROM DEPARTMENT D, EMPLOYEE E
+ WHERE D.DEPT_NO(+) = E.DEPART;  -- 왼쪽 조인은 오른쪽에 (+)표시, 오른쪽 조인은 왼쪽에 (+)표시
+
+
+
+-- 5. 부서번호별로 소속된 사원수를 조회하시오.
+--    소속된 사원이 없는 경우 사원수를 0으로 조회하시오.
+--    부서번호    사원수
+--    1            1
+--    2            2
+--    3            0
+--    4            0
+
+-- 풀이)
+-- 부서번호 3,4는 일치하는 사원 정보가 없지만 조회되도록 왼쪽 외부 조인으로 풀이
+
+SELECT D.DEPT_NO AS 부서번호, COUNT(E.DEPART) AS 사원수
+  FROM DEPARTMENT D LEFT OUTER JOIN EMPLOYEE E
+    ON D.DEPT_NO = E.DEPART
+ GROUP BY D.DEPT_NO
+ ORDER BY D.DEPT_NO;
