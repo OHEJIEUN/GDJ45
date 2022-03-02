@@ -120,8 +120,84 @@ SELECT D.DEPARTMENT_ID, D.DEPARTMENT_NAME, COUNT(E.DEPARTMENT_ID)
 /* SELF JOIN */
 
 -- 9. MANAGER보다 먼저 입사한 사원들의 EMPLOYEE_ID, LAST_NAME, HIRE_DATE과 MANAGER의 HIRE_DATE를 조회하시오.
---    사원의 HIRE_DATE가 MANAGER의 HIRE_DATE보다 작은 사원을 조회하시오.
+--    사원의 HIRE_DATE가 MANAGER의 HIRE_DATE보다 작은 사원을 조회하시오. (MANAGER보다 먼저 입사한 사원)
+
+-- 비교대상
+-- 모든 사원의 정보 : EMPLOYEES E
+-- MANAGER의 정보   : EMPLOYEES M
+
+-- 관계
+-- PK              FK 
+-- EMPLOYEE_ID     MANAGER_ID
+
+-- 조인조건
+-- 사원의 MANAGER_ID - MANAGER의 EMPLOYEE_ID
+SELECT
+       E.EMPLOYEE_ID  -- 사원번호
+     , E.LAST_NAME    -- 사원명
+     , E.HIRE_DATE    -- 사원고용일
+     , M.HIRE_DATE    -- 상사고용일
+  FROM 
+       EMPLOYEES M INNER JOIN EMPLOYEES E
+    ON 
+       M.EMPLOYEE_ID = E.MANAGER_ID
+ WHERE 
+       M.HIRE_DATE > E.HIRE_DATE;  -- HIRE_DATE는 DATE타입이므로 직접 비교한다.
+--  WHERE TO_DATE(M.HIRE_DATE) > TO_DATE(E.HIRE_DATE);  HIRE_DATE가 VARCHAR2타입이면 날짜로 변환 후 비교한다.
+
+SELECT
+       E.EMPLOYEE_ID  -- 사원번호
+     , E.LAST_NAME    -- 사원명
+     , E.HIRE_DATE    -- 사원고용일
+     , M.HIRE_DATE    -- 상사고용일
+  FROM 
+       EMPLOYEES M, EMPLOYEES E
+ WHERE 
+       M.EMPLOYEE_ID = E.MANAGER_ID
+   AND 
+       M.HIRE_DATE > E.HIRE_DATE;
 
 
 -- 10. 같은 부서의 사원들 중에서 나보다 늦게 입사하였으나 연봉을 더 많이 받는 사원이 있는 사원들의
---     DEPARTMENT_ID, LAST_NAME, SALARY, HIRE_DATE와 높은 연봉을 받는 사원의 FIRST_NAME, SALARY, HIRE_DATE를 조회하시오.
+--     DEPARTMENT_ID, LAST_NAME, SALARY, HIRE_DATE와 높은 연봉을 받는 사원의 LAST_NAME, SALARY, HIRE_DATE를 조회하시오.
+
+-- 비교대상
+-- 나 : EMPLOYEES ME
+-- 남 : EMPLOYEES YOU
+
+-- 조인조건(같은 부서)
+-- 나의 DEPARTMENT_ID - 남의 DEPARTMENT_ID
+
+SELECT 
+       ME.DEPARTMENT_ID   -- 부서명
+     , ME.LAST_NAME       -- 내이름
+     , ME.SALARY          -- 내연봉
+     , ME.HIRE_DATE       -- 내고용일
+     , YOU.LAST_NAME      -- 남이름
+     , YOU.SALARY         -- 남연봉
+     , YOU.HIRE_DATE      -- 남고용일
+  FROM
+       EMPLOYEES ME INNER JOIN EMPLOYEES YOU
+    ON
+       ME.DEPARTMENT_ID = YOU.DEPARTMENT_ID
+ WHERE
+       ME.HIRE_DATE < YOU.HIRE_DATE
+   AND
+       ME.SALARY < YOU.SALARY;
+
+SELECT 
+       ME.DEPARTMENT_ID   -- 부서명
+     , ME.LAST_NAME       -- 내이름
+     , ME.SALARY          -- 내연봉
+     , ME.HIRE_DATE       -- 내고용일
+     , YOU.LAST_NAME      -- 남이름
+     , YOU.SALARY         -- 남연봉
+     , YOU.HIRE_DATE      -- 남고용일
+  FROM
+       EMPLOYEES ME, EMPLOYEES YOU
+ WHERE
+       ME.DEPARTMENT_ID = YOU.DEPARTMENT_ID
+   AND
+       ME.HIRE_DATE < YOU.HIRE_DATE
+   AND
+       ME.SALARY < YOU.SALARY;
