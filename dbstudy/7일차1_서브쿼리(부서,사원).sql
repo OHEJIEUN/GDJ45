@@ -137,11 +137,73 @@ SELECT EMP_NO, NAME, POSITION
                     WHERE DEPART = 2);
 
 
+-- 7. 부서명(DEPT_NAME)이 '영업부'인 부서에 근무하는 사원을 조회하시오.
+--    서브쿼리 : 부서명(DEPT_NAME)이 '영업부'인 부서번호(다중 행 : 부서명(DEPT_NAME)칼럼은 PK도 아니고 UNIQUE도 아니므로 서브쿼리 결과가 여러개)
+--    메인쿼리 : SELECT 칼럼 FROM 사원 WHERE 부서번호 IN(부서명이 '영업부'인 부서번호)
+
+SELECT EMP_NO, NAME, DEPART
+  FROM EMPLOYEE
+ WHERE DEPART IN(SELECT DEPT_NO
+                   FROM DEPARTMENT
+                  WHERE DEPT_NAME = '영업부');
+
+
+-- 8. 직급(POSITION)이 '과장'인 사원들이 근무하는 부서를 조회하시오.
+--    서브쿼리 : 직급(POSITION)이 '과장'인 사원들의 부서번호
+--    메인쿼리 : SELECT 칼럼 FROM 부서 WHERE 부서번호 IN(직급이 '과장'인 사원들의 부서번호)
+
+SELECT DEPT_NO, DEPT_NAME, LOCATION
+  FROM DEPARTMENT
+ WHERE DEPT_NO IN(SELECT DEPART
+                    FROM EMPLOYEE
+                   WHERE POSITION = '과장');
+
+
+-- 9. 부서번호(DEPART)가 1인 부서에 근무하는 어떤 사원의 급여(SALARY)보다 더 많은 급여를 받는 사원을 조회하시오.
+--    부서번호(DEPART)가 1인 부서에 근무하는 사원들의 급여 중 어떤 급여이든 많이 받으면 조회하시오.
+
+-- ANY : 제시된 조건 중 하나만 만족하면 가능한 경우
+
+-- 서브쿼리 : 부서번호(DEPART)가 1인 부서에 근무하는 사원들의 급여(SALARY)
+-- 메인쿼리 : SELECT 칼럼 FROM 사원 WHERE 급여 > ANY(부서번호가 1인 부서에 근무하는 사원들의 급여)
+
+SELECT EMP_NO, NAME, DEPART, SALARY
+  FROM EMPLOYEE
+ WHERE SALARY > ANY(SELECT SALARY
+                      FROM EMPLOYEE
+                     WHERE DEPART = 1);
+
+-- ANY 대신 집계함수 사용
+-- 메인쿼리 : SELECT 칼럼 FROM 사원 WHERE 급여 > (부서번호가 1인 부서에 근무하는 사원들의 최소급여)
+
+SELECT EMP_NO, NAME, DEPART, SALARY
+  FROM EMPLOYEE
+ WHERE SALARY > (SELECT MIN(SALARY)
+                   FROM EMPLOYEE
+                  WHERE DEPART = 1);
 
 
 
+-- 10. 부서번호(DEPART)가 1인 부서에 근무하는 모든 사원의 급여(SALARY)보다 더 많은 급여를 받는 사원을 조회하시오.
+--    부서번호(DEPART)가 1인 부서에 근무하는 사원들의 모든 급여와 비교해서 더 많이 받으면 조회하시오.
+
+-- ALL : 제시된 모든 조건을 만족하는 경우
+
+-- 서브쿼리 : 부서번호(DEPART)가 1인 부서에 근무하는 사원들의 급여(SALARY)
+-- 메인쿼리 : SELECT 칼럼 FROM 사원 WHERE 급여 > ALL(부서번호가 1인 부서에 근무하는 사원들의 급여)
+
+SELECT EMP_NO, NAME, DEPART, SALARY
+  FROM EMPLOYEE
+ WHERE SALARY > ALL(SELECT SALARY
+                      FROM EMPLOYEE
+                     WHERE DEPART = 1);
 
 
+-- ALL 대신 집계함수 사용
+-- 메인쿼리 : SELECT 칼럼 FROM 사원 WHERE 급여 > (부서번호가 1인 부서에 근무하는 사원들의 최대급여)
 
-
-
+SELECT EMP_NO, NAME, DEPART, SALARY
+  FROM EMPLOYEE
+ WHERE SALARY > (SELECT MAX(SALARY)
+                   FROM EMPLOYEE
+                  WHERE DEPART = 1);
