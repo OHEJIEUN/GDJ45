@@ -15,6 +15,14 @@
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\Users\민경태\Downloads\DiceGameProject"/>
+			<item value="C:\Users\민경태\Downloads\mania1417_62089157a02bd"/>
+			<item value="C:\Users\민경태\Downloads\mania1415_620c404997db1"/>
+			<item value="C:\Users\민경태\Downloads\mania1363_6207d15064ef0"/>
+			<item value="C:\Users\민경태\Downloads\mania1410_62089f2bc761c"/>
+			<item value="C:\Users\민경태\Downloads\mania1409_6207d2b42b9b1"/>
+			<item value="C:\Users\민경태\Downloads\mania1403_6208fc7b959dd"/>
+			<item value="C:\Users\민경태\Downloads\mania1401_620c3fc576c3e"/>
 			<item value="C:\Users\민경태\Downloads\mania1395_620b680a4faa5"/>
 			<item value="C:\Users\민경태\Downloads\mania1421_620b68ca20d37"/>
 			<item value="C:\Users\민경태\Downloads\ParkingLotProject"/>
@@ -27,14 +35,6 @@
 			<item value="C:\Users\민경태\Downloads\mania1413_620b57b5b96e8"/>
 			<item value="C:\Users\민경태\Downloads\mania1412_620b673029f14"/>
 			<item value="C:\Users\민경태\Downloads\mania1410_620b65cd4b24b"/>
-			<item value="C:\Users\민경태\Downloads\mania1409_620b674c6cab9"/>
-			<item value="C:\Users\민경태\Downloads\mania1408_620b5a3648419"/>
-			<item value="C:\Users\민경태\Downloads\mania1405_620b62221cb62"/>
-			<item value="C:\Users\민경태\Downloads\mania1403_620b620446ca1"/>
-			<item value="C:\Users\민경태\Downloads\mania1397_620b61581f2da"/>
-			<item value="C:\Users\민경태\Downloads\mania1401_620b650a3417e"/>
-			<item value="C:\Users\민경태\Downloads\mania1399_620b6bbb86d15"/>
-			<item value="C:\Users\민경태\Downloads\mania1396_620b6845bde3e"/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
 			<item value=""/>
