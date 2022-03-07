@@ -151,3 +151,120 @@ BEGIN
     PROC6(var_employee_id, var_salary);
     DBMS_OUTPUT.PUT_LINE('사원번호 ' || var_employee_id || '의 연봉 ' || var_salary);
 END;
+
+
+
+
+-- 실습 환경
+-- 제품 테이블
+
+CREATE TABLE PRODUCTS(
+    PROD_CODE  NUMBER,             -- 제품코드
+    PROD_NAME  VARCHAR2(10 BYTE),  -- 제품명
+    PROD_PRICE NUMBER,             -- 가격
+    PROD_STOCK NUMBER              -- 재고
+);
+-- 제품 기본키
+ALTER TABLE PRODUCTS
+    ADD CONSTRAINT PRODUCTS_PK PRIMARY KEY(PROD_CODE);
+-- 제품 입력
+INSERT INTO PRODUCTS VALUES(1000, '진라면', 500, 100);
+INSERT INTO PRODUCTS VALUES(1001, '신라면', 600, 100);
+COMMIT;
+
+
+-- 고객 테이블
+CREATE TABLE CUSTOMERS(
+    CUST_NO    NUMBER,             -- 고객번호
+    CUST_NAME  VARCHAR2(10 BYTE),  -- 고객명
+    CUST_POINT NUMBER              -- 고객포인트
+);
+-- 고객 기본키
+ALTER TABLE CUSTOMERS
+    ADD CONSTRAINT CUSTOMERS_PK PRIMARY KEY(CUST_NO);
+-- 고객 입력
+INSERT INTO CUSTOMERS VALUES(1, '철수', 0);
+INSERT INTO CUSTOMERS VALUES(2, '영희', 0);
+COMMIT;
+
+-- 구매 테이블
+CREATE TABLE BUYS(
+    BUY_NO     NUMBER,  -- 구매번호
+    CUST_NO    NUMBER,  -- 구매자
+    PROD_CODE  NUMBER,  -- 구매제품
+    BUY_AMOUNT NUMBER   -- 구매수량
+);
+ALTER TABLE BUYS
+    ADD CONSTRAINT BUYS_PK PRIMARY KEY(BUY_NO);
+ALTER TABLE BUYS
+    ADD CONSTRAINT BUYS_CUSTOMERS_FK FOREIGN KEY(CUST_NO)
+        REFERENCES CUSTOMERS(CUST_NO);
+ALTER TABLE BUYS
+    ADD CONSTRAINT BUYS_PRODUCTS_FK FOREIGN KEY(PROD_CODE)
+        REFERENCES PRODUCTS(PROD_CODE);
+
+-- 구매 테이블 시퀀스
+CREATE SEQUENCE BUYS_SEQ NOCACHE;
+
+
+
+-- 구매 프로시저
+-- 1. BUY_PROC(고객번호, 제품코드, 구매수량)
+-- 2. 진행해야 할 쿼리
+--    1) 구매 테이블에 구매 내역을 INSERT 한다.
+--    2) 고객 테이블의 고객포인트를 UPDATE 한다. (총 구매액의 10% 적립)
+--    3) 제품 테이블의 재고를 UPDATE 한다.
+
+CREATE OR REPLACE PROCEDURE BUY_PROC
+(
+    -- 입력 파라미터 선언
+    var_cust_no    IN CUSTOMERS.CUST_NO%TYPE,
+    var_prod_code  IN PRODUCTS.PROD_CODE%TYPE,
+    var_buy_amount IN BUYS.BUY_AMOUNT%TYPE
+)
+IS
+BEGIN
+
+    -- 1) 구매 테이블에 구매 내역을 INSERT 한다.
+    INSERT INTO BUYS 
+    VALUES(BUYS_SEQ.NEXTVAL, var_cust_no, var_prod_code, var_buy_amount);
+    
+    -- 2) 고객 테이블의 고객포인트를 UPDATE 한다. (총 구매액의 10% 적립, 정수로 올림 처리)
+    UPDATE CUSTOMERS
+       SET CUST_POINT = CUST_POINT + CEIL((SELECT PROD_PRICE
+                                             FROM PRODUCTS
+                                            WHERE PROD_CODE = var_prod_code) * var_buy_amount * 0.1)
+     WHERE CUST_NO = var_cust_no;
+    
+    -- 3) 제품 테이블의 재고를 UPDATE 한다.
+    UPDATE PRODUCTS
+       SET PROD_STOCK = PROD_STOCK - var_buy_amount
+     WHERE PROD_CODE = var_prod_code;
+    
+    -- 4) 커밋
+    COMMIT;
+    
+EXCEPTION
+
+    -- 예외 처리
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('예외코드 ' || SQLCODE);
+        DBMS_OUTPUT.PUT_LINE('예외메시지 ' || SQLERRM);
+        -- 롤백
+        ROLLBACK;
+        
+END BUY_PROC;
+
+
+-- 프로시저 BUY_PROC 실행
+EXECUTE BUY_PROC(1, 1000, 5);
+
+-- 확인
+SELECT PROD_CODE, PROD_NAME, PROD_PRICE, PROD_STOCK
+  FROM PRODUCTS;
+
+SELECT CUST_NO, CUST_NAME, CUST_POINT
+  FROM CUSTOMERS;
+
+SELECT BUY_NO, CUST_NO, PROD_CODE, BUY_AMOUNT
+  FROM BUYS;
