@@ -53,12 +53,7 @@ public class DMLMain {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		} finally {
-			try {
-				if(con != null) con.close();
-				if(ps != null)  ps.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			MyConnection.close(con, ps);
 		}
 		
 	}
@@ -101,18 +96,72 @@ public class DMLMain {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		} finally {
-			try {
-				if(con != null) con.close();
-				if(ps != null)  ps.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+			MyConnection.close(con, ps);
 		}
 		
 	}
 
+	// UPDATE
+	public static void update() {
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		int res = 0;
+		String sql = null;
+		
+		try {
+			con = MyConnection.getConnection();
+			sql = "UPDATE BOARDS SET TITLE = ?, HIT = ? WHERE NO = ?";
+			ps = con.prepareStatement(sql);
+			String title = "수정제목";
+			int hit = 99;
+			long no = 2;
+			ps.setString(1, title);
+			ps.setInt(2, hit);
+			ps.setLong(3, no);
+			res = ps.executeUpdate();
+			if(res > 0) {
+				System.out.println("게시글이 수정되었습니다.");
+			} else {
+				System.out.println("게시글이 수정되지 않았습니다.");
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			MyConnection.close(con, ps);
+		}
+		
+	}
+	
+	// DELETE
+	public static void delete() {
+		
+		Connection con = null;
+		PreparedStatement ps = null;
+		int res = 0;
+		String sql = null;
+		
+		try {
+			con = MyConnection.getConnection();
+			sql = "DELETE FROM BOARDS WHERE NO = ?";
+			ps = con.prepareStatement(sql);
+			long no = 1;
+			ps.setLong(1, no);
+			res = ps.executeUpdate();
+			if(res > 0)
+				System.out.println("게시글이 삭제되었습니다.");
+			else
+				System.out.println("게시글이 삭제되지 않았습니다.");
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			MyConnection.close(con, ps);
+		}
+		
+	}
+	
 	public static void main(String[] args) {
-		insert2();
+		delete();
 	}
 
 }

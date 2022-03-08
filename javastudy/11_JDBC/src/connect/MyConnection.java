@@ -2,6 +2,7 @@ package connect;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 public class MyConnection {
@@ -23,6 +24,15 @@ public class MyConnection {
 			throw new RuntimeException("DB접속정보를 확인하세요.", e);
 		}
 		return con;
+	}
+	
+	public static void close(Connection con, PreparedStatement ps) {
+		try {
+			if(con != null) con.close();
+			if(ps != null)  ps.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
 }
