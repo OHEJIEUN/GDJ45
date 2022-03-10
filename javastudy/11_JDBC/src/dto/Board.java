@@ -13,7 +13,7 @@ import java.sql.Date;
 	    2) getter/setter
 */
 
-public class Boards {
+public class Board {
 
 	private long no;
 	private String title;
