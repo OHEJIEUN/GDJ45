@@ -1,5 +1,16 @@
 package dao;
 
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Properties;
+
 // Singleton Pattern
 // 1. 인스턴스를 하나만 만들 수 있는 패턴이다.
 // 2. 방법
@@ -28,6 +39,56 @@ public class ProductDAO {
 			dao = new ProductDAO();
 		return dao;
 	}
+	
+	
+	// 필드
+	private Connection con;
+	private PreparedStatement ps;
+	private ResultSet rs;
+	private int res;
+	private String sql;
+	
+	// 접속
+	private Connection getConnection() {
+		try {
+			// db.properties 파일 내용 읽기
+			InputStream in = new FileInputStream("db.properties");
+			Properties properties = new Properties();
+			properties.load(in);
+			String url = properties.getProperty("url");
+			String user = properties.getProperty("user");
+			String password = properties.getProperty("password");
+			// OracleDriver 로드
+			Class.forName("oracle.jdbc.OracleDriver");
+			// 접속 반환
+			return DriverManager.getConnection(url, user, password);
+		} catch (FileNotFoundException e) {
+			throw new RuntimeException("db.properties 파일이 존재하지 않습니다.");
+		} catch (IOException e) {
+			throw new RuntimeException("db.properties 파일을 읽을 수 없습니다.");
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("OracleDriver를 로드할 수 없습니다.");
+		} catch (SQLException e) {
+			throw new RuntimeException("DB접속 정보를 확인하세요.");
+		}
+	}
+	
+	// 접속해제
+	private void close() {
+		try {
+			if(con != null) con.close();
+			if(ps != null)  ps.close();
+			if(rs != null)  rs.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	
