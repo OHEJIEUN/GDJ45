@@ -53,7 +53,7 @@ public class DMLMain {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		} finally {
-			MyConnection.close(con, ps);
+			MyConnection.close(con, ps, null);
 		}
 		
 	}
@@ -96,7 +96,7 @@ public class DMLMain {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		} finally {
-			MyConnection.close(con, ps);
+			MyConnection.close(con, ps, null);
 		}
 		
 	}
@@ -128,7 +128,7 @@ public class DMLMain {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		} finally {
-			MyConnection.close(con, ps);
+			MyConnection.close(con, ps, null);
 		}
 		
 	}
@@ -155,7 +155,7 @@ public class DMLMain {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		} finally {
-			MyConnection.close(con, ps);
+			MyConnection.close(con, ps, null);
 		}
 		
 	}

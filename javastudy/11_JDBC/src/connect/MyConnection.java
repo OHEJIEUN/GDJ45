@@ -3,6 +3,7 @@ package connect;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class MyConnection {
@@ -26,10 +27,11 @@ public class MyConnection {
 		return con;
 	}
 	
-	public static void close(Connection con, PreparedStatement ps) {
+	public static void close(Connection con, PreparedStatement ps, ResultSet rs) {
 		try {
 			if(con != null) con.close();
 			if(ps != null)  ps.close();
+			if(rs != null)  rs.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
