@@ -5,19 +5,38 @@
 --    (2) BOOK_NAME : 책 이름, 가변 길이 문자 (최대 100)
 --    (3) PUBLISHER : 출판사, 가변 길이 문자 (최대 50)
 --    (4) PRICE : 가격, 숫자 (최대 6자리)
+CREATE TABLE BOOK(
+    BOOK_ID   NUMBER(11) NOT NULL,
+    BOOK_NAME VARCHAR2(100 BYTE),
+    PUBLISHER VARCHAR2(50 BYTE),
+    PRICE     NUMBER(6)
+);
 
 -- 2) CUSTOMER 테이블
 --    (1) CUSTOMER_ID : 고객 아이디, 숫자 (최대 11자리), 필수
 --    (2) CUSTOMER_NAME : 고객 이름, 가변 길이 문자 (최대 20)
 --    (3) ADDRESS : 고객 주소, 가변 길이 문자 (최대 50)
 --    (4) PHONE : 고객 전화, 가변 길이 문자 (최대 20)
+CREATE TABLE CUSTOMER(
+    CUSTOMER_ID   NUMBER(11) NOT NULL,
+    CUSTOMER_NAME VARCHAR2(20 BYTE),
+    ADDRESS       VARCHAR2(50 BYTE),
+    PHONE         VARCHAR2(20 BYTE)
+);
 
 -- 3) ORDERS 테이블
 --    (1) ORDER_ID : 주문 아이디, 숫자 (최대 11자리), 필수
 --    (2) CUSTOMER_ID : 고객 아이디, 숫자 (최대 11자리)
 --    (3) BOOK_ID : 책 아이디, 숫자 (최대 11자리)
---    (4) SALE_PRICE : 판매 가격, 숫자 (최대 6자리)
+--    (4) SALES_PRICE : 판매 가격, 숫자 (최대 6자리)
 --    (5) ORDER_DATE : 주문일, 날짜
+CREATE TABLE ORDERS(
+    ORDER_ID    NUMBER(11) NOT NULL,
+    CUSTOMER_ID NUMBER(11),
+    BOOK_ID     NUMBER(11),
+    SALES_PRICE NUMBER(6),
+    ORDER_DATE  DATE
+);
 
 -- 4) 아래 INSERT 문은 변경 없이 그대로 사용한다.
 INSERT ALL
@@ -54,9 +73,23 @@ INSERT ALL
     INTO ORDERS(ORDER_ID, CUSTOMER_ID, BOOK_ID, SALES_PRICE, ORDER_DATE) VALUES (10, 3, 8, 13000, '2014-07-10')
 SELECT * FROM DUAL;
 
--- 2. BOOKS, CUSTOMERS, ORDERS 테이블의 BOOK_ID, CUST_ID, ORDER_ID 칼럼에 기본키를 추가하시오.
+COMMIT;
 
--- 3. ORDERS 테이블의 CUST_ID, BOOK_ID 칼럼에 각각 CUSTOMERS 테이블과 BOOKS 테이블을 참조할 외래키를 추가하시오.
+-- 2. BOOK, CUSTOMER, ORDERS 테이블의 BOOK_ID, CUSTOMER_ID, ORDER_ID 칼럼에 기본키를 추가하시오.
+ALTER TABLE BOOK
+    ADD CONSTRAINT BOOK_PK PRIMARY KEY(BOOK_ID);
+ALTER TABLE CUSTOMER
+    ADD CONSTRAINT CUSTOMER_PK PRIMARY KEY(CUSTOMER_ID);
+ALTER TABLE ORDERS
+    ADD CONSTRAINT ORDERS_PK PRIMARY KEY(ORDER_ID);
+
+-- 3. ORDERS 테이블의 CUSTOMER_ID, BOOK_ID 칼럼에 각각 CUSTOMER 테이블과 BOOK 테이블을 참조할 외래키를 추가하시오.
+ALTER TABLE ORDERS
+    ADD CONSTRAINT ORDERS_CUSTOMER_FK FOREIGN KEY(CUSTOMER_ID)
+        REFERENCES CUSTOMER(CUSTOMER_ID);
+ALTER TABLE ORDERS
+    ADD CONSTRAINT ORDERS_BOOK_FK FOREIGN KEY(BOOK_ID)
+        REFERENCES BOOK(BOOK_ID);
 
 -- 4. 2014년 7월 4일부터 7월 7일 사이에 주문 받은 도서를 제외하고 나머지 모든 주문 정보를 조회하시오.
 
