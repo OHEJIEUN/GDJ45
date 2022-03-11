@@ -11,6 +11,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
+import dto.Product;
+
 // Singleton Pattern
 // 1. 인스턴스를 하나만 만들 수 있는 패턴이다.
 // 2. 방법
@@ -100,6 +102,30 @@ public class ProductDAO {
 		}
 		return res;
 	}
+	
+	// 제품조회
+	public Product selectProductByNo(long no) {
+		Product product = null;
+		try {
+			con = getConnection();
+			sql = "SELECT NO, NAME, PRICE FROM PRODUCT WHERE NO = ?";
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, no);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				product = new Product();
+				product.setNo(rs.getLong("NO"));        // rs.getLong(1)
+				product.setName(rs.getString("NAME"));  // rs.getString(2)
+				product.setPrice(rs.getInt("PRICE"));   // rs.getInt(3)
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			close();
+		}
+		return product;
+	}
+	
 	
 	
 	

@@ -3,6 +3,7 @@ package service;
 import java.util.Scanner;
 
 import dao.ProductDAO;
+import dto.Product;
 
 public class ProductService {
 
@@ -31,6 +32,17 @@ public class ProductService {
 	}
 	// 제품삭제
 	public void removeProduct() {
+		System.out.println("=== 제품삭제 ===");
+		System.out.print("삭제할 제품번호 >>> ");
+		long no = sc.nextLong();
+		Product product = dao.selectProductByNo(no);
+		if(product == null) {
+			System.out.println("해당 제품이 없습니다.");
+			return;
+		}
+		System.out.println(product.getName() + " 제품을 삭제할까요(y/n)? ");
+
+		//홈런볼 삭제 완료
 		
 	}
 	// 제품수정
