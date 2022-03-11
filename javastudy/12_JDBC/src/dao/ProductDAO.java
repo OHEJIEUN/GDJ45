@@ -45,7 +45,6 @@ public class ProductDAO {
 	private Connection con;
 	private PreparedStatement ps;
 	private ResultSet rs;
-	private int res;
 	private String sql;
 	
 	// 접속
@@ -84,7 +83,23 @@ public class ProductDAO {
 		}
 	}
 	
-	
+	// 제품등록
+	public int insertProduct(String name, int price) {
+		int res = 0;
+		try {
+			con = getConnection();
+			sql = "INSERT INTO PRODUCT(NO, NAME, PRICE) VALUES(PRODUCT_SEQ.NEXTVAL, ?, ?)";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, name);
+			ps.setInt(2, price);
+			res = ps.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			close();
+		}
+		return res;
+	}
 	
 	
 	

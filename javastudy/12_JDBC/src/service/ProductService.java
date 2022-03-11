@@ -18,7 +18,16 @@ public class ProductService {
 	
 	// 제품등록
 	public void addProduct() {
-		
+		System.out.println("===제품등록===");
+		System.out.print("제품명 >>> ");
+		String name = sc.next();
+		System.out.print("제품가격 >>> ");
+		int price = sc.nextInt();
+		int res = dao.insertProduct(name, price);
+		if(res > 0)
+			System.out.println("===" + name + " 등록 성공===");
+		else
+			System.out.println("===" + name + " 등록 실패===");
 	}
 	// 제품삭제
 	public void removeProduct() {
