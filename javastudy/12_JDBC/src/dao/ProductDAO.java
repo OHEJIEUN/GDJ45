@@ -9,6 +9,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import dto.Product;
@@ -162,15 +164,50 @@ public class ProductDAO {
 		return res;
 	}
 	
+	// 전체조회
+	public List<Product> selectProductList() {
+		List<Product> products = new ArrayList<Product>();
+		try {
+			con = getConnection();
+			sql = "SELECT NO, NAME, PRICE FROM PRODUCT";
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Product product = new Product(rs.getLong("NO"), rs.getString("NAME"), rs.getInt("PRICE"));
+				products.add(product);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			close();
+		}
+		return products;
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	// 범위조회
+	public List<Product> selectProductPartList(int begin, int end) {
+		List<Product> products = new ArrayList<Product>();
+		try {
+			con = getConnection();
+			sql = "SELECT P.NO, P.NAME, P.PRICE " +
+				    "FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO) AS RN, NO, NAME, PRICE " +
+				            "FROM PRODUCT) P " +
+				   "WHERE P.RN BETWEEN ? AND ?";
+			ps = con.prepareStatement(sql);
+			ps.setInt(1, begin);
+			ps.setInt(2, end);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				Product product = new Product(rs.getLong("NO"), rs.getString("NAME"), rs.getInt("PRICE"));
+				products.add(product);
+			}
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			close();
+		}
+		return products;
+	}
 	
 	
 	

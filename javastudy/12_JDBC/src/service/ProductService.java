@@ -1,5 +1,6 @@
 package service;
 
+import java.util.List;
 import java.util.Scanner;
 
 import dao.ProductDAO;
@@ -87,12 +88,34 @@ public class ProductService {
 	}
 	// 전체조회
 	public void findAllProducts() {
-		
+		System.out.println("=== 전체조회 ===");
+		List<Product> products = dao.selectProductList();
+		if(products.isEmpty()) {  // if(products.size() == 0)
+			System.out.println("저장된 제품이 없습니다.");
+			return;
+		}
+		for(Product product : products)
+			System.out.println(product);
+	}
+	// 범위조회
+	public void findPartProducts() {
+		System.out.println("=== 범위조회 ===");
+		System.out.print("시작 >>> ");
+		int begin = sc.nextInt();
+		System.out.print("끝 >>> ");
+		int end = sc.nextInt();
+		List<Product> products = dao.selectProductPartList(begin, end);
+		if(products.isEmpty()) {
+			System.out.println("지정된 범위에 저장된 제품이 없습니다.");
+			return;
+		}
+		for(Product product : products)
+			System.out.println(product);
 	}
 	// 실행
 	public void execute() {
 		while(true) {
-			System.out.print("1.추가 2.삭제 3.수정 4.조회 5.전체 0.종료 >>> ");
+			System.out.print("1.추가 2.삭제 3.수정 4.조회 5.전체 6.범위 0.종료 >>> ");
 			int choice = sc.nextInt();
 			sc.nextLine();  // 1~0 숫자 입력 후 누른 Enter키 제거
 			switch(choice) {
@@ -101,6 +124,7 @@ public class ProductService {
 			case 3 : modifyProduct(); break;
 			case 4 : findProduct(); break;
 			case 5 : findAllProducts(); break;
+			case 6 : findPartProducts(); break;
 			case 0 : System.out.println("프로그램을 종료합니다."); return;
 			default : System.out.println("선택을 다시 하세요.");
 			}
