@@ -143,7 +143,24 @@ public class ProductDAO {
 		return res;
 	}
 	
-	
+	// 제품수정
+	public int updateProduct(long no, String name, int price) {
+		int res = 0;
+		try {
+			con = getConnection();
+			sql = "UPDATE PRODUCT SET NAME = ?, PRICE = ? WHERE NO = ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, name);
+			ps.setInt(2, price);
+			ps.setLong(3, no);
+			res = ps.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			close();
+		}
+		return res;
+	}
 	
 	
 	

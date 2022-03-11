@@ -55,7 +55,24 @@ public class ProductService {
 	}
 	// 제품수정
 	public void modifyProduct() {
-		
+		System.out.println("=== 제품수정 ===");
+		System.out.print("수정할 제품번호 >>> ");
+		long no = sc.nextLong();
+		Product product = dao.selectProductByNo(no);
+		if(product == null) {
+			System.out.println("해당 제품이 없습니다.");
+			return;
+		}
+		System.out.println("현재 제품번호 " + no + "번 제품은 " + product.getName() + "입니다.");
+		System.out.print("수정할 제품명 >>> ");
+		String name = sc.next();
+		System.out.print("수정할 제품가격 >>> ");
+		int price = sc.nextInt();
+		int res = dao.updateProduct(no, name, price);
+		if(res > 0)
+			System.out.println("=== 수정 성공 ===");
+		else
+			System.out.println("=== 수정 실패 ===");
 	}
 	// 제품조회
 	public void findProduct() {
