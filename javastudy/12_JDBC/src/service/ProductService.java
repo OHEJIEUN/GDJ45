@@ -40,10 +40,18 @@ public class ProductService {
 			System.out.println("해당 제품이 없습니다.");
 			return;
 		}
-		System.out.println(product.getName() + " 제품을 삭제할까요(y/n)? ");
-
-		//홈런볼 삭제 완료
-		
+		String name = product.getName();
+		System.out.print(name + " 제품을 삭제할까요(y/n)? ");
+		String yn = sc.next();
+		if(yn.equalsIgnoreCase("y")) {
+			int res = dao.deleteProduct(no);
+			if(res > 0)
+				System.out.println("===" + name + " 삭제 성공===");
+			else
+				System.out.println("===" + name + " 삭제 실패===");
+		} else {
+			System.out.println(name + " 제품 삭제가 취소되었습니다.");
+		}
 	}
 	// 제품수정
 	public void modifyProduct() {
@@ -51,7 +59,14 @@ public class ProductService {
 	}
 	// 제품조회
 	public void findProduct() {
-		
+		System.out.println("=== 제품조회 ===");
+		System.out.print("조회할 제품번호 >>> ");
+		long no = sc.nextLong();
+		Product product = dao.selectProductByNo(no);
+		if(product == null)
+			System.out.println("제품번호 " + no + "인 제품이 없습니다.");
+		else
+			System.out.println("조회결과 " + product);
 	}
 	// 전체조회
 	public void findAllProducts() {

@@ -126,6 +126,37 @@ public class ProductDAO {
 		return product;
 	}
 	
+	// 제품삭제
+	public int deleteProduct(long no) {
+		int res = 0;
+		try {
+			con = getConnection();
+			sql = "DELETE FROM PRODUCT WHERE NO = ?";
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, no);
+			res = ps.executeUpdate();
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		} finally {
+			close();
+		}
+		return res;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
