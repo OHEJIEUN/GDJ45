@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <!--
+        테이블
+
+        1. <table> 태그와 <thead>, <tbody>, <tfoot> 하위 태그로 구성
+        2. <table> 태그의 하위 태그
+            1) <thead> : 테이블의 제목 영역, 생략 가능
+            2) <tbody> : 테이블의 본문 영역, 반드시 사용됨
+            3) <tfoot> : 테이블의 하단 영역, 생략 가능
+            4) 태그 작성 순서와 상관 없이 <thead>, <tbody>, <tfoot> 순서로 사용됨
+        3. <thead>, <tbody>, <tfoot> 태그의 하위 태그
+            1) <tr>
+            2) 행(row) 만듬
+        4. <tr> 태그의 하위 태그
+            1) <th> : 제목 열 만듬, <thead> 태그에서 사용 (굵게 + 가운데 정렬)
+            2) <td> : 일반 열 만듬, <tbody>, <tfoot> 태그에서 사용
+    -->
+
+    <!-- 기본 테이블 -->
+    <table border="1">
+        <thead>
+            <tr>
+                <th>제품명</th>
+                <th>입고수량</th>
+                <th>출고수량</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>홈런볼</td>
+                <td>50</td>
+                <td>100</td>
+            </tr>
+            <tr>
+                <td>버터링</td>
+                <td>80</td>
+                <td>150</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td>합계</td>
+                <td>130</td>
+                <td>250</td>
+            </tr>
+        </tfoot>
+    </table>
+
+
+
+
+</body>
+</html>
