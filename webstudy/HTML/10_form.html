@@ -32,19 +32,83 @@
     -->
 
     <!-- 1. 입력 태그 --> 
-    <!-- name 속성 : 서버측에서 인식하는 파라미터 -->
-    <form action="#" method="get">
+    <!-- name  속성 : 서버측에서 인식하는 파라미터(변수명) -->
+    <!-- value 속성 : 사용자가 입력한 내용이 value 속성으로 저장됨 -->
+    <form>
         <input type="text"     placeholder="텍스트"   name="a"><br>
         <input type="password" placeholder="비밀번호" name="b"><br>
         <input type="number"   placeholder="숫자"     name="c"><br>
         <textarea rows="5" cols="25" name="d"></textarea>
     </form>
 
+    <!-- 2. 선택 태그(radio : 1개만 선택할 수 있음) -->
+    <!-- name  속성 : 같은 name을 지정해야 함 -->
+    <!-- value 속성 : 반드시 각 선택마다 value 속성을 지정해야 함 -->
+    <form>
+        <fieldset>
+            <legend>약관</legend>
+            <input type="radio" name="agreement" value="yes" id="agree_yes" checked="checked">
+            <label for="agree_yes">동의함</label>
+            <input type="radio" name="agreement" value="no" id="agree_no">
+            <label for="agree_no">동의안함</label>
+        </fieldset>
+    </form>
 
+    <!-- 3. 선택 태그(checkbox) : 마음대로 선택할 수 있음) -->
+    <!-- name  속성 : 같은 name을 지정해야 함 -->
+    <!-- value 속성 : 반드시 각 선택마다 value 속성을 지정해야 함 -->
+    <form>
+        <fieldset>
+            <legend>취미</legend>
+            <input type="checkbox" name="hobbies" value="1" id="hobby1">
+            <label for="hobby1">운동</label>
+            <input type="checkbox" name="hobbies" value="2" id="hobby2">
+            <label for="hobby2">여행</label>
+        </fieldset>
+    </form>
 
+    <!-- 4. 목록 태그 -->
+    <!-- name  속성 : <select> 태그에 지정 -->
+    <!-- value 속성 : <option> 태그에 지정 -->
+    <form>
+        <select name="mobile">
+            <option value="">선택</option>
+            <option value="010">010</option>
+            <option value="011">011</option>
+            <option value="016">016</option>
+            <option value="019">019</option>
+        </select>
+    </form>
 
+    <!-- 5. 콤보(입력 + 목록) -->
+    <!-- name  속성 : <input> 태그에 지정 -->
+    <!-- value 속성 : 입력한 값이나 선택한 목록이 value 속성이 됨 -->
+    <form>
+        <input type="text" list="domains" name="domain" placeholder="선택 및 입력">
+        <datalist id="domains">
+            <option value="naver.com"/>
+            <option value="kakao.com"/>
+            <option value="gmail.com"/>
+        </datalist>
+    </form>
 
-
+    <!-- 6. 버튼 -->
+    <!-- <button> 태그 : submit -->
+    <form action="01_overview.html" method="get">
+        <label for="nickname">별명</label>
+        <input type="text" id="nickname" name="nick"><br>
+        <label for="male">남자</label>
+        <input type="radio" id="male" name="gender" value="m">
+        <label for="female">여자</label>
+        <input type="radio" id="female" name="gender" value="f"><br>
+        <select name="city">
+            <option value=""></option>
+            <option value="서울">서울</option>
+            <option value="경기">경기</option>
+            <option value="인천">인천</option>
+        </select><br>
+        <button>전송하기</button>
+    </form>
 
 </body>
 </html>
