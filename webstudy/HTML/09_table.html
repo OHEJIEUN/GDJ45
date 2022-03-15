@@ -55,6 +55,73 @@
         </tfoot>
     </table>
 
+    <table>
+        <tbody>
+            <tr>
+                <td><img src="../images/fruit1.jpg" width="250px" height="167px"></td>
+                <td><img src="../images/fruit2.jpg" width="250px" height="167px"></td>
+                <td><img src="../images/fruit3.jpg" width="250px" height="167px"></td>
+                <td><img src="../images/fruit4.jpg" width="250px" height="167px"></td>
+            </tr>
+            <tr>
+                <td>10,000원<br>베리</td>
+                <td>20,000원<br>아보카도</td>
+                <td>5,000원<br>바나나</td>
+                <td>10,000원<br>레몬</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!--
+        셀 병합
+        
+        1. <th>, <td> 태그의 속성으로 병합 처리
+        2. colspan 속성 : 열 병합, 좌우 셀 병합
+        3. rowspan 속성 : 행 병합, 상하 셀 병합
+    -->
+
+    <!-- 열 병합 테이블 -->
+    <table border="1">
+        <tbody>
+            <tr>
+                <td>병합없음</td>
+                <td>병합없음</td>
+                <td>병합없음</td>
+            </tr>
+            <tr>
+                <td colspan="2">a</td>
+                <td>b</td>
+            </tr>
+            </tr>
+                <td>a</td>
+                <td colspan="2">b</td>
+            </tr>
+            <tr>
+                <td colspan="3">a</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- 행 병합 테이블 -->
+    <table border="1">
+        <tbody>
+            <tr>
+                <td>병합없음</td>
+                <td rowspan="2">a</td>
+                <td>a</td>
+                <td rowspan="3">a</td>
+            </tr>
+            <tr>
+                <td>병합없음</td>
+                <td rowspan="2">b</td>
+            </tr>
+            <tr>
+                <td>병합없음</td>
+                <td>b</td>
+            </tr>
+        </tbody>
+    </table>
+
 
 
 
