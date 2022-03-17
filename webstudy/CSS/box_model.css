@@ -13,7 +13,7 @@
 .c {
     /* %단위는 부모 크기가 기준이다. */
     width: 50%;
-    height: 100px;
+    height: 100px;  /* 부모의 height가 없어서 %가 적용이 안된다. */
     background-color: bisque;
 }
 .c > .c1 {
@@ -38,47 +38,13 @@
     width: 100px;
     height: 100px;
     /* 테두리 단축속성 */ border: 1px dotted black;
-    /* 전체 곡률 */                    border-radius: 10px;
-    /* 11/5시 1/7시 */                 border-radius: 20px 0;
-    /* 11시 1/7시 5시 (%모양) */       border-radius: 20px 0 20px;
-    /* 11시 1시 5시 7시 (시계방향) */  border-radius: 10px 20px 30px 40px;
-}
-.image_box1 {
-    /* box크기 = 배경image크기 */
-    width: 100px;
-    height: 76px;
-    background-image: url(../images/attach.png);
-    background-size: 100px 76px;
-}
-.image_box2 {
-    /* box크기 > 배경image크기 */
-    width: 200px;
-    height: 152px;
-    border: 1px solid black;
-    background-image: url(../images/attach.png);
-    background-repeat: no-repeat;
-    background-position: center;
-}
-.image_box3 {
-    /* box크기 < 배경image크기 */
-    width: 100px;
-    height: 38px;
-    border: 1px solid black;
-    background-image: url(../images/attach.png);
-    background-size: contain;  /* contain : 너비/높이 중 작은 값에 맞춤 */
-    background-repeat: no-repeat;
-}
-.image_box4 {
-    /* box크기 < 배경image크기 */
-    width: 100px;
-    height: 38px;
-    border: 1px solid black;  /* cover : 너비/높이 중 큰 값에 맞춤 */
-    background-image: url(../images/attach.png);
-    background-size: cover;
-}
-.image_box5 {
-    width: 120px;
-    height: 110px;
-    background-image: url(../images/logos.png);
-    background-position: left -600px top -190px;
+    /*  ┌──────────┐
+        │ 1      2 │
+        │          │
+        │ 4      3 │
+        └──────────┘  */
+    /* 1234    */  border-radius: 10px;
+    /* 13  24  */  border-radius: 20px 0;
+    /* 1 24 3  */  border-radius: 20px 0 20px;
+    /* 1 2 3 4 */  border-radius: 10px 20px 30px 40px;
 }
