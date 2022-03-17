@@ -1,0 +1,54 @@
+/*
+    1. 클래스 선택자
+        .클래스 {
+
+        }
+*/
+.a {
+    color: green;
+}
+.aa {
+    font-size: 12px;
+    color: blue;
+}
+
+/*
+    2. 아이디 선택자
+        #아이디 {
+
+        }
+*/
+#b {
+    font-style: italic;
+}
+
+/*
+    3. 자식 선택자
+        부모 > 자식 {
+
+        }
+*/
+ul > li > a {
+    color: black;
+    text-decoration: none;
+}
+ul > a {  /* 잘못된 구조 */
+    color: red;
+}
+
+table > tr > td {  /* 잘못된 구조 */
+    color: red;
+}
+table > tbody > tr > td {  /* <tbody> 태그는 반드시 사용된다. */
+    color: orange;
+}
+
+/*
+    4. 후손 선택자
+        조상 후손 {
+
+        }
+*/
+dl strong {
+    color: thistle;
+}
