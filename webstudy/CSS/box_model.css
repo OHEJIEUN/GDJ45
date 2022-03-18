@@ -64,3 +64,34 @@
     /* 1   24   3 */  padding: 20px 0 20px;
     /* 1  2  3  4 */  padding: 10px 20px 30px 40px;
 }
+.g {
+    width: 100px;
+    height: 100px;
+    border: 1px solid black;
+
+    /* 바깥여백 */
+    margin: 10px;
+    /* padding처럼 4가지 방식으로 작성 */
+    /* margin의 특별한 쓰임새 : box를 화면의 가운데 배치 */
+    margin: 0 auto;
+}
+.content_box {
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid black;
+    /* box 종류 */
+    box-sizing: content-box;  /* 디폴트(생략가능) */
+    /* box  크기 : width + padding + border
+       실제 크기 : 100px + 10px*2  + 1px*2  = 122px */
+}
+.border_box {
+    width: 100px;
+    height: 100px;
+    padding: 10px;
+    border: 1px solid black;
+    /* box 종류 */
+    box-sizing: border-box;  /* 실무는 거의 border-box 사용 */
+    /* box  크기 : width
+       실제 크기 : 100px (padding 10px 포함, border 1px 포함, content 78px */
+}
