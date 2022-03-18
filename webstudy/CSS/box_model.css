@@ -32,13 +32,14 @@
     /* 테두리두께 */ border-width: 3px;
     /* 테두리종류 */ border-style: dashed;
     /* 테두리색상 */ border-color: black;
-    /* 모서리곡률 */ border-radius: 10px;
+    /* 테두리 단축속성 */  border: 1px dotted black;
 }
 .e {
     width: 100px;
     height: 100px;
-    /* 테두리 단축속성 */ border: 1px dotted black;
-    /*  ┌──────────┐
+        
+    /*  모서리곡률
+        ┌──────────┐
         │ 1      2 │
         │          │
         │ 4      3 │
