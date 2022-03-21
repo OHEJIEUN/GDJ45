@@ -49,6 +49,29 @@
             text-align: center;  /* 가로 가운데 정렬 */
             padding: 10px 0;     /* 세로 가운데 정렬(상하 동일한 padding값, height 없는 content-box 사용) */
         }
+
+        .box6-1 > a {
+            /* <a>태그를 inline-block으로 변경하기 */
+            display: inline-block;
+            /* <a>태그에 너비/높이 지정하기(텍스트 이외 여백도 클릭할 수 있음) */
+            width: 80px;
+            height: 50px;
+            /* <a>태그의 텍스트 처리하기(정렬, 색상, 밑줄) */
+            text-align: center;  /* 가로 가운데 */
+            line-height: 50px;   /* 세로 가운데 */
+            color: rgb(0, 0, 0);
+            text-decoration: none;
+            /* <a>태그 영역 확인하기 */
+            border: 1px solid black;
+        }
+        .box6-2 > a {
+            /* <a>태그를 inline-block으로 변경하기 */
+            display: inline-block;
+            /* padding으로 박스 크기, 텍스트 정렬 처리하기 */
+            padding: 10px 20px;
+            /* <a>태그 영역 확인하기 */
+            border: 1px solid black;
+        }
     </style>
 </head>
 <body>
@@ -83,6 +106,17 @@
         inline-block box
     </span>
     <span>other inline</span>
+
+    <div class="box6-1">
+        <a href="javascript:exit(0)">책</a>
+        <a href="javascript:exit(0)">사전</a>
+        <a href="javascript:exit(0)">부동산</a>
+    </div>
+    <div class="box6-2">
+        <a href="javascript:exit(0)">책</a>
+        <a href="javascript:exit(0)">사전</a>
+        <a href="javascript:exit(0)">부동산</a>
+    </div>
 
 </body>
 </html>
