@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /*
+            transition
+
+            1. 특정 속성이 이행되는 과정을 설정
+            2. 주요 적용 가능 속성
+                all(디폴트), width, height, padding, margin
+                background-color, border
+                font-size, font-weight, color
+                opacity, visibility
+                transform
+        */
+        .box1 {
+            width: 100px;
+            border: 1px solid black;
+            transition-property: width;        /* width 속성의 변화를 볼 수 있음 */
+            transition-duration: 2s;           /* 2초동안 속성의 변화를 볼 수 있음 */
+            transition-timing-function: ease;  /* 속성의 변화 타이밍 */
+            transition-delay: 1s;              /* 1초후에 transition이 동작함 */
+        }
+        .box1:hover {  /* 마우스 대고 있는 동안 */
+            width: 200px;
+        }
+        .box1:active {  /* 누르는 동안 */
+            width: 50px;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="box1">
+        box1
+    </div>
+    
+</body>
+</html>
