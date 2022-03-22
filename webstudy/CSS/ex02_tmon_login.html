@@ -29,6 +29,46 @@
             background-position: left 0 top 0;
             text-indent: -9000px;
         }
+        .login_ipt_box {
+            display: block;
+            height: 48px;
+            margin-bottom: 6px;
+            border: 1px solid #d7d7d7;
+            /* 자식요소 strong 위치 조정을 위해서 relative 설정 */
+            position: relative;
+        }
+        .login_ipt_box > strong {
+            /* absolute는 부모요소 .login_ipt_box가 static이면 안됨 */
+            position: absolute;
+            top: 16px;
+            left: 19px;
+            /* strong태그는 inline요소이므로 block처리하고 height 지정 */
+            display: block;
+            height: 17px;
+            font-size: 14px;
+            color: #aaa;
+        }
+        .login_ipt_box > input {
+            width: 350px;
+            height: 17px;
+            padding: 16px 19px 15px;
+            font-size: 14px;
+            font-weight: bold;
+            color: #aaa;
+            outline-style: none;
+            border: none;
+        }
+        .btn_login {
+            display: block;
+            height: 50px;
+            background-color: #ff5000;
+            font-size: 14px;
+            font-weight: bold;
+            color: #FFF;
+            letter-spacing: -0.5px;
+            text-align: center;
+            line-height: 51px;
+        }
     </style>
 </head>
 <body>
@@ -38,6 +78,16 @@
             <a href="javascript:exit(0)">
                 <h2 class="tit_bi">티몬</h2>
             </a>
+            <label for="userid" class="login_ipt_box">
+                <strong>아이디</strong>
+                <input type="text" id="userid">
+            </label>
+            <label for="pwd" class="login_ipt_box">
+                <strong>비밀번호</strong>
+                <input type="password" id="pwd">
+            </label>
+            <p style="display: none;">아이디 또는 비밀번호가 일치하지 않습니다.</p>
+            <a href="javascript:exit(0)" class="btn_login">로그인</a>
         </form>
     </div>
 
