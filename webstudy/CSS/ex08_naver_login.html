@@ -19,6 +19,8 @@
         }
         body {
             height: 100%;
+            color: #222;
+            background-color: #fff;
         }
         a {
             text-decoration: none;
@@ -36,9 +38,8 @@
         }
         .header {
             padding-bottom: 48px;
-            height: 138px;
         } 
-        .header_inner {
+        .header .header_inner {
             margin: 0 auto;
             width: 743px;
             text-align: center;
@@ -48,8 +49,7 @@
             display: inline-block;
             width: 155px;
             height: 30px;
-            border: 1px solid black;
-            /* margin-top: 108px; */
+            margin-top: 108px;
             background-image: url(https://ssl.pstatic.net/static/nid/login/m_sp_00_common_978240a6.png);
             background-size: 244px 107px;
             background-repeat: no-repeat;
@@ -85,6 +85,47 @@
                 </div>
             </div>
         </header>
+
+        <div class="container">
+            <!-- content -->
+            <div class="content">
+                <div class="login_wrap">
+                    
+                </div>
+                <ul class="find_wrap" id="find_wrap">
+                    <li><a href="javascript:exit(0)" target="_blank" class="find_text">비밀번호 찾기</a></li>
+                    <li><a href="javascript:exit(0)" target="_blank" class="find_text">아이디 찾기</a></li>
+                    <li><a href="javascript:exit(0)" target="_blank" class="find_text">회원가입</a></li>
+                </ul>
+                <!-- 배너 -->
+                <div id="gladbanner" class="banner_wrap">
+                    <a href="javascript:exit(0)" target="_blank">
+                        <img width="460px" src="https://ssl.pstatic.net/tveta/libs/1378/1378592/0e9db85ef2b7932f3aaa_20220224110250200.jpg">
+                    </a>
+                </div>
+            </div>  <!-- content -->
+        </div>  <!-- container -->
+        <!-- footer -->
+        <div class="footer">
+            <div class="footer_inner">
+                <ul class="footer_link" id="footer_link">
+                    <li><a href="javascript:exit(0)" target="_blank" class="footer_item"><span class="text">이용약관</span></a></li>
+                    <li><a href="javascript:exit(0)" target="_blank" class="footer_item"><span class="text">개인정보처리방침</span></a></li>
+                    <li><a href="javascript:exit(0)" target="_blank" class="footer_item"><span class="text">책임의 한계와 법적고지</span></a></li>
+                    <li><a href="javascript:exit(0)" target="_blank" class="footer_item"><span class="text">회원정보 고객센터</span></a></li>
+                </ul>
+                <div class="footer_copy">
+                    <a target="_blank" href="https://www.navercorp.com">
+                        <span class="footer_logo">
+                            <span class="blind">네이버</span>
+                        </span>
+                    </a>
+                    <span class="text">Copyright</span>
+                    <span class="corp">NAVER Corp.</span>
+                    <span class="text">All Rights Reserved.</span>
+                </div>
+            </div>
+        </div>
 
     </div>
 
