@@ -65,6 +65,68 @@
             top: 20px;
             right: 0;
         }
+        .login_wrap {
+            width: 460px;
+            margin: 0 auto;
+        }
+        .menu_wrap {
+            display: table;
+            table-layout: fixed;
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .menu_item {
+            display: table-cell;
+            vertical-align: top;
+            position: relative;
+        }
+        .menu_id, .menu_ones, .menu_qr {
+            display: block;
+            height: 61px;
+            padding-top: 17px;
+            border: 1px solid #e3e3e3;
+            border-bottom: 0;
+            text-align: center;
+        }
+        .menu_id {
+            border-right: 0;
+            border-radius: 6px 0 0 0;
+        }
+        .menu_ones {
+            border-right: 0;
+        }
+        .menu_qr {
+            border-radius: 0 6px 0 0;
+        }
+        .menu_text {
+            padding-left: 24px;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: -0.5px;
+            color: #777;
+            line-height: 20px;
+            position: relative;
+        }
+        .menu_id .menu_text::before, .menu_ones .menu_text::before, .menu_qr .menu_text::before {
+            content: '';
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            background-image: url(https://ssl.pstatic.net/static/nid/login/m_sp_01_login_008d5216.png);
+            background-size: 266px 225px;
+            background-position: -142px -172px;
+            background-repeat: no-repeat;
+            position: absolute;
+            top: 3px;
+            left: 0;
+        }
+        .menu_ones .menu_text::before {
+            background-position: -160px -172px;
+        }
+        .menu_qr .menu_text::before {
+            background-position: -124px -172px;
+        }
+        
     </style>
 
 </head>
@@ -90,12 +152,29 @@
             <!-- content -->
             <div class="content">
                 <div class="login_wrap">
-                    
+                    <ul class="menu_wrap">
+                        <li class="menu_item">
+                            <a href="javascript:void(0)" class="menu_id">
+                                <span class="menu_text">ID 로그인</span>
+                            </a>
+                        </li>
+                        <li class="menu_item">
+                            <a href="javascript:void(0)" class="menu_ones">
+                                <span class="menu_text">일회용 번호</span>
+                            </a>
+                        </li>
+                        <li class="menu_item">
+                            <a href="javascript:void(0)" class="menu_qr">
+                                <span class="menu_text">QR코드</span>
+                            </a>
+                        </li>
+                    </ul>
+
                 </div>
                 <ul class="find_wrap" id="find_wrap">
-                    <li><a href="javascript:exit(0)" target="_blank" class="find_text">비밀번호 찾기</a></li>
-                    <li><a href="javascript:exit(0)" target="_blank" class="find_text">아이디 찾기</a></li>
-                    <li><a href="javascript:exit(0)" target="_blank" class="find_text">회원가입</a></li>
+                    <li><a href="javascript:void(0)" target="_blank" class="find_text">비밀번호 찾기</a></li>
+                    <li><a href="javascript:void(0)" target="_blank" class="find_text">아이디 찾기</a></li>
+                    <li><a href="javascript:void(0)" target="_blank" class="find_text">회원가입</a></li>
                 </ul>
                 <!-- 배너 -->
                 <div id="gladbanner" class="banner_wrap">
