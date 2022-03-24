@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    <script>
+        /*
+            DOM
+
+            1. Document Object Model(문서 객체 모델)
+            2. 문서(HTML)의 구성요소(태그)를 알아내고 사용한다.
+            3. 알아낸 구성요소를 변수에 저장할 수 있다.
+            4. 알아낸 구성요소의 수정, 삭제가 가능하다. (브라우저 조작)
+        */
+    </script>
+
+    <h1 id="title">Hello Javascript</h1>
+    <script>
+        var title = document.getElementById('title');
+        console.log(title);
+        title.textContent = '안녕 자바스크립트';
+    </script>
+
+
+
+
+</body>
+</html>
