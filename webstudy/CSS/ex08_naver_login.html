@@ -56,6 +56,7 @@
             background-position: 0 -51px;
         }
         .blind {
+            position: absolute;
             width: 1px;
             height: 1px;
             overflow: hidden;
@@ -126,7 +127,68 @@
         .menu_qr .menu_text::before {
             background-position: -124px -172px;
         }
-        
+        .panel_wrap {
+            margin-top: -8px;
+            z-index: 3;  /* 단위 없는 정수, 높은 값은 앞으로, 낮은 값은 뒤로, 형제끼리만 가능, position=static은 불가 */
+            position: relative;
+        }
+        .panel_item {
+            border: 1px solid #c6c6c6;
+            border-radius: 6px;
+            background-color: #fff;
+        }
+        .panel_inner {
+            padding: 20px 28px;
+        }
+        .id_pw_wrap .input_row {
+            display: table;
+            table-layout: fixed;
+            width: 100%;
+            padding: 14px 17px 13px;
+            border: 1px solid #dadada;
+            position: relative;
+        }
+        .id_pw_wrap .input_row:first-of-type {
+            border-radius: 6px 6px 0 0;
+            border-bottom: 0;
+        }
+        .id_pw_wrap .input_row:last-of-type {
+            border-radius: 0 0 6px 6px;
+        }
+        .id_pw_wrap .input_row .icon_cell {
+            display: table-cell;
+            width: 24px;
+            vertical-align: middle;
+        }
+        .id_pw_wrap .input_row .icon_cell .icon_id,
+        .id_pw_wrap .input_row .icon_cell .icon_pw {
+            width: 16px;
+            height: 16px;
+            background-image: url(https://ssl.pstatic.net/static/nid/login/m_sp_01_login_008d5216.png);
+            background-size: 266px 225px;
+            position: absolute;
+            top: 50%;
+            left: 17px;
+            margin-top: -8px;
+        }
+        .id_pw_wrap .input_row .icon_cell .icon_id {
+            background-position: -93px -203px;
+        }
+        .id_pw_wrap .input_row .icon_cell .icon_pw {
+            background-position: -129px -203px;
+        }
+        .id_pw_wrap .input_row .input_text {
+            display: table-cell;
+            padding-right: 30px;
+            width: 100%;
+            font-size: 16px;
+            letter-spacing: -0.5px;
+            color: #222;
+            line-height: 19px;
+            z-index: 4;  /* position=relative 필요함 */
+            position: relative;
+        }
+
     </style>
 
 </head>
@@ -169,7 +231,32 @@
                             </a>
                         </li>
                     </ul>
-
+                    <form method="post" id="frmNIDLogin" autocomplete="off">
+                        <ul class="panel_wrap">
+                            <li class="panel_item">
+                                <div class="panel_inner">
+                                    <div class="id_pw_wrap">
+                                        <div class="input_row" id="id_line">
+                                            <div class="icon_cell" id="id_cell">
+                                                <span class="icon_id">
+                                                    <span class="blind">아이디</span>
+                                                </span>
+                                            </div>
+                                            <input type="text" class="input_text" id="id" placeholder="아이디" title="아이디" maxlength="41">
+                                        </div>
+                                        <div class="input_row" id="pw_line">
+                                            <div class="icon_cell" id="pw_cell">
+                                                <span class="icon_pw">
+                                                    <span class="blind">비밀번호</span>
+                                                </span>
+                                            </div>
+                                            <input type="password" class="input_text" id="pw" placeholder="비밀번호" title="비밀번호" maxlength="16">
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </form>
                 </div>
                 <ul class="find_wrap" id="find_wrap">
                     <li><a href="javascript:void(0)" target="_blank" class="find_text">비밀번호 찾기</a></li>
