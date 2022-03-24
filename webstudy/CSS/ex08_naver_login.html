@@ -6,9 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        body, button, dd, dl, dt, fieldset, form,
+        html, body, button, dd, dl, dt, fieldset, form,
         h1, h2, h3, h4, h5, h6, input, legend, 
-        li, ol, p, select, table, td, textarea, th, ul {
+        li, ol, p, select, table, td, textarea, th, ul,
+        div, a, span, label {
             padding: 0;
             margin: 0;
             box-sizing: border-box;
@@ -25,16 +26,18 @@
         a {
             text-decoration: none;
         }
-        input, button, textarea {
+        input, button {
             border: none;
             outline: none;
             cursor: pointer;
         }
-        ul, ol {
+        ul {
             list-style-type: none;
         }
         .wrap {
+            position: relative;
             height: 100%;
+            letter-spacing: -0.5px;
         }
         .header {
             padding-bottom: 48px;
@@ -66,6 +69,31 @@
             top: 20px;
             right: 0;
         }
+        .sel {
+            width: 100%;
+            min-width: 95px;
+            height: 30px;
+            line-height: 18px;
+            padding: 4px 10px 6px 8px;
+            border: 1px solid #ccc;
+            border-radius: 0;
+            font-size: 12px;
+            color: #333;
+            z-index: 1;
+            position: relative;
+        }
+        .lang::after {
+            content: '';
+            width: 16px;
+            height: 14px;
+            background-image: url(https://ssl.pstatic.net/static/nid/login/m_sp_01_login_008d5216.png);
+            background-size: 266px 225px;
+            background-position: -147px -203px;
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            z-index: 0;
+        }
         .login_wrap {
             width: 460px;
             margin: 0 auto;
@@ -85,9 +113,11 @@
             display: block;
             height: 61px;
             padding-top: 17px;
-            border: 1px solid #e3e3e3;
+            background-color: #fff;
+            border: 1px solid #c6c6c6;
             border-bottom: 0;
             text-align: center;
+            z-index: 5;
         }
         .menu_id {
             border-right: 0;
@@ -228,6 +258,12 @@
             letter-spacing: -0.41px;
             color: #777;
         }
+        .ip_check .switch {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            margin-top: -9px;
+        }
         .ip_check .switch_checkbox {
             position: absolute;
             top: 5px;
@@ -271,6 +307,86 @@
             color: #fff;
             line-height: 24px;
         }
+        .find_wrap {
+            padding: 20px 0 35px;
+            text-align: center;
+        }
+        .find_wrap li {
+            display: inline-block;
+            position: relative;
+        }
+        .find_wrap .find_text {
+            display: inline-block;
+            line-height: 17px;
+            color: #888;
+        }
+        .find_wrap li+li {
+            position: relative;
+            padding-left: 13px;
+        }
+        .find_wrap li+li::before {
+            content: '';
+            width: 1px;
+            height: 12px;
+            background-color: #dadada;
+            border-radius: 0.5px;
+            position: absolute;
+            top: 3px;
+            left: 3px;
+        }
+        .banner_wrap {
+            width: 460px;
+            height: 147px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .footer {
+            padding: 63px 0 32px;
+        }
+        .footer .footer_inner {
+            position: relative;
+            text-align: center;
+        }
+        .footer .footer_link li {
+            display: inline-block;
+            position: relative;
+        }
+        .footer .footer_link li+li {
+            position: relative;
+            padding-left: 13px;
+        }
+        .footer .footer_link li+li::before {
+            content: '';
+            width: 1px;
+            height: 11px;
+            background-color: #dadada;
+            position: absolute;
+            top: 4px;
+            left: 4px;
+        }
+        .footer .text, .footer .corp {
+            font-size: 12px;
+            color: #888;
+            letter-spacing: -0.5px;
+            line-height: 15px;
+        }
+        .footer .footer_copy {
+            margin-top: 9px;
+        }
+        .footer .footer_copy .footer_logo {
+            display: inline-block;
+            width: 70px;
+            height: 15px;
+            background-image: url(https://ssl.pstatic.net/static/nid/login/m_sp_00_common_978240a6.png);
+            background-size: 244px 107px;
+            background-position: -157px -51px;
+            background-repeat: no-repeat;
+        }
+        .footer .footer_copy .corp {
+            padding: 0 2px;
+            font-weight: 500;
+            color: #000;
+        }
     </style>
 
 </head>
@@ -284,7 +400,7 @@
                     <h1 class="blind">NAVER</h1>
                 </a>
                 <div class="lang">
-                    <select name="locale_switch">
+                    <select name="locale_switch" class="sel">
                         <option value="ko_KO">한국어</option>
                         <option value="en_EN">English</option>
                     </select>
@@ -369,7 +485,7 @@
                 </ul>
                 <!-- 배너 -->
                 <div id="gladbanner" class="banner_wrap">
-                    <a href="javascript:exit(0)" target="_blank">
+                    <a href="javascript:void(0)" target="_blank">
                         <img width="460px" src="https://ssl.pstatic.net/tveta/libs/1378/1378592/0e9db85ef2b7932f3aaa_20220224110250200.jpg">
                     </a>
                 </div>
