@@ -188,7 +188,89 @@
             z-index: 4;  /* position=relative 필요함 */
             position: relative;
         }
-
+        .login_keep_wrap {
+            margin-top: 13px;
+            padding-right: 90px;
+            position: relative;
+        }
+        .keep_check {
+            padding-left: 23px;
+            position: relative;
+        }
+        .keep_check .input_keep {
+            position: absolute;
+            top: 2px;
+            left: 3px;
+            width: 15px;
+            height: 15px;
+        }
+        .keep_check .keep_text::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            background-image: url(https://ssl.pstatic.net/static/nid/login/m_sp_01_login_008d5216.png);
+            background-size: 266px 225px;
+            background-position: -244px -87px;
+            background-color: #fff;
+            width: 18px;
+            height: 18px;
+        }
+        .ip_check {
+            position: absolute;
+            top: 0;
+            right: 0;
+            padding-right: 38px;
+        }
+        .ip_check .ip_text {
+            font-weight: 500;
+            line-height: 17px;
+            letter-spacing: -0.41px;
+            color: #777;
+        }
+        .ip_check .switch_checkbox {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+        }
+        .ip_check .switch_btn {
+            display: block;
+            width: 33px;
+            height: 18px;
+            margin: 0 auto;
+            border-radius: 12px;
+            background-color: #c3c8c9;
+            position: relative;
+        }
+        .ip_check .switch_btn::before {
+            content: '';
+            display: block;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background-color: #fff;
+            position: absolute;
+            top: 50%;
+            left: 2px;
+            margin-top: -7px;
+        }
+        .btn_login_wrap {
+            margin-top: 38px;
+        }
+        .btn_login {
+            display: block;
+            width: 100%;
+            padding: 13px 0;
+            border: 1px solid rgba(0,0,0,0.15);
+            border-radius: 6px;
+            background-color: #03c75a;
+        }
+        .btn_login .btn_text {
+            font-size: 20px;
+            font-weight: 700;
+            color: #fff;
+            line-height: 24px;
+        }
     </style>
 
 </head>
@@ -252,6 +334,28 @@
                                             </div>
                                             <input type="password" class="input_text" id="pw" placeholder="비밀번호" title="비밀번호" maxlength="16">
                                         </div>
+                                    </div>
+                                    <div class="login_keep_wrap">
+                                        <div class="keep_check">
+                                            <input type="checkbox" id="keep" class="input_keep">
+                                            <label for="keep" class="keep_text">로그인 상태 유지</label>
+                                        </div>
+                                        <div class="ip_check">
+                                            <a href="javascript:void(0)" target="_blank">
+                                                <span class="ip_text">IP보안</span>
+                                            </a>
+                                            <span class="switch">
+                                                <input type="checkbox" id="switch" class="switch_checkbox">
+                                                <label for="switch" class="switch_btn">
+                                                    <span class="blind">off</span>
+                                                </label>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="btn_login_wrap">
+                                        <button class="btn_login">
+                                            <span class="btn_text">로그인</span>
+                                        </button>
                                     </div>
                                 </div>
                             </li>
