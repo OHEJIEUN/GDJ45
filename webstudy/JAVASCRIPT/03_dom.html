@@ -145,7 +145,24 @@
     <!-- 문제. 봄,여름,가을,겨울 요소를 넣으시오. -->
     <ul id="season"></ul>
     <script>
-        // createElement 이용하기
+        // createElement() 사용하기
+        var li1 = document.createElement('li');
+        li1.textContent = '봄';
+        var li2 = document.createElement('li');
+        li2.textContent = '여름';
+        var li3 = document.createElement('li');
+        li3.textContent = '가을';
+        var li4 = document.createElement('li');
+        li4.textContent = '겨울';
+        var ul = document.getElementById('season');
+        ul.appendChild(li1);
+        ul.appendChild(li2);
+        ul.appendChild(li3);
+        ul.appendChild(li4);
+
+        // 내부 태그를 텍스트로 만들어서 넣기
+        var ul = document.getElementById('season');
+        ul.innerHTML   = '<li>봄</li><li>여름</li><li>가을</li><li>겨울</li>';
     </script>
 
 
