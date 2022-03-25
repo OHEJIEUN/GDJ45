@@ -108,8 +108,46 @@
     <!-- 문제. 클릭하면 다음으로 이동하는 다음 로고 이미지를 넣으시오. -->
     <div id="daum_logo"></div>
     <script>
-        
+        var div = document.getElementById('daum_logo');
+        div.innerHTML = '<a href="https://www.daum.net"><img width="200px" src="../images/daum.png"></a>';
     </script>
+
+
+
+    <div id="box2"></div>
+    <script>
+        /*
+            1. 문서객체 생성 : document.createElement(요소)
+            2. 문서객체 삽입 : 부모요소.appendChild(요소)
+            3. 문서객체 변경 : 부모요소.replaceChild(신요소, 구요소)
+            4. 문서객체 삭제 : 부모요소.removeChild(삭제요소)
+                               삭제요소.parentNode.removeChild(삭제요소)
+        */
+
+        // <h1> 태그 만들기
+        var h1 = document.createElement('h1');
+        // <h1> 태그에 텍스트 넣기
+        h1.textContent = '안녕하세요';
+        // <h1> 태그를 id="box2"인 요소에 넣기
+        document.getElementById('box2').appendChild(h1);
+
+        // 변경하기 전 <div> 태그
+        var div = document.getElementById('box2');
+        // 변경할 새로운 <span> 태그
+        var span = document.createElement('span');
+        // <div> -> <span> 변경하기
+        document.body.replaceChild(span, div);
+
+        // 변경된 <span> 태그 삭제하기
+        document.body.removeChild(span);
+    </script>
+
+    <!-- 문제. 봄,여름,가을,겨울 요소를 넣으시오. -->
+    <ul id="season"></ul>
+    <script>
+        // createElement 이용하기
+    </script>
+
 
 </body>
 </html>
