@@ -36,7 +36,21 @@
                 <li>5</li>
             </ul>
         */
-        
+        // createElement()
+        var ul = document.createElement('ul');
+        for(var n = 1; n <= 5; n++) {
+            var li = document.createElement('li');
+            li.textContent = n;
+            ul.appendChild(li);
+        }
+        document.getElementById('box2').appendChild(ul);
+        // 텍스트
+        var ul = '<ul>';
+        for(var n = 1; n <= 5; n++) {
+            ul += '<li>' + n + '</li>';
+        }
+        ul += '</ul>';
+        document.getElementById('box2').innerHTML = ul;
     </script>
 
     <!-- <select> 태그 만들기 -->
@@ -50,6 +64,23 @@
                 <option value="12">12월</option>
             </select>
         */
+        // createElement()
+        var select = document.createElement('select');
+        select.setAttribute('name', 'month');
+        for(var n = 1; n <= 12; n++) {
+            var option = document.createElement('option');
+            option.setAttribute('value', n);
+            option.textContent = n + '월';
+            select.appendChild(option);
+        }
+        document.getElementById('box3').appendChild(select);
+        // 텍스트
+        var select = '<select name="month">';
+        for(var n = 1; n <= 12; n++) {
+            select += '<option value="' + n + '">' + n + '월</option>';
+        }
+        select += '</select>';
+        document.getElementById('box3').innerHTML = select;
     </script>
 
     <!-- <table> 태그 만들기 -->
@@ -61,7 +92,7 @@
             7   8   9
             #   0   *
         */
-       
+
     </script>
 
 
