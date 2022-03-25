@@ -16,18 +16,100 @@
             2. 문서(HTML)의 구성요소(태그)를 알아내고 사용한다.
             3. 알아낸 구성요소를 변수에 저장할 수 있다.
             4. 알아낸 구성요소의 수정, 삭제가 가능하다. (브라우저 조작)
+            5. 문서객체 : 구성요소(태그)를 알아내는 방법
+                1) document.getElementById('아이디')         : 변수
+                2) document.getElementsByTagName('태그')     : 배열
+                3) document.getElementsByClassName('클래스') : 배열
+                4) document.querySelector('선택자')          : 변수
+                5) document.querySelectorAll('선택자')       : 배열
+            6. 문서객체 주요 속성
+                1) textContent : 구성요소(태그)의 내부 텍스트
+                2) innerHTML   : 구성요소(태그)의 내부 HTML(태그)
+                3) style       : 구성요소(태그)의 CSS
+                4) 속성(Attribute) 작업
+                    (1) getAttribute('속성')     : 속성 값 알아내기
+                    (2) setAttribute('속성', 값) : 속성 값 저장하기
         */
     </script>
 
-    <h1 id="title">Hello Javascript</h1>
+
+
+    <!-- 스크립트가 먼저 나오면 문서객체를 인식하지 못한다. -->
     <script>
-        var title = document.getElementById('title');
-        console.log(title);
-        title.textContent = '안녕 자바스크립트';
+        var h1 = document.getElementById('hello');
+        console.log(h1);
+    </script>
+
+    <!-- 태그는 먼저 나와야 한다. -->
+    <h1 id="hello">Hello</h1>
+
+    <!-- 스크립트는 나중에 나와야 한다. -->
+    <script>
+        var h1 = document.getElementById('hello');
+        console.log(h1);
     </script>
 
 
 
+    <!-- 문서객체 알아내기 -->
+    <div class="yellow_box" id="box1">노란박스</div>
+    <script>
+        // 아이디로 가져오면 변수이다.
+        var div = document.getElementById('box1');
+        console.log(div);
+        // 클래스로 가져오면 배열이다.
+        var div = document.getElementsByClassName('yellow_box')[0];
+        console.log(div);
+        // 태그로 가져오면 배열이다.
+        var div = document.getElementsByTagName('div')[0];
+        console.log(div);
+        // 아이디 선택자로 가져올 땐 querySelector를 사용한다.
+        var div = document.querySelector('#box1');
+        console.log(div);
+        // 클래스 선택자로 가져올 땐 querySelectorAll을 사용한다.
+        var div = document.querySelectorAll('.yellow_box')[0];
+        console.log(div);
+    </script>
+
+
+
+    <!-- 문서객체 속성 사용하기 -->
+    <h1 id="title"><a href="javascript:void(0)">Hello</a></h1>
+    <script>
+        var h1 = document.getElementById('title');
+        console.log(h1);
+        // <h1> 내부 텍스트
+        console.log(h1.textContent);
+        // <h1> 내부 태그
+        console.log(h1.innerHTML);
+        // <h1> CSS 변경하기
+        title.style.fontSize = '12px';
+        // <h1> id 속성 값 알아내기
+        console.log(h1.id);
+        console.log(h1.getAttribute('id'));
+        // <h1> class 속성 값 저장하기
+        h1.class = 'title';
+        h1.setAttribute('class', 'title');
+    </script>
+
+
+    <!-- 문제. 클릭하면 네이버로 이동하는 네이버 로고 이미지를 넣으시오. -->
+    <a id="naver_link"></a>
+    <script>
+        // <a> 태그 알아내기
+        var a = document.getElementById('naver_link');
+        // <a> 태그에 이미지 넣기
+        a.innerHTML = '<img width="200px" alt="네이버로고" src="../images/naver.png">';
+        // <a> 태그에 href 속성 넣기
+        a.href = 'https://www.naver.com';
+        a.setAttribute('href', 'https://www.naver.com');
+    </script>
+
+    <!-- 문제. 클릭하면 다음으로 이동하는 다음 로고 이미지를 넣으시오. -->
+    <div id="daum_logo"></div>
+    <script>
+        
+    </script>
 
 </body>
 </html>
