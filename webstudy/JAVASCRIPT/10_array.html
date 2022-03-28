@@ -60,5 +60,32 @@
         }
 
     </script>
+    <script>
+
+        var menu = ['게임', '등산'];
+
+        // 1) 추가
+        //    (1) push()    : 마지막 요소로 추가한다.
+        //    (2) unshift() : 첫 번째 요소로 추가한다.
+        menu.push('쇼핑');     // ['게임', '등산', '쇼핑']
+        menu.unshift('증권');  // ['증권', '게임', '등산', '쇼핑']
+        console.log(menu);
+
+        // 주의.
+        // 인덱스를 이용한 추가는 홀(hole) 생성의 우려가 있다.
+        // menu[5] = '지도';
+        // console.log(menu);
+
+        // 2) 삭제
+        //    (1) pop()   : 마지막 요소를 삭제한다.
+        //    (2) shift() : 첫 번째 요소를 삭제한다.
+        menu.pop();    // ['증권', '게임', '등산']
+        menu.shift();  // ['게임', '등산']
+        console.log(menu);
+    </script>
+
+
+
+
 </body>
 </html>
