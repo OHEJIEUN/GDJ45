@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+
+            * 함수   : 클래스 외부에 독립적으로 존재
+            * 메소드 : 클래스 내부에 존재하는 함수
+            
+            1. 선언적 함수
+                1) 함수의 이름이 있다.
+                2) 함수 정의(함수 선언)
+                    function 함수명(매개변수) {
+                        함수본문
+                    }
+                3) 호이스팅(hoisting) 된다.
+        */
+    </script>
+
+
+    <!-- 선언적 함수 -->
+    <script>
+
+        func1();  // 함수 선언 이전에도 호출할 수 있다. 이유는 호이스팅!
+        function func1() {
+            console.log('Hello Function');
+        }
+        func1();  // 함수 호출
+
+
+        function func2(name, age) {  // 매개변수 선언 시 var, let, const 모두 사용 불가!
+            console.log('이름 ' + name + ' 나이 ' + age);
+        }
+        var name = '민경태';
+        var age = 45;
+        func2(name, age);
+
+
+        function func3(age) {
+            if(age < 0) {
+                console.log(age + '살은 처리할 수 없습니다.');
+                return;
+            }
+            return age + 1;
+        }
+        var age = -45;
+        var nextAge = func3(age);
+        console.log(nextAge);
+    </script>
+
+
+
+
+
+</body>
+</html>
