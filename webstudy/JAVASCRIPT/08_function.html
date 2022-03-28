@@ -20,6 +20,7 @@
                         함수본문
                     }
                 3) 호이스팅(hoisting) 된다.
+            
             2. 익명 함수
                 1) 함수의 이름이 없다.
                 2) 일반적으로 변수에 저장한 뒤 변수명으로 호출한다.
@@ -33,6 +34,27 @@
                         (매개변수) => {
                             함수본문
                         }
+                
+            3. 콜백 함수
+                1) 다른 함수에 전달하는 함수이다.
+                2) 함수의 매개변수에 저장하는 함수이다.
+                3) 선언적 함수와 익명 함수를 모두 사용할 수 있다.
+                   주로 익명 함수를 사용한다.
+            
+            4. 자기 호출 함수
+                1) 함수를 정의하면 곧바로 호출된다.
+                2) 한 번만 호출하면 되는 경우에 사용하는 것이 적절하다.
+                3) 형식
+                    (function(매개변수){
+
+                    })(인수);
+            
+            5. 인수와 매개변수
+                1) 전개연산자
+                    (1) 모든 인수를 저장하는 하나의 매개변수로 배열이 사용된다.
+                    (2) 전달되는 인수의 개수가 일정하지 않을 때 사용한다.
+                    (3) 형식 : ...매개변수
+                2) 
         */
     </script>
 
@@ -84,6 +106,71 @@
         console.log(v2);
         v2();
         
+    </script>
+
+
+    <!-- 콜백 함수 -->
+    <script>
+
+        // 1. 선언적 함수를 콜백 함수로 사용하기
+        function info(name, age) {
+            console.log('이름 ' + name + ' 나이 ' + age);
+        }
+        function whoAreYou(callback, name, age) {  // 변수 callback이 info 함수를 저장한다.
+            callback(name, age);  // info 함수를 호출한다.
+        }
+        // whoAreYou 함수는 info 함수로 '민경태', 45를 처리한다.
+        whoAreYou(info, '민경태', 45);  // 선언적 함수 info를 전달한다.
+
+        // 2. 익명 함수를 콜백 함수로 사용하기
+        function whoAmI(callback, name, age) {
+            callback(name, age);
+        }
+        whoAmI(function(name, age){
+            console.log('이름 ' + name + ' 나이 ' + age);
+        }, '민경태', 45);
+
+        // 연습
+        // 전달된 익명 함수를 3번 호출하도록 구현하기
+        howMany(function(){
+            console.log('Hello');
+        }, 3);
+        function howMany(callback, count) {
+            for(let n = 0; n < count; n++) {
+                callback();
+            }
+        }
+    </script>
+
+
+    <!-- 자기 호출 함수 -->
+    <script>
+
+        (function(name, age) {
+            console.log('이름 ' + name + ' 나이 ' + age);
+        })('민경태', 45);
+
+    </script>
+
+
+    <!-- 인수와 매개변수 -->
+    <script>
+
+        // 1. 전개 연산자
+        function info(...args) {  // 전개 연산자를 사용한 매개변수는 배열이다. 
+            // 전달된 인수가 없는 경우는 undefined 상태이다.
+            if(args[0] == undefined) {
+                console.log('전달된 인수가 없다.');
+            }
+            if(!args[0]) {  // undefined는 false를 의미한다.
+                console.log('전달된 인수가 없다.');
+            }
+            console.log(args[0] + ', ' + args[1]);
+        }
+        info();
+        info('A');
+        info('A', 'B');
+
     </script>
 
 
