@@ -54,7 +54,13 @@
                     (1) 모든 인수를 저장하는 하나의 매개변수로 배열이 사용된다.
                     (2) 전달되는 인수의 개수가 일정하지 않을 때 사용한다.
                     (3) 형식 : ...매개변수
-                2) 
+                2) 디폴트 매개변수
+                    (1) 전달하는 인수 개수 <> 전달받는 매개변수 개수
+                    (2) 인수를 전달받지 못한 매개변수는 undefined 상태를 디폴트(기본값)로 처리한다.
+                3) arguments 객체
+                    (1) 모든 함수는 매개변수가 없어도 인수를 전달받아서 저장할 수 있다.
+                    (2) 함수로 전달되는 모든 인수는 arguments 객체에 저장된다.
+                    (3) arguments 객체는 배열처럼 사용할 수 있다.
         */
     </script>
 
@@ -157,22 +163,49 @@
     <script>
 
         // 1. 전개 연산자
-        function info(...args) {  // 전개 연산자를 사용한 매개변수는 배열이다. 
+        function printInfo(...args) {  // 전개 연산자를 사용한 매개변수는 배열이다. 
             // 전달된 인수가 없는 경우는 undefined 상태이다.
             if(args[0] == undefined) {
                 console.log('전달된 인수가 없다.');
             }
-            if(!args[0]) {  // undefined는 false를 의미한다.
+            // undefined는 false를 의미한다.
+            if(!args[0]) {
                 console.log('전달된 인수가 없다.');
             }
             console.log(args[0] + ', ' + args[1]);
         }
-        info();
-        info('A');
-        info('A', 'B');
+        printInfo();
+        printInfo('A');
+        printInfo('A', 'B');
+
+        // 2. 디폴트 매개변수 처리
+        printName();
+        function printName(name) {  // name에 값이 전달되지 않는 경우 '민경태'를 디폴트로 사용
+            /*    
+                전달된 인수가 없는 경우는 undefined 상태이다.
+                if(name == undefined) {
+                    name = '민경태';
+                }
+            */
+           /*
+                undefined는 false를 의미한다.
+                if(!name) {
+                    name = '민경태';
+                }
+            */
+            // or 연산자(||)의 short circuit evaluation 특징을 이용한다.
+            // 매개변수 name에 값이 전달되었다면 name은 true로 처리되므로 || 연산의 뒷 부분(name = '민경태')은 수행되지 않는다.
+            name || (name = '민경태');
+            console.log('이름 ' + name);
+        }
+
+        // 3. arguments 객체
+        printAge(45);
+        function printAge() {
+            console.log('나이 ' + arguments[0]);
+        }
 
     </script>
-
 
 </body>
 </html>
