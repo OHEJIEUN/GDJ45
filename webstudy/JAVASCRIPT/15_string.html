@@ -62,5 +62,36 @@
 
     </script>
 
+    <script>
+
+        // replaceAll 함수
+        String.prototype.replaceAll = function(before, after){
+            // this : replaceAll 속성(property)을 호출하는 객체
+            let str = this;
+            while(true) {
+                if(str.indexOf(before) == -1) {
+                    break;
+                }
+                str = str.replace(before, after);
+            }
+            return str;
+        }
+        var str = 'java,java,java';
+        console.log(str.replaceAll('java', '자바'));
+
+
+        // replaceALL 함수
+        String.prototype.replaceALL = function(before, after){
+            let str = this;
+            return str.split(before).join(after);
+            // str = 'java,java,java'
+            // str.split('java')              : ['', ',', ',', '']
+            // str.split('java').join('자바') : '자바,자바,자바'
+        }
+        var str = 'java,java,java';
+        console.log(str.replaceALL('java', '자바'));
+
+    </script>
+
 </body>
 </html>
