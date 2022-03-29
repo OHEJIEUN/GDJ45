@@ -27,7 +27,7 @@
 
         // 자릿수 지정이 가능한 round2, ceil2, floor2, trunc2 함수 만들기
 
-        function round2(n, digit) {
+        Math.round2 = function(n, digit) {
             /*
             1.55 - n
             15.5 - n * Math.pow(10, digit)
@@ -38,13 +38,36 @@
             return Math.round(n * Math.pow(10, digit)) / Math.pow(10, digit);
         }
 
-        console.log(round2(1.555, 2));  // 1.56
-        console.log(round2(1.555, 1));  // 1.6
-        console.log(round2(1.555, 0));  // 2
-        console.log(round2(1.555));     // 2
-        console.log(round2(15555, -1)); // 15560
-        console.log(round2(15555, -2)); // 15600
+        console.log(Math.round2(1.555, 2));  // 1.56
+        console.log(Math.round2(1.555, 1));  // 1.6
+        console.log(Math.round2(1.555, 0));  // 2
+        console.log(Math.round2(1.555));     // 2
+        console.log(Math.round2(15555, -1)); // 15560
+        console.log(Math.round2(15555, -2)); // 15600
         
+        Math.ceil2 = function(n, digit){
+            digit || (digit = 0);
+            return Math.ceil(n * Math.pow(10, digit)) / Math.pow(10, digit);
+        }
+        Math.floor2 = function(n, digit){
+            digit || (digit = 0);
+            return Math.floor(n * Math.pow(10, digit)) / Math.pow(10, digit);
+        }
+        Math.trunc2 = function(n, digit){
+            digit || (digit = 0);
+            return Math.trunc(n * Math.pow(10, digit)) / Math.pow(10, digit);
+        }
+
+        // begin~end 사이의 정수 난수를 반환하는 함수
+        Math.randomBetween = function(begin, end){
+            // Math.random()                      0.0 <= 난수 < 1.0
+            // Math.random() * 6                  0.0 <= 난수 < 6.0
+            // Math.floor(Math.random() * 6)      0 <= 난수 < 6
+            // Math.floor(Math.random() * 6) + 1  1 <= 난수 < 7
+            return Math.floor(Math.random() * (end - begin + 1)) + begin;
+        }
+        console.log(Math.randomBetween(1, 45));
+
     </script>
 
 </body>
