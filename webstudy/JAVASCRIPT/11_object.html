@@ -43,6 +43,17 @@
                     (1) 객체 자신을 나타내는 키워드이다.
                     (2) 객체 내부에서 각 속성(property)을 호출할 때 사용한다.
                         this.속성
+            
+            4. 프로토타입(prototype)
+                1) 객체들이 공유하는 하나의 메모리 공간이다.
+                2) 공통 값, 공통 함수 등은 프로토타입에 저장하는 것이 좋다.
+                3) 사용방법
+                    (1) 생성자 함수 외부
+                        타입.prototype.속성 = 공통값
+                        타입.prototype.속성 = 공통함수
+                    (2) 생성자 함수 내부
+                        this.__proto__.속성 = 공통값
+                        this.__proto__.속성 = 공통함수
         */        
     </script>
     <script>
@@ -168,5 +179,52 @@
         }
 
     </script>
+
+    <script>
+
+        // 생성자 함수
+        function Person(name) {
+            this.name = name;
+        }
+
+        // 생성자 함수 외부에서 prototype 추가
+        var person1 = new Person('Kim');
+        var person2 = new Person('Lee');
+        Person.prototype.country = 'KOREA';
+        Person.prototype.slogan = function(){
+            console.log('빨리빨리');
+        }
+        
+        // 객체 속성 확인
+        console.log(person1.name, person1.country);
+        (person1.slogan)();
+        console.log(person2.name, person2.country);
+        (person2.slogan)();
+
+
+        // 생성자 함수 내부에서 prototype 추가
+        function Product(name, price) {
+            this.name = name;
+            this.price = price;
+            this.__proto__.maker = '오뚜기';     // 공통값
+            this.__proto__.slogan = function(){  // 공통함수
+                console.log('벌떡');
+            }
+        }
+
+        // 객체 생성
+        var product1 = new Product('3분카레', 1000);
+        var product2 = new Product('3분짜장', 2000);
+
+        // 객체 속성 확인
+        console.log(product1.name, product1.price, product1.maker);
+        (product1.slogan)();
+        console.log(product2.name, product2.price, product2.maker);
+        (product2.slogan)();
+
+    </script>
+
+
+
 </body>
 </html>
