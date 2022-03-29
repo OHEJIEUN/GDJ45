@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            1. 객체
+                1) 여러 개의 값으로 구성된 하나의 데이터이다.
+                2) 각 데이터는 '속성(property)'과 '값(value)'으로 구성된다.
+                3) 객체의 데이터는 중괄호({})를 이용해서 묶는다.
+            
+            2. 객체의 속성(property)
+                1) 객체를 구성하는 데이터 단위이다.
+                2) HTML 속성       : attribute
+                   Javascript 속성 : property
+                3) 속성의 호출 방법
+                    (1) 객체.속성
+                    (2) 객체['속성']
+            
+            3. 객체 생성
+                1) 중괄호({})를 이용한 직접 생성
+                    var 객체명 = {
+                        '속성': 값,
+                        '속성': 값
+                    }
+                2) 생성자 함수를 이용한 생성
+                    function 함수명(매개변수1, 매개변수2) {
+                        this.속성1 = 매개변수1;
+                        this.속성2 = 매개변수2;
+                    }
+        */        
+    </script>
+    <script>
+
+        // 객체 생성
+        var me = {
+            'name': '민경태',
+            'age': 45
+        };
+
+        // 객체 확인
+        console.log(me);
+
+        // 객체 속성
+        console.log(me.name + ', ' + me.age);
+        console.log(me['name'] + ', ' + me['age']);
+
+    </script>
+
+    
+
+</body>
+</html>
