@@ -99,7 +99,15 @@
                     (2) 익명 함수 등록
                         <div id="box"></div>
                         document.getElementById('box').addEventListener('click', function(){});
-        */          
+
+
+            4. 이벤트 취소
+                1) 기본 이벤트 : 이미 등록되어 있는 이벤트이다.
+                2) 대표 종류
+                    (1) <button> 태그를 클릭하면 submit 된다.
+                    (2) <a> 태그를 클릭하면 링크로 이동한다.
+                3) 어떤 이벤트를 취소하려는 경우 이벤트 객체의 preventDefault() 메소드를 호출한다.
+        */
     </script>
 
 
@@ -156,6 +164,53 @@
         btn3.addEventListener('click', f1);
         btn3.addEventListener('click', f2);
     </script>
+
+    <hr>
+
+    <!-- 4. 이벤트 취소 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <form action="https://search.naver.com/search.naver"
+          method="get"
+          id="search_form">
+        <input type="text" name="query" id="query">
+        <button type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+        </button>
+    </form>
+    <script>
+        // submit 취소하기
+        var searchForm = document.getElementById('search_form');
+        searchForm.onsubmit = function(ev){
+            var query = document.getElementById('query');
+            if(query.value == '') {
+                alert('검색어를 입력하세요');
+                ev.preventDefault();
+            }
+        }
+    </script>
+
+    <input type="text" name="query" id="query2">
+    <a href="https://search.naver.com/search.naver" id="search_link">
+        <i class="fa-solid fa-magnifying-glass"></i>
+    </a>
+    <script>
+        // 링크 이동 취소하기(<a>태그 기본 이벤트 취소)
+        var searchLink = document.getElementById('search_link');
+        searchLink.onclick = function(ev) {
+            var query2 = document.getElementById('query2');
+            if(query2.value == '게임') {
+                alert('게임은 검색할 수 없습니다.');
+                ev.preventDefault();  // 링크 이동 취소
+            } else {
+                searchLink.href += '?query=' + query2.value;
+            }
+        }
+    </script>
+
+
+
+
+
 
 </body>
 </html>
