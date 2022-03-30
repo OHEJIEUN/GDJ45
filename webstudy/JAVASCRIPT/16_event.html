@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        /*
+            1. 이벤트
+                1) 이벤트 타입
+                    (1) 이벤트의 종류를 의미한다.
+                    (2) 이벤트 객체의 type 속성(property)으로 확인할 수 있다.
+                    (3) 종류
+                        ① click     : 클릭
+                        ② dblclick  : 더블클릭
+                        ③ load      : HTML 문서를 모두 읽음
+                        ④ mouseover : 마우스가 들어옴
+                        ⑤ mouseout  : 마우스가 나감
+                        ⑥ keydown   : 키가 내려감 (입력 직전)
+                        ⑦ keyup     : 키가 올라옴 (입력 직후)
+                        ⑧ focus     : 포커스를 가짐
+                        ⑨ blur      : 포커스를 잃음
+                        ⑩ submit    : 서브밋 (form 태그의 모든 입력 요소를 서버로 보냄)
+                2) 이벤트 대상
+                    (1) 이벤트가 적용되는 HTML 구성요소이다.
+                    (2) 이벤트 객체의 target 속성(property)으로 확인할 수 있다.
+                3) 이벤트 리스너
+                    (1) 이벤트가 발생하면 호출되는 함수이다.
+                    (2) 선언적 함수, 익명 함수 모두 사용할 수 있다.
+                    (3) 이벤트 리스너의 매개변수에는 자동으로 이벤트 객체가 전달된다.
+                4) 이벤트 객체
+                    (1) 해당 이벤트의 상세 정보를 저장하고 있는 객체이다.
+                    (2) 이벤트가 발생하면 자동으로 생성되고 이벤트 리스너에 인수로 전달된다.
+    
+            2. 이벤트 속성(property)
+                1) 이벤트를 등록시키는 속성이다.
+                2) 'on + 이벤트타입' 형식으로 이름이 구성된다.
+            
+            3. 이벤트 모델(이벤트 처리 방법)
+                1) 고전 이벤트 모델 : 하나의 이벤트 리스너만 연결할 수 있다.
+                    (1) 선언적 함수 등록
+                        <div id="box"></div>  // 이벤트 대상
+                        function func(e){     // 이벤트 리스너, 이벤트 객체 : 매개변수 e
+
+                        }
+                        document.getElementById('box').onclick = func;  // func에 괄호 없음.
+                    (2) 익명 함수 등록
+                        <div id="box"></div>  // 이벤트 대상
+                        document.getElementById('box').onclick = function(e){}  // 익명 함수가 이벤트 리스너
+        */
+    </script>
+
+
+    <!-- 1. 고전 이벤트 모델 -->
+    <input type="button" value="클릭해보세요" id="btn1">
+    <script>
+        document.getElementById('btn1').onclick = function(e){
+            // 이 내부에 btn1을 클릭했을 때 동작할 코드 작성
+            alert('안녕?');
+        }
+    </script>
+
+
+
+
+
+</body>
+</html>
