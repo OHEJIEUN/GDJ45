@@ -364,7 +364,44 @@
         }
     </script>
 
+    <hr>
 
-
+    <!-- 연습7. CSS와 자바스크립트 함께 사용하기 -->
+    <div id="ex7">
+        <ul>
+            <li>JAVA</li>
+            <li>ORACLE</li>
+            <li>HTML</li>
+            <li>CSS</li>
+            <li>JAVASCRIPT</li>
+        </ul>
+    </div>
+    <style>
+        #ex7 ul {
+            list-style-type: none;
+        }
+        #ex7 ul li {
+            padding-left: 20px;
+            margin-top: 3px;
+            background-image: url(../images/uncheck.png);
+            background-repeat: no-repeat;
+            background-size: 16px 16px;
+        }
+        #ex7 ul li:hover {
+            cursor: pointer;
+        }
+        #ex7 ul li.checked {
+            background-image: url(../images/check.png);
+        }
+    </style>
+    <script>
+        var li = document.querySelectorAll('#ex7 ul li');
+        for(let i = 0; i < li.length; i++) {
+            li[i].onclick = function(ev){
+                // toggle : 지정한 class를 줬다 뺐다하는 것
+                this.classList.toggle('checked');
+            }
+        }
+    </script>
 </body>
 </html>
