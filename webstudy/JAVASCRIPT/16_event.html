@@ -310,5 +310,33 @@
             changeImg(1);
         }
     </script>
+
+    <hr>
+
+    <!-- 연습5. 썸네일을 선택하면 큰 이미지 보여주기 -->
+    <div id="ex5">
+        <img src="../images/fruit1.jpg" width="400px" height="300px" id="big_img">
+        <br><br>
+        <img src="../images/fruit1.jpg" width="40px" height="30px" class="thumbnail">
+        <img src="../images/fruit2.jpg" width="40px" height="30px" class="thumbnail">
+        <img src="../images/fruit3.jpg" width="40px" height="30px" class="thumbnail">
+        <img src="../images/fruit4.jpg" width="40px" height="30px" class="thumbnail">
+        <img src="../images/fruit5.jpg" width="40px" height="30px" class="thumbnail">
+    </div>
+    <script>
+        var bigImg = document.getElementById('big_img');
+        var thumbnails = document.getElementsByClassName('thumbnail');
+        for(let i = 0; i < thumbnails.length; i++) {
+            thumbnails[i].onmouseover = function(ev){
+                bigImg.src = this.src;
+            }
+        }
+    </script>
+
+
+
+
+
+
 </body>
 </html>
