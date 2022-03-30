@@ -207,10 +207,64 @@
         }
     </script>
 
+    <hr>
 
+    <!-- 연습1. load 이벤트 -->
+    <script>
+        // 페이지 로드 이벤트
+        // 스크립트 처리 전에 HTML 문서를 모두 읽을 것
+        onload = function(){  // window.onload 이지만 window는 언제나 생략한다.
+            document.getElementById('ex1').textContent = 'Hello';
+        }
+    </script>
+    <div id="ex1"></div>
 
+    <hr>
 
+    <!-- 연습2. 선택/해제 버튼 만들기 -->
+    <div id="ex2">
+        <input type="button" value="선택하기" class="btn" data-checked="0">
+        <img src="../images/uncheck.png" width="20px" id="check_img">
+    </div>
+    <script>
+        var btn = document.querySelector('#ex2 .btn');
+        console.log(btn);
+        btn.onclick = function(ev){  // btn == this == ev.target
+            var checkImg = document.getElementById('check_img');
+            if(btn.getAttribute('data-checked') == 0) { // if(btn.dataset.checked == 0)
+                btn.setAttribute('value', '해제하기');  // btn.value = '해제하기';
+                btn.setAttribute('data-checked', 1);    // btn.dataset.checked = 1;
+                checkImg.setAttribute('src', '../images/check.png');  // checkImg.src = '../images/check.png';
+            } else {
+                btn.setAttribute('value', '선택하기');
+                btn.setAttribute('data-checked', 0);
+                checkImg.setAttribute('src', '../images/uncheck.png');
+            }
+        }
+    </script>
 
+    <hr>
+
+    <!-- 연습3. 랜덤 이미지 -->
+    <div id="ex3">
+        <input type="button" value="이미지 변환" class="btn">
+        <img src="../images/fruit1.jpg" width="300px" height="200px" id="random_img">
+    </div>
+    <script>
+        var btn = document.querySelector('#ex3 .btn');
+        btn.onclick = function(ev){
+            var images = [
+                'fruit1.jpg',
+                'fruit2.jpg',
+                'fruit3.jpg',
+                'fruit4.jpg',
+                'fruit5.jpg'
+            ];
+            var pickImg = images[Math.floor(Math.random() * images.length)];
+            var randomImg = document.getElementById('random_img');
+            randomImg.setAttribute('src', '../images/' + pickImg);  // randomImg.src = '../images/' + pickImg;
+        }
+    </script>
 
 </body>
 </html>
