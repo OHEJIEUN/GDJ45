@@ -252,19 +252,63 @@
     </div>
     <script>
         var btn = document.querySelector('#ex3 .btn');
+        var images = [
+            'fruit1.jpg',
+            'fruit2.jpg',
+            'fruit3.jpg',
+            'fruit4.jpg',
+            'fruit5.jpg'
+        ];
         btn.onclick = function(ev){
-            var images = [
-                'fruit1.jpg',
-                'fruit2.jpg',
-                'fruit3.jpg',
-                'fruit4.jpg',
-                'fruit5.jpg'
-            ];
             var pickImg = images[Math.floor(Math.random() * images.length)];
             var randomImg = document.getElementById('random_img');
             randomImg.setAttribute('src', '../images/' + pickImg);  // randomImg.src = '../images/' + pickImg;
         }
     </script>
 
+    <hr>
+
+    <!-- 연습4. 이미지 슬라이드 -->
+    <div id="ex4">
+        <input type="button" value="이전" id="btn_prev">
+        <span id="image_no">1 / 5</span>
+        <input type="button" value="다음" id="btn_next">
+        <br>
+        <img src="../images/fruit1.jpg" width="400px" height="300px" id="slide_img">
+    </div>
+    <script>
+        var images = [
+            'fruit1.jpg',
+            'fruit2.jpg',
+            'fruit3.jpg',
+            'fruit4.jpg',
+            'fruit5.jpg'
+        ];
+        var slideImg = document.getElementById('slide_img');
+        var imageNo = document.getElementById('image_no');
+        var idx = 0;  // 초기 이미지 fruit1.jpg의 인덱스를 사용
+        function changeImg(n) {
+            // 보여줄 이미지의 인덱스 계산
+            idx += n;
+            if (idx < 0) {                    // 첫 이미지에서 '이전' 버튼을 누른 경우
+                idx = images.length - 1;      // 마지막 이미지로 이동
+            }
+            else if (idx == images.length) {  // 마지막 이미지에서 '다음' 버튼을 누른 경우
+                idx = 0;                      // 첫 이미지로 이동
+            }
+            // 이미지 바꾸기
+            slideImg.setAttribute('src', '../images/' + images[idx]);  // slideImg.src = '../images/' + images[idx];
+            // 이미지 번호 바꾸기
+            imageNo.textContent = (idx + 1) + ' / ' + images.length;
+        }
+        var btnPrev = document.getElementById('btn_prev');
+        var btnNext = document.getElementById('btn_next');
+        btnPrev.onclick = function(ev){
+            changeImg(-1);
+        }
+        btnNext.onclick = function(ev){
+            changeImg(1);
+        }
+    </script>
 </body>
 </html>
