@@ -333,8 +333,36 @@
         }
     </script>
 
+    <hr>
 
-
+    <!-- 연습6. CSS와 자바스크립트 함께 사용하기 -->
+    <div id="ex6">
+        <span id="text">내 색깔을 바꿔보세요</span>
+        <br>
+        <input type="button" value="레드" id="btn_red">
+        <input type="button" value="그린" id="btn_green">
+        <input type="button" value="블루" id="btn_blue">
+    </div>
+    <style>
+        .red_text { color: red; }
+        .green_text { color: green; }
+        .blue_text { color: blue; }
+    </style>
+    <script>
+        var text = document.getElementById('text');
+        var btnRed = document.getElementById('btn_red');
+        var btnGreen = document.getElementById('btn_green');
+        var btnBlue = document.getElementById('btn_blue');
+        btnRed.onclick = function(ev){
+            text.setAttribute('class', 'red_text');  // text.className = 'red_text';
+        }
+        btnGreen.onclick = function(ev){
+            text.setAttribute('class', 'green_text');
+        }
+        btnBlue.onclick = function(ev){
+            text.setAttribute('class', 'blue_text');
+        }
+    </script>
 
 
 
