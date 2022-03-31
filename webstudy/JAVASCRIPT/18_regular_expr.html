@@ -76,7 +76,15 @@
         // 아이디는 4~10자이고, 소문자와 숫자로만 구성된다.
         // 아이디 정규식을 만들고,
         // 조건에 부합하지 않으면 submit을 막으시오.
-        // 2시 10분에 시작!
+        var regUserId = /^[a-z0-9]{4,10}$/;
+        var loginForm = document.getElementById('login_form');
+        var userId = document.getElementById('user_id');
+        loginForm.onsubmit = function(ev){
+            if(regUserId.test(userId.value) == false) {
+                alert('아이디는 4~10자이고, 소문자와 숫자로만 구성된다.');
+                ev.preventDefault();
+            }
+        }
     </script>
 
 </body>
