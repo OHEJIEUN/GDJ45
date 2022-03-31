@@ -54,14 +54,14 @@
                 
                     (1) 선언적 함수 등록
                         <div id="box"></div>  // 이벤트 대상
-                        function func(e){     // 이벤트 리스너, 이벤트 객체 : 매개변수 e
+                        function func(ev){    // 이벤트 리스너, 이벤트 객체 : 매개변수 ev
 
                         }
                         document.getElementById('box').onclick = func;  // func에 괄호 없음.
                 
                     (2) 익명 함수 등록
                         <div id="box"></div>  // 이벤트 대상
-                        document.getElementById('box').onclick = function(e){}  // 익명 함수가 이벤트 리스너
+                        document.getElementById('box').onclick = function(ev){}  // 익명 함수가 이벤트 리스너
                 
                 2) 인라인 이벤트 모델
                 
@@ -75,7 +75,7 @@
                         }
                     
                     (2) 익명 함수 등록
-                        <div onclick="function(){}"></div>  // 거의 사용 안함.
+                        <div onclick="function(ev){}"></div>  // 거의 사용 안함.
                     
                     (3) 이벤트 리스너 생략(코드 직접 등록)
                         <div onclick="alert('메시지');"></div>
@@ -87,10 +87,10 @@
                     
                     (1) 선언적 함수 등록
                         <div id="box"></div>
-                        function func1() {
+                        function func1(ev) {
 
                         }
-                        function func2() {
+                        function func2(ev) {
 
                         }
                         document.getElementById('box').addEventListener('click', func1);  // onclick 아님, func1() 아님
@@ -98,7 +98,7 @@
                     
                     (2) 익명 함수 등록
                         <div id="box"></div>
-                        document.getElementById('box').addEventListener('click', function(){});
+                        document.getElementById('box').addEventListener('click', function(ev){});
 
 
             4. 이벤트 취소

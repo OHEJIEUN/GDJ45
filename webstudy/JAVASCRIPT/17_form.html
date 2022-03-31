@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        /*
+            서브밋(submit)
+
+            1. form 태그 내부 요소에 입력되거나 선택된 값을
+               form 태그의 action 속성에 작성된 경로로 보내는 작업이다.
+            2. submit 이벤트의 대상(target)은 form 태그이다.
+            3. 수행 방법
+                1) <button> 태그를 클릭한다. (기본 이벤트로 등록)
+                2) <input type="submit"> 태그를 클릭한다.
+                3) <input type="button"> 태그를 작성한 뒤 서브밋 코드를 
+                    자바스크립트로 작성해서 클릭 이벤트로 등록한다.
+        */
+    </script>
+
+    <!-- 1. <button> 태그로 submit 하기 -->
+    <!-- 
+        구글의 검색 URI
+        https://www.google.com/search?q=하하하
+    -->
+    <form action="https://www.google.com/search"
+          method="get"
+          id="f1">
+        <input type="text" name="q" id="q1">
+        <button>submit</button>
+    </form>
+    <script>
+        var f1 = document.getElementById('f1');
+        var q1 = document.getElementById('q1');
+        f1.onsubmit = function(ev){
+            if(q1.value == '') {
+                alert('검색어를 입력하세요');
+                q1.focus();           // 검색란으로 커서 보내 줌
+                ev.preventDefault();  // 이벤트 동작 방지
+            }
+        }
+    </script>
+
+</body>
+</html>
