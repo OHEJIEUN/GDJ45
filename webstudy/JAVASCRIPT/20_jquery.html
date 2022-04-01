@@ -144,6 +144,13 @@
         // DOM 속성(property)
         text.prop('value', '안녕하세요');
         text.prop('readOnly', true);
+        
+        // 제이쿼리 속성 추가/제거
+        text.attr('data', '데이터');
+        text.prop('data', '데이터');
+        text.removeAttr('data');
+        text.removeProp('data');
+        
     </script>
 
     <div id="box8">
@@ -174,5 +181,55 @@
 
     </script>
 
+    <div id="box9">
+        <ul>
+            <li>왓챠</li>
+            <li>티빙</li>
+            <li>넷플릭스</li>
+            <li>디즈니플러스</li>
+            <li>애플티비</li>
+        </ul>
+    </div>
+    <script>
+        console.log( $('#box9 li:first').text() );  // 첫 번째
+        console.log( $('#box9 li:last').text() );   // 마지막
+        console.log( $('#box9 li:eq(2)').text() );  // 인덱스 2
+        console.log( $('#box9 li:lt(2)').text() );  // 인덱스 2 미만(less than) : 인덱스 0, 1을 의미함
+        console.log( $('#box9 li:gt(2)').text() );  // 인덱스 2 초과(greater than) : 인덱스 3, 4를 의미함
+        console.log( $('#box9 li:odd').text() );    // 인덱스 홀수
+        console.log( $('#box9 li:even').text() );   // 인덱스 짝수
+    </script>
+
+    <div id="box10">
+        <form>
+            <input type="text" value="안녕하세요" autofocus>
+            <input type="password">
+            <input type="checkbox" id="agree1" checked>
+            <input type="checkbox" id="agree2">
+            <select>
+                <option>spring</option>
+                <option selected>summer</option>
+                <option>autumn</option>
+                <option>winter</option>
+            </select>
+        </form>
+    </div>
+    <script>
+        // $(':text')             : type="text"
+        // $(':password')         : type="password"
+        // $(':checkbox')         : type="checkbox"
+        // $(':radio')            : type="radio"
+        // $(':checkbox:checked') : type="checkbox" 중 체크된 요소
+        // $(':radio:checked')    : type="radio" 중 체크된 요소
+        // $(':selected')         : <select> 태그에서 선택된 <option> 
+        console.log( $(':text') );        // type="text"인 요소(input[type="text"])
+        console.log( $('#box10 :text') ); // box10 내부의 type="text"인 요소(input[type="text"])
+        console.log( $(':password') );    // type="password"
+        console.log( $(':checkbox') );    // type="checkbox"
+
+        console.log( $(':checkbox:checked') ); // type="checkbox"중 체크된 요소
+        console.log( $(':selected') );         // 선택된 option 요소
+        console.log( $(':focus') );            // 포커스를 가진 요소
+    </script>
 </body>
 </html>
