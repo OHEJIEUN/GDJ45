@@ -28,6 +28,7 @@
                 1) $('#box')  document.getElementById('box')
                 2) $('.box')  document.getElementsByClassName('box')
                 3) $('div')   document.getElementsByTagName('div')
+            5. 일반 변수가 jquery 기능을 사용하려면 $()로 묶어야 한다.
         */
     </script>
 
@@ -45,6 +46,132 @@
         // text('텍스트')
         document.getElementById('box2').textContent = '안녕하세요 제이쿼리';
         $('#box2').text('안녕하세요 제이쿼리');
+    </script>
+
+    <div id="box3"><h1>반갑습니다</h1></div>
+    <script>
+        // innerHTML
+        // html()
+        console.log(document.getElementById('box3').innerHTML);
+        console.log($('#box3').html());
+    </script>
+
+    <div id="box4"><h1>반갑습니다</h1></div>
+    <script>
+        // innerHTML = 'HTML'
+        // html('HTML')
+        document.getElementById('box4').innerHTML = '<a href="https://www.naver.com">네이버</a>';
+        $('#box4').html('<a href="https://www.google.com">구글</a>');
+    </script>
+
+    <div id="box5">
+        <ul>
+            <li class="items">정수기</li>
+            <li class="items">전자렌지</li>
+            <li class="items">냉장고</li>
+            <li class="items">식기세척기</li>
+            <li class="items">세탁기</li>
+        </ul>
+    </div>
+    <script>
+        // 자바스크립트
+        var items = document.getElementsByClassName('items');
+        for(let i = 0; i < items.length; i++) {
+            console.log(items[i].textContent);
+        }
+        // 제이쿼리와 일반 for문
+        var items = $('.items');
+        for(let i = 0; i < items.length; i++) {
+            console.log($(items[i]).text());
+        }
+        // 제이쿼리의 each()
+        // $.each(배열, 함수(인덱스, 요소){});
+        var items = $('.items');
+        $.each(items, function(i, item){
+            console.log('인덱스', i, '요소', item, '텍스트', $(item).text());
+        });
+    </script>
+
+    <div id="box6">
+        <input type="checkbox" name="agree" value="yes">
+    </div>
+    <script>
+        // 자바스크립트
+        var checkbox = document.querySelector('#box6 input');
+        // <input type="checkbox" name="agree" value="yes"> 속성(attribute)
+        console.log(checkbox.getAttribute('type'));
+        console.log(checkbox.getAttribute('name'));
+        console.log(checkbox.getAttribute('value'));
+        console.log(checkbox.getAttribute('checked'));
+        // DOM 속성(property)
+        console.log(checkbox.type);
+        console.log(checkbox.name);
+        console.log(checkbox.value);
+        console.log(checkbox.checked);
+
+        // 제이쿼리
+        var checkbox = $('#box6 input');
+        // <input type="checkbox" name="agree" value="yes"> 속성(attribute)
+        console.log(checkbox.attr('type'));
+        console.log(checkbox.attr('name'));
+        console.log(checkbox.attr('value'));
+        console.log(checkbox.attr('checked'));
+        // DOM 속성(property)
+        console.log(checkbox.prop('type'));
+        console.log(checkbox.prop('name'));
+        console.log(checkbox.prop('value'));
+        console.log(checkbox.prop('checked'));
+    </script>
+
+    <div id="box7">
+        <input type="text" value="Hello">
+    </div>
+    <script>
+        // 자바스크립트
+        var text = document.querySelector('#box7 input');
+        // <input type="text" value="Hello"> 속성(attribute)
+        text.setAttribute('value', '안녕하세요');
+        text.setAttribute('readonly', 'readonly');
+        // DOM 속성(property)
+        text.value = '안녕하세요';
+        text.readOnly = true;
+
+        // 제이쿼리
+        var text = $('#box7 input');
+        // <input type="text" value="Hello"> 속성(attribute)
+        text.attr('value', '안녕하세요');
+        text.attr('readonly', 'readonly');
+        // DOM 속성(property)
+        text.prop('value', '안녕하세요');
+        text.prop('readOnly', true);
+    </script>
+
+    <div id="box8">
+        <ul>
+            <li id="google"><a href="#">구글</a></li>
+            <li id="naver"><a href="#">네이버</a></li>
+            <li id="kakao"><a href="#">카카오</a></li>
+            <li id="nate"><a href="#">네이트</a></li>
+            <li id="daum"><a href="#">다음</a></li>
+        </ul>
+    </div>
+    <script>
+
+        console.log( $('#google').parent() );          // 부모
+        console.log( $('#google').parent().parent() ); // 부모의 부모
+        console.log( $('#google').parents() );         // 모든 부모
+        console.log( $('#google').parents()[0] );      // 모든 부모 중 첫 번째 부모
+        console.log( $('#google').closest('div') );    // 부모 중 가장 가까운 div
+
+        console.log( $('#box8').children() );          // 자식
+        console.log( $('#box8').find('a') );           // 자식 중 <a> 태그
+
+        console.log( $('#kakao').prev() );             // 이전 형제
+        console.log( $('#kakao').prevAll() );          // 이전 모든 형제
+        console.log( $('#kakao').next() );             // 다음 형제
+        console.log( $('#kakao').nextAll() );          // 다음 모든 형제
+        console.log( $('#kakao').siblings() );         // 모든 형제
+
     </script>
 
 </body>
