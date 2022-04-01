@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <!-- jquery 사용을 위해서 아래 2개 과정 중 한 가지를 수행해야 한다. -->
+
+    <!-- 1. 다운로드 받은 jquery 라이브러리(외부 자바스크립트 포함) -->
+    <script src="jquery-3.6.0.js"></script>
+
+    <!-- 2. CDN jquery 라이브러리 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+
+</head>
+<body>
+    
+    <script>
+        /*
+            jquery wrapper
+
+            1. DOM을 표현한다.
+            2. $() - 이걸 사용
+            3. jQuery() : $는 jQuery와 같다.
+            4. 주요 DOM 표현
+                1) $('#box')  document.getElementById('box')
+                2) $('.box')  document.getElementsByClassName('box')
+                3) $('div')   document.getElementsByTagName('div')
+        */
+    </script>
+
+    <div id="box1">Hello jQuery</div>
+    <script>
+        // textContent
+        // text()
+        console.log(document.getElementById('box1').textContent);
+        console.log($('#box1').text());
+    </script>
+
+    <div id="box2"></div>
+    <script>
+        // textContent = '텍스트'
+        // text('텍스트')
+        document.getElementById('box2').textContent = '안녕하세요 제이쿼리';
+        $('#box2').text('안녕하세요 제이쿼리');
+    </script>
+
+</body>
+</html>
