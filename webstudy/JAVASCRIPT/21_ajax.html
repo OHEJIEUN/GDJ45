@@ -70,6 +70,9 @@
         }
     </script>
 
+    <!-- jquery 라이브러리 포함하기 -->
+    <script src="jquery-3.6.0.js"></script>
+
     <!-- 3. 응답 처리하기 : XML 태그 처리 -->
     <div id="box3"></div>
     <script>
@@ -78,8 +81,31 @@
         xhr.send();
         xhr.onreadystatechange = function(ev){
             if(xhr.readyState == 4 && xhr.status == 200) {
+                
+                // XML 받아오는 경우 responseXML
                 var data = xhr.responseXML;
-                console.log(data);
+                
+                // 결과를 ul 태그로 작성
+                var res = '';
+
+                // <books> 태그 가져오기 (1개 가져옴)
+                var books = $(data).find('books');
+
+                // <book> 태그 가져오기 (3개 가져옴)
+                var book = books.find('book');
+
+                // book 배열 순회
+                $.each(book, function(i, b){
+                    res += '<ul>';
+                    res += '<li>' + $(b).find('title').text() + '</li>';
+                    res += '<li>' + $(b).find('author').text() + '</li>';
+                    res += '<li>' + $(b).find('price').text() + '</li>';
+                    res += '</ul>';
+                });
+
+                // res 정보 화면에 나타내기
+                $('#box3').html(res);
+                
             }
         }
     </script>
