@@ -111,8 +111,82 @@
     </script>
 
     <!-- 4. 응답 처리하기 : XML 속성 처리 -->
+    <div id="box4"></div>
+    <script>
+
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', 'data2.xml', true);
+        xhr.send();
+        xhr.onreadystatechange = function(ev){
+            if(xhr.readyState == 4 && xhr.status == 200) {
+                var data = xhr.responseXML;
+                var res = '';
+                var books = $(data).find('books');
+                var book = books.find('book');
+                $.each(book, function(i, b){
+                    res += '<ul>';
+                    res += '<li>' + $(b).attr('title') + '</li>';
+                    res += '<li>' + $(b).attr('author') + '</li>';
+                    res += '<li>' + $(b).attr('price') + '</li>';
+                    res += '</ul>';
+                });
+                $('#box4').html(res);
+            }
+        }
+
+    </script>
+
 
     <!-- 5. 응답 처리하기 : JSON 처리 -->
+
+    <!-- 연습. naver_search.xml 테이블로 표시하기 -->
+    <div id="ex1">
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>제목</td>
+                    <td>링크</td>
+                    <td>썸네일</td>
+                    <td>저자</td>
+                    <td>정상가</td>
+                    <td>할인가</td>
+                    <td>출판사</td>
+                    <td>출판일</td>
+                    <td>ISBN</td>
+                    <td>개요</td>
+                </tr>
+            </thead>
+            <tbody id="search_result"></tbody>
+        </table>
+    </div>
+    <script>
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', 'naver_search.xml', true);
+        xhr.send();
+        xhr.onreadystatechange = function(ev){
+            if(xhr.readyState == 4 && xhr.status == 200) {
+                var data = xhr.responseXML;
+                var res = '';
+                $.each($(data).find('item'), function(i, item){
+                    res += '<tr>';
+                    res += '<td>' + $(item).find('title').html() + '</td>';
+                    res += '<td><a href="' + $(item).find('link').text() + '">클릭</a></td>';
+                    res += '<td><img src="' + $(item).find('image').text() + '" width="120px" height="80px"></td>';
+                    res += '<td>' + $(item).find('author').html() + '</td>';
+                    res += '<td>' + $(item).find('price').text() + '</td>';
+                    res += '<td>' + $(item).find('discount').text() + '</td>';
+                    res += '<td>' + $(item).find('publisher').html() + '</td>';
+                    res += '<td>' + $(item).find('pubdate').text() + '</td>';
+                    res += '<td>' + $(item).find('isbn').text() + '</td>';
+                    res += '<td>' + $(item).find('description').html() + '</td>';
+                    res += '</tr>';
+                });
+                $('#search_result').html(res);
+            }
+        }
+    </script>
+
+
 
 </body>
 </html>
