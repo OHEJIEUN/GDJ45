@@ -344,15 +344,71 @@
         </ul>
     </div>
     <script>
-        // #box15의 자식 중 li를 클릭하면
+        // 1. #box15의 자식 중 li를 클릭하면
         /*
         $('#box15').on('click', 'li', function(ev){
             alert($(this).text());
         });
         */
-        // #box15의 자식 중 li를 클릭하면
+        // 2. #box15의 자식 중 li를 클릭하면
+        /*
         $('#box15 li').on('click', function(ev){
             alert($(this).text());
+        });
+        */
+        // 3. #box15의 자식 중 li를 클릭하면
+        /*
+        $('#box15 li').click(function(ev){
+            alert($(this).text());
+        });
+        */
+    </script>
+    <script>
+        // 하나의 이벤트 대상에 여러 이벤트를 등록하기
+        /*
+        $('#box15 li').on('mouseover mouseout', function(ev){
+            alert('들어갔다 나왔다 하는군요.');
+        });
+        */
+        /*
+        $('#box15 li').on({
+            'click': function(ev){
+                alert('click');
+            },
+            'mouseover': function(ev){
+                alert('mouseover');
+            },
+            'mouseout': function(ev){
+                alert('mouseout');
+            }
+        });
+        */
+    </script>
+
+    <!-- 연습. 아이디/비밀번호를 모두 입력하면 submit 허용하기 -->
+    <form id="login_form" action="#" method="post">
+        <label for="user_id">
+            아이디 <input type="text" id="user_id">
+        </label>
+        <label for="user_pw">
+            비밀번호 <input type="password" id="user_pw">
+        </label>
+        <button>로그인</button>
+    </form>
+    <style>
+        label {
+            display: block;
+        }
+    </style>
+    <script>
+        $('#login_form').on('submit', function(ev){
+            // $('#user_id').attr('value');
+            // $('#user_id').prop('value');
+            // $('#user_id').val();
+            if( $('#user_id').val() == '' || $('#user_pw').val() == '' ) {
+                alert('아이디와 비밀번호는 필수입니다.');
+                ev.preventDefault();
+            }
         });
     </script>
 
