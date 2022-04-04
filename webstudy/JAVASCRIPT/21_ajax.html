@@ -31,15 +31,62 @@
     </script>
     
     <!-- 1. 동기 통신 -->
+    <div id="box1"></div>
     <script>
         // 1. XMLHttpRequest 객체 생성
         var xhr = new XMLHttpRequest();
         // 2. open() : 요청 방식 생성
         //    open(HTTP메소드, 요청서버경로, 동기:false/비동기:true)
-        xhr.open('get', 'url', false);
+        xhr.open('get', 'data.txt', false);
+        // 3. send() : 요청 보내기
+        xhr.send();
+        // 4. 응답 처리
+        //    1) 텍스트 응답인 경우 : responseText
+        //    2) XML 응답인 경우    : responseXML
+        //    3) JSON 응답인 경우   : JSON.parse(responseText)
+        document.getElementById('box1').textContent = xhr.responseText;
     </script>
 
+    <!-- 2. 비동기 통신(이걸 공부) -->
+    <div id="box2"></div>
+    <script>
+        // 1. XMLHttpRequest 객체 생성
+        var xhr = new XMLHttpRequest();
+        // 2. open() : 요청 방식 생성
+        //    open(HTTP메소드, 요청서버경로, 동기:false/비동기:true)
+        xhr.open('get', 'data.txt', true);
+        // 3. send() : 요청 보내기
+        xhr.send();
+        // 4. 응답 처리
+        //    응답이 오는지 점검하는 readystatechange 이벤트 처리
+        xhr.onreadystatechange = function(ev){
+            // 1) readyState : 통신 확인
+            //    0(OPENED), 1(UNSEND), 2(HEADERS_RECEIVE), 3(LOADING), 4(DONE)
+            // 2) status : 응답 확인
+            //    200(응답 성공), 4xx(요청 오류), 5xx(서버 오류)
+            if(xhr.readyState == xhr.DONE && xhr.status == 200) {
+                document.getElementById('box2').textContent = xhr.responseText;
+            }
+        }
+    </script>
 
+    <!-- 3. 응답 처리하기 : XML 태그 처리 -->
+    <div id="box3"></div>
+    <script>
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', 'data.xml', true);
+        xhr.send();
+        xhr.onreadystatechange = function(ev){
+            if(xhr.readyState == 4 && xhr.status == 200) {
+                var data = xhr.responseXML;
+                console.log(data);
+            }
+        }
+    </script>
+
+    <!-- 4. 응답 처리하기 : XML 속성 처리 -->
+
+    <!-- 5. 응답 처리하기 : JSON 처리 -->
 
 </body>
 </html>
