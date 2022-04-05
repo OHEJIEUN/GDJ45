@@ -54,7 +54,79 @@
         });
     </script>
 
-    
+    <div id="box3"></div>
+    <script>
+        $.ajax({
+            'type': 'get',
+            'url': 'data2.xml',
+            'dataType': 'xml',
+            'success': function(data){
+                var box3 = $('#box3');
+                $.each( $(data).find('book') , function(i, book){
+                    var ul = $('<ul>');
+                    $('<li>').text( $(book).attr('title') ).appendTo(ul);
+                    $('<li>').text( $(book).attr('author') ).appendTo(ul);
+                    $('<li>').text( $(book).attr('price') ).appendTo(ul);
+                    ul.appendTo(box3);
+                });
+            },
+            'error': function(jqXHR){
+                $('#box3').append(jqXHR.status + '&nbsp;');
+                $('#box3').append(jqXHR.statusText);
+            }
+        });
+    </script>
+
+    <div id="box4">
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>제목</td>
+                    <td>링크</td>
+                    <td>썸네일</td>
+                    <td>저자</td>
+                    <td>정상가</td>
+                    <td>할인가</td>
+                    <td>출판사</td>
+                    <td>출판일</td>
+                    <td>ISBN</td>
+                    <td>개요</td>
+                </tr>
+            </thead>
+            <tbody id="search_result"></tbody>
+        </table>
+    </div>
+    <script>
+        $.ajax({
+            type: 'get',
+            url: 'naver_search.xml',
+            dataType: 'xml',
+            success: function(data){
+                naverSearch(data);
+            },
+            error: function(jqXHR){
+                $('#box4').append(jqXHR.status + '&nbsp;');
+                $('#box4').append(jqXHR.statusText);
+            }
+        });
+        function naverSearch(data){
+            var searchResult = $('#search_result');
+            $.each( $(data).find('item') , function(i, item){
+                var tr = $('<tr>');
+                tr.append( $('<td>').html($(item).find('title').text()) );
+                tr.append( $('<td>').html($('<a>').attr('href', $(item).find('link').text()).text('클릭')) );
+                tr.append( $('<td>').html($('<img>').attr('src', $(item).find('image').text()).attr('width', '70px').attr('height', '100px')) );
+                tr.append( $('<td>').html($(item).find('author').text()) );
+                tr.append( $('<td>').html($('<strike>').text($(item).find('price').text())) );
+                tr.append( $('<td>').html($('<span>').text($(item).find('discount').text())).css('color', 'red') );
+                tr.append( $('<td>').html($(item).find('publisher').text()) );
+                tr.append( $('<td>').html($(item).find('pubdate').text().substring(0, 4) + '.' + $(item).find('pubdate').text().substring(4, 6) + '.' + $(item).find('pubdate').text().substring(6)) );
+                tr.append( $('<td>').html($(item).find('isbn').text()) );
+                tr.append( $('<td>').html($(item).find('description').text()) );
+                searchResult.append(tr);
+            });
+        }
+    </script>
 
 </body>
 </html>

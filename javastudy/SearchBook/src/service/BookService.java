@@ -1,6 +1,8 @@
 package service;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
@@ -47,7 +49,7 @@ public class BookService {
 		
 		// 요청URL
 		// GET방식은 URL에 검색어가 포함됨.
-		String apiURL = "https://openapi.naver.com/v1/search/book.json?query=" + text;
+		String apiURL = "https://openapi.naver.com/v1/search/book.xml?query=" + text;
 		
 		// 요청(request : client -> server)
 		URL url = null;
@@ -87,6 +89,7 @@ public class BookService {
 		
 		// JSON응답 -> Book 인스턴스
 		// dao의 insertBook() 메소드 호출
+		
 		JSONObject result = new JSONObject(sb.toString());
 		JSONArray items = result.getJSONArray("items");
 		for(int i = 0; i < items.length(); i++) {
