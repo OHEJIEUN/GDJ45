@@ -229,16 +229,18 @@
     </script>
 
     <!-- 연습. sfc_web_map.xml 테이블로 표시하기 -->
-    <table border="1">
-        <thead>
-            <tr>
-                <td>지역명</td>
-                <td>날씨</td>
-                <td>온도</td>
-            </tr>
-        </thead>
-        <tbody id="weather"></tbody>
-    </table>
+    <div id="ex1">
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>지역명</td>
+                    <td>날씨</td>
+                    <td>온도</td>
+                </tr>
+            </thead>
+            <tbody id="weather"></tbody>
+        </table>
+    </div>
     <script>
         var xhr = new XMLHttpRequest();
         xhr.open('get', 'sfc_web_map.xml', true);

@@ -105,6 +105,7 @@
                 naverSearch(data);
             },
             error: function(jqXHR){
+                $('#box4').empty();
                 $('#box4').append(jqXHR.status + '&nbsp;');
                 $('#box4').append(jqXHR.statusText);
             }
@@ -128,23 +129,65 @@
         }
     </script>
 
-    <div id="box5"></div>
+    <div id="box5">
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>지역명</td>
+                    <td>날씨</td>
+                    <td>온도</td>
+                    <td></td>
+                </tr>
+            </thead>
+            <tbody id="weather"></tbody>
+        </table>
+    </div>
+    <style>
+        #weather .icon {
+            width: 115px;
+            height: 115px;
+            background-image: url(../images/weather.png);
+            background-size: 844px 1280px;
+            background-repeat: no-repeat;
+        }
+        .sunny {
+            background-position: 0 0;
+        }
+        .cloudy1 {
+            background-position: -145px 0;
+        }
+        .cloudy2 {
+            background-position: -290px 0;
+        }
+    </style>
     <script>
         $.ajax({
             type: 'get',
-            url: 'data.json',
-            dataType: 'json',
-            success: function(data){  // JSON.parse() 할 필요 없음.
-                var box5 = $('#box5');
-                $.each(data, function(i, book){
-                    var ul = $('<ul>');
-                    ul.append( $('<li>').text(book.title) );
-                    ul.append( $('<li>').text(book.author) );
-                    ul.append( $('<li>').text(book.price) );
-                    box5.append(ul);
+            url: 'sfc_web_map.xml',
+            dataType: 'xml',
+            success: function(data){
+                var weather = $('#weather');
+                $.each($(data).find('local'), function(i, local){
+                    var tr = $('<tr>');
+                    tr.append($('<td>').text($(local).text()));
+                    tr.append($('<td>').text($(local).attr('desc')));
+                    tr.append($('<td>').text($(local).attr('ta')));
+                    switch($(local).attr('icon')) {
+                    case '01': 
+                        tr.append($('<td>').html($('<div>').addClass('icon sunny')));
+                        break;
+                    case '02':
+                        tr.append($('<td>').html($('<div>').addClass('icon cloudy1')));
+                        break;
+                    case '03':
+                        tr.append($('<td>').html($('<div>').addClass('icon cloudy2')));
+                        break;
+                    }
+                    weather.append(tr);
                 });
             },
             error: function(jqXHR){
+                $('#box5').empty();
                 $('#box5').append(jqXHR.status + '&nbsp;');
                 $('#box5').append(jqXHR.statusText);
             }
@@ -155,10 +198,33 @@
     <script>
         $.ajax({
             type: 'get',
+            url: 'data.json',
+            dataType: 'json',
+            success: function(data){  // JSON.parse() 할 필요 없음.
+                var box6 = $('#box6');
+                $.each(data, function(i, book){
+                    var ul = $('<ul>');
+                    ul.append( $('<li>').text(book.title) );
+                    ul.append( $('<li>').text(book.author) );
+                    ul.append( $('<li>').text(book.price) );
+                    box6.append(ul);
+                });
+            },
+            error: function(jqXHR){
+                $('#box6').append(jqXHR.status + '&nbsp;');
+                $('#box6').append(jqXHR.statusText);
+            }
+        });
+    </script>
+
+    <div id="box7"></div>
+    <script>
+        $.ajax({
+            type: 'get',
             url: 'data2.json',
             dataType: 'json',
             success: function(data){
-                var box6 = $('#box6');
+                var box7 = $('#box7');
                 var ul = $('<ul>');
                 $('<li>').text('모델:' + data.model).appendTo(ul);
                 $('<li>').text('제조사:' + data.maker).appendTo(ul);
@@ -168,16 +234,16 @@
                 });
                 $('<li>').text('연식:' + data.info.year).appendTo(ul);
                 $('<li>').text('할인:' + data.info.discount).appendTo(ul);
-                ul.appendTo(box6);
+                ul.appendTo(box7);
             },
             error: function(jqXHR){
-                $('#box6').append(jqXHR.status + '&nbsp;');
-                $('#box6').append(jqXHR.statusText);
+                $('#box7').append(jqXHR.status + '&nbsp;');
+                $('#box7').append(jqXHR.statusText);
             }
         });
     </script>
 
-    <div id="box7">
+    <div id="box8">
         <table border="1">
             <thead>
                 <tr>
@@ -205,9 +271,9 @@
                 cctvFunc(data);
             },
             error: function(jqXHR){
-                $('#box7').empty();
-                $('#box7').append(jqXHR.status + '&nbsp;');
-                $('#box7').append(jqXHR.statusText);
+                $('#box8').empty();
+                $('#box8').append(jqXHR.status + '&nbsp;');
+                $('#box8').append(jqXHR.statusText);
             }
         });
         function cctvFunc(data){
