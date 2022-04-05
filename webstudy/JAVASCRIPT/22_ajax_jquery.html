@@ -128,5 +128,54 @@
         }
     </script>
 
+    <div id="box5"></div>
+    <script>
+        $.ajax({
+            type: 'get',
+            url: 'data.json',
+            dataType: 'json',
+            success: function(data){  // JSON.parse() 할 필요 없음.
+                var box5 = $('#box5');
+                $.each(data, function(i, book){
+                    var ul = $('<ul>');
+                    ul.append( $('<li>').text(book.title) );
+                    ul.append( $('<li>').text(book.author) );
+                    ul.append( $('<li>').text(book.price) );
+                    box5.append(ul);
+                });
+            },
+            error: function(jqXHR){
+                $('#box5').append(jqXHR.status + '&nbsp;');
+                $('#box5').append(jqXHR.statusText);
+            }
+        });
+    </script>
+
+    <div id="box6"></div>
+    <script>
+        $.ajax({
+            type: 'get',
+            url: 'data2.json',
+            dataType: 'json',
+            success: function(data){
+                var box6 = $('#box6');
+                var ul = $('<ul>');
+                $('<li>').text('모델:' + data.model).appendTo(ul);
+                $('<li>').text('제조사:' + data.maker).appendTo(ul);
+                $('<li>').text('가격:' + data.price).appendTo(ul);
+                $.each(data.option, function(i, item){
+                    $('<li>').text('옵션' + (i + 1) + ':' + item).appendTo(ul);
+                });
+                $('<li>').text('연식:' + data.info.year).appendTo(ul);
+                $('<li>').text('할인:' + data.info.discount).appendTo(ul);
+                ul.appendTo(box6);
+            },
+            error: function(jqXHR){
+                $('#box6').append(jqXHR.status + '&nbsp;');
+                $('#box6').append(jqXHR.statusText);
+            }
+        });
+    </script>
+
 </body>
 </html>
