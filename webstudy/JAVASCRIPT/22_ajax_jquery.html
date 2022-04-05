@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="jquery-3.6.0.js"></script>
+</head>
+<body>
+    
+    <div id="box1"></div>
+    <script>
+        $.ajax({
+            'type': 'get',              // 요청 메소드
+            'url': 'data.txt',          // 요청 서버 경로
+            'async': true,              // 비동기(true), 동기(false), 생략하면 비동기(true)로 동작함.
+            'dataType': 'text',         // 응답 타입(text, xml, json 등)
+            'success': function(data){  // 매개변수 data : 응답 데이터를 의미(xhr.responseText, xhr.responseXML)
+                $('#box1').html(data);
+            },
+            'error': function(){
+
+            }
+        });
+    </script>
+
+</body>
+</html>

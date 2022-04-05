@@ -136,8 +136,50 @@
 
     </script>
 
-
     <!-- 5. 응답 처리하기 : JSON 처리 -->
+    <div id="box5"></div>
+    <script>
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', 'data.json', true);
+        xhr.send();
+        xhr.onreadystatechange = function(ev){
+            if(xhr.readyState == 4 && xhr.status == 200){
+                var books = JSON.parse(xhr.responseText);
+                var res = '';
+                $.each(books, function(i, book){
+                    res += '<ul>';
+                    res += '<li>' + book.title + '</li>';
+                    res += '<li>' + book.author + '</li>';
+                    res += '<li>' + book.price + '</li>';
+                    res += '</ul>';
+                });
+                $('#box5').html(res);
+            }
+        }
+    </script>
+
+    <!-- 6. 응답 처리하기 : JSON 처리 -->
+    <div id="box6"></div>
+    <script>
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', 'data2.json', true);
+        xhr.send();
+        xhr.onreadystatechange = function(ev){
+            if(xhr.readyState == 4 && xhr.status == 200){
+                var car = JSON.parse(xhr.responseText);
+                var res = '<ul>';
+                res += '<li>' + car.model + '</li>';
+                res += '<li>' + car.maker + '</li>';
+                res += '<li>' + car.price + '</li>';
+                $.each(car.option, function(i, item){
+                    res += '<li>' + item + '</li>';
+                })
+                res += '<li>' + car.info.year + '</li>';
+                res += '<li>' + car.info.discount + '</li>';
+                $('#box6').html(res);
+            }
+        }
+    </script>
 
     <!-- 연습. naver_search.xml 테이블로 표시하기 -->
     <div id="ex1">
@@ -186,7 +228,83 @@
         }
     </script>
 
+    <!-- 연습. sfc_web_map.xml 테이블로 표시하기 -->
+    <table border="1">
+        <thead>
+            <tr>
+                <td>지역명</td>
+                <td>날씨</td>
+                <td>온도</td>
+            </tr>
+        </thead>
+        <tbody id="weather"></tbody>
+    </table>
+    <script>
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', 'sfc_web_map.xml', true);
+        xhr.send();
+        xhr.onreadystatechange = function(ev){
+            if(xhr.readyState == 4 && xhr.status == 200){
+                var data = xhr.responseXML;
+                var res = '';
+                $.each( $(data).find('local'), function(i, local){
+                    res += '<tr>';
+                    res += '<td>' + $(local).text() + '</td>';
+                    res += '<td>' + $(local).attr('desc') + '</td>';
+                    res += '<td>' + $(local).attr('ta') + '</td>';
+                    res += '</tr>';
+                });
+                $('#weather').html(res);
+            }
+        }
+    </script>
 
+    <!-- 연습. cctv.json 테이블로 표시하기 -->
+    <div id="ex3">
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>소재지지번주소</td>
+                    <td>소재지도로명주소</td>
+                    <td>설치년월</td>
+                    <td>보관일수</td>
+                    <td>카메라대수</td>
+                    <td>경도</td>
+                    <td>위도</td>
+                    <td>설치목적구분</td>
+                    <td>촬영방면정보</td>
+                    <td>카메라화소수</td>
+                </tr>
+            </thead>
+            <tbody id="cctv"></tbody>
+        </table>
+    </div>
+    <script>
+        var xhr = new XMLHttpRequest();
+        xhr.open('get', 'cctv.json', true);
+        xhr.send();
+        xhr.onreadystatechange = function(ev){
+            if(xhr.readyState == 4 && xhr.status == 200){
+                var cctvs = JSON.parse(xhr.responseText);
+                var res = '';
+                $.each(cctvs, function(i, cctv){
+                    res += '<tr>';
+                    res += '<td>' + cctv.소재지지번주소 + '</td>';
+                    res += '<td>' + cctv.소재지도로명주소 + '</td>';
+                    res += '<td>' + cctv.설치년월 + '</td>';
+                    res += '<td>' + cctv.보관일수 + '</td>';
+                    res += '<td>' + cctv.카메라대수 + '</td>';
+                    res += '<td>' + cctv.경도 + '</td>';
+                    res += '<td>' + cctv.위도 + '</td>';
+                    res += '<td>' + cctv.설치목적구분 + '</td>';
+                    res += '<td>' + cctv.촬영방면정보 + '</td>';
+                    res += '<td>' + cctv.카메라화소수 + '</td>';
+                    res += '</tr>';
+                });
+                $('#cctv').html(res);
+            }
+        }
+    </script>
 
 </body>
 </html>
