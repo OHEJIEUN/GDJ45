@@ -177,5 +177,56 @@
         });
     </script>
 
+    <div id="box7">
+        <table border="1">
+            <thead>
+                <tr>
+                    <td>소재지지번주소</td>
+                    <td>소재지도로명주소</td>
+                    <td>설치년월</td>
+                    <td>보관일수</td>
+                    <td>카메라대수</td>
+                    <td>경도</td>
+                    <td>위도</td>
+                    <td>설치목적구분</td>
+                    <td>촬영방면정보</td>
+                    <td>카메라화소수</td>
+                </tr>
+            </thead>
+            <tbody id="cctv_info"></tbody>
+        </table>
+    </div>
+    <script>
+        $.ajax({
+            type: 'get',
+            url: 'cctv.json',
+            dataType: 'json',
+            success: function(data){
+                cctvFunc(data);
+            },
+            error: function(jqXHR){
+                $('#box7').empty();
+                $('#box7').append(jqXHR.status + '&nbsp;');
+                $('#box7').append(jqXHR.statusText);
+            }
+        });
+        function cctvFunc(data){
+            var cctvInfo = $('#cctv_info');
+            $.each(data, function(i, cctv){
+                var tr = $('<tr>');
+                tr.append( $('<td>').text(cctv.소재지지번주소) );
+                tr.append( $('<td>').text(cctv.소재지도로명주소) );
+                tr.append( $('<td>').text(cctv.설치년월) );
+                tr.append( $('<td>').text(cctv.보관일수) );
+                tr.append( $('<td>').text(cctv.카메라대수) );
+                tr.append( $('<td>').text(cctv.경도) );
+                tr.append( $('<td>').text(cctv.위도) );
+                tr.append( $('<td>').text(cctv.설치목적구분) );
+                tr.append( $('<td>').text(cctv.촬영방면정보) );
+                tr.append( $('<td>').text(cctv.카메라화소수) );
+                cctvInfo.append(tr);
+            });
+        }
+    </script>
 </body>
 </html>
