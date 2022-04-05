@@ -19,11 +19,42 @@
             'success': function(data){  // 매개변수 data : 응답 데이터를 의미(xhr.responseText, xhr.responseXML)
                 $('#box1').html(data);
             },
-            'error': function(){
-
+            'error': function(jqXHR, textStatus, errorThrown){
+                console.log('jqXHR.status:', jqXHR.status);          // 응답코드(4xx, 5xx)
+                console.log('jqXHR.statusText:', jqXHR.statusText);  // 응답코드별 텍스트(응답코드 404인 경우 'Not Found')
+                console.log('jqXHR.responseText:', jqXHR.responseText);
+                $('#box1').html(jqXHR.responseText);
+                console.log('textStatus:', textStatus);
+                console.log('errorThrown:', errorThrown);
             }
         });
     </script>
+
+    <div id="box2"></div>
+    <script>
+        $.ajax({
+            'type': 'get',
+            'url': 'data.xml',
+            'dataType': 'xml',
+            'success': function(data){
+                // ul 태그로 box2에 넣기
+                var box2 = $('#box2');
+                $.each( $(data).find('book') , function(i, book){
+                    var ul = $('<ul>');
+                    ul.append( $('<li>').text( $(book).find('title').text() ) );
+                    ul.append( $('<li>').text( $(book).find('author').text() ) );
+                    ul.append( $('<li>').text( $(book).find('price').text() ) );
+                    box2.append(ul);
+                });
+            },
+            'error': function(jqXHR){
+                $('#box2').append(jqXHR.status + '&nbsp;');
+                $('#box2').append(jqXHR.statusText);
+            }
+        });
+    </script>
+
+    
 
 </body>
 </html>
