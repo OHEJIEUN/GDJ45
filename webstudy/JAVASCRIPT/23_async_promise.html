@@ -95,7 +95,8 @@
 
     <script>
         // promise 사용해 보기
-        var myPromise = new Promise(function(resolve, reject){
+        /*
+        var myPromise = new Promise(function(resolve, reject){  // 함수명 결정하기. 성공하면 resolve, 실패하면 reject.
             // 절반 확률로 성공 또는 실패 만들기
             if(Math.random() < 0.5){
                 resolve('SUCCESS');
@@ -104,13 +105,87 @@
             }
         });
         myPromise.then(
-            function(data){  // 성공했을 때 실행
+            function(data){  // 성공했을 때 실행(resolve의 몸체)
                 console.log(data);
             },
-            function(data){  // 실패했을 때 실행
+            function(data){  // 실패했을 때 실행(reject의 몸체)
                 console.log(data);
             }
         );
+        */
+        /*
+        new Promise(function(resolve, reject){
+            if(Math.random() < 0.5){
+                resolve('SUCCESS');
+            } else {
+                reject('FAIL');
+            }
+        }).then(
+            function(data){
+                console.log(data);
+            },
+            function(data){
+                console.log(data);
+            }
+        );
+        */
+    </script>
+
+    <script>
+        // 자바스크립트 ajax 처리와 promise
+        // ajax 처리가 끝날 때까지 기다렸다가 resolve 또는 reject 함수를 실행
+        /*
+        new Promise(function(resolve, reject){  // 성공하면 실행할 함수는 resolve
+            var xhr = new XMLHttpRequest();
+            xhr.open('get', 'data.txt', true);
+            xhr.send();
+            xhr.onload = function(event){       // onreadystatechange 이벤트 대신 onload 사용 가능
+                if (xhr.readyState == 4 && xhr.status == 200){  // ajax 통신 성공
+                    resolve(xhr.responseText);                  // resolve 함수에 응답 받은 데이터 전달
+                } else {                                        // ajax 통신 실패
+                    reject(xhr.statusText);                     // reject 함수에 응답 받은 데이터 전달
+                }
+            }
+        }).then(
+            function(data){
+                console.log(data);
+            },
+            function(errorData){
+                console.log(errorData);
+            }
+        );
+        */
+    </script>
+
+    <script>
+        // 제이쿼리 ajax 처리와 promise
+        new Promise(function(resolve, reject){
+            $.ajax({
+                type: 'get',
+                url: 'data.txt',
+                dataType: 'text',
+                success: function(data){
+                    resolve(data);
+                },
+                error: function(jqXHR){
+                    reject(jqXHR.status + ' ' + jqXHR.statusText);
+                }
+            });
+        }).then(
+            function(data){
+                fnSuccess(data);
+            },
+            function(errorData){
+                fnFail(errorData);
+            }
+        );
+
+        function fnSuccess(data){
+            console.log(data);
+        }
+        function fnFail(errorData){
+            console.log(errorData);
+        }
     </script>
 
 </body>
