@@ -1,8 +1,6 @@
 package service;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
@@ -88,8 +86,7 @@ public class BookService {
 		// System.out.println(sb.toString());
 		
 		// JSON응답 -> Book 인스턴스
-		// dao의 insertBook() 메소드 호출
-		
+		// dao의 insertBook() 메소드 호출	
 		JSONObject result = new JSONObject(sb.toString());
 		JSONArray items = result.getJSONArray("items");
 		for(int i = 0; i < items.length(); i++) {

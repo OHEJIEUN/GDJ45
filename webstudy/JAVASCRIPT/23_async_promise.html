@@ -159,6 +159,7 @@
 
     <script>
         // 제이쿼리 ajax 처리와 promise
+        /*
         new Promise(function(resolve, reject){
             $.ajax({
                 type: 'get',
@@ -186,6 +187,23 @@
         function fnFail(errorData){
             console.log(errorData);
         }
+        */
+    </script>
+
+    <script>
+        new Promise(function(resolve, reject){
+            setTimeout(function(){
+                resolve(1);  // 3초 후 resolve(1) 호출, resolve()가 호출되면 promise는 대기->이행 상태로 넘어간다. then()으로 로직이 넘어간다.
+            }, 3000);
+        }).then(function(n){
+            console.log(n);
+            return n + 1;  // 반환 정보가 2번째 then()으로 넘어간다.
+        }).then(function(n){
+            console.log(n);
+            return n + 1;  // 반환 정보가 3번째 then()으로 넘어간다.
+        }).then(function(n){
+            console.log(n);
+        });
     </script>
 
 </body>
