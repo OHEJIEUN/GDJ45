@@ -76,6 +76,9 @@ public class MyServlet extends HttpServlet {
 		out.println("</body>");
 		out.println("</html>");
 		
+		out.flush();  // 출력 스트림 out에 남아 있는 데이터 모두 내보내기
+		out.close();  // 출력 스트림 out 닫기
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

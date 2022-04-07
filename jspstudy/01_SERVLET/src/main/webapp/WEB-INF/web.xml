@@ -9,4 +9,15 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
+  <!-- OurServlet URL매핑 "/Our"로 바꾸기 -->  
+  <servlet>
+    <servlet-name>OurServlet</servlet-name>
+    <servlet-class>ex03.OurServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>OurServlet</servlet-name>
+    <url-pattern>/Our</url-pattern>
+  </servlet-mapping>
+  
 </web-app>
