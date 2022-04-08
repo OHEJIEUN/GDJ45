@@ -9,6 +9,14 @@
 	// 현재 날짜 클릭하면 "2022-04-08" 출력
 	// 현재 시간 클릭하면 "14:45:30" 출력
 	
+	$(document).ready(function(){
+		
+		$(':button').click(function(){
+			location.href='/SERVLET/Quiz1?command=' + $(this).data('command');
+		});
+		
+	});
+	
 </script>
 </head>
 <body>
