@@ -45,7 +45,7 @@ public class FormServlet3 extends HttpServlet {
 		String domain = request.getParameter("domain");
 		
 		String info = request.getParameter("info");
-		
+
 		
 		
 		// 2. 응답(response)
