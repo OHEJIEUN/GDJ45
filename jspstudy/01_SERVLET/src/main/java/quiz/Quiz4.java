@@ -1,5 +1,6 @@
 package quiz;
 
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -26,8 +27,6 @@ public class Quiz4 extends HttpServlet {
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// 요청
-		
 		request.setCharacterEncoding("UTF-8");
 		
 		String source = request.getParameter("source");
@@ -69,16 +68,18 @@ public class Quiz4 extends HttpServlet {
 			out.close();
 		}
 		
+		// api 요청
 		try {
 			String postParams = "source=" + source + "&target=" + target + "&text=" + text;
-			con.setRequestMethod("post");
+			con.setRequestMethod("POST");
 			con.setRequestProperty("X-Naver-Client-Id", clientId);
 			con.setRequestProperty("X-Naver-Client-Secret", clientSecret);
 			con.setDoOutput(true);
 			DataOutputStream wr = new DataOutputStream(con.getOutputStream());
 			wr.write(postParams.getBytes());
 			wr.flush();
-			wr.close();
+			if(wr != null)
+				wr.close();
 		} catch (IOException e) {
 			response.setContentType("text/plain; charset=UTF-8");
 			PrintWriter out = response.getWriter();
@@ -87,6 +88,8 @@ public class Quiz4 extends HttpServlet {
 			out.close();
 		}
 		
+		// api 응답
+		StringBuilder sb = new StringBuilder();
 		try {
 			InputStreamReader streamReader = null;
 			if(con.getResponseCode() == HttpURLConnection.HTTP_OK) {
@@ -94,9 +97,27 @@ public class Quiz4 extends HttpServlet {
 			} else {
 				streamReader = new InputStreamReader(con.getErrorStream());
 			}
-			
+			BufferedReader br = new BufferedReader(streamReader);
+			String line = null;
+			while((line = br.readLine()) != null) {
+				sb.append(line);
+			}
+			if(br != null)
+				br.close();
+		} catch (IOException e) {
+			response.setContentType("text/plain; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			out.println("API 응답을 읽는데 실패했습니다.");
+			out.flush();
+			out.close();
 		}
 		
+		
+		response.setContentType("application/json; charset=UTF-8");
+		PrintWriter out = response.getWriter();
+		out.println(sb.toString());
+		out.flush();
+		out.close();
 	
 	}
 
