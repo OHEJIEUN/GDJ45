@@ -20,12 +20,27 @@
 			}
 		});
 		
+		$.ajax({
+			type: 'get',
+			url: '/SERVLET/ResponseJSONServlet',
+			data: 'name=민경태&age=45',
+			dataType: 'json',
+			success: function(resData){
+				$('#box2').html("이름 : " + resData.name + "<br>나이 : " + resData.age);
+			},
+			error: function(jqXHR){
+				
+			}
+		});
+		
 	});
 </script>
 </head>
 <body>
 	
 	<div id="box1"></div>
+	
+	<div id="box2"></div>
 	
 </body>
 </html>
