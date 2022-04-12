@@ -3,6 +3,40 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="../js/jquery-3.6.0.js"></script>
+<script>
+	$(document).ready(function(){
+		$('#btn').on('click', function(){
+			if($('#query').val() == '') {
+				alert('검색어를 입력하세요');
+				return;
+			}
+			$.ajax({
+				type: 'get',
+				url: '/SERVLET/Quiz5',
+				data: 'query=' + $('#query').val(),
+				dataType: 'json',
+				success: function(resData){
+					$('#movie_list').empty();
+					$.each(resData.items, function(i, movie){
+						var tr = $('<tr>');
+						tr.append($('<td>').html(movie.title));
+						tr.append($('<td>').html(movie.subtitle));
+						tr.append($('<td>').html($('<a>').attr('href', movie.link).html($('<img>').attr('src', movie.image))));
+						tr.append($('<td>').html(movie.pubDate));
+						tr.append($('<td>').html(movie.director));
+						tr.append($('<td>').html(movie.actor));
+						tr.append($('<td>').html(movie.userRating));
+						$('#movie_list').append(tr);
+					});
+				},
+				error: function(jqXHR){
+					alert(jqXHR.responseText);
+				}
+			});
+		});
+	});
+</script>
 </head>
 <body>
 
