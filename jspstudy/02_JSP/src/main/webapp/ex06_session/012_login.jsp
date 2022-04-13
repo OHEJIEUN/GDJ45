@@ -19,6 +19,6 @@
 	}
 	
 	// 로그인 폼으로 돌아가기
-	response.sendRedirect("/JSP/ex06_session/01_login_form.jsp");
+	response.sendRedirect("/JSP/ex06_session/011_login_form.jsp");
 	
 %>
