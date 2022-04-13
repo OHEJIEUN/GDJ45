@@ -139,7 +139,22 @@
 			② ${name}
 			③ ${applicationScope.name}
 
-
+7. session
+	1) HttpSession 타입의 JSP 내장 객체이다.
+	2) HttpSession session 인스턴스를 매개 변수로 선언하거나,
+	   request로부터 session을 알아낼 수 있다.
+	3) 서버 측 공간으로 보안을 유지할 수 있다.
+	4) session에 저장된 정보는 웹 브라우저가 켜져 있는 동안 유지된다.
+	5) session의 속성(Attribute) 사용 방법
+		(1) 저장 : session.setAttribute(속성명, 값)
+		(2) 확인 : session.getAttribute(속성명)
+		(3) 삭제 : session.removeAttribute(속성명)
+	6) session 초기화
+		session.invalidate();
+	
+	
+	
+	
 
 
 
