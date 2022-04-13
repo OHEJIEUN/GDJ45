@@ -88,6 +88,11 @@
 		(2) request.getAttribute(속성명)
 		(3) session.getAttribute(속성명)
 		(4) application.getAttribute(속성명)
+	6) 속성(Attribute) 값 삭제하기
+		(1) pageContext.removeAttribute(속성명)
+		(2) request.removeAttribute(속성명)
+		(3) session.removeAttribute(속성명)
+		(4) application.removeAttribute(속성명)
 		
 
 6. EL
