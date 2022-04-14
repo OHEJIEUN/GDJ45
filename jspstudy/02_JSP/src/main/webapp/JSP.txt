@@ -150,9 +150,17 @@
 		(2) 확인 : session.getAttribute(속성명)
 		(3) 삭제 : session.removeAttribute(속성명)
 	6) session 초기화
-		session.invalidate();
+		session.invalidate()
 	
-	
+
+8. cookie
+	1) Cookie 클래스 타입이다.
+	2) 서버가 클라이언트에 데이터를 저장해 두는 장소이다.
+	3) 클라이언트의 웹 브라우저에 저장하는데 웹 브라우저가 닫혀도 정보가 유지된다.
+	4) 쿠키 저장
+		response.addCookie(new Cookie(쿠키명, 값))
+	5) 쿠키 확인
+		Cookie[] cookies = request.getCookies()
 	
 	
 
