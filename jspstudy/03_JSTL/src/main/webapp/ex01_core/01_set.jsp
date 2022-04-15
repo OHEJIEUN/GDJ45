@@ -25,8 +25,14 @@
 
 
 
+	<c:set var="tall" value="185.5" scope="page" />
+	<c:set var="weight" value="80.5" scope="page" />
+	
+	<c:set var="bmi" value="${weight div (tall * tall div 10000)}" scope="page" />
+	<c:set var="health" value="${bmi ge 25 ? '관리요망' : '정상'}" scope="page" />
 
-
+	<h3>체질량지수 : ${bmi}</h3>
+	<h3>건강상태 : ${health}</h3>
 
 </body>
 </html>
