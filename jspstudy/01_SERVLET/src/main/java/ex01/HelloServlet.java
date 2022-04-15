@@ -1,6 +1,8 @@
 package ex01;
 
 import java.io.IOException;
+
+import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -79,6 +81,7 @@ public class HelloServlet extends HttpServlet {
 		} else if(request.getMethod().equalsIgnoreCase("post")) {
 			doPost(request, response);
 		}
+		
 	}
 
 	/**
