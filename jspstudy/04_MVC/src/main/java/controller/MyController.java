@@ -40,6 +40,7 @@ public class MyController extends HttpServlet {
 		ActionForward af = null;
 		
 		switch(command) {
+		// model이 사용되는 경우
 		case "today.do":
 			service = new Today();
 			break;
@@ -48,6 +49,12 @@ public class MyController extends HttpServlet {
 			break;
 		case "lotto.do":
 			service = new Lotto();
+			break;
+		// model이 사용되지 않는 단순 이동
+		case "input.do":
+			af = new ActionForward();
+			af.setRedirect(false);
+			af.setView("views/input.jsp");
 			break;
 		}
 		
