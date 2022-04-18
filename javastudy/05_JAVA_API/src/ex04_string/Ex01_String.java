@@ -115,20 +115,10 @@ public class Ex01_String {
 		String name2 = name.trim();
 		System.out.println(name2);
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+		// 9. 치환(찾아 바꾸기)
+		String source = "best of best";
+		String replaced = source.replace("best", "worst");
+		System.out.println(replaced);		
 
 	}
 
