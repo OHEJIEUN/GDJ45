@@ -8,15 +8,7 @@
 </head>
 <body>
 
-	<a href="/MVC/today.do">현재 날짜 출력하기</a>
-	
-	<hr>
-	
-	<a href="/MVC/now.do">현재 시간 출력하기</a>
-	
-	<hr>
-	
-	<a href="/MVC/lotto.do">로또 예상 번호 6개 확인하기</a>
+	<h1>홈페이지에 오신 걸 환영합니다.</h1>
 
 </body>
 </html>

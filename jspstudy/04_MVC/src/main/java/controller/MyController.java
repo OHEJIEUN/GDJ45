@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import model.ActionForward;
 import model.Lotto;
 import model.MyService;
 import model.Now;
@@ -35,6 +36,9 @@ public class MyController extends HttpServlet {
 		// MyService 타입의 인스턴스이다.
 		MyService service = null;
 		
+		// ActionForward 인스턴스
+		ActionForward af = null;
+		
 		switch(command) {
 		case "today.do":
 			service = new Today();
@@ -49,11 +53,18 @@ public class MyController extends HttpServlet {
 		
 		// model의 실행(execute() 메소드의 호출)
 		if(service != null) {
-			service.execute(request, response);
+			af = service.execute(request, response);
 		}
-		
-		// request를 응답 View로 전달(forward)한다.
-		request.getRequestDispatcher("views/output.jsp").forward(request, response);
+
+		// model이 반환한 어디로 어떻게 정보(ActionForward)를 이용해서 이동
+		// af가 null인 경우가 있다. (모델에서 직접 response를 이용해 응답한 경우, ajax 처리)
+		if(af != null) {
+			if(af.isRedirect()) {
+				response.sendRedirect(af.getView());
+			} else {
+				request.getRequestDispatcher(af.getView()).forward(request, response);				
+			}
+		}
 		
 	}
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
