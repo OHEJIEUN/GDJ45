@@ -6,8 +6,9 @@ import java.util.Set;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class Lotto {
+public class Lotto implements MyService {
 
+	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		
 		// 응답

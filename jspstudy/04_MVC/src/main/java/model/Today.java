@@ -6,9 +6,9 @@ import java.util.Date;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class Today {
+public class Today implements MyService {
 
-	// 메소드
+	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		
 		// 응답

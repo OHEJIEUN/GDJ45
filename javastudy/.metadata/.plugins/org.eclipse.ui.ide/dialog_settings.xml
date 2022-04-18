@@ -15,6 +15,7 @@
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\GDJ45\javastudy\06_INHERITANCE"/>
 			<item value="C:\Users\민경태\Downloads\DiceGameProject"/>
 			<item value="C:\Users\민경태\Downloads\mania1417_62089157a02bd"/>
 			<item value="C:\Users\민경태\Downloads\mania1415_620c404997db1"/>
@@ -34,7 +35,6 @@
 			<item value="C:\Users\민경태\Downloads\mania1414_620b6356792ef"/>
 			<item value="C:\Users\민경태\Downloads\mania1413_620b57b5b96e8"/>
 			<item value="C:\Users\민경태\Downloads\mania1412_620b673029f14"/>
-			<item value="C:\Users\민경태\Downloads\mania1410_620b65cd4b24b"/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
 			<item value=""/>
