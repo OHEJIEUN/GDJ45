@@ -24,8 +24,9 @@ public class MyController extends HttpServlet {
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		// 요청
+		// 요청과 응답의 인코딩 처리
 		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html; charset=UTF-8");
 		
 		//  /MVC/today.do   /MVC/now.do  구분하는 방법
 		String requestURI = request.getRequestURI();                      //   /MVC/today.do
