@@ -47,7 +47,11 @@ public class BookService {
 		
 		// 요청URL
 		// GET방식은 URL에 검색어가 포함됨.
+<<<<<<< HEAD
 		String apiURL = "https://openapi.naver.com/v1/search/book.json?query=" + text;
+=======
+		String apiURL = "https://openapi.naver.com/v1/search/book.xml?query=" + text;
+>>>>>>> 6b709ae92535a10bf600f1185e1a3deb34861503
 		
 		// 요청(request : client -> server)
 		URL url = null;
@@ -86,7 +90,11 @@ public class BookService {
 		// System.out.println(sb.toString());
 		
 		// JSON응답 -> Book 인스턴스
+<<<<<<< HEAD
 		// dao의 insertBook() 메소드 호출
+=======
+		// dao의 insertBook() 메소드 호출	
+>>>>>>> 6b709ae92535a10bf600f1185e1a3deb34861503
 		JSONObject result = new JSONObject(sb.toString());
 		JSONArray items = result.getJSONArray("items");
 		for(int i = 0; i < items.length(); i++) {
