@@ -14,12 +14,12 @@
 			<option value="총무">총무</option>
 			<option value="개발">개발</option>
 			<option value="영업">영업</option>
+			<option value="기획">기획</option>
 			<option value="QA">QA</option>
-			<option value="운용">운용</option>
 		</select><br><br>
 		<button>신규등록</button>
 		<input type="reset" value="다시작성">
-		<input type="button" value="사원목록보기" onclick="">
+		<input type="button" value="사원목록보기" onclick="location.href='/DBCP/list.do'">
 	</form>
 </body>
 </html>
