@@ -9,6 +9,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import domain.Emp;
+
 public class EmpDAO {
 
 	// singleton
@@ -55,10 +57,23 @@ public class EmpDAO {
 	}
 	
 	// 2. 사원 추가하기
-	public int insertEmp() {
-		con = dataSource.getConnection();  // Connection 대여
-		
-		close(con, ps, null);
+	// 1) 매개변수 : Emp emp (사원 1명의 정보)
+	// 2) 반환     : int     (성공하면 1, 실패하면 0)
+	public int insertEmp(Emp emp) {
+		int res = 0;
+		try {
+			con = dataSource.getConnection();  // Connection 대여
+			sql = "INSERT INTO EMP(EMPNO, NAME, DEPT, HIRED) VALUES (EMP_SEQ.NEXTVAL, ?, ?, SYSDATE)";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, emp.getName());
+			ps.setString(2, emp.getDept());
+			res = ps.executeUpdate();  // DML(INSERT, UPDATE, DELETE)은 executeUpdate() 메소드 사용
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(con, ps, null);
+		}
+		return res;
 	}
 	
 	
