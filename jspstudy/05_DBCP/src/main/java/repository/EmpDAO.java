@@ -151,12 +151,23 @@ public class EmpDAO {
 		return res;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
+	// 6. 사원정보 삭제하기
+	// 1) 매개변수 : Long empNo (삭제할 사원번호)
+	// 2) 반환     : int        (성공하면 1, 실패하면 0)
+	public int deleteEmp(Long empNo) {
+		int res = 0;
+		try {
+			con = dataSource.getConnection();
+			sql = "DELETE FROM EMP WHERE EMPNO = ?";
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, empNo);
+			res = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(con, ps, null);
+		}
+		return res;
+	}
 	
 }

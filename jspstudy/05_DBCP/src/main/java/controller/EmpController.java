@@ -13,6 +13,7 @@ import service.DetailService;
 import service.EmpService;
 import service.ListService;
 import service.ModifyService;
+import service.RemoveService;
 
 @WebServlet("*.do")
 public class EmpController extends HttpServlet {
@@ -53,6 +54,9 @@ public class EmpController extends HttpServlet {
 			break;
 		case "modify.do":
 			service = new ModifyService();
+			break;
+		case "remove.do":
+			service = new RemoveService();
 			break;
 		}
 		

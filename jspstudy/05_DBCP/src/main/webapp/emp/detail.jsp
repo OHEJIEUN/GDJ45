@@ -19,6 +19,20 @@
 			f.attr('action', '/DBCP/modify.do');
 			f.submit();
 		});
+		var btnRemove = $('#btn_remove');
+		btnRemove.click(function(){
+			// 방법1
+			if(confirm('삭제할까요?')) {
+				f.attr('action', '/DBCP/remove.do');
+				f.submit();
+			}
+			// 방법2
+			/*
+			if(confirm('삭제할까요?')) {
+				location.href='/DBCP/remove.do?empNo=' + $('#empNo').val();
+			}
+			*/
+		});
 	})
 </script>
 </head>
@@ -29,7 +43,7 @@
 		<div>사원이름 : <input type="text" name="name" id="name" value="${emp.name}"></div>
 		<div>부서 : <input type="text" name="dept" id="dept" value="${emp.dept}"></div>
 		<div>입사일자 : ${emp.hired}</div>
-		<input type="hidden" name="empNo" value="${emp.empNo}">
+		<input type="hidden" name="empNo" id="empNo" value="${emp.empNo}">
 		<input type="button" value="수정" id="btn_modify">
 		<input type="button" value="삭제" id="btn_remove">
 		<input type="button" value="목록" onclick="location.href='/DBCP/list.do'">
