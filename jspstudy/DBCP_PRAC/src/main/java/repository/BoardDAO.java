@@ -82,6 +82,49 @@ public class BoardDAO {
 		return list;
 	}
 	
+	// 3. 전체게시글갯수가져오기
+	public Long selectBoardCount() {
+		Long count = 0L;
+		try {
+			con = dataSource.getConnection();
+			sql = "SELECT COUNT(*) AS 갯수 FROM BOARD";
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			// rs는 반드시 next()를 호출해야 사용할 수 있다.
+			if(rs.next()) {
+				count = rs.getLong("갯수");  // count = rs.getLong(1)
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(con, ps, rs);
+		}
+		return count;
+	}
+	
+	// 4. 게시글삽입하기
+	public int insertBoard(Board board) {
+		int res = 0;
+		try {
+			con = dataSource.getConnection();
+			sql = "INSERT INTO BOARD(NO, WRITER, TITLE, CONTENT, IP, HIT, CREATED, LASTMODIFIED) VALUES(BOARD_SEQ.NEXTVAL, ?, ?, ?, ?, 0, SYSDATE, SYSDATE)";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, board.getWriter());
+			ps.setString(2, board.getTitle());
+			ps.setString(3, board.getContent());
+			ps.setString(4, board.getIp());
+			res = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(con, ps, null);
+		}
+		return res;
+	}
+	
+	
+	
+	
 	
 	
 	

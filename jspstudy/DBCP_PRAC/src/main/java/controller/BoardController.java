@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.ActionForward;
+import service.AddService;
 import service.BoardService;
 import service.ListService;
 
@@ -37,8 +38,15 @@ public class BoardController extends HttpServlet {
 		
 		// Service 선택
 		switch(command) {
+		case "insertPage.do":
+			af = new ActionForward("board/insert.jsp", false);
+			break;
+		
 		case "list.do":
 			service = new ListService();
+			break;
+		case "insert.do":
+			service = new AddService();
 			break;
 		}
 		

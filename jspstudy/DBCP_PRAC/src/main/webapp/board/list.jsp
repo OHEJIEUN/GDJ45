@@ -10,7 +10,11 @@
 </head>
 <body>
 	<h1>게시글목록화면</h1>
+	<br>
+	<a href="/DBCP_PRAC/insertPage.do">새글작성</a>
+	<br>
 	<table border="1">
+		<caption>전체게시글 ${totalCount}개</caption>
 		<thead>
 			<tr>
 				<td>게시글번호</td>
