@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import common.ActionForward;
 import service.AddService;
+import service.DetailService;
 import service.EmpService;
 import service.ListService;
 
@@ -45,6 +46,9 @@ public class EmpController extends HttpServlet {
 			break;
 		case "list.do":
 			service = new ListService();
+			break;
+		case "detail.do":
+			service = new DetailService();
 			break;
 		}
 		

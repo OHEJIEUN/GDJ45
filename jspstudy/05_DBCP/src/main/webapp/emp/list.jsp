@@ -24,11 +24,11 @@
 					<td colspan="3">등록된 사원이 없습니다.</td>
 				</tr>
 			</c:if>
-			<c:if test="${empCount ne 0}">			
+			<c:if test="${empCount ne 0}">
 				<c:forEach items="${list}" var="emp">
 					<tr>
 						<td>${emp.empNo}</td>
-						<td>${emp.name}</td>
+						<td><a href="/DBCP/detail.do?empNo=${emp.empNo}">${emp.name}</a></td>
 						<td>${emp.dept}</td>
 					</tr>
 				</c:forEach>

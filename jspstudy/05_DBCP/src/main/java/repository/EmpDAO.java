@@ -104,7 +104,31 @@ public class EmpDAO {
 		return list;
 	}
 	
-	
+	// 4. 사원상세정보 가져오기
+	// 1) 매개변수 : Long empNo (사원번호)
+	// 2) 반환     : Emp (사원 1명의 정보)
+	public Emp selectEmpByEmpNo(Long empNo) {
+		Emp emp = null;
+		try {
+			con = dataSource.getConnection();
+			sql = "SELECT EMPNO, NAME, DEPT, HIRED FROM EMP WHERE EMPNO = ?";
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, empNo);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				emp = new Emp();
+				emp.setEmpNo(rs.getLong("EMPNO"));
+				emp.setName(rs.getString("NAME"));
+				emp.setDept(rs.getString("DEPT"));
+				emp.setHired(rs.getDate("HIRED"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(con, ps, rs);
+		}
+		return emp;
+	}
 	
 	
 	
