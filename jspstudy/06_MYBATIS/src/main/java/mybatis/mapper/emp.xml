@@ -3,6 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="">
+<!-- 1. mapper : SQL을 작성해 두는 곳 -->
+
+<!-- 2. mapper namespace에는 mapper의 전체 경로(패키지 포함)를 작성해 둔다. -->
+<!-- namespace="mybatis.mapper.emp"  mybatis.mapper 패키지에 저장된 emp.xml -->
+<mapper namespace="mybatis.mapper.emp">
 
 </mapper>
