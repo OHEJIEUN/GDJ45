@@ -130,7 +130,26 @@ public class EmpDAO {
 		return emp;
 	}
 	
-	
+	// 5. 사원정보 수정하기
+	// 1) 매개변수 : Emp emp (사원 1명의 정보)
+	// 2) 반환     : int     (성공하면 1, 실패하면 0)
+	public int updateEmp(Emp emp) {
+		int res = 0;
+		try {
+			con = dataSource.getConnection();
+			sql = "UPDATE EMP SET NAME = ?, DEPT = ? WHERE EMPNO = ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, emp.getName());
+			ps.setString(2, emp.getDept());
+			ps.setLong(3, emp.getEmpNo());
+			res = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(con, ps, null);
+		}
+		return res;
+	}
 	
 	
 	
