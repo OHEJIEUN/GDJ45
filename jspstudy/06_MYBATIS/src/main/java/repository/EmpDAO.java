@@ -78,7 +78,28 @@ public class EmpDAO {
 	}
 	
 	// 3. 사원삽입하기
-	
+	public int insertEmp(Emp emp) {
+		
+		// 1) SqlSession 인스턴스
+		//    openSession()      : commit 필요 없는 select
+		//    openSession(false) : commit 필요한 insert/update/delete
+		SqlSession ss = factory.openSession(false);
+		
+		// 2) 쿼리문 실행
+		int res = ss.insert("mybatis.mapper.emp.insertEmp", emp);
+		
+		// 3) 삽입 성공 시 commit
+		if(res > 0) {
+			ss.commit();
+		}
+		
+		// 4) SqlSession 인스턴스 닫기
+		ss.close();
+		
+		// 5) 결과 반환
+		return res;
+		
+	}
 	
 	
 	// 4. 사원수정하기

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.ActionForward;
+import service.AddService;
 import service.DetailService;
 import service.EmpService;
 import service.ListService;
@@ -48,6 +49,9 @@ public class EmpController extends HttpServlet {
 			break;
 		case "detail.do":
 			service = new DetailService();
+			break;
+		case "insert.do":
+			service = new AddService();
 			break;
 		}
 		
