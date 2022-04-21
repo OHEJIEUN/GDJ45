@@ -28,7 +28,7 @@
 				<c:forEach items="${list}" var="emp" varStatus="v">
 					<tr>
 						<td>${v.count}</td>
-						<td>${emp.name}</td>
+						<td><a href="/MYBATIS/detail.do?no=${emp.no}">${emp.name}</a></td>
 						<td>${emp.hired}</td>
 					</tr>
 				</c:forEach>

@@ -22,7 +22,16 @@
 		 ORDER BY NO DESC
 	</select>
 	
-	
+	<!-- 
+		2. 개별사원정보가져오기
+			1) 파라미터 : Long, long
+			2) 반환타입 : Emp
+	-->
+	<select id="selectEmpByNo" parameterType="Long" resultType="domain.Emp">
+		SELECT NO, NAME, DEPT, SALARY, HIRED
+		  FROM EMP
+		 WHERE NO = #{no}
+	</select>
 	
 	
 	

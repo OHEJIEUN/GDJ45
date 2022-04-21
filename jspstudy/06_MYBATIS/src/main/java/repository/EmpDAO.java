@@ -59,8 +59,23 @@ public class EmpDAO {
 	
 	
 	// 2. 개별사원조회하기
-	
-	
+	public Emp selectEmpByNo(Long no) {
+		
+		// 1) SqlSession 인스턴스
+		SqlSession ss = factory.openSession();
+		
+		// 2) 쿼리문 실행
+		//    - selectOne()  : 반환 결과가 사원 1명
+		//    - selectList() : 반환 결과가 사원 여러 명
+		Emp emp = ss.selectOne("mybatis.mapper.emp.selectEmpByNo", no);
+		
+		// 3) SqlSession 인스턴스 닫기
+		ss.close();
+		
+		// 4) 결과 반환
+		return emp;
+		
+	}
 	
 	// 3. 사원삽입하기
 	
