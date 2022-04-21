@@ -1,6 +1,7 @@
 package repository;
 
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -103,7 +104,27 @@ public class EmpDAO {
 	
 	
 	// 4. 사원수정하기
-	
+	public int updateEmp(Map<String, Object> map) {
+		
+		// 1) SqlSession 인스턴스
+		//    commit 할 수 있도록 openSession(false) 호출
+		SqlSession ss = factory.openSession(false);
+		
+		// 2) 쿼리문 실행
+		int res = ss.update("mybatis.mapper.emp.updateEmp", map);
+		
+		// 3) 수정 성공 시 commit
+		if(res > 0) {
+			ss.commit();
+		}
+		
+		// 4) SqlSession 인스턴스 닫기
+		ss.close();
+		
+		// 5) 결과 반환
+		return res;
+		
+	}
 	
 	
 	// 5. 사원삭제하기

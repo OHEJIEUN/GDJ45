@@ -12,6 +12,7 @@ import service.AddService;
 import service.DetailService;
 import service.EmpService;
 import service.ListService;
+import service.ModifyService;
 
 @WebServlet("*.do")
 public class EmpController extends HttpServlet {
@@ -42,6 +43,9 @@ public class EmpController extends HttpServlet {
 		case "insertPage.do":
 			af = new ActionForward("emp/insert.jsp", false);
 			break;
+		case "updatePage.do":
+			af = new ActionForward("emp/update.jsp", false);
+			break;
 		
 		// 서비스 실행
 		case "list.do":
@@ -52,6 +56,9 @@ public class EmpController extends HttpServlet {
 			break;
 		case "insert.do":
 			service = new AddService();
+			break;
+		case "update.do":
+			service = new ModifyService();
 			break;
 		}
 		

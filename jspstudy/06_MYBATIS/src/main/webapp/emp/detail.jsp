@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,6 +15,17 @@
 	<div>부서명 ${emp.dept}</div>
 	<div>급여 ${emp.salary}</div>
 	<div>입사일자 ${emp.hired}</div>
-
+	
+	<div>
+		<form action="/MYBATIS/updatePage.do" method="post">
+			<input type="hidden" name="no" value="${emp.no}">
+			<input type="hidden" name="name" value="${emp.name}">
+			<input type="hidden" name="dept" value="${emp.dept}">
+			<input type="hidden" name="salary" value="${emp.salary}">
+			<input type="hidden" name="hired" value="${emp.hired}">
+			<button>수정</button>
+		</form>
+	</div>
+	
 </body>
 </html>

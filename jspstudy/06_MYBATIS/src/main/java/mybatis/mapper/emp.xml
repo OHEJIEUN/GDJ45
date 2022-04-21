@@ -48,8 +48,18 @@
 			(EMP_SEQ.NEXTVAL, #{name}, #{dept}, #{salary}, TO_CHAR(SYSDATE, 'YYYY-MM-DD'))
 	</insert>
 	
-	
-	
+	<!--
+		4. 사원수정하기
+			1) 파라미터 : Emp emp, Map
+			2) 반환타입 : 0 또는 1, 작성은 하지 않는다.
+	-->
+	<update id="updateEmp" parameterType="Map">
+		UPDATE EMP
+		   SET NAME = #{name}
+		     , DEPT = #{dept}
+		     , SALARY = #{salary}
+		 WHERE NO = #{no}
+	</update>
 	
 	
 	
