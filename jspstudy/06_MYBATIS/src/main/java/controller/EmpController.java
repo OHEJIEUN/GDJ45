@@ -37,6 +37,12 @@ public class EmpController extends HttpServlet {
 		
 		// service 선택
 		switch(command) {
+		// 단순 이동 forward
+		case "insertPage.do":
+			af = new ActionForward("emp/insert.jsp", false);
+			break;
+		
+		// 서비스 실행
 		case "list.do":
 			service = new ListService();
 			break;

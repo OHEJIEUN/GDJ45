@@ -9,6 +9,8 @@
 </head>
 <body>
 
+	<a href="/MYBATIS/insertPage.do">신규사원등록</a>
+
 	<h1>전체사원목록</h1>
 	<table border="1">
 		<thead>

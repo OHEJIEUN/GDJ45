@@ -33,7 +33,20 @@
 		 WHERE NO = #{no}
 	</select>
 	
-	
+	<!--
+		3. 사원등록하기
+			1) 파라미터 : Emp emp, Map
+			2) 반환타입 : 0 또는 1, Integer, int
+			3) 주의사항
+				<insert>, <update>, <delete> 태그는 반환 타입이 모두 Integer이다.
+				resultType 속성을 작성하지 않는다. 생략해야 한다.
+	-->
+	<insert id="insertEmp" parameterType="domain.Emp">
+		INSERT INTO
+			EMP(NO, NAME, DEPT, SALARY, HIRED)
+		VALUES
+			(EMP_SEQ.NEXTVAL, #{name}, #{dept}, #{salary}, TO_CHAR(SYSDATE, 'YYYY-MM-DD'))
+	</insert>
 	
 	
 	
