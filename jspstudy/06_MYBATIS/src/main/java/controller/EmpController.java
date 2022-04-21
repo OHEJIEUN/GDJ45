@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import common.ActionForward;
 import service.EmpService;
+import service.ListService;
 
 @WebServlet("*.do")
 public class EmpController extends HttpServlet {
@@ -36,7 +37,7 @@ public class EmpController extends HttpServlet {
 		// service 선택
 		switch(command) {
 		case "list.do":
-			
+			service = new ListService();
 			break;
 		}
 		

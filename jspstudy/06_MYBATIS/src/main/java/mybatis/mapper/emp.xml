@@ -9,4 +9,28 @@
 <!-- namespace="mybatis.mapper.emp"  mybatis.mapper 패키지에 저장된 emp.xml -->
 <mapper namespace="mybatis.mapper.emp">
 
+	<!-- 모든 쿼리문에 세미콜론(;) 넣지 말 것! -->
+	
+	<!--
+		1. 전체사원목록가져오기
+			1) 파라미터 : 없음
+			2) 반환타입 : Emp (사원수와 상관 없이 Emp라고 지정해야 함)
+	-->
+	<select id="selectEmpList" resultType="domain.Emp">
+		SELECT NO, NAME, DEPT, SALARY, HIRED
+		  FROM EMP
+		 ORDER BY NO DESC
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
 </mapper>
