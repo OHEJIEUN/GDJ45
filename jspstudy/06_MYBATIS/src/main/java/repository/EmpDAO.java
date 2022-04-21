@@ -34,6 +34,10 @@ public class EmpDAO {
 	// 메소드마다 하나의 쿼리문을 실행한다.
 	// 메소드이름과 쿼리문의 id를 통일하면 작업이 수월하다.
 	
+	
+	private final String MAPPER = "mybatis.mapper.emp.";
+	
+	
 	// 1. 전체사원조회하기
 	public List<Emp> selectEmpList() {
 		
@@ -48,7 +52,7 @@ public class EmpDAO {
 		//    (3) 메소드
 		//        - selectOne()  : 반환 결과가 1개
 		//        - selectList() : 반환 결과가 여러 개
-		List<Emp> list = ss.selectList("mybatis.mapper.emp.selectEmpList");
+		List<Emp> list = ss.selectList(MAPPER + "selectEmpList");
 		
 		// 3) SqlSession 인스턴스 닫기
 		ss.close();
@@ -68,7 +72,7 @@ public class EmpDAO {
 		// 2) 쿼리문 실행
 		//    - selectOne()  : 반환 결과가 사원 1명
 		//    - selectList() : 반환 결과가 사원 여러 명
-		Emp emp = ss.selectOne("mybatis.mapper.emp.selectEmpByNo", no);
+		Emp emp = ss.selectOne(MAPPER + "selectEmpByNo", no);
 		
 		// 3) SqlSession 인스턴스 닫기
 		ss.close();
@@ -87,7 +91,7 @@ public class EmpDAO {
 		SqlSession ss = factory.openSession(false);
 		
 		// 2) 쿼리문 실행
-		int res = ss.insert("mybatis.mapper.emp.insertEmp", emp);
+		int res = ss.insert(MAPPER + "insertEmp", emp);
 		
 		// 3) 삽입 성공 시 commit
 		if(res > 0) {
@@ -111,7 +115,7 @@ public class EmpDAO {
 		SqlSession ss = factory.openSession(false);
 		
 		// 2) 쿼리문 실행
-		int res = ss.update("mybatis.mapper.emp.updateEmp", map);
+		int res = ss.update(MAPPER + "updateEmp", map);
 		
 		// 3) 수정 성공 시 commit
 		if(res > 0) {
@@ -128,9 +132,16 @@ public class EmpDAO {
 	
 	
 	// 5. 사원삭제하기
-	
-	
-	
-	
+	public int deleteEmp(Long no) {
+		
+		SqlSession ss = factory.openSession(false);
+		int res = ss.delete(MAPPER + "deleteEmp", no);
+		if(res > 0) {
+			ss.commit();
+		}
+		ss.close();
+		return res;
+		
+	}
 
 }

@@ -24,7 +24,7 @@
 	
 	<!-- 
 		2. 개별사원정보가져오기
-			1) 파라미터 : Long, long
+			1) 파라미터 : Long no, long no
 			2) 반환타입 : Emp
 	-->
 	<select id="selectEmpByNo" parameterType="Long" resultType="domain.Emp">
@@ -61,8 +61,15 @@
 		 WHERE NO = #{no}
 	</update>
 	
+	<!--
+		5. 사원삭제하기
+			1) 파라미터 : Long no, long no
+			2) 반환타입 : 0 또는 1, 작성은 하지 않는다.
+	-->
+	<delete id="deleteEmp" parameterType="Long">
+		DELETE
+		  FROM EMP
+		 WHERE NO = #{no}
+	</delete>
 	
-	
-	
-
 </mapper>

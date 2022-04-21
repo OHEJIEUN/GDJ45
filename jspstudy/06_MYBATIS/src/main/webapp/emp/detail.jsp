@@ -27,5 +27,16 @@
 		</form>
 	</div>
 	
+	<div>
+		<input type="button" value="삭제" onclick="fnDelete()">
+		<script>
+			function fnDelete() {
+				if(confirm('삭제할까요?')) {
+					location.href = '/MYBATIS/delete.do?no=${emp.no}';
+				}
+			}
+		</script>
+	</div>
+	
 </body>
 </html>
