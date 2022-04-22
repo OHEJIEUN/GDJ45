@@ -5,13 +5,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../resources/css/student.css"/>
+<link rel="stylesheet" href="./assets/css/student.css"/>
 </head>
 <body>
 	
 	<div class="wrap">
 		<h1 class="title">학생상세조회화면</h1>
-		<form action="/BATCH/update.do" method="post">
+		<form action="/BATCH/modify.do" method="post">
 			<table>
 				<thead>
 					<tr>
@@ -38,6 +38,7 @@
 				<tfoot>
 					<tr>
 						<td colspan="7">
+							<input type="hidden" name="stuNo" value="${student.stuNo}">
 							<input type="submit" value="수정">
 							<input type="reset" value="다시작성">
 							<input type="button" value="목록" onclick="location.href='/BATCH/list.do'">

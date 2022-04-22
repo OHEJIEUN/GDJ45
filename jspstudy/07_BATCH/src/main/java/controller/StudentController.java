@@ -12,6 +12,7 @@ import common.ActionForward;
 import service.AddService;
 import service.DetailService;
 import service.ListService;
+import service.ModifyService;
 import service.StudentService;
 
 @WebServlet("*.do")
@@ -53,6 +54,9 @@ public class StudentController extends HttpServlet {
 			break;
 		case "detail.do":
 			service = new DetailService();
+			break;
+		case "modify.do":
+			service = new ModifyService();
 			break;
 		}
 		

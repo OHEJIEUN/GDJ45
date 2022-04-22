@@ -2,6 +2,7 @@ package repository;
 
 import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -76,10 +77,14 @@ public class StudentDAO {
 		return student;
 	}
 	
-	
-	
-	// 4. 학생수정
-	
+	// 6. 학생수정
+	public int updateStudent(Map<String, String> map) {
+		SqlSession ss = factory.openSession(false);
+		int res = ss.update("mybatis.mapper.student.updateStudent", map);
+		if(res > 0) ss.commit();
+		ss.close();
+		return res;
+	}
 	
 	// 5. 학생삭제
 	

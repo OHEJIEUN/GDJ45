@@ -38,8 +38,17 @@
 		 WHERE STU_NO = #{stuNo}
 	</select>
 	
-	
-	
+	<!-- 6. 학생수정 -->
+	<update id="updateStudent" parameterType="Map">
+		UPDATE STUDENT
+		   SET NAME = #{name}
+		     , KOR = #{kor}
+		     , ENG = #{eng}
+		     , MAT = #{mat}
+		     , AVG = #{avg}
+		     , GRADE = #{grade}
+		 WHERE STU_NO = #{stuNo}
+	</update>
 	
 	
 	
