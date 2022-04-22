@@ -8,10 +8,10 @@
 <script>
 	setTimeout(function(){
 		location.href='/BATCH/list.do';
-	}, 3000);
+	}, 1000);
 </script>
 </head>
 <body>
-	<h1>3초 후 학생관리로 이동합니다.</h1>
+	<h1>1초 후 학생관리로 이동합니다.</h1>
 </body>
 </html>

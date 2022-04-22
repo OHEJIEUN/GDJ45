@@ -7,7 +7,27 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="../assets/css/student.css">
+<link rel="stylesheet" href="../resources/css/student.css">
+<script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
+<script>
+
+	$(document).ready(function(){
+	
+		// 상세 버튼의 이전 형제로 학번을 저장해 두고 사용한다.
+		$('.btn_detail').click(function(){
+		    location.href='/BATCH/detail.do?stuNo=' + $(this).prev().val();
+		});
+		
+		// 삭제 버튼의 data-stuno 속성에 학번을 저장해 두고 사용한다.
+		$('.btn_delete').click(function(){
+			if(confirm('삭제할까요?')) {
+				location.href='/BATCH/remove.do?stuNo=' + $(this).data('stuno');
+			}
+		});
+		
+	});
+	
+</script>
 </head>
 <body>
 
@@ -47,8 +67,12 @@
 							<td><fmt:formatNumber value="${student.avg}" pattern="0.00" /></td>
 							<td>${student.grade}</td>
 							<td>
-								<input type="button" value="수정" class="btn_update">
-								<input type="button" value="삭제" class="btn_delete">
+								<!-- 상세 버튼은 이전 형제에 학번을 저장해 두고 사용 -->
+								<input type="hidden" name="stuNo" value="${student.stuNo}">
+								<input type="button" value="상세" class="btn_detail">
+								
+								<!-- 삭제 버튼은 data 속성에 학번을 저장해 두고 사용 -->
+								<input type="button" value="삭제" class="btn_delete" data-stuno="${student.stuNo}">
 							</td>
 						</tr>
 					</c:forEach>

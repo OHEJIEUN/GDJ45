@@ -68,10 +68,13 @@ public class StudentDAO {
 		return res;
 	}
 	
-	
-	
-	// 2. 학생상세조회
-	
+	// 5. 학생상세조회
+	public Student selectStudentByStuNo(Long stuNo) {
+		SqlSession ss = factory.openSession();
+		Student student = ss.selectOne("mybatis.mapper.student.selectStudentByStuNo", stuNo);
+		ss.close();
+		return student;
+	}
 	
 	
 	

@@ -31,6 +31,24 @@
 		VALUES (STUDENT_SEQ.NEXTVAL, #{name}, #{kor}, #{eng}, #{mat}, #{avg}, #{grade})
 	</insert>
 	
+	<!-- 5. 학생상세조회 -->
+	<select id="selectStudentByStuNo" parameterType="Long" resultType="domain.Student">
+		SELECT STU_NO, NAME, KOR, ENG, MAT, AVG, GRADE
+		  FROM STUDENT
+		 WHERE STU_NO = #{stuNo}
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

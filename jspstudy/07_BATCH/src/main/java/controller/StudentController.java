@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import common.ActionForward;
 import service.AddService;
+import service.DetailService;
 import service.ListService;
 import service.StudentService;
 
@@ -49,6 +50,9 @@ public class StudentController extends HttpServlet {
 			break;
 		case "insert.do":
 			service = new AddService();
+			break;
+		case "detail.do":
+			service = new DetailService();
 			break;
 		}
 		
