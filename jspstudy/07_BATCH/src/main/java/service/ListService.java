@@ -13,6 +13,8 @@ public class ListService implements StudentService {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		request.setAttribute("list", StudentDAO.getInstance().selectStudentList());
+		request.setAttribute("totalCount", StudentDAO.getInstance().getTotalCount());
+		request.setAttribute("totalAverage", StudentDAO.getInstance().getTotalAverage());
 		return new ActionForward("student/list.jsp", false);
 	}
 

@@ -43,6 +43,22 @@ public class StudentDAO {
 		return list;
 	}
 	
+	// 2. 전체학생수
+	public int getTotalCount() {
+		SqlSession ss = factory.openSession();
+		int totalCount = ss.selectOne("mybatis.mapper.student.getTotalCount");
+		ss.close();
+		return totalCount;
+	}
+	
+	// 3. 전체학생평균
+	public double getTotalAverage() {
+		SqlSession ss = factory.openSession();
+		double totalAverage = ss.selectOne("mybatis.mapper.student.getTotalAverage");
+		ss.close();
+		return totalAverage;
+	}
+	
 	// 2. 학생상세조회
 	
 	

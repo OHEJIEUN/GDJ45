@@ -5,10 +5,29 @@
 
 <mapper namespace="mybatis.mapper.student">
 
+	<!-- 1. 전체학생목록 -->
 	<select id="selectStudentList" resultType="domain.Student">
 		SELECT STU_NO, NAME, KOR, ENG, MAT, AVG, GRADE
 		  FROM STUDENT
 		 ORDER BY STU_NO DESC
 	</select>
+	
+	<!-- 2. 전체학생수 -->
+	<select id="getTotalCount" resultType="Integer">
+		SELECT COUNT(*)
+		  FROM STUDENT
+	</select>
+	
+	<!-- 3. 전체학생평균 -->
+	<select id="getTotalAverage" resultType="Double">
+		SELECT NVL(AVG(AVG), 0)
+		  FROM STUDENT
+	</select>
+	
+	
+	
+	
+	
+	
 	
 </mapper>
