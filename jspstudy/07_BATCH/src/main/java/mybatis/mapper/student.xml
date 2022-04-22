@@ -57,8 +57,30 @@
 		 WHERE STU_NO = #{stuNo}
 	</delete>
 	
+	<!-- 8. 학생조회(점수) -->
+	<select id="selectStudentByAvg" parameterType="Map" resultType="domain.Student">
+		SELECT STU_NO, NAME, KOR, ENG, MAT, AVG, GRADE
+		  FROM STUDENT
+		 WHERE <![CDATA[AVG >= #{begin} AND AVG <= #{end}]]>
+	</select>
+	<!--
+	SELECT STU_NO, NAME, KOR, ENG, MAT, AVG, GRADE
+	  FROM STUDENT
+	 WHERE AVG BETWEEN #{begin} AND #{end}
+	-->
 	
+	<!-- 9. 조회된 학생수(점수) -->
+	<select id="getSearchCount" parameterType="Map" resultType="Integer">
+		SELECT COUNT(*)
+		  FROM STUDENT
+		 WHERE <![CDATA[AVG >= #{begin} AND AVG <= #{end}]]>
+	</select>
 	
-	
+	<!-- 10. 조회된 학생평균(점수) -->
+	<select id="getSearchAverage" parameterType="Map" resultType="Double">
+		SELECT NVL(AVG(AVG), 0)
+		  FROM STUDENT
+		 WHERE <![CDATA[AVG >= #{begin} AND AVG <= #{end}]]>
+	</select>
 	
 </mapper>

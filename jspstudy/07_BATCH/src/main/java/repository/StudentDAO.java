@@ -95,8 +95,29 @@ public class StudentDAO {
 		return res;
 	}
 	
+	// 8. 학생조회(점수)
+	public List<Student> selectStudentByAvg(Map<String, Integer> map) {
+		SqlSession ss = factory.openSession();
+		List<Student> list = ss.selectList("mybatis.mapper.student.selectStudentByAvg", map);
+		ss.close();
+		return list;
+	}
 	
+	// 9. 조회된 학생수(점수)
+	public int getSearchCount(Map<String, Integer> map) {
+		SqlSession ss = factory.openSession();
+		int searchCount = ss.selectOne("mybatis.mapper.student.getSearchCount", map);
+		ss.close();
+		return searchCount;
+	}
 	
+	// 10. 조회된 학생평균(점수)
+	public double getSearchAverage(Map<String, Integer> map) {
+		SqlSession ss = factory.openSession();
+		double searchAverage = ss.selectOne("mybatis.mapper.student.getSearchAverage", map);
+		ss.close();
+		return searchAverage;
+	}
 	
 	
 	

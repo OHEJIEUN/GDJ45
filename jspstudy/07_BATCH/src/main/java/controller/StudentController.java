@@ -14,6 +14,7 @@ import service.DetailService;
 import service.ListService;
 import service.ModifyService;
 import service.RemoveService;
+import service.SearchService;
 import service.StudentService;
 
 @WebServlet("*.do")
@@ -61,6 +62,9 @@ public class StudentController extends HttpServlet {
 			break;
 		case "remove.do":
 			service = new RemoveService();
+			break;
+		case "search.do":
+			service = new SearchService();
 			break;
 		}
 		

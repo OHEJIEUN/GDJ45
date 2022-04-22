@@ -25,6 +25,11 @@
 			}
 		});
 		
+		// 점수 조회
+		$('.btn_search').click(function(){
+			location.href='/BATCH/search.do?begin=' + $('#begin').val() + '&end=' + $('#end').val();
+		})
+		
 	});
 	
 </script>
@@ -35,6 +40,12 @@
 		<h1 class="title">학생전체목록</h1>
 		<div class="btn_area">
 			<input type="button" value="학생등록하기" class="btn_insert" onclick="location.href='/BATCH/insertPage.do'">
+		</div>
+		<div>
+			<input type="text" name="begin" id="begin" size="4" placeholder="최저점수">
+			~
+			<input type="text" name="end" id="end" size="4" placeholder="최고점수">
+			<input type="button" value="조회" class="btn_search">
 		</div>
 		<table>
 			<caption>전체 학생 수 : ${totalCount}명</caption>
