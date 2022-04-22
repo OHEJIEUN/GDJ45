@@ -150,7 +150,22 @@ public class BoardDAO {
 		return board;
 	}
 	
-	
+	// 6. 조회수늘리기
+	public int updateHit(Long no) {
+		int res = 0;
+		try {
+			con = dataSource.getConnection();
+			sql = "UPDATE BOARD SET HIT = HIT + 1 WHERE NO = ?";
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, no);
+			res = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(con, ps, null);
+		}
+		return res;
+	}
 	
 	
 	
