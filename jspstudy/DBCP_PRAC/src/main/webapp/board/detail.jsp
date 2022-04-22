@@ -18,5 +18,10 @@
 	<div>제목 ${board.title}</div>
 	<div><pre>${board.content}</pre></div>
 	
+	<div>
+		<input type="button" value="수정" onclick="location.href='/DBCP_PRAC/updatePage.do'">
+		<input type="button" value="목록" onclick="location.href='/DBCP_PRAC/list.do'">
+	</div>
+	
 </body>
 </html>

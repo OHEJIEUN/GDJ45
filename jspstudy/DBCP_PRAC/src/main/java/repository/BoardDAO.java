@@ -167,14 +167,40 @@ public class BoardDAO {
 		return res;
 	}
 	
+	// 7. 게시글수정하기
+	public int updateBoard(Board board) {
+		int res = 0;
+		try {
+			con = dataSource.getConnection();
+			sql = "UPDATE BOARD SET TITLE = ?, CONTENT = ?, LASTMODIFIED = SYSDATE WHERE NO = ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, board.getTitle());
+			ps.setString(2, board.getContent());
+			ps.setLong(3, board.getNo());
+			res = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(con, ps, null);
+		}
+		return res;
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	// 8. 게시글삭제하기
+	public int deleteBoard(Long no) {
+		int res = 0;
+		try {
+			con = dataSource.getConnection();
+			sql = "DELETE FROM BOARD WHERE NO = ?";
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, no);
+			res = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(con, ps, null);
+		}
+		return res;
+	}
 	
 }

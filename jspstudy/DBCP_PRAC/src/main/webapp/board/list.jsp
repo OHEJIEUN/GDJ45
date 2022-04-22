@@ -39,7 +39,7 @@
 						<td>${board.writer}</td>
 						<td>${board.hit}</td>
 						<td>${board.created}</td>
-						<td><i class="fa-solid fa-trash-can"></i></td>
+						<td><a href="/DBCP_PRAC/remove.do?no=${board.no}"><i class="fa-solid fa-trash-can"></i></a></td>
 					</tr>
 				</c:forEach>
 			</c:if>

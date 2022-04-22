@@ -13,6 +13,8 @@ import service.AddService;
 import service.BoardService;
 import service.DetailService;
 import service.ListService;
+import service.ModifyService;
+import service.RemoveService;
 
 @WebServlet("*.do")
 public class BoardController extends HttpServlet {
@@ -42,6 +44,9 @@ public class BoardController extends HttpServlet {
 		case "insertPage.do":
 			af = new ActionForward("board/insert.jsp", false);
 			break;
+		case "updatePage.do":
+			af = new ActionForward("board/update.jsp", false);
+			break;
 		
 		case "list.do":
 			service = new ListService();
@@ -51,6 +56,12 @@ public class BoardController extends HttpServlet {
 			break;
 		case "detail.do":
 			service = new DetailService();
+			break;
+		case "modify.do":
+			service = new ModifyService();
+			break;
+		case "remove.do":
+			service = new RemoveService();
 			break;
 		}
 		
