@@ -86,7 +86,14 @@ public class StudentDAO {
 		return res;
 	}
 	
-	// 5. 학생삭제
+	// 7. 학생삭제
+	public int deleteStudent(Long stuNo) {
+		SqlSession ss = factory.openSession(false);
+		int res = ss.delete("mybatis.mapper.student.deleteStudent", stuNo);
+		if(res > 0) ss.commit();
+		ss.close();
+		return res;
+	}
 	
 	
 	

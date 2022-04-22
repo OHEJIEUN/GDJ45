@@ -50,12 +50,12 @@
 		 WHERE STU_NO = #{stuNo}
 	</update>
 	
-	
-	
-	
-	
-	
-	
+	<!-- 7. 학생삭제 -->
+	<delete id="deleteStudent" parameterType="Long">
+		DELETE
+		  FROM STUDENT
+		 WHERE STU_NO = #{stuNo}
+	</delete>
 	
 	
 	
