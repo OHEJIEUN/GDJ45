@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import common.ActionForward;
 import service.AddService;
 import service.BoardService;
+import service.DetailService;
 import service.ListService;
 
 @WebServlet("*.do")
@@ -47,6 +48,9 @@ public class BoardController extends HttpServlet {
 			break;
 		case "insert.do":
 			service = new AddService();
+			break;
+		case "detail.do":
+			service = new DetailService();
 			break;
 		}
 		

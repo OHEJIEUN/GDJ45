@@ -122,7 +122,33 @@ public class BoardDAO {
 		return res;
 	}
 	
-	
+	// 5. 게시글조회하기
+	public Board selectBoardByNo(Long no) {
+		Board board = null;
+		try {
+			con = dataSource.getConnection();
+			sql = "SELECT * FROM BOARD WHERE NO = ?";
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, no);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				board = new Board();
+				board.setNo(rs.getLong("NO"));
+				board.setWriter(rs.getString("WRITER"));
+				board.setTitle(rs.getString("TITLE"));
+				board.setContent(rs.getString("CONTENT"));
+				board.setIp(rs.getString("IP"));
+				board.setHit(rs.getLong("HIT"));
+				board.setCreated(rs.getDate("CREATED"));
+				board.setLastModified(rs.getDate("LASTMODIFIED"));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(con, ps, rs);
+		}
+		return board;
+	}
 	
 	
 	
