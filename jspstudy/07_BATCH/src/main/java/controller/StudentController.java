@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.ActionForward;
+import service.ListService;
 import service.StudentService;
 
 @WebServlet("*.do")
@@ -40,7 +41,9 @@ public class StudentController extends HttpServlet {
 
 		
 		// 서비스 실행
-
+		case "list.do":
+			service = new ListService();
+			break;
 		}
 		
 		// service 실행(execute() 메소드 실행 -> IOException 발생)

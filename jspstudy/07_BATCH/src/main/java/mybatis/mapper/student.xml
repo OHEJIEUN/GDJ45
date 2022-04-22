@@ -5,6 +5,10 @@
 
 <mapper namespace="mybatis.mapper.student">
 
-	
+	<select id="selectStudentList" resultType="domain.Student">
+		SELECT STU_NO, NAME, KOR, ENG, MAT, AVG, GRADE
+		  FROM STUDENT
+		 ORDER BY STU_NO DESC
+	</select>
 	
 </mapper>
