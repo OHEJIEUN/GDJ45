@@ -24,8 +24,12 @@
 		  FROM STUDENT
 	</select>
 	
-	
-	
+	<!-- 4. 학생추가 -->
+	<insert id="insertStudent" parameterType="domain.Student">
+		INSERT INTO 
+		STUDENT(STU_NO, NAME, KOR, ENG, MAT, AVG, GRADE)
+		VALUES (STUDENT_SEQ.NEXTVAL, #{name}, #{kor}, #{eng}, #{mat}, #{avg}, #{grade})
+	</insert>
 	
 	
 	

@@ -59,10 +59,20 @@ public class StudentDAO {
 		return totalAverage;
 	}
 	
+	// 4. 학생삽입
+	public int insertStudent(Student student) {
+		SqlSession ss = factory.openSession(false);
+		int res = ss.insert("mybatis.mapper.student.insertStudent", student);
+		if(res > 0) ss.commit();
+		ss.close();
+		return res;
+	}
+	
+	
+	
 	// 2. 학생상세조회
 	
 	
-	// 3. 학생삽입
 	
 	
 	// 4. 학생수정

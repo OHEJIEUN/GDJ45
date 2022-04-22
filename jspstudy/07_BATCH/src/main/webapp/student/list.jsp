@@ -7,13 +7,14 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="../assets/css/student.css">
 </head>
 <body>
 
 	<div class="wrap">
 		<h1 class="title">학생전체목록</h1>
 		<div class="btn_area">
-			<input type="button" value="학생등록하기" onclick="location.href='/BATCH/insertPage.do'">
+			<input type="button" value="학생등록하기" class="btn_insert" onclick="location.href='/BATCH/insertPage.do'">
 		</div>
 		<table>
 			<caption>전체 학생 수 : ${totalCount}명</caption>
