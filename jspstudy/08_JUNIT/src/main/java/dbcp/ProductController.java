@@ -27,7 +27,13 @@ public class ProductController extends HttpServlet {
 		ActionForward af = null;
 		
 		switch(command) {
+		case "addPage.do":
+			af = new ActionForward("product/add.jsp", false);
+			break;
 		
+		case "list.do":
+			service = new ProductListService();
+			break;
 		}
 		
 		if(service != null) {

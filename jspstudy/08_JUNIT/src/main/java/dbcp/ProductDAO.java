@@ -3,6 +3,8 @@ package dbcp;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -42,6 +44,60 @@ public class ProductDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	public List<ProductDTO> selectProductList() {
+		List<ProductDTO> products = new ArrayList<ProductDTO>();
+		try {
+			con = dataSource.getConnection();
+			sql = "SELECT PRODUCT_NO, NAME, PRICE, IMAGE FROM PRODUCT ORDER BY PRODUCT_NO DESC";
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				// Builder 패턴을 이용한 ProductDTO 생성
+				ProductDTO product = ProductDTO.builder()
+						.product_no(rs.getLong("PRODUCT_NO"))
+						.name(rs.getString("NAME"))
+						.price(rs.getInt("PRICE"))
+						.image(rs.getString("IMAGE"))
+						.build();
+				products.add(product);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(con, ps, rs);
+		}
+		return products;
+	}
+	
+	// AddService.java로 예외를 던지고,
+	// AddService.java에서 예외를 처리할 수 있도록 처리해 봅시다.
+	// throws Exception : insertProduct() 메소드를 호출하는 곳(AddService.java)으로 예외를 던진다.
+	public int insertProduct(ProductDTO product) throws Exception {
+		int res = 0;
+		con = dataSource.getConnection();
+		sql = "INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, ?, ?, ?)";
+		ps = con.prepareStatement(sql);
+		ps.setString(1, product.getName());
+		ps.setInt(2, product.getPrice());
+		ps.setString(3, product.getImage());
+		res = ps.executeUpdate();
+		close(con, ps, null);
+		return res;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }
