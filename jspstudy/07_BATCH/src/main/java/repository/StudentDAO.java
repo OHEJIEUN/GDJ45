@@ -119,11 +119,12 @@ public class StudentDAO {
 		return searchAverage;
 	}
 	
-	
-	
-	
-	
-	
-	
+	// 11. 평균 기준 상위 3명 조회하기
+	public List<Student> selectStudentTop3() {
+		SqlSession ss = factory.openSession();
+		List<Student> list = ss.selectList("mybatis.mapper.student.selectStudentTop3");
+		ss.close();
+		return list;
+	}
 	
 }

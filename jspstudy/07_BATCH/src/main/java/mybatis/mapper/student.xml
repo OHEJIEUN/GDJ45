@@ -83,4 +83,12 @@
 		 WHERE <![CDATA[AVG >= #{begin} AND AVG <= #{end}]]>
 	</select>
 	
+	<!-- 11. 평균 기준 상위 3명 조회하기 -->
+	<select id="selectStudentTop3" resultType="domain.Student">
+		SELECT S.RANK, S.NAME, S.AVG
+		  FROM (SELECT RANK() OVER(ORDER BY AVG DESC) AS RANK, NAME, AVG
+		          FROM STUDENT) S
+		 WHERE S.RANK BETWEEN 1 AND 3
+	</select>
+	
 </mapper>
