@@ -37,6 +37,9 @@ public class ProductController extends HttpServlet {
 		case "add.do":
 			service = new ProductAddService();
 			break;
+		case "detail.do":
+			service = new ProductDetailService();
+			break;
 		}
 		
 		if(service != null) {

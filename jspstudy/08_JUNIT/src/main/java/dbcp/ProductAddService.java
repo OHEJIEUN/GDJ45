@@ -30,6 +30,7 @@ public class ProductAddService implements ProductService {
 		
 		// 3) MultipartRequest 인스턴스 만들기
 		//    여기서 업로드가 진행된다.
+		File file = null;
 		MultipartRequest mr = null;
 		try {
 			mr = new MultipartRequest(
@@ -39,10 +40,12 @@ public class ProductAddService implements ProductService {
 				"UTF-8", 
 				new DefaultFileRenamePolicy());
 		} catch (IOException e) {
-			message(response, "파일 첨부가 실패했습니다.");
+			error(file, response, "파일 첨부가 실패했습니다.");
 		}
 		
-		// 2. DB 저장
+		
+		/* 2. DB 저장 */
+		file = mr.getFile("filename");
 		String name = mr.getParameter("name");
 		Integer price = Integer.parseInt(mr.getParameter("price"));
 		String image = mr.getFilesystemName("filename");
@@ -51,22 +54,29 @@ public class ProductAddService implements ProductService {
 				.price(price)
 				.image(image)
 				.build();
+		ActionForward af = null;
 		try {
 			int res = ProductDAO.getInstance().insertProduct(product);
+			if(res > 0) {
+				af = new ActionForward("/JUNIT/list.do", true);
+			}
 		} catch(SQLIntegrityConstraintViolationException e) {  // UNIQUE, NOT NULL
-			message(response, "동일한 제품명이 이미 등록되어 있거나\n 필수 정보가 누락되었습니다.");
+			error(file, response, "동일한 제품명이 이미 등록되어 있거나 \\n필수 정보가 누락되었습니다.");
 		} catch(SQLException e) {  // COLUMN TYPE, SIZE
-			message(response, "저장할 수 없는 데이터가 포함되어 있습니다.");
+			error(file, response, "저장할 수 없는 데이터가 포함되어 있습니다.");
 		} catch(Exception e) {
-			message(response, "알 수 없는 예외가 발생했습니다.");
+			error(file, response, "알 수 없는 예외가 발생했습니다.");
 		}
 		
-		return null;
+		return af;
 		
 	}
 	
 	// 3. 예외 처리(예외에 따른 응답 만들기)
-	public void message(HttpServletResponse response, String msg) {
+	public void error(File file, HttpServletResponse response, String msg) {
+		if(file != null && file.exists()) {
+			file.delete();
+		}
 		try {
 			PrintWriter out = response.getWriter();
 			out.println("<script>");

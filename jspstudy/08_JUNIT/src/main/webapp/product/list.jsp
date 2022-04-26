@@ -33,7 +33,7 @@
 				<c:forEach items="${products}" var="product">
 					<tr>
 						<td>${product.product_no}</td>
-						<td>${product.name}</td>
+						<td><a href="/JUNIT/detail.do?product_no=${product.product_no}">${product.name}</a></td>
 						<td>${product.price}</td>
 						<td>
 							<c:if test="${not empty product.image}">
