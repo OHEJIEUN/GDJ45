@@ -37,7 +37,9 @@
 						<td>${product.price}</td>
 						<td>
 							<c:if test="${not empty product.image}">
-								<i class="fa-solid fa-paperclip"></i>
+								<a href="/JUNIT/download.do?target=${product.image}">
+									<i class="fa-solid fa-paperclip"></i>
+								</a>
 							</c:if>
 						</td>
 					</tr>
