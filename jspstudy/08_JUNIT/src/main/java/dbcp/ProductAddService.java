@@ -3,6 +3,8 @@ package dbcp;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,17 +39,7 @@ public class ProductAddService implements ProductService {
 				"UTF-8", 
 				new DefaultFileRenamePolicy());
 		} catch (IOException e) {
-			try {
-				PrintWriter out = response.getWriter();
-				out.println("<script>");
-				out.println("alert('파일 첨부가 실패했습니다.')");
-				out.println("history.back()");
-				out.println("</script>");
-				out.flush();
-				out.close();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
+			message(response, "파일 첨부가 실패했습니다.");
 		}
 		
 		// 2. DB 저장
@@ -61,15 +53,31 @@ public class ProductAddService implements ProductService {
 				.build();
 		try {
 			int res = ProductDAO.getInstance().insertProduct(product);
+		} catch(SQLIntegrityConstraintViolationException e) {  // UNIQUE, NOT NULL
+			message(response, "동일한 제품명이 이미 등록되어 있거나\n 필수 정보가 누락되었습니다.");
+		} catch(SQLException e) {  // COLUMN TYPE, SIZE
+			message(response, "저장할 수 없는 데이터가 포함되어 있습니다.");
 		} catch(Exception e) {
-			System.out.println("예외클래스명 " + e.getClass().getName());
+			message(response, "알 수 없는 예외가 발생했습니다.");
 		}
 		
-	
-		// 3. 예외 처리(예외에 따른 응답 만들기)
-		
-		
 		return null;
+		
+	}
+	
+	// 3. 예외 처리(예외에 따른 응답 만들기)
+	public void message(HttpServletResponse response, String msg) {
+		try {
+			PrintWriter out = response.getWriter();
+			out.println("<script>");
+			out.println("alert('" + msg + "')");
+			out.println("history.back()");
+			out.println("</script>");
+			out.flush();
+			out.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 }

@@ -72,7 +72,7 @@ public class ProductDAO {
 	
 	// ProductAddService.java로 예외를 던지고,
 	// ProductAddService.java에서 예외를 처리할 수 있도록 처리해 봅시다.
-	// throws Exception : insertProduct() 메소드를 호출하는 곳(AddService.java)으로 예외를 던진다.
+	// throws Exception : insertProduct() 메소드를 호출하는 곳(ProductAddService.java)으로 예외를 던진다.
 	public int insertProduct(ProductDTO product) throws Exception {
 		int res = 0;
 		con = dataSource.getConnection();
