@@ -43,6 +43,9 @@ public class ProductController extends HttpServlet {
 		case "download.do":
 			service = new ProductDownloadService();
 			break;
+		case "remove.do":
+			service = new ProductRemoveService();
+			break;
 		}
 		
 		if(service != null) {
