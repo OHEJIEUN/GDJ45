@@ -6,7 +6,7 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Builder  // Builder 패턴을 이용해서 ProductDTO 생성
+@Builder
 public class ProductDTO {
 	private Long productNo;
 	private String name;

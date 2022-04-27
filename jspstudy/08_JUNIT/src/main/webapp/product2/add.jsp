@@ -37,7 +37,7 @@
 </script>
 </head>
 <body>
-	<form action="/JUNIT/add.do" method="post" enctype="multipart/form-data">
+	<form action="/JUNIT/add.prod" method="post" enctype="multipart/form-data">
 		<div>
 			<input type="text" name="name" placeholder="제품명">
 		</div>
@@ -46,12 +46,11 @@
 		</div>
 		<div>
 			<input type="file" name="filename" id="filename">
-			<input type="hidden" name="a" value="10">
 		</div>
 		<div>
 			<button>등록</button>
 			<input type="reset" value="다시작성">
-			<input type="button" value="목록" onclick="location.href='/JUNIT/list.do'">
+			<input type="button" value="목록" onclick="location.href='/JUNIT/list.prod'">
 		</div>
 	</form>
 </body>

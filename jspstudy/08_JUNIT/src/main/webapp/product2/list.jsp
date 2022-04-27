@@ -11,7 +11,7 @@
 <body>
 
 	<div>
-		<a href="/JUNIT/addPage.do">제품등록하러가기</a>
+		<a href="/JUNIT/addPage.prod">제품등록하러가기</a>
 	</div>
 
 	<table border="1">
@@ -32,12 +32,12 @@
 			<c:if test="${not empty products}">
 				<c:forEach items="${products}" var="product">
 					<tr>
-						<td>${product.product_no}</td>
-						<td><a href="/JUNIT/detail.do?product_no=${product.product_no}">${product.name}</a></td>
+						<td>${product.productNo}</td>
+						<td><a href="/JUNIT/detail.prod?productNo=${product.productNo}">${product.name}</a></td>
 						<td>${product.price}</td>
 						<td>
 							<c:if test="${not empty product.image}">
-								<a href="/JUNIT/download.do?target=${product.image}">
+								<a href="/JUNIT/download.prod?target=${product.image}">
 									<i class="fa-solid fa-paperclip"></i>
 								</a>
 							</c:if>
