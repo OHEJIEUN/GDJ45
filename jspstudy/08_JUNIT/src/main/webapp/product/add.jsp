@@ -46,6 +46,7 @@
 		</div>
 		<div>
 			<input type="file" name="filename" id="filename">
+			<input type="hidden" name="a" value="10">
 		</div>
 		<div>
 			<button>등록</button>

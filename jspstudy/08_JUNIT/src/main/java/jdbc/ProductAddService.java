@@ -43,7 +43,6 @@ public class ProductAddService implements ProductService {
 			error(file, response, "파일 첨부가 실패했습니다.");
 		}
 		
-		
 		/* 2. DB 저장 */
 		file = mr.getFile("filename");
 		String name = mr.getParameter("name");
