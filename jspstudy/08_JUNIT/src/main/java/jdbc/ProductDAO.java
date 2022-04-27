@@ -1,4 +1,4 @@
-package dbcp;
+package jdbc;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -52,6 +52,24 @@ public class ProductDAO {
 			close(con, ps, rs);
 		}
 		return products;
+	}
+	
+	public int getProductCount() {
+		int count = 0;
+		try {
+			con = MyConnection.getInstance().getConnection();
+			sql = "SELECT COUNT(*) FROM PRODUCT";
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				count = rs.getInt("COUNT(*)");
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(con, ps, rs);
+		}
+		return count;
 	}
 	
 	// ProductAddService.java로 예외를 던지고,

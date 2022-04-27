@@ -1,4 +1,4 @@
-package dbcp;
+package jdbc;
 
 import java.io.IOException;
 import javax.servlet.ServletException;

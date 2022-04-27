@@ -1,4 +1,4 @@
-package dbcp;
+package jdbc;
 
 import lombok.Builder;
 import lombok.Getter;
