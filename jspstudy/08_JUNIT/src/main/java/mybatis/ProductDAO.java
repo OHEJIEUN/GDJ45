@@ -52,7 +52,7 @@ public class ProductDAO {
 	
 	public int deleteProduct(Long productNo) {
 		SqlSession ss = factory.openSession(false);
-		int res = ss.insert("mybatis.product.deleteProduct", productNo);
+		int res = ss.delete("mybatis.product.deleteProduct", productNo);
 		if(res > 0) {
 			ss.commit();
 		}
