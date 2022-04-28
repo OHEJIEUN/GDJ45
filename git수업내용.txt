@@ -270,15 +270,164 @@ Date:   Thu Apr 28 11:21:19 2022 +0900
 
 
 ##################################################################
+## 여기까지 로컬저장소 작업                                     ##
 ## commit이 완료되면 '로컬저장소'는 현재 상태로 저장된다.       ##
 ## commit이 되지 않으면 '원격저장소'와 내용을 주고 받을 수 없다.##
 ##################################################################
 
 
 -----------------------
-
+원격저장소 작업하기
 -----------------------
+1. github.com 회원가입하기
+2. github.com 에서 저장소(repository) 만들기
+3. 저장소(repository) 주소를 로컬저장소의 원격저장소로 등록하기
+4. github으로 올리는 건 push, 내려 받는 건 pull
 
+
+
+## 원격저장소 만들기
+## 1. 저장소 이름 : local  (로컬저장소 이름과 통일할 것)
+## 2. README.md 파일 만들기 할 것.
+## 3. .gitignore 파일 (가급적) 만들기 할 것.
+##    gitignore.io 사이트에서 생성
+
+
+## 원격저장소 주소 알아내기
+## 1. local 레파지토리 열면 녹색 code 버튼 있음.
+## 2. 클릭하면 주소 보임.
+
+
+GDJ45@DESKTOP-5O7J493 MINGW64 ~/local (main)
+$ git remote add origin https://github.com/goodeeit/local.git  ## 원격저장소 등록
+
+
+## 현재 상황
+## 로컬저장소      원격저장소
+## a.txt           README.md
+##                 .gitignore
+
+
+## 중요한 용어
+## 1. push  :  로컬저장소 -> 원격저장소
+## 2. pull  :  로컬저장소 <- 원격저장소
+
+
+## 가장 먼저 해야 할 일
+## pull을 먼저 해야 한다.
+## 원격저장소의 main 브랜치를 pull한다.
+
+
+GDJ45@DESKTOP-5O7J493 MINGW64 ~/local (main)
+$ git pull origin main  ## 원격저장소(origin)의 main 브랜치를 내려 받겠다.
+remote: Enumerating objects: 7, done.
+remote: Counting objects: 100% (7/7), done.
+remote: Compressing objects: 100% (6/6), done.
+remote: Total 7 (delta 1), reused 0 (delta 0), pack-reused 0
+Unpacking objects: 100% (7/7), 2.16 KiB | 73.00 KiB/s, done.
+From https://github.com/goodeeit/local
+ * branch            main       -> FETCH_HEAD
+ * [new branch]      main       -> origin/main
+fatal: refusing to merge unrelated histories  ## 최초 pull 할 때는 거절된다. 그래서 옵션을 써야 한다.
+
+
+## push, pull을 위해서 미리 github.com 에서 personal access token을 받아 둔다.
+## 외울 수 없으므로 텍스트 파일로 저장해 두길 추천.
+
+
+
+  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
+
+
+
+GDJ45@DESKTOP-5O7J493 MINGW64 ~/local (main)
+$ git pull origin main --allow-unrelated-histories  ## 처음 pull 할 때 사용해야 하는 옵션
+
+
+## vim 이 열리고 메시지가 완성되어 있음
+## 저장하고 닫으면 됨 ( :wq )
+
+
+From https://github.com/goodeeit/local
+ * branch            main       -> FETCH_HEAD
+Merge made by the 'ort' strategy.
+ .gitignore | 123 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ README.md  |   1 +
+ 2 files changed, 124 insertions(+)
+ create mode 100644 .gitignore
+ create mode 100644 README.md
+
+
+## 현재 상황 (pull 했음)
+## 
+## 로컬저장소      원격저장소
+## a.txt           README.md
+## README.md       .gitignore
+## .gitignore
+
+
+
+## 로컬저장소의 a.txt 파일을 원격저장소로 올려야 한다.
+## 한마디로 push를 해야 한다.
+## 이게 마지막 작업이다.
+
+
+GDJ45@DESKTOP-5O7J493 MINGW64 ~/local (main)
+$ git push origin main  ## 로컬저장소의 main 브랜치 내용을 원격저장소 main 브랜치로 올려라.
+
+
+## 처음 push 할 때 personal token을 입력해서 인증해야 한다.
+## 앞으로 같은 로컬저장소에서 push 할 때는 더 이상 입력할 필요가 없다.
+
+
+## 더 이상 입력할 필요가 없는 이유
+## 운영체제에 저장이 되어 있기 때문이다.
+## 제어판 - 자격 증명 관리자 - Windows 자격 증명
+
+
+Enumerating objects: 9, done.
+Counting objects: 100% (9/9), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (4/4), done.
+Writing objects: 100% (8/8), 773 bytes | 386.00 KiB/s, done.
+Total 8 (delta 0), reused 0 (delta 0), pack-reused 0
+To https://github.com/goodeeit/local.git
+   8b2d877..c2fc6c3  main -> main
+
+
+## 현재 상황 (push 했음)
+## 
+## 로컬저장소      원격저장소
+## a.txt           README.md
+## README.md       .gitignore
+## .gitignore      a.txt
+
+## 이제 로컬저장소와 원격저장소가 같아 졌기 때문에 퇴근!
+
+
+## 이후에는 작업하고, add, commit 하고 push만 하면 된다.
+
+GDJ45@DESKTOP-5O7J493 MINGW64 ~/local (main)
+$ echo 'hahaha' >> a.txt  ## 추가 작업 하고,
+
+GDJ45@DESKTOP-5O7J493 MINGW64 ~/local (main)
+$ git commit -am 'my third commit'  ## add와 commit을 동시에 진행하고,
+warning: LF will be replaced by CRLF in a.txt.
+The file will have its original line endings in your working directory
+[main b744478] my third commit
+ 1 file changed, 1 insertion(+)
+
+GDJ45@DESKTOP-5O7J493 MINGW64 ~/local (main)
+$ git push origin main  ## push 한다.
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 4 threads
+Compressing objects: 100% (2/2), done.
+Writing objects: 100% (3/3), 281 bytes | 281.00 KiB/s, done.
+Total 3 (delta 1), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (1/1), completed with 1 local object.
+To https://github.com/goodeeit/local.git
+   c2fc6c3..b744478  main -> main
 
 
 
