@@ -336,10 +336,6 @@ fatal: refusing to merge unrelated histories  ## 최초 pull 할 때는 거절�
 
 
 
-  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
-
-
-
 GDJ45@DESKTOP-5O7J493 MINGW64 ~/local (main)
 $ git pull origin main --allow-unrelated-histories  ## 처음 pull 할 때 사용해야 하는 옵션
 
