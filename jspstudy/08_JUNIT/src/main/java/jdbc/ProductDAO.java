@@ -1,6 +1,7 @@
 package jdbc;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
@@ -19,6 +20,17 @@ public class ProductDAO {
 	private ResultSet rs;
 	private String sql;
 	
+	public Connection getConnection() {
+		Connection con = null;
+		try {
+			Class.forName("oracle.jdbc.OracleDriver");
+			con = DriverManager.getConnection("jdbc:oracle:thin:@localhost:1521:xe", "SCOTT", "1111");
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return con;
+	}
+	
 	public void close(Connection con, PreparedStatement ps, ResultSet rs) {
 		try {
 			if(con != null) { con.close(); }
@@ -32,7 +44,7 @@ public class ProductDAO {
 	public List<ProductDTO> selectProductList() {
 		List<ProductDTO> products = new ArrayList<ProductDTO>();
 		try {
-			con = MyConnection.getInstance().getConnection();
+			con = getConnection();
 			sql = "SELECT PRODUCT_NO, NAME, PRICE, IMAGE FROM PRODUCT ORDER BY PRODUCT_NO DESC";
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
@@ -57,7 +69,7 @@ public class ProductDAO {
 	public int getProductCount() {
 		int count = 0;
 		try {
-			con = MyConnection.getInstance().getConnection();
+			con = getConnection();
 			sql = "SELECT COUNT(*) FROM PRODUCT";
 			ps = con.prepareStatement(sql);
 			rs = ps.executeQuery();
@@ -77,7 +89,7 @@ public class ProductDAO {
 	// throws Exception : insertProduct() 메소드를 호출하는 곳(ProductAddService.java)으로 예외를 던진다.
 	public int insertProduct(ProductDTO product) throws Exception {
 		int res = 0;
-		con = MyConnection.getInstance().getConnection();
+		con = getConnection();
 		sql = "INSERT INTO PRODUCT VALUES(PRODUCT_SEQ.NEXTVAL, ?, ?, ?)";
 		ps = con.prepareStatement(sql);
 		ps.setString(1, product.getName());
@@ -91,7 +103,7 @@ public class ProductDAO {
 	public ProductDTO selectProductByNo(Long product_no) {
 		ProductDTO product = null;
 		try {
-			con = MyConnection.getInstance().getConnection();
+			con = getConnection();
 			sql = "SELECT PRODUCT_NO, NAME, PRICE, IMAGE FROM PRODUCT WHERE PRODUCT_NO = ?";
 			ps = con.prepareStatement(sql);
 			ps.setLong(1, product_no);
@@ -115,7 +127,7 @@ public class ProductDAO {
 	public int deleteProduct(Long product_no) {
 		int res = 0;
 		try {
-			con = MyConnection.getInstance().getConnection();
+			con = getConnection();
 			sql = "DELETE FROM PRODUCT WHERE PRODUCT_NO = ?";
 			ps = con.prepareStatement(sql);
 			ps.setLong(1, product_no);
