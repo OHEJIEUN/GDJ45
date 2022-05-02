@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.ActionForward;
+import service.AddService;
 import service.MemberService;
 
 @WebServlet("*.do")
@@ -33,6 +34,9 @@ public class MemberController extends HttpServlet {
 		switch(command) {
 		case "memberManage.do":
 			af = new ActionForward("member/manage.jsp", false);
+			break;
+		case "add.do":
+			service = new AddService();
 			break;
 		}
 		

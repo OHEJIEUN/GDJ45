@@ -1,5 +1,8 @@
 package service;
 
+import java.io.IOException;
+import java.io.PrintWriter;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -36,6 +39,9 @@ public class AddService implements MemberService {
 		// 성공 {"res": 1}
 		// 실패 {"res": 0}
 		
+		// 응답 데이터 상세
+		// res : 회원의 등록이 성공하면 1, 실패하면 0을 저장한다.
+		
 		// 1. 라이브러리를 사용하지 않는 경우
 		// String responseText = "{\"res\": " + res + "}";
 		
@@ -44,9 +50,15 @@ public class AddService implements MemberService {
 		obj.put("res", res);
 		String responseText = obj.toString();
 		
-		// 응답 데이터 상세
-		// res : 회원의 등록이 성공하면 1, 실패하면 0을 저장한다.
-		
+		// 응답하기
+		try {
+			PrintWriter out = response.getWriter();
+			out.write(responseText);  // out.print(responseText), out.println(responseText) 모두 가능
+			out.flush();
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 
 	}
 

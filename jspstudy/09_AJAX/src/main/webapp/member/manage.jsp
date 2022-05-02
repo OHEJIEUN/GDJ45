@@ -33,8 +33,35 @@
 		
 	}
 	function fnAdd(){
-		// 등록 버튼을 클릭하면 실행
 		
+		// 등록 버튼을 클릭하면 실행
+		$('#btnAdd').on('click', function(){
+			
+			// 요청 URL
+			// http://localhost:9090/AJAX/add.do
+				
+			// 요청 Method
+			// POST
+			
+			// 요청 Parameter
+			// id=아이디&name=이름&gender=성별&address=주소
+			
+			// 요청 Parameter 상세
+			// id      : 신규 회원의 아이디 (필수, 중복 불가)
+			// name    : 신규 회원의 이름
+			// gender  : 신규 회원의 성별
+			// address : 신규 회원의 주소
+			
+			$.ajax({
+				url: '/AJAX/add.do',
+				type: 'POST',
+				data: 'id=' + $('#id').val() + '&name=' + $('#name').val() + '&gender=' + $(':radio[name="gender"]:checked').val() + '&address=' + $('#address').val(),
+				dataType: 'json',
+				success: function(responseText){
+					alert(responseText);
+				}
+			})
+		})
 	}
 	function fnModify(){
 		// 수정 버튼을 클릭하면 실행
