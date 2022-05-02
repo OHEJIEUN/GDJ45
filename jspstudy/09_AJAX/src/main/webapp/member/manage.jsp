@@ -26,7 +26,24 @@
 	// 함수
 	function fnList(){
 		// 화면이 열리면 곧바로 실행
-		
+		$.ajax({
+			url: '/AJAX/list.do',
+			dataType: 'json',
+			success: function(responseText){
+				var memberList = $('#memberList');
+				memberList.empty();  // 회원 목록의 초기화
+				$.each(responseText, function(i, member){
+					var tr = '<tr>';
+					tr += '<td>' + member.id + '</td>';
+					tr += '<td>' + member.name + '</td>';
+					tr += '<td>' + member.gender + '</td>';
+					tr += '<td>' + member.address + '</td>';
+					tr += '<td><input type="button" value="조회" class="btnDetail"></td>';
+					tr += '</tr>';
+					memberList.append(tr);
+				})
+			}
+		})
 	}
 	function fnDetail(){
 		// 조회 버튼을 클릭하면 실행
@@ -58,9 +75,21 @@
 				data: 'id=' + $('#id').val() + '&name=' + $('#name').val() + '&gender=' + $(':radio[name="gender"]:checked').val() + '&address=' + $('#address').val(),
 				dataType: 'json',
 				success: function(responseText){
-					alert(responseText);
+					if(responseText.res == 1){
+						alert('신규 회원이 등록되었습니다.');
+						fnList();
+						$('#id').val('');
+						$('#name').val('');
+						$(':radio[name="gender"]').prop('checked', false);
+						$('#address').val('');
+					}
+				},
+				error: function(jqXHR){
+					alert(jqXHR.status);
+					alert(jqXHR.responseText);
 				}
 			})
+			
 		})
 	}
 	function fnModify(){

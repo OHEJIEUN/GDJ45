@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import common.ActionForward;
 import service.AddService;
+import service.ListService;
 import service.MemberService;
 
 @WebServlet("*.do")
@@ -21,7 +22,6 @@ public class MemberController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=UTF-8");
 		
 		String requestURI = request.getRequestURI();
 		String contextPath = request.getContextPath();
@@ -37,6 +37,9 @@ public class MemberController extends HttpServlet {
 			break;
 		case "add.do":
 			service = new AddService();
+			break;
+		case "list.do":  // http://localhost:9090/AJAX/list.do
+			service = new ListService();
 			break;
 		}
 		

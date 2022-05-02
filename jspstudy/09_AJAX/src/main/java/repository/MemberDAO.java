@@ -1,6 +1,7 @@
 package repository;
 
 import java.io.InputStream;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -38,6 +39,12 @@ public class MemberDAO {
 		return res;
 	}
 	
+	public List<MemberDTO> selectMemberList() {
+		SqlSession ss = factory.openSession();
+		List<MemberDTO> members = ss.selectList("mybatis.mapper.member.selectMemberList");
+		ss.close();
+		return members;
+	}
 	
 	
 	

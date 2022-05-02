@@ -12,6 +12,11 @@
 			(MEMBER_SEQ.NEXTVAL, #{id}, #{name}, #{gender}, #{address})
 	</insert>
 
+	<select id="selectMemberList" resultType="domain.MemberDTO">
+		SELECT NO, ID, NAME, GENDER, ADDRESS
+		  FROM MEMBER
+		 ORDER BY NO DESC
+	</select>
 	
 	
 	
