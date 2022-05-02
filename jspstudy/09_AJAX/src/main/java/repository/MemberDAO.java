@@ -3,8 +3,11 @@ package repository;
 import java.io.InputStream;
 
 import org.apache.ibatis.io.Resources;
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
+
+import domain.MemberDTO;
 
 public class MemberDAO {
 
@@ -24,6 +27,24 @@ public class MemberDAO {
 	public static MemberDAO getInstance() {
 		return instance;
 	}
+	
+	public int insertMember(MemberDTO member) {
+		SqlSession ss = factory.openSession(false);
+		int res = ss.insert("mybatis.mapper.member.insertMember", member);
+		if(res > 0) {
+			ss.commit();
+		}
+		ss.close();
+		return res;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
