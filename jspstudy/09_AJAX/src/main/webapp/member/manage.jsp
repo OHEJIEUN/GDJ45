@@ -59,32 +59,34 @@
 <body>
 	<h1>회원관리</h1>
 	<div>
-		<label for="id">
-			아이디
-			<input type="text" name="id" id="id">
-		</label>
-		<label for="name">
-			이름
-			<input type="text" name="name" id="name">
-		</label>
-		<label for="male">
-			남자
-			<input type="radio" name="gender" id="male" value="male">
-		</label>
-		<label for="female">
-			여자
-			<input type="radio" name="gender" id="female" value="female">
-		</label>
-		<label for="address">
-			주소
-			<input type="text" name="address" id="address">
-		</label>
-		<div>
-			<input type="button" value="초기화" id="btnInit">
-			<input type="button" value="등록" id="btnAdd">
-			<input type="button" value="수정" id="btnModify">
-			<input type="button" value="삭제" id="btnRemove">
-		</div>
+		<form id="formMember">
+			<label for="id">
+				아이디
+				<input type="text" name="id" id="id">
+			</label>
+			<label for="name">
+				이름
+				<input type="text" name="name" id="name">
+			</label>
+			<label for="male">
+				남자
+				<input type="radio" name="gender" id="male" value="male">
+			</label>
+			<label for="female">
+				여자
+				<input type="radio" name="gender" id="female" value="female">
+			</label>
+			<label for="address">
+				주소
+				<input type="text" name="address" id="address">
+			</label>
+			<div>
+				<input type="button" value="초기화" id="btnInit">
+				<input type="button" value="등록" id="btnAdd">
+				<input type="button" value="수정" id="btnModify">
+				<input type="button" value="삭제" id="btnRemove">
+			</div>
+		</form>
 	</div>
 	<hr>
 	<div>
