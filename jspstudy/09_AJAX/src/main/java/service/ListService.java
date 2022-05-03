@@ -2,14 +2,12 @@ package service;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONArray;
+import org.json.JSONObject;
 
-import domain.MemberDTO;
 import repository.MemberDAO;
 
 public class ListService implements MemberService {
@@ -35,12 +33,14 @@ public class ListService implements MemberService {
 		//     ...
 		//   ]
 		// }
-		List<MemberDTO> members = MemberDAO.getInstance().selectMemberList();
-		JSONArray arr = new JSONArray(members);
+		
+		JSONObject obj = new JSONObject();
+		obj.put("count", MemberDAO.getInstance().getMemberCount());
+		obj.put("members", MemberDAO.getInstance().selectMemberList());
 		
 		// 응답하기
 		PrintWriter out = response.getWriter();
-		out.write(arr.toString());
+		out.write(obj.toString());
 		out.flush();
 		out.close();
 

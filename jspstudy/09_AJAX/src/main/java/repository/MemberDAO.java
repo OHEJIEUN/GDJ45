@@ -46,7 +46,12 @@ public class MemberDAO {
 		return members;
 	}
 	
-	
+	public int getMemberCount() {
+		SqlSession ss = factory.openSession();
+		int count = ss.selectOne("mybatis.mapper.member.getMemberCount");
+		ss.close();
+		return count;
+	}
 	
 	
 	

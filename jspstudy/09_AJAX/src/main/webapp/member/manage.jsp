@@ -29,10 +29,11 @@
 		$.ajax({
 			url: '/AJAX/list.do',
 			dataType: 'json',
-			success: function(responseText){
+			success: function(responseText){  // responseText : {"count":7, "members":[]}
+				$('#memberCount').text(responseText.count);
 				var memberList = $('#memberList');
 				memberList.empty();  // 회원 목록의 초기화
-				$.each(responseText, function(i, member){
+				$.each(responseText.members, function(i, member){
 					var tr = '<tr>';
 					tr += '<td>' + member.id + '</td>';
 					tr += '<td>' + member.name + '</td>';
@@ -147,6 +148,7 @@
 	<hr>
 	<div>
 		<table border="1">
+			<caption>회원수 <span id="memberCount"></span>명</caption>
 			<thead>
 				<tr>
 					<td>아이디</td>

@@ -18,6 +18,18 @@
 		 ORDER BY NO DESC
 	</select>
 	
+	<select id="getMemberCount" resultType="int">
+		SELECT COUNT(*)
+		  FROM MEMBER
+	</select>
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 </mapper>
