@@ -13,6 +13,7 @@ import service.AddService;
 import service.DetailService;
 import service.ListService;
 import service.MemberService;
+import service.ModifyService;
 
 @WebServlet("*.do")
 public class MemberController extends HttpServlet {
@@ -44,6 +45,9 @@ public class MemberController extends HttpServlet {
 			break;
 		case "detail.do":   // http://localhost:9090/AJAX/detail.do?no=1
 			service = new DetailService();
+			break;
+		case "modify.do":
+			service = new ModifyService();
 			break;
 		}
 		

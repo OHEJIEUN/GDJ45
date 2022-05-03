@@ -116,7 +116,22 @@
 	}
 	function fnModify(){
 		// 수정 버튼을 클릭하면 실행
-		
+		$('#btnModify').on('click', function(){
+			$.ajax({
+				url: '/AJAX/modify.do',
+				data: $('#formMember').serialize(),
+				type: 'post',
+				dataType: 'json',
+				success: function(responseText){
+					if(responseText.res > 0){
+						alert('회원 정보가 수정되었습니다.');
+						fnList();
+					} else {
+						alert('회원 정보 수정이 실패했습니다.');
+					}
+				}
+			})
+		})
 	}
 	function fnRemove(){
 		// 삭제 버튼을 클릭하면 실행

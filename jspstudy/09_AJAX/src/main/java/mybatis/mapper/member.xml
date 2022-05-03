@@ -29,7 +29,13 @@
 		 WHERE NO = #{no}
 	</select>
 	
-	
+	<update id="updateMember" parameterType="domain.MemberDTO">
+		UPDATE MEMBER
+		   SET NAME = #{name}
+		     , GENDER = #{gender}
+		     , ADDRESS = #{address}
+		 WHERE ID = #{id}
+	</update>
 	
 	
 	

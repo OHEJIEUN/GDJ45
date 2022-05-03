@@ -60,7 +60,15 @@ public class MemberDAO {
 		return member;
 	}
 	
-	
+	public int updateMember(MemberDTO member) {
+		SqlSession ss = factory.openSession(false);
+		int res = ss.update("mybatis.mapper.member.updateMember", member);
+		if(res > 0) {
+			ss.commit();
+		}
+		ss.close();
+		return res;
+	}
 	
 	
 	
