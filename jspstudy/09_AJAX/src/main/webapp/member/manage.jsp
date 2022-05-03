@@ -39,7 +39,7 @@
 					tr += '<td>' + member.name + '</td>';
 					tr += '<td>' + member.gender + '</td>';
 					tr += '<td>' + member.address + '</td>';
-					tr += '<td><input type="button" value="조회" class="btnDetail"></td>';
+					tr += '<td><input type="hidden" value="' + member.no + '"><input type="button" data-no="' + member.no + '" value="조회" class="btnDetail"></td>';
 					tr += '</tr>';
 					memberList.append(tr);
 				})
