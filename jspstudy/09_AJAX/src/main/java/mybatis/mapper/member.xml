@@ -37,9 +37,10 @@
 		 WHERE ID = #{id}
 	</update>
 	
-	
-	
-	
-	
+	<delete id="deleteMember" parameterType="Long">
+		DELETE
+		  FROM MEMBER
+		 WHERE NO = #{no}
+	</delete>
 	
 </mapper>

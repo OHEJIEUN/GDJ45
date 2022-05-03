@@ -14,6 +14,7 @@ import service.DetailService;
 import service.ListService;
 import service.MemberService;
 import service.ModifyService;
+import service.RemoveService;
 
 @WebServlet("*.do")
 public class MemberController extends HttpServlet {
@@ -48,6 +49,9 @@ public class MemberController extends HttpServlet {
 			break;
 		case "modify.do":
 			service = new ModifyService();
+			break;
+		case "remove.do":
+			service = new RemoveService();
 			break;
 		}
 		
