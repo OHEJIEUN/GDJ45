@@ -48,7 +48,27 @@
 	}
 	function fnDetail(){
 		// 조회 버튼을 클릭하면 실행
-		
+		// 조회 버튼은 동적 요소(dynamic element)이므로,
+		// 직접 이벤트 대상으로 사용하지 않고, 부모(정적 요소)를 기반으로 이벤트를 등록시킨다.
+		$('body').on('click', '.btnDetail' ,function(){
+			var no = $(this).prev().val();  // var no = $(this).data('no');
+			$.ajax({
+				url: '/AJAX/detail.do',
+				data: 'no=' + no,
+				type: 'get',
+				dataType: 'json',
+				success: function(responseText){  // responseText : {"result": true, "member": {}}, {"result": false}
+					if(responseText.result == true){
+						$('#id').val(responseText.member.id).prop('readonly', true);
+						$('#name').val(responseText.member.name);
+						$(':radio[name="gender"][value="' + responseText.member.gender + '"]').prop('checked', true);
+						$('#address').val(responseText.member.address);
+					} else {
+						alert('조회된 회원 정보가 없습니다.');
+					}
+				}
+			})
+		})
 	}
 	function fnAdd(){
 		
@@ -73,7 +93,8 @@
 			$.ajax({
 				url: '/AJAX/add.do',
 				type: 'POST',
-				data: 'id=' + $('#id').val() + '&name=' + $('#name').val() + '&gender=' + $(':radio[name="gender"]:checked').val() + '&address=' + $('#address').val(),
+				// data: 'id=' + $('#id').val() + '&name=' + $('#name').val() + '&gender=' + $(':radio[name="gender"]:checked').val() + '&address=' + $('#address').val(),
+				data: $('#formMember').serialize(),  // 폼의 모든 요소를 줄줄이 &로 연결해서 보낸다.
 				dataType: 'json',
 				success: function(responseText){
 					if(responseText.res == 1){
@@ -104,7 +125,7 @@
 	function fnInit(){
 		// 초기화 버튼을 클릭하면 실행
 		$('#btnInit').on('click', function(){
-			$('#id').val('');
+			$('#id').val('').prop('readonly', false);
 			$('#name').val('');
 			$(':radio[name="gender"]').prop('checked', false);
 			$('#address').val('');

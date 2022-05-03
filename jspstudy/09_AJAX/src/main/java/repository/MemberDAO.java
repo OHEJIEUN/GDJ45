@@ -53,6 +53,13 @@ public class MemberDAO {
 		return count;
 	}
 	
+	public MemberDTO selectMemberByNo(Long no) {
+		SqlSession ss = factory.openSession();
+		MemberDTO member = ss.selectOne("mybatis.mapper.member.selectMemberByNo", no);
+		ss.close();
+		return member;
+	}
+	
 	
 	
 	

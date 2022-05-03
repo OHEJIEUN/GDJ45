@@ -23,7 +23,11 @@
 		  FROM MEMBER
 	</select>
 	
-	
+	<select id="selectMemberByNo" parameterType="Long" resultType="domain.MemberDTO">
+		SELECT NO, ID, NAME, GENDER, ADDRESS
+		  FROM MEMBER
+		 WHERE NO = #{no}
+	</select>
 	
 	
 	
