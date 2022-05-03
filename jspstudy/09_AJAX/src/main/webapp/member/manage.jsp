@@ -59,6 +59,7 @@
 				dataType: 'json',
 				success: function(responseText){  // responseText : {"result": true, "member": {}}, {"result": false}
 					if(responseText.result == true){
+						$('#no').val(responseText.member.no);
 						$('#id').val(responseText.member.id).prop('readonly', true);
 						$('#name').val(responseText.member.name);
 						$(':radio[name="gender"][value="' + responseText.member.gender + '"]').prop('checked', true);
@@ -135,7 +136,26 @@
 	}
 	function fnRemove(){
 		// 삭제 버튼을 클릭하면 실행
-		
+		$('#btnRemove').on('click', function(){
+			$.ajax({
+				url: '/AJAX/remove.do',
+				data: 'no=' + $('#no').val(),
+				type: 'get',
+				dataType: 'json',
+				success: function(responseText){
+					if(responseText.res > 0){
+						alert('회원 정보가 삭제되었습니다.');
+						fnList();
+						$('#id').val('').prop('readonly', false);
+						$('#name').val('');
+						$(':radio[name="gender"]').prop('checked', false);
+						$('#address').val('');
+					} else {
+						alert('회원 정보 삭제를 실패했습니다.');
+					}
+				}
+			})
+		})
 	}
 	function fnInit(){
 		// 초기화 버튼을 클릭하면 실행
@@ -153,6 +173,7 @@
 	<h1>회원관리</h1>
 	<div>
 		<form id="formMember">
+			<input type="hidden" name="no" id="no">
 			<label for="id">
 				아이디
 				<input type="text" name="id" id="id">
