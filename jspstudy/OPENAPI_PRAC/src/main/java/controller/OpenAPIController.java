@@ -9,9 +9,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.ActionForward;
+import service.Covid19InfStateService;
 import service.GuroPointFocInfoService;
 import service.OpenAPIService;
 import service.SearchService;
+import service.TourStnInfoService;
 
 @WebServlet("*.do")
 public class OpenAPIController extends HttpServlet {
@@ -34,15 +36,28 @@ public class OpenAPIController extends HttpServlet {
 		case "searchPage.do":
 			af = new ActionForward("search/search.jsp", false);
 			break;
+		case "guroPointFocInfoPage.do":
+			af = new ActionForward("guro/guro.jsp", false);
+			break;
+		case "covid19InfStatePage.do":
+			af = new ActionForward("covid/covid.jsp", false);
+			break;
+		case "tourStnInfoPage.do":
+			af = new ActionForward("tour/tour.jsp", false);
+			break;
 		case "search.do":
 			service = new SearchService();
-			break;
-		case "guroPointFocInfoSvcPage.do":
-			af = new ActionForward("guro/guro.jsp", false);
 			break;
 		case "guroPointFocInfoSvc.do":
 			service = new GuroPointFocInfoService();
 			break;
+		case "covid19InfStateSvc.do":
+			service = new Covid19InfStateService();
+			break;
+		case "tourStnInfoSvc.do":
+			service = new TourStnInfoService();
+			break;
+			
 		}
 		if(service != null) {
 			service.execute(request, response);
