@@ -17,7 +17,12 @@
 	function fnGuroPointFocInfoSvc(){
 		$('#btn').on('click', function(){
 			$.ajax({
-				
+				url: '/OPENAPI/guroPointFocInfoSvc.do',
+				type: 'get',
+				dataType: 'xml',
+				success: function(responseText){
+					console.log(responseText);
+				}
 			})
 		})
 	}

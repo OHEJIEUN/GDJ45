@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import common.ActionForward;
+import service.GuroPointFocInfoService;
 import service.SearchService;
 
 @WebServlet("*.do")
@@ -37,6 +38,10 @@ public class OpenAPIController extends HttpServlet {
 			break;
 		case "guroPointFocInfoSvcPage.do":
 			af = new ActionForward("guro/guro.jsp", false);
+			break;
+		case "guroPointFocInfoSvc.do":
+			GuroPointFocInfoService service2 = new GuroPointFocInfoService();
+			service2.execute(request, response);
 			break;
 		}
 	
