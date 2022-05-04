@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import common.ActionForward;
 import service.GuroPointFocInfoService;
+import service.OpenAPIService;
 import service.SearchService;
 
 @WebServlet("*.do")
@@ -26,6 +27,7 @@ public class OpenAPIController extends HttpServlet {
 		String contextPath = request.getContextPath();
 		String command = requestURI.substring(contextPath.length() + 1);
 		
+		OpenAPIService service = null;
 		ActionForward af = null;
 		
 		switch(command) {
@@ -33,18 +35,18 @@ public class OpenAPIController extends HttpServlet {
 			af = new ActionForward("search/search.jsp", false);
 			break;
 		case "search.do":
-			SearchService service = new SearchService();
-			service.execute(request, response);
+			service = new SearchService();
 			break;
 		case "guroPointFocInfoSvcPage.do":
 			af = new ActionForward("guro/guro.jsp", false);
 			break;
 		case "guroPointFocInfoSvc.do":
-			GuroPointFocInfoService service2 = new GuroPointFocInfoService();
-			service2.execute(request, response);
+			service = new GuroPointFocInfoService();
 			break;
 		}
-	
+		if(service != null) {
+			service.execute(request, response);
+		}
 		if(af != null) {
 			if(af.isRedirect()) {
 				response.sendRedirect(af.getView());

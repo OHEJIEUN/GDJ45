@@ -13,7 +13,7 @@ import java.net.URLEncoder;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class SearchService {
+public class SearchService implements OpenAPIService {
 
 	private void error(HttpServletResponse response, String msg) throws IOException {
 		response.setContentType("text/plain; charset=UTF-8");
@@ -23,6 +23,7 @@ public class SearchService {
 		out.close();
 	}
 	
+	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		// 요청 parameter

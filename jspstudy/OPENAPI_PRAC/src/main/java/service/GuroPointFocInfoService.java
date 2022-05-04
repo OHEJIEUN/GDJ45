@@ -13,8 +13,9 @@ import java.net.URLEncoder;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-public class GuroPointFocInfoService {
+public class GuroPointFocInfoService implements OpenAPIService {
 
+	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 		
 		// 인증키(Decoding)
