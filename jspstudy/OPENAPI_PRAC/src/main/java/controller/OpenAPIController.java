@@ -12,9 +12,9 @@ import common.ActionForward;
 import service.SearchService;
 
 @WebServlet("*.do")
-public class SearchController extends HttpServlet {
+public class OpenAPIController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-    public SearchController() {
+    public OpenAPIController() {
         super();
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -34,6 +34,9 @@ public class SearchController extends HttpServlet {
 		case "search.do":
 			SearchService service = new SearchService();
 			service.execute(request, response);
+			break;
+		case "guroPointFocInfoSvcPage.do":
+			af = new ActionForward("guro/guro.jsp", false);
 			break;
 		}
 	

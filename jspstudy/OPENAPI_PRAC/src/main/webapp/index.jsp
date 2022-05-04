@@ -8,5 +8,7 @@
 </head>
 <body>
 	<a href="/OPENAPI/searchPage.do">검색</a>
+	<br>
+	<a href="/OPENAPI/guroPointFocInfoSvcPage.do">구로구포인트날씨</a>
 </body>
 </html>
