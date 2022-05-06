@@ -16,21 +16,22 @@ public class SpringMain {
 		AbstractApplicationContext ctx = new GenericXmlApplicationContext(resourceLocations);
 		
 		// <bean> 가지고 오기
-		Calculator calc1 = ctx.getBean("calculator", Calculator.class);
+		Calculator calc1 = ctx.getBean("calculator1", Calculator.class);
 		calc1.add(1, 1);
 		calc1.sub(2, 1);
 		calc1.add(3, 2);
 		calc1.div(5, 2);
 		calc1.mod(7, 3);
 		
+		// <bean> 가지고 오기
+		EngineerCalculator eCalc1 = ctx.getBean("eCalculator1", EngineerCalculator.class);
+		eCalc1.add();
+		eCalc1.sub();
+		eCalc1.mul();
+		eCalc1.div();
+		eCalc1.mod();
 		
-		
-		
-		
-		
-		
-		
-		
+		ctx.close();
 
 	}
 
