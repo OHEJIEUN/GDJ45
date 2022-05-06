@@ -77,12 +77,6 @@ public class SpringMain {
 		
 		System.out.println(c3 == c4);  // 참조값이 다르면 다른 객체라는 의미이다.
 		
-		
-		
-		
-		
-		
-		
 		ctx.close();
 
 	}
