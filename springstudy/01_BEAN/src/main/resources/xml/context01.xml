@@ -60,12 +60,59 @@
  			<ref bean="calculator1"/>
  		</property>
  	</bean>
- 
+
+	<!--
+		만들어 봅시다.
+		Calculator calculator2 = new Calculator();
+		EngineerCalculator eCalculator2 = new EngineerCalculator();
+		eCalculator1.setA(13);
+		eCalculator1.setB(5);
+		eCalculator1.setCalculator(calculator2);
+	-->
+	<bean class="com.goodee.ex01.xml01.Calculator" id="calculator2" />
+	<bean class="com.goodee.ex01.xml01.EngineerCalculator" id="eCalculator2">
+		<property name="a" value="13" />
+		<property name="b" value="5" />
+		<property name="calculator" ref="calculator2" />
+	</bean>
+
 
     <!--
     	2. 필드를 이용한 생성자(AllArgsConstructor)
     	   : constructor injection(생성자 주입)
     -->
+	<!--
+		<bean class="클래스명" id="객체(인스턴스)명">
+			<constructor-arg>
+				<value>1번째인수값</value>
+			</constructor-arg>
+			<constructor-arg>
+				<value>2번째인수값</value>
+			</constructor-arg>
+			<constructor-arg>
+				<ref bean="3번째인수값(객체명)" />
+			</constructor-arg>
+		</bean>
+	-->
+	<!--
+		Calculator calculator3 = new Calculator();
+		EngineerCalculator eCalculator3 = new EngineerCalculator(8, 5, calculator3);
+	-->
+	<bean class="com.goodee.ex01.xml01.Calculator" id="calculator3"></bean>
+	<bean class="com.goodee.ex01.xml01.EngineerCalculator" id="eCalculator3">
+		<constructor-arg>
+			<value>8</value>
+		</constructor-arg>
+		<constructor-arg>
+			<value>5</value>
+		</constructor-arg>
+		<constructor-arg>
+			<ref bean="calculator3"/>
+		</constructor-arg>
+	</bean>
+
+
+
 
 
 

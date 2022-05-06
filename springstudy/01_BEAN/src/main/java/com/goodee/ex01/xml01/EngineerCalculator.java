@@ -13,6 +13,15 @@ public class EngineerCalculator {
 		
 	}
 	
+	// constructor using fields
+	public EngineerCalculator(int a, int b, Calculator calculator) {
+		super();
+		this.a = a;
+		this.b = b;
+		this.calculator = calculator;
+	}
+
+
 	// method
 	public void add() {
 		calculator.add(a, b);

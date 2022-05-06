@@ -31,6 +31,24 @@ public class SpringMain {
 		eCalc1.div();
 		eCalc1.mod();
 		
+		// <bean> 가지고 오기
+		EngineerCalculator eCalc2 = ctx.getBean("eCalculator2", EngineerCalculator.class);
+		eCalc2.add();
+		eCalc2.sub();
+		eCalc2.mul();
+		eCalc2.div();
+		eCalc2.mod();
+		
+		// <bean> 가지고 오기
+		EngineerCalculator eCalc3 = ctx.getBean("eCalculator3", EngineerCalculator.class);
+		eCalc3.add();
+		eCalc3.sub();
+		eCalc3.mul();
+		eCalc3.div();
+		eCalc3.mod();
+		
+		
+		
 		ctx.close();
 
 	}
