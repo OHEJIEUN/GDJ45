@@ -15,6 +15,14 @@
 		<item key="WizardProjectsImportPage.STORE_CLOSE_CREATED_PROJECTS_ID" value="false"/>
 		<item key="WizardProjectsImportPage.STORE_HIDE_CONFLICTING_PROJECTS_ID" value="false"/>
 		<list key="WizardProjectsImportPage.STORE_DIRECTORIES">
+			<item value="C:\GDJ45\javastudy\SearchBook"/>
+			<item value="C:\GDJ45\javastudy\Practice"/>
+			<item value="C:\GDJ45\javastudy\12_JDBC"/>
+			<item value="C:\GDJ45\javastudy\11_JDBC"/>
+			<item value="C:\GDJ45\javastudy\10_NETWORK"/>
+			<item value="C:\GDJ45\javastudy\09_IO"/>
+			<item value="C:\GDJ45\javastudy\08_COLLECTION_FRAMEWORK"/>
+			<item value="C:\GDJ45\javastudy\07_EXCEPTION"/>
 			<item value="C:\GDJ45\javastudy\06_INHERITANCE"/>
 			<item value="C:\Users\민경태\Downloads\DiceGameProject"/>
 			<item value="C:\Users\민경태\Downloads\mania1417_62089157a02bd"/>
@@ -27,14 +35,6 @@
 			<item value="C:\Users\민경태\Downloads\mania1395_620b680a4faa5"/>
 			<item value="C:\Users\민경태\Downloads\mania1421_620b68ca20d37"/>
 			<item value="C:\Users\민경태\Downloads\ParkingLotProject"/>
-			<item value="C:\Users\민경태\Downloads\mania1419_620b655d1b33f"/>
-			<item value="C:\Users\민경태\Downloads\mania1418_620b5cf135531"/>
-			<item value="C:\Users\민경태\Downloads\mania1417_620b5f829d14c"/>
-			<item value="C:\Users\민경태\Downloads\mania1415_620b69006cd13"/>
-			<item value="C:\Users\민경태\Downloads\mania1363_620b663b8e0ec"/>
-			<item value="C:\Users\민경태\Downloads\mania1414_620b6356792ef"/>
-			<item value="C:\Users\민경태\Downloads\mania1413_620b57b5b96e8"/>
-			<item value="C:\Users\민경태\Downloads\mania1412_620b673029f14"/>
 		</list>
 		<list key="WizardProjectsImportPage.STORE_ARCHIVES">
 			<item value=""/>
