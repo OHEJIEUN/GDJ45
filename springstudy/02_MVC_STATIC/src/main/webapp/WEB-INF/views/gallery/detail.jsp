@@ -5,18 +5,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<style>
-
-	/* 웹 경로에서 contextPath는 web root 폴더인 webapp을 의미합니다. */
-	
-	/* css 코드를 css/detail.css 파일에 옮기고 link 태그로 적용시켜보세요. */
-
-
-	
-</style>
 
 <!-- 외부 css 파일 포함하기 -->
 <link rel="stylesheet" href="resources/css/detail.css">
+
+<!-- 외부 js 파일 포함하기 -->
+<script src="resources/js/jquery-3.6.0.js"></script>
+
+<script>
+
+	$(document).ready(function(){
+	
+		$('.picture').on('click', function(){
+			alert('앗 따거');
+		})
+		
+	})
+	
+</script>
 
 </head>
 <body>

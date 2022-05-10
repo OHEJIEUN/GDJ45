@@ -77,4 +77,17 @@ public class HomeController {
 		
 	}
 	
+	
+	@RequestMapping("lionView")
+	public String lionView() {
+		return "gallery/lion";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }
