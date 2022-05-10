@@ -54,6 +54,27 @@ public class HomeController {
 		// index.jsp 어떻게 갈까요?
 		// forward로 이동합니다. 원래 그래요.
 		
-	}	
+	}
+	
+	
+	// @RequestMapping은 메소드를 먼저 만들고 작성하는 것이 좋아요.
+	
+	// @RequestMapping(value="imageView", method=RequestMethod.GET)
+
+	// @RequestMapping(value="/imageView", method=RequestMethod.GET)  매핑은 슬래시(/)로 시작해도 됩니다.
+	
+	// @RequestMapping(value="imageView")  GET 방식은 안 적어도 됩니다.
+	
+	// @RequestMapping("imageView")        value 속성 하나만 작성할 땐 속성이름을 안 적어도 됩니다.
+	
+	
+	@RequestMapping(value="imageView", method=RequestMethod.GET)
+	public String imageView() {
+		
+		return "gallery/detail";
+		
+		// return "/WEB-INF/views/gallery/detail.jsp";
+		
+	}
 	
 }
