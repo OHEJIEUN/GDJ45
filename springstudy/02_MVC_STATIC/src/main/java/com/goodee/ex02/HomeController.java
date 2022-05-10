@@ -1,39 +1,59 @@
 package com.goodee.ex02;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
+import javax.servlet.http.HttpServletRequest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-/**
- * Handles requests for the application home page.
- */
+/*
+	@Controller
+	
+	안녕. 난 컨트롤러야.
+	서블릿으로 만들지 않고, 클래스로 만들면 되.
+*/
+
 @Controller
 public class HomeController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
+	// JSP처럼 *.do와 같이 공통 URLMapping을 가질 필요가 없어요.
+	
+	
+	// 메소드 1개 = 요청 1개, 응답 1개
+	
+	/*
+		@RequestMapping
+		1. URLMapping을 처리하는 애너테이션이다.
+		2. 메소드마다 하나씩 가져야 한다.
+		3. 속성
+		    1) value  : URLMapping 작성
+		    2) method : 요청 메소드 작성(GET, POST)
+	*/
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+	
+	// value="/" 의미
+	// contextPath 매핑을 의미한다. http://localhost:9090/ex02
+	// 프로젝트를 실행하면 가장 먼저 처리되는 메소드이다.
+	// 일반적으로 index.jsp를 열어 주는 일을 한다. (welcome file 작업하기)
+	
+	// 반환타입 : String (열어 줄 View 이름 = JSP 이름)
+	// 메소드명 : index  (아무 일도 안하니까 맘대로 지으면 되요)
+	// 매개변수 : 없음   (요청과 응답을 처리하는 request, response 선언)
+	public String index(HttpServletRequest request) {
+	
+		// 첫 미션. "hello" 텍스트를 index.jsp로 보내보자.
+		request.setAttribute("res", "hello");
 		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		return "index";
 		
-		String formattedDate = dateFormat.format(date);
+		// return "index"는 servlet-context.xml에 정의된 ViewResolver에 의해서 아래와 같이 처리됩니다.
+		// return "/WEB-INF/views/index.jsp"
+		//              prefix + "index" + suffix
 		
-		model.addAttribute("serverTime", formattedDate );
+		// index.jsp 어떻게 갈까요?
+		// forward로 이동합니다. 원래 그래요.
 		
-		return "home";
-	}
+	}	
 	
 }
