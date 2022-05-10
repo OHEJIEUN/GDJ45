@@ -9,9 +9,9 @@
     private Gun gun;       // 총기
     private Map<String, String> army;  // 부대명 + 부대위치
 
-  soldier_context.xml에 gun1, soldier1 bean을 만든다.
+  soldier-context.xml에 gun1, soldier1 bean을 만든다.
   SpringBeanConfig.java에 gun2, soldier2 bean을 만든다.
-  soldier_context.xml에서 SpringBeanConfig.java의 bean을 가져온다.
+  soldier-context.xml에서 SpringBeanConfig.java의 bean을 가져온다.
 
   실행)
   이름 : 김상사
