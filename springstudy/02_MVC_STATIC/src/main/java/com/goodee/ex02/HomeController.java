@@ -51,7 +51,7 @@ public class HomeController {
 		// return "/WEB-INF/views/index.jsp"
 		//              prefix + "index" + suffix
 		
-		// index.jsp 어떻게 갈까요?
+		// index.jsp로 어떻게 갈까요?
 		// forward로 이동합니다. 원래 그래요.
 		
 	}
