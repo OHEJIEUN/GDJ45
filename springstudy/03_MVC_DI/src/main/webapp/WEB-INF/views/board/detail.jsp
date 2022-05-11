@@ -8,7 +8,8 @@
 </head>
 <body>
 
-	detail
+	<h1>제목 : ${board1.title}</h1>
+	<h1>내용 : ${board1.content}</h1>
 
 </body>
 </html>
