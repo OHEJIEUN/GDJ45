@@ -18,7 +18,9 @@
 	
 	<a href="${contextPath}/board/detail">게시판상세보기</a>
 	
-		
+	<hr>
+	
+	<a href="${contextPath}/member/detail">회원상세보기</a>
 
 </body>
 </html>
