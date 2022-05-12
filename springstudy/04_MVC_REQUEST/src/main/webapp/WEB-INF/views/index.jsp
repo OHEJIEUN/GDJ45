@@ -15,6 +15,8 @@
 	<a href="${contextPath}/detail1?name=민경태&age=45">정보전달1</a><br>
 	<a href="${contextPath}/detail2?name=민경태&age=45">정보전달2</a><br>
 	<a href="${contextPath}/detail3?name=민경태&age=45">정보전달3</a><br>
+	<a href="${contextPath}/detail4?name=민경태&age=45">정보전달4</a><br>
+	<a href="${contextPath}/detail5?name=민경태&age=45">정보전달5</a><br>
 	
 
 

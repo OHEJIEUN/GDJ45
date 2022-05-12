@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mybatis.mapper.staff">
+
+
+	<select id="selectstaffList" resultType="domain.STAFFDTO">
+		SELECT SNO, NAME, DEPT, SALARY
+		  FROM STAFF
+	</select>
+	
+
+	<select id="selectstaffByNo" parameterType="String" resultType="domain.STAFFDTO">
+		SELECT SNO, NAME, DEPT, SALARY
+		  FROM staff
+		 WHERE sno = #{sno}
+	</select>
+	
+	<insert id="insertStaff" parameterType="domain.STAFFDTO">
+	INSERT INTO
+		STAFF(SNO, NAME, DEPT, SALARY)
+	VALUES
+		(STAFF.NEXTVAL, #{SNO}, #{NAME}, #{DEPT}, #{SALARY})
+</insert>
+	
+</mapper>

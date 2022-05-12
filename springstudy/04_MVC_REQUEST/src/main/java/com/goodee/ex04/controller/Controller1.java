@@ -5,6 +5,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.goodee.ex04.domain.Member;
@@ -55,15 +56,56 @@ public class Controller1 {
 	
 	
 	@GetMapping("/detail3")  // <a href="${contextPath}/detail3?name=민경태&age=45">
-	public String detail3(@RequestParam(value="name") String name, // 파라미터 name을 String name에 저장해 주세요.
-						@RequestParam(value="age") int age) {      // 파라미터 age를 int age에 저장해 주세요.
+	public String detail3(@RequestParam(value="name", required=false, defaultValue="아무개") String name, // 파라미터 name을 String name에 저장해 주세요.
+						@RequestParam(value="age", required=false, defaultValue="0") int age,        // 파라미터 age를 int age에 저장해 주세요.
+						Model model) {
+		/*
+			
+			@RequestParam 사용법
+			
+			value="파라미터"       : 전달되는 파라미터 이름이다.
+			required=false         : 꼭 필요한 파라미터가 아니다. 없어도 된다.
+			                         (기본값은 required=true 이다.)
+			defaultValue="기본값"  : 파라미터가 없으면 사용할 값이다.
+			
+			
+			@RequestParam 애너테이션을 지워도 잘 동작합니다.
+			
+		*/
 		
-		System.out.println(name);
-		System.out.println(age);
+		model.addAttribute("member", new Member(name, age));
 		
-		return "";
+		return "detail";
 		
 	}
+	
+	
+	@GetMapping("/detail4")  // <a href="${contextPath}/detail4?name=민경태&age=45">
+	public String detail4(Member member,  // 파라미터 name과 age를 Member 클래스의 setter(setName, setAge)가 받아 준다.
+						Model model) {
+		
+		model.addAttribute("member", member);
+		
+		return "detail";
+		
+	}
+	
+	
+	@GetMapping("/detail5")  // <a href="${contextPath}/detail5?name=민경태&age=45">
+	public String detail5(@ModelAttribute(value="member") Member member) {
+		
+		// @ModelAttribute(value="member") Member member
+
+		// 파라미터 name과 age를 Member member에 저장하고,
+		// Model에 member 속성(Attribute)으로 저장해 주세요.
+		
+		return "detail";
+		
+	}
+	
+	
+	
+	
 	
 	
 	
