@@ -4,12 +4,13 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-@Getter
 @Setter
+@Getter
 @Builder
 public class StaffDTO {
+
 	private String sno;
 	private String name;
 	private String dept;
-	private Integer salary;
+	private Long salary;
 }

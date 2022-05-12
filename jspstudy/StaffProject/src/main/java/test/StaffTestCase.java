@@ -1,28 +1,42 @@
 package test;
 
+import static org.junit.Assert.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import org.junit.jupiter.api.Test;
 
 import domain.StaffDTO;
-import repository.StaffDAO;
+import respository.StaffDAO;
 
-class StaffTestCase {
-
-	// @BeforeEach  // JUnit 테스트 이전에 실행되는 메소드이다.
-	void 제품등록테스트() {
-		
-		// 등록할 제품 생성
+public class StaffTestCase {
+	
+	@Test
+	void 등록테스트() {
 		StaffDTO staff = StaffDTO.builder()
-				.sno("1111")
-				.name("설경구")
+				.sno("99999")
+				.name("김기획")
 				.dept("기획부")
-				.salary(5000)
+				.salary(5000L)
 				.build();
-		int res =0;
+		
+		int res = 0;
 		try {
 			res = StaffDAO.getInstance().insertStaff(staff);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		assertEquals(1, res, "저장할 수 없는 값이 전달되었습니다.");
+		assertEquals(1, res, "제품등록실패");
+		
 	}
-
+	
+	@Test
+	void 조회테스트() {
+		StaffDTO staff = StaffDAO.getInstance().selectStaffSno("99999");
+		assertNotNull(staff);
+	}
+	
+	
+	
+	
+	
 }

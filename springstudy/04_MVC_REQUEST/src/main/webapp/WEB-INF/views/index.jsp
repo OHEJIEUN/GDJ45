@@ -11,17 +11,19 @@
 
 	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
-	<!-- Controller1에 요청하기 -->
+	<!-- Controller1에 요청하기, Member 도메인 사용 -->
 	<a href="${contextPath}/detail1?name=민경태&age=45">정보전달1</a><br>
 	<a href="${contextPath}/detail2?name=민경태&age=45">정보전달2</a><br>
 	<a href="${contextPath}/detail3?name=민경태&age=45">정보전달3</a><br>
 	<a href="${contextPath}/detail4?name=민경태&age=45">정보전달4</a><br>
 	<a href="${contextPath}/detail5?name=민경태&age=45">정보전달5</a><br>
+	<a href="${contextPath}/detail6?name=민경태&age=45">정보전달6</a><br>
 	
-
-
-
-
+	<hr>
+	
+	<!-- Controller2에 요청하기, Board 도메인(Builder 패턴) 사용 -->
+	<a href="${contextPath}/add1?title=공지사항&hit=10">정보전달1</a><br>
+	
 
 
 
