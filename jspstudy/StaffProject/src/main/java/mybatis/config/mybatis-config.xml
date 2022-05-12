@@ -2,19 +2,17 @@
 <!DOCTYPE configuration
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
-  
 <configuration>
 
-	<properties resource="mybatis/config/db.properties"></properties>
-	
-	<!--
-		 DB Column	-	Java
-		 PRODUCT_NO		-	productNo	 
-	 -->
-	<settings>
-		<setting name="mapUnderscoreToCamelCase" value="true"/>
-	</settings>
-
+  <properties resource="mybatis/config/db.properties"></properties>
+  
+  <!--  
+  	DB Column		Java
+  	STU_NO			stuNo
+  -->
+  <settings>
+  	<setting name="mapUnderscoreToCamelCase" value="true"/>
+  </settings>
   <environments default="development">
     <environment id="development">
       <transactionManager type="JDBC"/>
@@ -30,5 +28,4 @@
   <mappers>
     <mapper resource="mybatis/mapper/staff.xml"/>
   </mappers>
-  
 </configuration>

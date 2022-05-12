@@ -4,13 +4,14 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
-@Setter
 @Getter
+@Setter
 @Builder
 public class StaffDTO {
-
-	private String sno;
-	private String name;
-	private String dept;
-	private Long salary;
+	
+	// field
+	private String sno;		// 사원번호
+	private String name;	// 사원명
+	private String dept;	// 부서
+	private int salary;		// 급여
 }

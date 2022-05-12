@@ -7,26 +7,27 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.json.JSONObject;
+import org.json.JSONArray;
 
 import domain.StaffDTO;
-import respository.StaffDAO;
+import repository.StaffDAO;
 
 public class ListService implements StaffService {
 
 	@Override
-	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
-		List<StaffDTO> staffs = StaffDAO.getInstance().selectStaffList();
-		
-		JSONObject obj = new JSONObject();
-		obj.put("staff", staffs);
+	public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException{
+
 		
 		response.setContentType("application/json; charset=UTF-8");
+		List<StaffDTO> staffList = StaffDAO.getInstance().selectStaffList();
+		//[{ }, { }, { }]
+		JSONArray arr = new JSONArray(staffList);
+		
+		
 		PrintWriter out = response.getWriter();
-		out.write(obj.toString());
+		out.print(arr.toString());
 		out.flush();
 		out.close();
-
 	}
 
 }

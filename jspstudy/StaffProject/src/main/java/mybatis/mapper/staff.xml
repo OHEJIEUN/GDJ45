@@ -4,26 +4,21 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 
- 
 <mapper namespace="mybatis.mapper.staff">
 
-	<insert id="insertStaff" parameterType="domain.StaffDTO">
-		INSERT INTO STAFF
-			(SNO, NAME, DEPT, SALARY)
-		VALUES
-			(#{sno}, #{name}, #{dept}, #{salary})
+
+	<select id="selectStaffList" resultType="domain.StaffDTO">
+		SELECT SNO, NAME, DEPT, SALARY FROM STAFF ORDER BY SNO DESC
+	</select>
+	
+	<select id="detailStaff" resultType="domain.StaffDTO" parameterType="String">
+		SELECT SNO, NAME, DEPT, SALARY FROM STAFF WHERE SNO=#{sno}
+	</select>
+	
+	<insert id="addStaff" parameterType="domain.StaffDTO">
+		INSERT INTO STAFF VALUES(#{sno}, #{name}, #{dept}, #{salary})
 	</insert>
 	
-	<select id="selectStaffList" resultType="domain.StaffDTO">
-		SELECT SNO, NAME, DEPT, SALARY
-		  FROM STAFF
-	</select>
-	
-	<select id="selectStaffSno" parameterType="String" resultType="domain.StaffDTO">
-		SELECT SNO, NAME, DEPT, SALARY
-		  FROM STAFF
-		 WHERE SNO = #{sno}
-	</select>
-	
-
+ 	
+ 	
 </mapper>
