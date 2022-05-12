@@ -64,6 +64,7 @@ public class BoardController {
 	
 	// private Board board1;
 	
+	// @Autowired
 	// public BoardController(Board board2) {  // 매개변수 Board board2으로 주입됩니다.
 	//	  super();
 	//	  this.board1 = board2;

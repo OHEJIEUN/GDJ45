@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.goodee</groupId>
-	<artifactId>ex03</artifactId>
-	<name>03_MVC_DI</name>
+	<artifactId>ex04</artifactId>
+	<name>04_MVC_REQUEST</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 
@@ -94,7 +94,6 @@
 		</dependency>
 				
 		<!-- Servlet -->
-
 		<!-- https://mvnrepository.com/artifact/javax.servlet/javax.servlet-api -->
 		<dependency>
 		    <groupId>javax.servlet</groupId>
