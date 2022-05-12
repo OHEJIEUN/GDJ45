@@ -23,6 +23,8 @@
 	
 	<!-- Controller2에 요청하기, Board 도메인(Builder 패턴) 사용 -->
 	<a href="${contextPath}/add1?title=공지사항&hit=10">정보전달1</a><br>
+	<a href="${contextPath}/add2?title=공지사항&hit=10">정보전달2</a><br>
+	<a href="${contextPath}/add3?title=공지사항&hit=10">정보전달3</a><br>
 	
 
 
