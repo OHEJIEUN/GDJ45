@@ -40,11 +40,12 @@ public class MemberServiceImpl implements MemberService {
 	
 	
 	@Override
-	public Map<String, Object> detail4(MemberDTO member) {  // 컨트롤러에서 받아온 객체
-		Map<String, Object> map = new HashMap<String, Object>();
-		map.put("id", member.getId());
-		map.put("pw", member.getPw());
-		return map;                                         // 컨트롤러로 반환하는 Map
+	public MemberDTO detail4(Map<String, Object> map) {     // 컨트롤러에서 받아온 Map
+		MemberDTO member = new MemberDTO();
+		member.setId(map.get("id").toString());             // map의 value는 Object이므로 꺼내서 캐스팅 해야 합니다.
+		member.setPw((String)map.get("pw"));                // map의 value는 Object이므로 꺼내서 캐스팅 해야 합니다.
+		return member;                                      // 컨트롤러로 반환하는 객체
 	}
+	
 
 }

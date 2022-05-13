@@ -125,13 +125,13 @@ public class MemberController {
 	// jackson을 사용하고 있기 때문에
 	// 컨트롤러로 전달된 JSON 데이터는 MemberDTO 또는 Map으로 받으면 됩니다.
 	
-	public Map<String, Object> detail4(@RequestBody MemberDTO member) {
+	public MemberDTO detail4(@RequestBody Map<String, Object> map) {
 		
-		Map<String, Object> map = memberService.detail4(member);
+		MemberDTO member = memberService.detail4(map);
 		
-		return map;  // Map이 JSON으로 변환되서 반환되려면 아래 2가지가 필요합니다.
-		             // @ResponseBody : 내가 반환하는 건 JSP이름이 아니라 어떤 값이다.
-		             // produces="application/json" : 내가 반환하는 건 JSON 데이터이다.
+		return member;  // MemberDTO가 JSON으로 변환되서 반환되려면 아래 2가지가 필요합니다.
+		                // @ResponseBody : 내가 반환하는 건 JSP이름이 아니라 어떤 값이다.
+		                // produces="application/json" : 내가 반환하는 건 JSON 데이터이다.
 		
 	}
 	
