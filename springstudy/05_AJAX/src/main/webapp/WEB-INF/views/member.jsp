@@ -16,6 +16,7 @@
 	$(document).ready(function(){
 		$('#btn1').on('click', function(){ fnAjax1(); })  // btn1을 클릭하면 fnAjax1() 함수를 실행하시오.
 		$('#btn2').on('click', function(){ fnAjax2(); })
+		$('#btn3').on('click', fnAjax3)
 	})
 	
 	// 함수
@@ -78,7 +79,40 @@
 			
 		})
 		
-	}
+	}  // fnAjax2
+	
+	
+	// 요청 데이터 : 파라미터
+	// 응답 데이터 : JSON
+	// {"id": "admin", "pw" "123456"}
+	function fnAjax3(){
+		
+		$('#result').empty();
+		
+		$.ajax({
+			/* 요청 */
+			url: '${contextPath}/member/detail3',
+			type: 'get',
+			data: $('#f').serialize(),
+			/* 응답 */
+			dataType: 'json',
+			success: function(obj){
+
+				// obj는 {"id": 아이디, "pw": 비밀번호} 모습이다.
+				
+				$('<ul>')                        // <ul>
+				.append($('<li>').text(obj.id))  //   <li>obj.id</li>
+				.append($('<li>').text(obj.pw))  //   <li>obj.pw</li>
+				.appendTo($('#result'));         // </ul>
+				
+			},
+			error: function(jqXHR){
+				$('#result').text(jqXHR.status + ' : ' + jqXHR.responseText);
+			}
+			
+		})
+		
+	}  // fnAjax3
 	
 	
 	
@@ -91,6 +125,7 @@
 		<input type="text" name="pw" id="pw" placeholder="Password"><br><br>
 		<input type="button" value="전송1" id="btn1">
 		<input type="button" value="전송2" id="btn2">
+		<input type="button" value="전송3" id="btn3">
 	</form>
 	
 	<hr>

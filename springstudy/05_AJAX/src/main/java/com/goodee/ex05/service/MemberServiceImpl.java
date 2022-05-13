@@ -1,5 +1,8 @@
 package com.goodee.ex05.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import com.goodee.ex05.domain.MemberDTO;
@@ -23,5 +26,19 @@ public class MemberServiceImpl implements MemberService {
 		return member;                                // 컨트롤러에 반환하는 객체(bean)
 		
 	}
+	
+	@Override
+	public Map<String, Object> detail3(MemberDTO member) {  // 컨트롤러에서 받아온 객체
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("id", member.getId());
+		map.put("pw", member.getPw());
+		return map;                                         // 컨트롤러로 반환하는 Map
+	}
+	
+	
+	
+	
+	
+	
 
 }

@@ -1,5 +1,7 @@
 package com.goodee.ex05.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +54,9 @@ public class MemberController {
 	
 	@GetMapping(value="/member/detail1", 
 			produces="text/plain; charset=UTF-8")  // 내가 반환하는 건 텍스트입니다.(응답 타입 response.setContentType)
+
 	@ResponseBody  // 내가 반환하는 건 JSP이름이 아니라 어떤 값(텍스트, XML, JSON 등)이에요.
+
 	public String detail1(HttpServletRequest request) {  // 파라미터 id와 pw를 request로 받는다.
 		String res = memberService.detail1(request);
 		return res;  // memberService의 detail1() 메소드에서 만든 텍스트를 member.jsp로 반환한다.
@@ -64,7 +68,7 @@ public class MemberController {
 	@GetMapping(value="/member/detail2",
 			produces="application/json; charset=UTF-8")  // 내가 반환하는 값은 JSON입니다.
 
-	@ResponseBody
+	@ResponseBody  // 내가 반환하는 건 JSP이름이 아니에요. 난 값을 반환해요.
 	
 	// 반환타입 MemberDTO는 jackson에 의해서 JSON 데이터로 자동 변환됩니다.
 	
@@ -83,6 +87,36 @@ public class MemberController {
 		// return {"id": 아이디, "pw": 비밀번호}; 인 것이다. 
 		
 	}
+	
+	
+	
+	@GetMapping(value="/member/detail3",
+			produces="application/json; charset=UTF-8")  // 내가 반환하는 값은 JSON입니다.
+	
+	@ResponseBody  // 내가 반환하는 건 JSP이름이 아니에요. 난 값을 반환해요.
+	
+	// 반환타입 Map은 jackson에 의해서 JSON 데이터로 자동 변환됩니다.
+	
+	public Map<String, Object> detail3(MemberDTO member) {  // MemberDTO member의 setId와 setPw가 파라미터 id와 pw를 받아줍니다.
+		
+		Map<String, Object> res = memberService.detail3(member);
+		
+		return res;  // Map을 반환하고 있지만 produces에서 반환타입이 JSON이라고 했기 때문에,
+		             // jackson이 개입해서 Map을 JSON 데이터로 바꿔 줍니다.
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
