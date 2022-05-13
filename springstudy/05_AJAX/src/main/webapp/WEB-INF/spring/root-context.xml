@@ -8,4 +8,7 @@
 	<!-- MemberServiceImpl -->
 	<bean class="com.goodee.ex05.service.MemberServiceImpl" id="memberService" />
 	
+	<!-- BoardServiceImpl -->
+	<bean class="com.goodee.ex05.service.BoardServiceImpl" id="boardService" />
+	
 </beans>
