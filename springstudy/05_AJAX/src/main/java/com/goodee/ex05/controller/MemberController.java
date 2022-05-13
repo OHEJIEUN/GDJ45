@@ -5,9 +5,9 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.goodee.ex05.service.MemberService;
-import com.goodee.ex05.service.MemberServiceImpl;
 
 @Controller
 public class MemberController {
@@ -30,18 +30,30 @@ public class MemberController {
 	
 	@GetMapping(value="/")
 	public String index() {
-		return "index";
+		return "index";  // index.jsp
 	}
 	
 	@GetMapping(value="/member")
 	public String member() {
-		return "member";
+		return "member";  // member.jsp
 	}
 	
-	@GetMapping(value="/member/detail1")
+	
+	// 컨트롤러의 메소드는 기본적으로 JSP이름을 반환한다.
+	
+	// Ajax는 JSP이름을 반환하는 것이 아니라
+	// 자신을 호출한 JSP로 값을 반환하는 구조이다.
+	
+	// 값을 반환하기 위해서는
+	// @ResponseBody 애너테이션이 필요하다.
+	
+	
+	@GetMapping(value="/member/detail1", 
+			produces="text/plain; charset=UTF-8")  // 내가 반환하는 건 텍스트입니다.(응답 타입 response.setContentType)
+	@ResponseBody  // 내가 반환하는 건 JSP이름이 아니라 어떤 값(텍스트, XML, JSON 등)이에요.
 	public String detail1(HttpServletRequest request) {  // 파라미터 id와 pw를 request로 받는다.
-		memberService.detail1(request);
-		return "";
+		String res = memberService.detail1(request);
+		return res;  // memberService의 detail1() 메소드에서 만든 텍스트를 member.jsp로 반환한다.
 	}
 	
 	

@@ -20,6 +20,8 @@
 	// 함수
 	function fnAjax1(){
 		
+		$('#result').empty();
+		
 		$.ajax({
 		
 			/* 요청에 관한 프로퍼티 : url, type, data, contentType */
@@ -28,9 +30,12 @@
 			data: 'id=' + $('#id').val() + "&pw=" + $('#pw').val(),  // MemberController로 보내는 파라미터 id와 pw
 			
 			/* 응답 데이터에 관한 프로퍼티 : dataType, success, error */
-			dataType: 'text',
-			success: function(){
-				
+			dataType: 'text',        // 응답 데이터 타입 text
+			success: function(res){  // 응답 데이터는 res에 전달됨
+				$('#result').text(res);
+			},
+			error: function(jqXHR){
+				$('#result').text(jqXHR.status + ' : ' + jqXHR.responseText);
 			}
 			
 		})
