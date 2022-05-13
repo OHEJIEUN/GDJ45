@@ -13,12 +13,9 @@
 	
 	<a href="${contextPath}/member">회원관리</a>
 	
+	<br>
 	
+	<a href="${contextPath}/board">게시판관리</a>
 	
-	
-	
-	
-	
-
 </body>
 </html>
