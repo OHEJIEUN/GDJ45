@@ -5,8 +5,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.goodee.ex05.domain.MemberDTO;
 import com.goodee.ex05.service.MemberService;
 
 @Controller
@@ -57,6 +59,30 @@ public class MemberController {
 	}
 	
 	
+	
+	
+	@GetMapping(value="/member/detail2",
+			produces="application/json; charset=UTF-8")  // 내가 반환하는 값은 JSON입니다.
+
+	@ResponseBody
+	
+	// 반환타입 MemberDTO는 jackson에 의해서 JSON 데이터로 자동 변환됩니다.
+	
+	public MemberDTO detail2(@RequestParam(value="id") String id,   // 파라미터 id는 String id에 저장해 주세요.
+							@RequestParam(value="pw") String pw) {  // 파라미터 pw는 String pw에 저장해 주세요.
+		
+		MemberDTO member = memberService.detail2(id, pw);
+		
+		// jackson이 하는 일
+		// 자바 객체 member를 자동으로 {"id": 아이디, "pw": 비밀번호} 로 만들어 줍니다.
+		
+		return member;  // 자바 객체를 member.jsp로 반환하는데, 이 때 jackson이 개입해서 member를 {"id": 아이디, "pw": 비밀번호} 로 바꿔줍니다.
+		                // 물론, JSON으로 바꿔서 보내라고 말은 해 줘야 되는데 그건 produces에서 처리합니다.
+
+		// 실제 return은
+		// return {"id": 아이디, "pw": 비밀번호}; 인 것이다. 
+		
+	}
 	
 	
 	
