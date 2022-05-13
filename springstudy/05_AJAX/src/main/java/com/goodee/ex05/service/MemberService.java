@@ -12,4 +12,5 @@ public interface MemberService {
 	public String detail1(HttpServletRequest request);
 	public MemberDTO detail2(String id, String pw);
 	public Map<String, Object> detail3(MemberDTO member);
+	public Map<String, Object> detail4(MemberDTO member);
 }

@@ -7,6 +7,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -52,6 +54,7 @@ public class MemberController {
 	// @ResponseBody 애너테이션이 필요하다.
 	
 	
+	// fnAjax1이 요청하는 곳
 	@GetMapping(value="/member/detail1", 
 			produces="text/plain; charset=UTF-8")  // 내가 반환하는 건 텍스트입니다.(응답 타입 response.setContentType)
 
@@ -64,7 +67,7 @@ public class MemberController {
 	
 	
 	
-	
+	// fnAjax2가 요청하는 곳
 	@GetMapping(value="/member/detail2",
 			produces="application/json; charset=UTF-8")  // 내가 반환하는 값은 JSON입니다.
 
@@ -90,6 +93,7 @@ public class MemberController {
 	
 	
 	
+	// fnAjax3가 요청하는 곳
 	@GetMapping(value="/member/detail3",
 			produces="application/json; charset=UTF-8")  // 내가 반환하는 값은 JSON입니다.
 	
@@ -108,11 +112,28 @@ public class MemberController {
 	
 	
 	
+	// fnAjax4가 요청하는 곳
 	
+	@PostMapping(value="/member/detail4",
+			produces="application/json; charset=UTF-8")
 	
+	@ResponseBody
+	// JSON 데이터가 요청의 본문에 포함된 상태로 컨트롤러로 왔습니다.
+	// 컨트롤러는 이런 데이터를 파라미터(parameter)로 처리할 수 없습니다.
+	// 새로운 방법이 필요합니다.
+	// @RequestBody 애너테이션을 이용하면 요청의 본문에 포함된 JSON 데이터를 받을 수 있습니다.
+	// jackson을 사용하고 있기 때문에
+	// 컨트롤러로 전달된 JSON 데이터는 MemberDTO 또는 Map으로 받으면 됩니다.
 	
-	
-	
+	public Map<String, Object> detail4(@RequestBody MemberDTO member) {
+		
+		Map<String, Object> map = memberService.detail4(member);
+		
+		return map;  // Map이 JSON으로 변환되서 반환되려면 아래 2가지가 필요합니다.
+		             // @ResponseBody : 내가 반환하는 건 JSP이름이 아니라 어떤 값이다.
+		             // produces="application/json" : 내가 반환하는 건 JSON 데이터이다.
+		
+	}
 	
 	
 	
