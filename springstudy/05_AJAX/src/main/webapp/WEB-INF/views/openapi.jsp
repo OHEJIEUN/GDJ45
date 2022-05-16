@@ -39,7 +39,7 @@
 				$('#boxOffice').empty();
 				$.each(result.boxOfficeResult.dailyBoxOfficeList, function(i, movie){
 					$('<tr>')
-					.append($('<td>').text(rank))
+					.append($('<td>').text(movie.rank + '(' + movie.rankInten + ')'))
 					.append($('<td>').text(movie.movieNm))
 					.append($('<td>').text(movie.openDt))
 					.append($('<td>').text(movie.audiCnt + '명'))
