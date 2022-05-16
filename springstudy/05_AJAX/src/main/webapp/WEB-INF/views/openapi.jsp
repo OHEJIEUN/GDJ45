@@ -19,7 +19,7 @@
 		
 		$('#targetDt').datepicker({
 			showOn: 'both',
-			dateFormat: 'yymmdd'
+			dateFormat: 'yymmdd'  // 실제 생성되는 날짜는 yyyymmdd
 		});
 		
 		$('#btnQuery').on('click', ()=>{
@@ -35,7 +35,7 @@
 			type: 'get',
 			data: 'targetDt=' + $('#targetDt').val(),
 			dataType: 'json',
-			success: (result)=>{
+			success: (result)=>{  // function(result){
 				$('#boxOffice').empty();
 				$.each(result.boxOfficeResult.dailyBoxOfficeList, function(i, movie){
 					$('<tr>')
@@ -48,7 +48,7 @@
 					.appendTo('#boxOffice');
 				})
 			},
-			error: (jqXHR)=>{
+			error: (jqXHR)=>{  // function(jqXHR){
 				alert(jqXHR.status);
 			}
 		})
