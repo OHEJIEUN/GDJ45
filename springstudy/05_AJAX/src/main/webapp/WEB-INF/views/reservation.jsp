@@ -46,7 +46,28 @@
 	}  // fnAjax1
 	
 	function fnAjax2(){
-		
+		$.ajax({
+			/* 요청 */
+			url: '${contextPath}/reservation/detail2',
+			type: 'get',
+			data: 'no=' + $('#no').val(),
+			/* 응답 */
+			dataType: 'json',
+			success: function(reservation){
+				$('#result').empty();
+				$('<ul>')
+				.append($('<li>').text(reservation.no))
+				.append($('<li>').text(reservation.name))
+				.appendTo('#result');
+			},
+			error: function(jqXHR){
+				if(jqXHR.status == 400){
+					alert('예약번호는 숫자입니다.');
+				}
+				$('#result').empty();
+				$('#result').text(jqXHR.responseText);
+			}
+		})
 	}  // fnAjax2
 	
 	function fnAjax3(){

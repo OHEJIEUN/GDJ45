@@ -12,6 +12,14 @@ import com.goodee.ex05.domain.ReservationDTO;
 
 public class ReservationServiceImpl implements ReservationService {
 
+	
+	// ResponseEntity<T>
+	// 1. 실제 응답 데이터는 T 타입이다.
+	// 2. HttpHeaders 클래스를 이용해서 응답 데이터의 Content-Type을 지정한다.
+	//    produces를 사용하지 않는다.
+	// 3. 응답 코드(HttpStatus)를 저장한다.
+	
+	
 	@Override
 	public ResponseEntity<ReservationDTO> detail1(HttpServletRequest request) {
 		
@@ -20,12 +28,6 @@ public class ReservationServiceImpl implements ReservationService {
 		
 		// 파라미터 no가 전달되지 않았다면 no의 값은 0이다.
 		// no의 값이 0인 경우 조회가 불가능한 경우이다.
-		
-		// ResponseEntity<T>
-		// 1. 실제 응답 데이터는 T 타입이다.
-		// 2. HttpHeaders 클래스를 이용해서 응답 데이터의 Content-Type을 지정한다.
-		//    produces를 사용하지 않는다.
-		// 3. 응답 코드(HttpStatus)를 저장한다.
 		
 		ResponseEntity<ReservationDTO> responseEntity = null;
 		
@@ -48,8 +50,12 @@ public class ReservationServiceImpl implements ReservationService {
 
 	@Override
 	public ResponseEntity<ReservationDTO> detail2(Long no) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		HttpHeaders header = new HttpHeaders();
+		header.add("Content-Type", "application/json; charset=UTF-8");
+		
+		return new ResponseEntity<>(new ReservationDTO(no, "예약자"), header, HttpStatus.OK);
+		
 	}
 
 	@Override

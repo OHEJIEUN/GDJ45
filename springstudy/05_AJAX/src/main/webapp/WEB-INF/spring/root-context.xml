@@ -17,4 +17,7 @@
 	<!-- ReservationServiceImpl -->
 	<bean class="com.goodee.ex05.service.ReservationServiceImpl" id="reservationService" />
 	
+	<!-- OpenApiServiceImpl -->
+	<bean class="com.goodee.ex05.service.OpenApiServiceImpl" id="openApiService" />
+	
 </beans>
