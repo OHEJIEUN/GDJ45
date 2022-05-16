@@ -14,4 +14,7 @@
 	<!-- ProductServiceImpl -->
 	<bean class="com.goodee.ex05.service.ProductServiceImpl" id="productService" />
 	
+	<!-- ReservationServiceImpl -->
+	<bean class="com.goodee.ex05.service.ReservationServiceImpl" id="reservationService" />
+	
 </beans>
