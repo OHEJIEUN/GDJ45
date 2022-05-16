@@ -22,9 +22,14 @@
 			dateFormat: 'yymmdd'  // 실제 생성되는 날짜는 yyyymmdd
 		});
 		
+		// 아래 3개 클릭이벤트는 모두 같은 동작을 합니다.
+		$('#btnQuery').on('click', function(){
+			fnDailyBoxOffice();
+		})
 		$('#btnQuery').on('click', ()=>{
 			fnDailyBoxOffice();
 		})
+		$('#btnQuery').on('click', fnDailyBoxOffice)
 		
 	})
 	
@@ -35,7 +40,7 @@
 			type: 'get',
 			data: 'targetDt=' + $('#targetDt').val(),
 			dataType: 'json',
-			success: (result)=>{  // function(result){
+			success: function(result){
 				$('#boxOffice').empty();
 				$.each(result.boxOfficeResult.dailyBoxOfficeList, function(i, movie){
 					$('<tr>')
