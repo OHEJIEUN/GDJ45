@@ -21,5 +21,9 @@
 	
 	<a href="${contextPath}/product">제품관리</a>
 	
+	<br>
+	
+	<a href="${contextPath}/reservation">예약관리</a>
+
 </body>
 </html>

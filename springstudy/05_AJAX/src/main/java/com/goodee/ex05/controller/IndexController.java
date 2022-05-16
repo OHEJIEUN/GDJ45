@@ -25,5 +25,10 @@ public class IndexController {
 	public String product() {
 		return "product";          // product.jsp로 이동하자.
 	}
+
+	@GetMapping(value="/reservation")  // ${contextPath}/reservation 요청이 오면,
+	public String reservation() {
+		return "reservation";          // reservation.jsp로 이동하자.
+	}
 	
 }
