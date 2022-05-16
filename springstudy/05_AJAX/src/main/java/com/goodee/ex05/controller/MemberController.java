@@ -32,17 +32,6 @@ public class MemberController {
 	// 필드, 생성자, setter 방식 중 필드 주입 방식 사용해 봅니다.
 	@Autowired
 	private MemberService memberService;
-		
-	
-	@GetMapping(value="/")
-	public String index() {
-		return "index";  // index.jsp
-	}
-	
-	@GetMapping(value="/member")
-	public String member() {
-		return "member";  // member.jsp
-	}
 	
 	
 	// 컨트롤러의 메소드는 기본적으로 JSP이름을 반환한다.
@@ -134,17 +123,5 @@ public class MemberController {
 		                // produces="application/json" : 내가 반환하는 건 JSON 데이터이다.
 		
 	}
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+		
 }

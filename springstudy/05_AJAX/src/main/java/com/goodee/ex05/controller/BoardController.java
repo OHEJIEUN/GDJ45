@@ -4,16 +4,24 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.goodee.ex05.domain.BoardDTO;
 import com.goodee.ex05.service.BoardService;
 
-@Controller
+/*
+	@RestController
+	
+	안녕. 난 Ajax 처리를 위한 컨트롤러야.
+	날 선언하면 모든 메소드에 @ResponseBody 애너테이션을 자동으로 붙여줄께.
+	개발자 너희는 붙이지 마.
+*/
+
+@RestController
+
 public class BoardController {
 
 	private BoardService boardService;
@@ -23,34 +31,29 @@ public class BoardController {
 		super();
 		this.boardService = boardService;
 	}
-
-	@GetMapping(value="/board")  // ${contextPath}/board 요청이 오면,
-	public String board() {
-		return "board";          // board.jsp로 이동하자.
-	}
 	
-	@ResponseBody
+	// @ResponseBody    @RestController를 사용하면 안 적어요.
 	@GetMapping(value="/board/detail1",
 			produces="application/json; charset=UTF-8")
 	public BoardDTO detail1(HttpServletRequest request) {
 		return boardService.detail1(request);
 	}
 	
-	@ResponseBody
+	// @ResponseBody
 	@GetMapping(value="/board/detail2",
 			produces="application/json; charset=UTF-8")
 	public BoardDTO detail2(String title, Long hit) {
 		return boardService.detail2(title, hit);
 	}
 	
-	@ResponseBody
+	// @ResponseBody
 	@PostMapping(value="/board/detail3",
 			produces="application/json; charset=UTF-8")
 	public Map<String, Object> detail3(@RequestBody BoardDTO board) {
 		return boardService.detail3(board);
 	}
 	
-	@ResponseBody
+	// @ResponseBody
 	@PostMapping(value="/board/detail4",
 			produces="application/json; charset=UTF-8")
 	public BoardDTO detail4(@RequestBody Map<String, Object> map) {

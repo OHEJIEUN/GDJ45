@@ -17,5 +17,9 @@
 	
 	<a href="${contextPath}/board">게시판관리</a>
 	
+	<br>
+	
+	<a href="${contextPath}/product">제품관리</a>
+	
 </body>
 </html>
