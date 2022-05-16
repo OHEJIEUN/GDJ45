@@ -16,6 +16,7 @@
 	$(document).ready(function(){
 		$('#btn1').on('click', fnAjax1);
 		$('#btn2').on('click', fnAjax2);
+		$('#btn3').on('click', fnAjax3);
 	})
 	
 	// 함수
@@ -66,12 +67,36 @@
 		})
 	}  // fnAjax2
 
+	function fnAjax3(){
+		$.ajax({
+			url: '${contextPath}/product/list3',
+			type: 'get',
+			dataType: 'json',
+			success: function(result){  // result -> {"products": [{}, {}, {}]}
+				$('#products').empty();
+				$.each(result.products, function(i, product){
+					$('<tr>')
+					.append($('<td>').text(product.no))
+					.append($('<td>').text(product.name))
+					.append($('<td>').text(product.maker))
+					.append($('<td>').text(product.price))
+					.appendTo($('#products'));
+				})
+			},
+			error: function(jqXHR){
+				console.log(jqXHR.status);
+				console.log(jqXHR.responseText);
+			}
+		})
+	}  // fnAjax3
+	
 </script>
 </head>
 <body>
 
 	<input type="button" value="목록1" id="btn1">
 	<input type="button" value="목록2" id="btn2">
+	<input type="button" value="목록3" id="btn3">
 	
 	<hr>
 	

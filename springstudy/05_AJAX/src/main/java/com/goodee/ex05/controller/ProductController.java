@@ -1,5 +1,6 @@
 package com.goodee.ex05.controller;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,6 +34,15 @@ public class ProductController {
 	@GetMapping(value="/product/list2", produces="application/json; charset=UTF-8")
 	public List<Map<String, Object>> list2() {
 		return productService.list2();
+	}
+	
+	@ResponseBody
+	@GetMapping(value="/product/list3", produces="application/json; charset=UTF-8")
+	public Map<String, Object> list3() {
+		List<ProductDTO> products = productService.list3();
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("products", products);
+		return result;
 	}
 	
 }
