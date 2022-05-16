@@ -41,12 +41,13 @@ public class ProductServiceImpl implements ProductService {
 	}
 	
 	@Override
-	public List<ProductDTO> list3() {
+	public Map<String, Object> list3() {
 		ProductDTO product1 = new ProductDTO(100L, "하이트", "하이트진로", 2000);
 		ProductDTO product2 = new ProductDTO(200L, "카스", "OB맥주", 3000);
 		ProductDTO product3 = new ProductDTO(300L, "테라", "하이트진로", 4000);
-		List<ProductDTO> products = Arrays.asList(product1, product2, product3);
-		return products;
+		Map<String, Object> result = new HashMap<String, Object>();
+		result.put("products", Arrays.asList(product1, product2, product3));
+		return result;
 	}
 
 }

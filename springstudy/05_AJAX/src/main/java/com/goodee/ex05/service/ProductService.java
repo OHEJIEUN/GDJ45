@@ -8,5 +8,5 @@ import com.goodee.ex05.domain.ProductDTO;
 public interface ProductService {
 	public List<ProductDTO> list1();
 	public List<Map<String, Object>> list2();
-	public List<ProductDTO> list3();
+	public Map<String, Object> list3();
 }
