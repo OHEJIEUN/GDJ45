@@ -1,6 +1,6 @@
 package com.goodee.ex06;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
@@ -22,13 +22,12 @@ import com.goodee.ex06.repository.BoardRepository;
 
 // root-context.xml로 bean을 만들었으면 아래처럼 하면 되지.
 // @ContextConfiguration(locations={"file:src/main/webapp/WEB-INF/spring/root-context.xml"})
-
 public class BoardTestCase {
 
 	// BoardRepository가 필요해요.(DI)
 	@Autowired
 	private BoardRepository boardRepository;
-	
+		
 	// 단위 테스트의 메소드 이름은 "한글"로 해도 좋아요.
 	
 	@Test

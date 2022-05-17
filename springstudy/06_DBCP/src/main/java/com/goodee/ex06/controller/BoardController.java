@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.goodee.ex06.domain.BoardDTO;
 import com.goodee.ex06.service.BoardService;
@@ -37,6 +38,14 @@ public class BoardController {
 		logger.info("list(): " + boards);  // 콘솔에 정보를 찍어준다.
 		model.addAttribute("boards", boards);
 		return "board/list";
+	}
+	
+	@GetMapping("/board/detail")
+	public String detail(@RequestParam(value="board_no") Long board_no, Model model) {
+		BoardDTO board = boardService.findBoardByNo(board_no);
+		logger.info("detail(): " + board);
+		model.addAttribute("board", board);
+		return "board/detail";
 	}
 	
 	

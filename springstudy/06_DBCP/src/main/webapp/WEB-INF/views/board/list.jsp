@@ -23,7 +23,7 @@
 		<tbody>
 			<c:forEach items="${boards}" var="board">
 				<tr>
-					<td>${board.title}</td>
+					<td><a href="${contextPath}/board/detail?board_no=${board.board_no}">${board.title}</a></td>
 					<td>${board.writer}</td>
 					<td>${board.lastModified}</td>
 				</tr>

@@ -34,6 +34,7 @@ public class BoardRepository {
 		} catch(NamingException e) {
 			e.printStackTrace();  // Resource를 찾을 수 없다.
 		}
+		
 	}
 	
 	private Connection con;
@@ -82,23 +83,80 @@ public class BoardRepository {
 	}
 	
 	public BoardDTO selectBoardByNo(Long board_no) {
-		
-		return null;
+		BoardDTO board = null;
+		try {
+			con = dataSource.getConnection();
+			sql = "SELECT BOARD_NO, TITLE, CONTENT, WRITER, CREATED, LASTMODIFIED FROM BOARD WHERE BOARD_NO = ?";
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, board_no);
+			rs = ps.executeQuery();
+			if(rs.next()) {
+				board = new BoardDTO(
+						rs.getLong(1),    // rs.getLong("BOARD_NO")
+						rs.getString(2),  // rs.getString("TITLE")
+						rs.getString(3),  // rs.getString("CONTENT")
+						rs.getString(4),  // rs.getString("WRITER")
+						rs.getString(5),  // rs.getString("CREATED")
+						rs.getString(6)); // rs.getString("LASTMODIFIED")
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(con, ps, rs);
+		}
+		return board;
 	}
 	
 	public int insertBoard(BoardDTO board) {
-		
-		return 0;
+		int res = 0;
+		try {
+			con = dataSource.getConnection();
+			sql = "INSERT INTO BOARD VALUES(BOARD_SEQ.NEXTVAL, ?, ?, ?, TO_CHAR(SYSDATE, 'YYYY-MM-DD'), TO_CHAR(SYSDATE, 'YYYY-MM-DD'))";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, board.getTitle());
+			ps.setString(2, board.getContent());
+			ps.setString(3, board.getWriter());
+			res = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(con, ps, null);
+		}
+		return res;
 	}
 	
 	public int updateBoard(BoardDTO board) {
-		
-		return 0;
+		int res = 0;
+		try {
+			con = dataSource.getConnection();
+			sql = "UPDATE BOARD SET TITLE = ?, CONTENT = ? WHERE BOARD_NO = ?";
+			ps = con.prepareStatement(sql);
+			ps.setString(1, board.getTitle());
+			ps.setString(2, board.getContent());
+			ps.setLong(3, board.getBoard_no());
+			res = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(con, ps, null);
+		}
+		return res;
 	}
 	
 	public int deleteBoard(Long board_no) {
-		
-		return 0;
+		int res = 0;
+		try {
+			con = dataSource.getConnection();
+			sql = "DELETE FROM BOARD WHERE BOARD_NO = ?";
+			ps = con.prepareStatement(sql);
+			ps.setLong(1, board_no);
+			res = ps.executeUpdate();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(con, ps, null);
+		}
+		return res;
 	}
 	
 }
