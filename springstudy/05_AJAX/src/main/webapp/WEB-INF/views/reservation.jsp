@@ -86,6 +86,23 @@
 	<hr>
 	
 	<div id="result"></div>
+	
+	<hr>
+	
+	<!--
+		<img> 태그는 절대 경로의 이미지를 표시하지 못한다.
+		절대 경로의 이미지는 ajax 통신으로 이미지를 읽어 들인다.
+		jQuery.ajax는 사용하지 않는다.
+		C:/eagle.jpg 이미지를 읽어 올 것이다.
+	-->
+	<img alt="eagle.jpg" src="${contextPath}/reservation/image">
 
 </body>
 </html>
+
+
+
+
+
+
+
