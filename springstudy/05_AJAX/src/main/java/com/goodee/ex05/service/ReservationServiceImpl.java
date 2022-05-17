@@ -1,5 +1,7 @@
 package com.goodee.ex05.service;
 
+import java.io.File;
+import java.nio.file.Files;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
@@ -7,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.FileCopyUtils;
 
 import com.goodee.ex05.domain.ReservationDTO;
 
@@ -62,6 +65,26 @@ public class ReservationServiceImpl implements ReservationService {
 	public ResponseEntity<ReservationDTO> detail3(ReservationDTO reservation) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+	
+	@Override
+	public ResponseEntity<byte[]> image() {
+		File file = new File("D:", "eagle.jpg");  // new File("D:\\eagle.jpg")
+		ResponseEntity<byte[]> result = null;
+		try {
+			// D:\\eagle.jpg 파일을 복사해서 byte[] 배열에 저장하고 해당 byte[] 배열을 반환
+			byte[] b = FileCopyUtils.copyToByteArray(file);  // 이걸 반환하면 된다.
+			// HttpHeaders : 반환할 데이터의 Content-Type
+			// jpg 이미지의 Content-Type은 image/jpeg 이다.
+			HttpHeaders header = new HttpHeaders();
+			String contentType = Files.probeContentType(file.toPath());
+			header.add("Content-Type", contentType);  // ("Content-Type", "image/jpeg")
+			// 반환할 ResponseEntity
+			result = new ResponseEntity<>(b, header, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
 	}
 
 }
