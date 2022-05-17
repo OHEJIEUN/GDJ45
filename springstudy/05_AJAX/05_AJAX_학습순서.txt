@@ -20,7 +20,3 @@ root-context.xml에 bean 생성
    ResponseEntity 이용해서 이미지 처리
 
 5. 영화진흥위원회 OPEN API
-
-
-
-

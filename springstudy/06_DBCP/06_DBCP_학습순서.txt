@@ -1,0 +1,17 @@
+학습순서
+
+1. pom.xml
+   1) 버전 최신화 하기
+   2) ojdbc6 라이브러리 다운로드
+      (1) 별도의 repository 등록
+      (2) dependency 추가
+   3) lombok dependency 추가
+
+2. web.xml
+   인코딩 필터 태그 넣기
+
+3. webapp/resources/sql
+   board.sql 작성 (실행할 수 있는 기능이 STS3에 설치되어 있지 않기 때문에 SQL DEVELOPER로 실행)
+
+
+   
