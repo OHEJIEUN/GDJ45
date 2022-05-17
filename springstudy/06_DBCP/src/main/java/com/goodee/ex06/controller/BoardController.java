@@ -17,7 +17,7 @@ public class BoardController {
 
 	// logger
 	// System.out.println() 대체
-	private static final Logger looger = LoggerFactory.getLogger(BoardController.class);
+	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
 	
 	// BoardService boardService : DI (BoardConfig.java에 저장된 bean 가져오기)
 	// 1. 필드 주입    : @Autowired private BoardService boardService;
@@ -32,8 +32,9 @@ public class BoardController {
 	}
 	
 	@GetMapping("/board/list")
-	public String index(Model model) {
+	public String list(Model model) {
 		List<BoardDTO> boards = boardService.findBoards();
+		logger.info("list(): " + boards);  // 콘솔에 정보를 찍어준다.
 		model.addAttribute("boards", boards);
 		return "board/list";
 	}

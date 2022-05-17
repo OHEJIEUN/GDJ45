@@ -1,8 +1,9 @@
 package com.goodee.ex06.repository;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.naming.Context;
@@ -11,7 +12,6 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import com.goodee.ex06.domain.BoardDTO;
-import com.sun.jdi.connect.spi.Connection;
 
 public class BoardRepository {
 
@@ -57,10 +57,28 @@ public class BoardRepository {
 	
 	
 	public List<BoardDTO> selectBoards(){
-		BoardDTO b1 = new BoardDTO(1L, "제목1", "내용1", "작성자1", "2022-05-17", "2022-05-17");
-		BoardDTO b2 = new BoardDTO(2L, "제목2", "내용2", "작성자2", "2022-05-17", "2022-05-17");
-		BoardDTO b3 = new BoardDTO(3L, "제목3", "내용3", "작성자3", "2022-05-17", "2022-05-17");
-		return  Arrays.asList(b1, b2, b3);
+		List<BoardDTO> boards = new ArrayList<>();
+		try {
+			con = dataSource.getConnection();
+			sql = "SELECT BOARD_NO, TITLE, CONTENT, WRITER, CREATED, LASTMODIFIED FROM BOARD ORDER BY BOARD_NO DESC";
+			ps = con.prepareStatement(sql);
+			rs = ps.executeQuery();
+			while(rs.next()) {
+				BoardDTO board = new BoardDTO(
+						rs.getLong(1),    // rs.getLong("BOARD_NO")
+						rs.getString(2),  // rs.getString("TITLE")
+						rs.getString(3),  // rs.getString("CONTENT")
+						rs.getString(4),  // rs.getString("WRITER")
+						rs.getString(5),  // rs.getString("CREATED")
+						rs.getString(6)); // rs.getString("LASTMODIFIED")
+				boards.add(board);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(con, ps, rs);
+		}
+		return boards;
 	}
 	
 	public BoardDTO selectBoardByNo(Long board_no) {
