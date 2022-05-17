@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.goodee.ex05.domain.ReservationDTO;
@@ -29,6 +31,10 @@ public class ReservationController {
 		return reservationService.detail2(no);
 	}
 	
+	@PostMapping(value="/reservation/detail3")
+	public ResponseEntity<ReservationDTO> detail3(@RequestBody ReservationDTO reservation){
+		return reservationService.detail3(reservation);
+	}
 	
 	@GetMapping(value="/reservation/image")
 	public ResponseEntity<byte[]> image() {

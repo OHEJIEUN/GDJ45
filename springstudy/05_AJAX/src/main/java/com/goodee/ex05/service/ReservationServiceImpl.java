@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.FileCopyUtils;
 
@@ -63,8 +64,20 @@ public class ReservationServiceImpl implements ReservationService {
 
 	@Override
 	public ResponseEntity<ReservationDTO> detail3(ReservationDTO reservation) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		HttpHeaders header = new HttpHeaders();
+		header.add("Content-Type", MediaType.APPLICATION_JSON_VALUE);  // ("Content-Type", "application/json")
+		
+		// no가 100을 초과하면 저장할 수 없는 데이터로 가정
+		ResponseEntity<ReservationDTO> result = null;
+		
+		if(reservation.getNo() > 100) {
+			result = new ResponseEntity<>(null, null, HttpStatus.INTERNAL_SERVER_ERROR);  // status : 500
+		} else {
+			result = new ResponseEntity<>(new ReservationDTO(reservation.getNo(), "예약자"), header, HttpStatus.OK);
+		}
+		
+		return result;
 	}
 	
 	@Override
