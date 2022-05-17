@@ -24,7 +24,7 @@ public class BoardRepository {
 	
 	// BoardConfig.java를 통해서 bean이 생성되는 순간
 	// new BoardRepository()가 호출된다.
-	// 외부에서 호출할 수 있도록 접근권한은 public으로 처리하고,
+	// 외부(BoardConfig.java)에서 호출할 수 있도록 접근권한은 public으로 처리하고,
 	// context.xml을 읽어서 dataSource를 생성한다.
 	public BoardRepository() {
 		// JNDI 방식으로 context.xml에 등록한 Resource의 이름(Name)을 찾아서 읽어들인다.

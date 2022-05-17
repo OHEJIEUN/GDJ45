@@ -6,6 +6,7 @@
       (1) 별도의 repository 등록
       (2) dependency 추가
    3) lombok dependency 추가
+   4) spring-test dependency 추가(JUnit 단위 테스트)
 
 2. web.xml
    인코딩 필터 태그 넣기
@@ -19,6 +20,15 @@
 
 5. BoardConfig.java를 이용해서 bean 작성
 
+6. JUnit 단위 테스트
+  - src/test/java 패키지에 TestCase 추가(스프링은 일반 클래스 사용)
+  - JUnit 버전에 맞는 SpringJUnit4ClassRunner 클래스 등록
+  - bean을 만들도록 설정
+
+
+
+
+
 lombok 사용
 1. STS.exe에 설치 (STS 재시작 필요)
 2. pom.xml에 dependency 추가
@@ -29,4 +39,3 @@ lombok 사용
    - pom.xml에 dependency를 추가하였다.
    - 그런데 안 된다.
    - 기존 lombok 애너테이션을 다 지우고, 다시 추가하면 된다.
-   
