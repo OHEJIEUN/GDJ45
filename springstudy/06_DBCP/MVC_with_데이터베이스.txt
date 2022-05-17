@@ -1,0 +1,21 @@
+MVC
+
+1. 목록 보기
+   1) JSP         ${contextPath}/board/list 요청              board/list.jsp에서 ${list} 내용을 목록으로 출력함
+                  ↓                                                        ↑
+   2) Controller  @GetMapping(/board/list)                                 ↑
+                  public String list(Model model) {                        ↑
+                    List<> list = boardService.findBoards()   DB에서가져온목록을 list에 저장하고,
+                    model.addAttribute("list", list);         list를 model에 속성으로 추가함(request.setAttribute("list", list")임) 
+                    return "board/list";                      /WEB-INF/views/board/list.jsp로 포워드(request 정보를 유지해서 이동)
+                  }                                                        ↑
+                  ↓                                                        ↑
+   3) Service     public List<> findBoards() {                             ↑
+                    return boardRepository.selectBoards();    DB에서가져온목록을 Controller에 전달
+                  }                                                        ↑
+                  ↓                                                        ↑
+   4) Repository  public List<> selectBoards() {                           ↑
+                    SELECT * FROM BOARD 실행                               ↑
+                    return DB에서가져온목록-------------------------------→↑
+                  }
+   
