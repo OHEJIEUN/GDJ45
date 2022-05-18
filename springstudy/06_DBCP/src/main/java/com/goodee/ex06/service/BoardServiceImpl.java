@@ -1,5 +1,6 @@
 package com.goodee.ex06.service;
 
+import java.io.PrintWriter;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,10 +35,24 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void save(BoardDTO board, HttpServletRequest request, HttpServletResponse response) {
 		int res = boardRepository.insertBoard(board);
-		if(res > 0) {
-			
-		} else {
-			
+		try {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			if(res > 0) {
+				out.println("<script>");
+				out.println("alert('등록되었습니다.')");
+				out.println("location.href='" + request.getContextPath() + "/board/list'");  // location 이동은 redirect와 같은 방식의 이동이다.
+				out.println("</script>");
+				out.close();
+			} else {
+				out.println("<script>");
+				out.println("alert('등록되지 않았습니다.')");
+				out.println("history.back()");
+				out.println("</script>");
+				out.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

@@ -12,6 +12,8 @@
 </head>
 <body>
 
+	<a href="${contextPath}/board/addPage">작성하기</a>
+
 	<table border="1">
 		<thead>
 			<tr>
