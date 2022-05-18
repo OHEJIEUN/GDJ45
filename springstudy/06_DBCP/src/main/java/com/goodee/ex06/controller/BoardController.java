@@ -70,7 +70,9 @@ public class BoardController {
 	}
 	
 	@GetMapping("/board/remove")
-	public void remove(@RequestParam Long board_no, HttpServletRequest request, HttpServletResponse response) {
+	// @RequestParam(value="board_no", required=false, defaultValue="0")
+	// 파라미터 board_no가 오지 않는다면 0을 사용하겠습니다.
+	public void remove(@RequestParam(value="board_no", required=false, defaultValue="0") Long board_no, HttpServletRequest request, HttpServletResponse response) {
 		logger.info("remove(): " + board_no);
 		boardService.remove(board_no, request, response);
 		// save() 메소드와 마찬가지로 remove() 메소드에서 직접 이동한다.

@@ -17,6 +17,7 @@ public class BoardServiceImpl implements BoardService {
 	// 서비스는 사용자의 요청을 데이터베이스로 전달하고,
 	// 데이터베이스 처리 결과를 사용자에게 응답한다.
 	
+	
 	// 서비스는 BoardConfig.java에서 BoardRepository bean을 가져와야 한다.(DI)
 	@Autowired
 	private BoardRepository boardRepository;
