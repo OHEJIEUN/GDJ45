@@ -69,10 +69,24 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void remove(Long board_no, HttpServletRequest request, HttpServletResponse response) {
 		int res = boardRepository.deleteBoard(board_no);
-		if(res > 0) {
-			
-		} else {
-			
+		try {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			if(res > 0) {
+				out.println("<script>");
+				out.println("alert('삭제되었습니다.')");
+				out.println("location.href='" + request.getContextPath() + "/board/list'");  // location 이동은 redirect와 같은 방식의 이동이다.
+				out.println("</script>");
+				out.close();
+			} else {
+				out.println("<script>");
+				out.println("alert('삭제되지 않았습니다.')");
+				out.println("history.back()");
+				out.println("</script>");
+				out.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 

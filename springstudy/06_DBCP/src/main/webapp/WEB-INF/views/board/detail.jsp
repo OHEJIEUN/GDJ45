@@ -9,6 +9,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="../resources/js/jquery-3.6.0.js"></script>
+<script>
+	
+	$(document).ready(()=>{
+	
+		// 삭제
+		$('#btnRemove').on('click', ()=>{
+			if(confirm('삭제할까요?')){
+				location.href='${contextPath}/board/remove?board_no=${board.board_no}';
+			}
+		})
+		
+	})
+	
+</script>
 </head>
 <body>
 
@@ -18,6 +33,10 @@
 	작성자: ${board.writer}<br>
 	최초작성일: ${board.created}<br>
 	최종수정일: ${board.lastModified}<br>
+	
+	<hr>
+	
+	<input type="button" value="삭제" id="btnRemove">
 
 </body>
 </html>

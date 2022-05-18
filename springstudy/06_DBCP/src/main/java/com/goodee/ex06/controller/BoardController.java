@@ -69,6 +69,12 @@ public class BoardController {
 		// 응답을 만드는 response를 save() 메소드에 넘겨주면 save() 메소드에서 직접 이동할 수 있다.
 	}
 	
+	@GetMapping("/board/remove")
+	public void remove(@RequestParam Long board_no, HttpServletRequest request, HttpServletResponse response) {
+		logger.info("remove(): " + board_no);
+		boardService.remove(board_no, request, response);
+		// save() 메소드와 마찬가지로 remove() 메소드에서 직접 이동한다.
+	}
 	
 	
 	
