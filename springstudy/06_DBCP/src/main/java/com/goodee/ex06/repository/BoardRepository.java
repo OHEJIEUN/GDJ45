@@ -34,7 +34,6 @@ public class BoardRepository {
 		} catch(NamingException e) {
 			e.printStackTrace();  // Resource를 찾을 수 없다.
 		}
-		
 	}
 	
 	private Connection con;
