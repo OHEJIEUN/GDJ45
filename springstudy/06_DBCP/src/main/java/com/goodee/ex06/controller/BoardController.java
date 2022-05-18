@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -78,14 +79,24 @@ public class BoardController {
 		// save() 메소드와 마찬가지로 remove() 메소드에서 직접 이동한다.
 	}
 	
+//	@PostMapping("/board/modifyPage")
+//	public String modifyPage(BoardDTO board, Model model) {
+//		logger.info("modifyPage(): " + board);
+//		model.addAttribute("board", board);
+//		return "board/modify";  // board/modify.jsp로 forward
+//	}
 	
+	@PostMapping("/board/modifyPage")
+	public String modifyPage(@ModelAttribute(value="board") BoardDTO board) {
+		logger.info("modifyPage(): " + board);
+		return "board/modify";  // board/modify.jsp로 forward
+	}
 	
-	
-	
-	
-	
-	
-	
-	
+	@PostMapping("/board/modify")
+	public void modify(BoardDTO board, HttpServletRequest request, HttpServletResponse response) {
+		logger.info("modify(): " + board);
+		boardService.modify(board, request, response);
+		// save(), remove() 메소드처럼 modify() 메소드에서 직접 이동한다.
+	}
 	
 }

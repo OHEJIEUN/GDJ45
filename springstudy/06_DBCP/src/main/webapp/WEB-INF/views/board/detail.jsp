@@ -38,5 +38,12 @@
 	
 	<input type="button" value="삭제" id="btnRemove">
 
+	<form action="${contextPath}/board/modifyPage" method="post">
+		<input type="submit" value="수정">
+		<input type="hidden" name="board_no" value="${board.board_no}">	
+		<input type="hidden" name="title" value="${board.title}">	
+		<input type="hidden" name="content" value="${board.content}">	
+	</form>
+	
 </body>
 </html>

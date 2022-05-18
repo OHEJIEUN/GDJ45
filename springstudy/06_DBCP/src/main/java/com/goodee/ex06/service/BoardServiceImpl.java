@@ -60,10 +60,24 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void modify(BoardDTO board, HttpServletRequest request, HttpServletResponse response) {
 		int res = boardRepository.updateBoard(board);
-		if(res > 0) {
-			
-		} else {
-			
+		try {
+			response.setContentType("text/html; charset=UTF-8");
+			PrintWriter out = response.getWriter();
+			if(res > 0) {
+				out.println("<script>");
+				out.println("alert('수정되었습니다.')");
+				out.println("location.href='" + request.getContextPath() + "/board/list'");  // location 이동은 redirect와 같은 방식의 이동이다.
+				out.println("</script>");
+				out.close();
+			} else {
+				out.println("<script>");
+				out.println("alert('수정되지 않았습니다.')");
+				out.println("history.back()");
+				out.println("</script>");
+				out.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
