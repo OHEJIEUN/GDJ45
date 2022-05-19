@@ -21,6 +21,16 @@
 			}
 		})
 		
+		// 수정 화면으로 이동
+		$('#btnModify').on('click', ()=>{
+			location.href='${contextPath}/board/modifyPage?board_no=${board.board_no}';
+		})
+		
+		// 목록
+		$('#btnList').on('click', ()=>{
+			location.href='${contextPath}/board/list';
+		})
+		
 	})
 	
 </script>
@@ -29,7 +39,8 @@
 
 	게시글번호: ${board.board_no}<br>
 	제목: ${board.title}<br>
-	내용: ${board.content}<br>
+	내용
+	${board.content}<br>
 	작성자: ${board.writer}<br>
 	최초작성일: ${board.created}<br>
 	최종수정일: ${board.lastModified}<br>
@@ -37,13 +48,8 @@
 	<hr>
 	
 	<input type="button" value="삭제" id="btnRemove">
-
-	<form action="${contextPath}/board/modifyPage" method="post">
-		<input type="submit" value="수정">
-		<input type="hidden" name="board_no" value="${board.board_no}">	
-		<input type="hidden" name="title" value="${board.title}">	
-		<input type="hidden" name="content" value="${board.content}">	
-	</form>
+	<input type="button" value="수정" id="btnModify">
+	<input type="button" value="목록" id="btnList">
 	
 </body>
 </html>

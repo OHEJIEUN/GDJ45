@@ -30,8 +30,38 @@
 			width: 1000,
 			height: 300,
 			lang: 'ko-KR',
-			placeholer: '내용'
+			placeholer: '내용',
+			// 툴바 수정
+			// https://summernote.org/deep-dive/#custom-toolbar-popover
+			toolbar: [
+			    // [groupName, [list of button]]
+			    ['fontname', ['fontname']],
+			    ['fontsize', ['fontsize']],
+			    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+			    ['color', ['forecolor','color']],
+			    ['table', ['table']],
+			    ['para', ['ul', 'ol', 'paragraph']],
+			    ['height', ['height']],
+			    ['insert',['picture','link','video']],
+			    ['view', ['fullscreen', 'help']]
+			],
+			fontNames: ['Arial', 'Arial Black', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
+			fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','36','48','72']
 		})
+		/*
+			// 서머노트에 text 쓰기
+			$('#content').summernote('insertText', 써머노트에 쓸 텍스트);
+			// 서머노트 쓰기 비활성화
+			$('#content').summernote('disable');
+			// 서머노트 쓰기 활성화
+			$('#content').summernote('enable');
+			// 서머노트 리셋
+			$('#content').summernote('reset');
+			// 마지막으로 한 행동 취소 ( 뒤로가기 )
+			$('#content').summernote('undo');
+			// 앞으로가기
+			$('#content').summernote('redo');
+		*/
 		
 	})
 </script>

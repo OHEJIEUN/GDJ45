@@ -11,8 +11,11 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import org.springframework.stereotype.Repository;
+
 import com.goodee.ex07.domain.BoardDTO;
 
+@Repository
 public class BoardRepository {
 
 	// BoardRepository == BoardDAO
@@ -128,7 +131,7 @@ public class BoardRepository {
 		int res = 0;
 		try {
 			con = dataSource.getConnection();
-			sql = "UPDATE BOARD SET TITLE = ?, CONTENT = ? WHERE BOARD_NO = ?";
+			sql = "UPDATE BOARD SET TITLE = ?, CONTENT = ?, LASTMODIFIED = TO_CHAR(SYSDATE, 'YYYY-MM-DD') WHERE BOARD_NO = ?";
 			ps = con.prepareStatement(sql);
 			ps.setString(1, board.getTitle());
 			ps.setString(2, board.getContent());
