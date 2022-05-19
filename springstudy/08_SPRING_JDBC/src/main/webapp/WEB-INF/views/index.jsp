@@ -9,7 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<script src="../resources/js/jquery-3.6.0.js"></script>
+<script src="resources/js/jquery-3.6.0.js"></script>
 <script type="text/javascript">
 	$(document).ready(function(){
 		location.href='${contextPath}/book/list';

@@ -1,10 +1,15 @@
 package com.goodee.ex08.repository;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.core.PreparedStatementSetter;
 import org.springframework.stereotype.Repository;
 
 import com.goodee.ex08.domain.BookDTO;
@@ -28,15 +33,41 @@ public class BookRepository {
 	}
 	
 	public int insertBook(BookDTO book) {
-		return 0;
+		return jdbcTemplate.update(new PreparedStatementCreator() {
+			@Override
+			public PreparedStatement createPreparedStatement(Connection con) throws SQLException {
+				sql = "INSERT INTO BOOK VALUES(BOOK_SEQ.NEXTVAL, ?, ?, ?, ?, TO_CHAR(SYSDATE, 'YYYY-MM-DD'))";
+				PreparedStatement ps = con.prepareStatement(sql);
+				ps.setString(1, book.getTitle());
+				ps.setString(2, book.getAuthor());
+				ps.setInt(3, book.getPrice());
+				ps.setString(4, book.getPubDate());
+				return ps;
+			}
+		});
 	}
 	
 	public int updateBook(BookDTO book) {
-		return 0;
+		sql = "UPDATE BOOK SET TITLE = ?, AUTHOR = ?, PRICE = ? WHERE BOOK_NO = ?";
+		return jdbcTemplate.update(sql, new PreparedStatementSetter() {
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				ps.setString(1, book.getTitle());
+				ps.setString(2, book.getAuthor());
+				ps.setInt(3, book.getPrice());
+				ps.setLong(4, book.getBook_no());
+			}
+		});
 	}
 	
 	public int deleteBook(Long book_no) {
-		return 0;
+		sql = "DELETE FROM BOOK WHERE BOOK_NO = ?";
+		return jdbcTemplate.update(sql, new PreparedStatementSetter() {
+			@Override
+			public void setValues(PreparedStatement ps) throws SQLException {
+				ps.setLong(1, book_no);
+			}
+		});
 	}
 	
 }

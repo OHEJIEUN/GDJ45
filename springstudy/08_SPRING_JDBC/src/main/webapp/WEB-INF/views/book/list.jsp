@@ -13,11 +13,19 @@
 <script type="text/javascript">
 	$(document).ready(function(){
 		
+		// 제목을 클릭하면 상세보기로 이동
+		/*
 		$('.book_title').on('click', function(){
+			location.href='${contextPath}/book/detail?book_no=' + $(this).data('book_no');  // data-book_no 속성 값
+			location.href='${contextPath}/book/detail?book_no=' + $(this).prev().text();    // <td>${book.book_no}</td>                                                                                // <td class="book_title">
+		})
+		*/
 		
-			// location.href='${contextPath}/book/detail?book_no=' + $(this).data('book_no');  // data-book_no 속성 값
-			location.href='${contextPath}/book/detail?book_no=' + $(this).prev().text();    // <td>${book.book_no}</td>
-			                                                                                // <td class="book_title">
+		// 클릭 대상이 행 전체로 작성된 상세보기 이동
+		// <tr data-book_no="${book.book_no}">
+		// $('tbody tr') : <tbody> 태그 아래에 있는 <tr> 태그
+		$('tbody tr').on('click', function(){
+			location.href='${contextPath}/book/detail?book_no=' + $(this).data('book_no');
 		})
 		
 		$('#btnSave').on('click', function(){
@@ -26,6 +34,11 @@
 		
 	})
 </script>
+<style>
+	tbody tr:hover {
+		background-color: teal;
+	}
+</style>
 </head>
 <body>
 
@@ -44,7 +57,7 @@
 		</thead>
 		<tbody>
 			<c:forEach var="book" items="${books}">
-				<tr>
+				<tr data-book_no="${book.book_no}">
 					<td>${book.book_no}</td>
 					<td class="book_title" data-book_no="${book.book_no}">${book.title}</td>
 					<td>${book.author}</td>
