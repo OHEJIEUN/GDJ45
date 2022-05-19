@@ -44,7 +44,6 @@ public class BoardRepository {
 		return conn;
 	}
 	
-	
 	public void close(Connection con, PreparedStatement ps, ResultSet rs) {
 		try {
 			if(con != null) con.close();
