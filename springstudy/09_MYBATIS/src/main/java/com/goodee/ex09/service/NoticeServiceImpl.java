@@ -16,8 +16,7 @@ public class NoticeServiceImpl implements NoticeService {
 	
 	@Override
 	public List<NoticeDTO> findNotices() {
-		// TODO Auto-generated method stub
-		return null;
+		return noticeRepository.selectNoticeList();
 	}
 
 	@Override
