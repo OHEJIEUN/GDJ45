@@ -13,7 +13,12 @@ public class NoticeController {
 	@Autowired
 	private NoticeService noticeService;
 	
-	@GetMapping(value={"/", "/notice/list"})
+	@GetMapping("/")
+	public String index() {
+		return "index";
+	}
+	
+	@GetMapping("/notice/list")
 	public String list(Model model) {
 		model.addAttribute("notices", noticeService.findNotices());
 		return "notice/list";
