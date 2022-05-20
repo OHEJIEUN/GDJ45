@@ -5,7 +5,10 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Component;
+
+@EnableAspectJAutoProxy  // 안녕. 난 Aspect 동작을 시켜주는 역할이야. 
 
 @Component  // 안녕. 난 bean이야.
 @Aspect  // 안녕. 난 Aspect야. 공통 모듈(공통으로 해야 할 일)을 담당하고 있어.
@@ -29,7 +32,7 @@ public class AspectLogger {
 	@Around("execution(* com.goodee.ex08.controller.*Controller.*(..))")
 	public Object log(ProceedingJoinPoint point) throws Throwable {
 		
-		String name = point.getSignature().getName();
+		String name = point.getSignature().getName();  // 컨트롤러에서 실행되는 메소드 이름
 		
 		logger.info(name + " : my log");
 		
