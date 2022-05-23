@@ -21,7 +21,7 @@
 		// 폼의 서브밋을 활용
 		$('#btnRemove').on('click', function(){
 			if(confirm('삭제할까요?')){
-				$('#f').attr('action', '${contextPath}/notice/remove');
+				$('#f').attr('action', '${contextPath}/notice/removeOne');
 				$('#f').submit();
 			}
 		})

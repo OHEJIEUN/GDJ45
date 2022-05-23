@@ -80,6 +80,13 @@ public class NoticeController {
 		return "redirect:/notice/afterDML";
 	}
 	
+	@GetMapping("/notice/removeOne")
+	public String removeOne(HttpServletRequest request, RedirectAttributes redirectAttributes) {
+		redirectAttributes.addFlashAttribute("kind", "deleteOne");
+		redirectAttributes.addFlashAttribute("res", noticeService.removeOne(request));
+		return "redirect:/notice/afterDML";
+	}
+	
 	
 	
 	

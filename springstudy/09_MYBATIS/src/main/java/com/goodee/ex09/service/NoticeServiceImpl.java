@@ -54,9 +54,9 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public int remove(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int removeOne(HttpServletRequest request) {
+		Long noticeNo = Long.parseLong(request.getParameter("noticeNo"));
+		return noticeRepository.deleteNotice(noticeNo);
 	}
 
 }

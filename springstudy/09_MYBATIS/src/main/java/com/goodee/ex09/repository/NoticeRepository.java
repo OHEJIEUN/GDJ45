@@ -36,11 +36,8 @@ public class NoticeRepository {
 		return sqlSessionTemplate.update("mybatis.mapper.notice.updateNotice", notice);
 	}
 	
-	
-	
-	
-	
-	
-	
+	public int deleteNotice(Long noticeNo) {
+		return sqlSessionTemplate.delete("mybatis.mapper.notice.deleteNotice", noticeNo);
+	}
 	
 }

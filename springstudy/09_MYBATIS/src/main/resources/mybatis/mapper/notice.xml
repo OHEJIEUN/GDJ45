@@ -45,7 +45,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE NOTICE_NO = #{noticeNo}
 	</update>
 	
-	
-	
+	<!-- 삭제 -->
+	<delete id="deleteNotice" parameterType="Long">
+		DELETE
+		  FROM NOTICE
+		 WHERE NOTICE_NO = #{noticeNo}
+	</delete>
 
 </mapper>

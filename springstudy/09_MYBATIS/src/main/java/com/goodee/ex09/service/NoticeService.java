@@ -11,5 +11,5 @@ public interface NoticeService {
 	public NoticeDTO findNoticeByNo(HttpServletRequest request);
 	public int save(HttpServletRequest request);
 	public int change(HttpServletRequest request);
-	public int remove(HttpServletRequest request);
+	public int removeOne(HttpServletRequest request);
 }

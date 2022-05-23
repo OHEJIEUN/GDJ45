@@ -25,7 +25,15 @@
 			history.back();
 		}
 	}
-
-
+	
+	if('${kind}' == 'deleteOne'){
+		if(${res} > 0){
+			alert('공지사항이 삭제되었습니다.');
+			location.href='${contextPath}/notice/list';
+		} else {
+			alert('공지사항이 삭제되지 않았습니다.');
+			history.back();
+		}
+	}
 
 </script>
