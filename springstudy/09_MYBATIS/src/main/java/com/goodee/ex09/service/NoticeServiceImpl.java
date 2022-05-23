@@ -1,5 +1,6 @@
 package com.goodee.ex09.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -61,6 +62,9 @@ public class NoticeServiceImpl implements NoticeService {
 	
 	@Override
 	public int removeList(HttpServletRequest request) {
+		// 하나씩 여러 번 지우기
+		// DELETE FROM NOTICE WHERE NOTICE_NO = 1
+		// DELETE FROM NOTICE WHERE NOTICE_NO = 4
 		String[] noticeNoList = request.getParameterValues("noticeNoList");  // {"1", "4"}
 		Long res = 0L;
 		for(int i = 0; i < noticeNoList.length; i++) {
@@ -70,4 +74,16 @@ public class NoticeServiceImpl implements NoticeService {
 		return (res == noticeNoList.length) ? 1 : 0;  // 모두 삭제했다면 1 반환 아니면 0 반환
 	}
 
+	@Override
+	public int removeList2(HttpServletRequest request) {
+		// 한 번에 여러 개 지우기
+		// DELETE FROM NOTICE WHERE NOTICE_NO IN(1, 4)
+		String[] noticeNoList = request.getParameterValues("noticeNoList");  // {"1", "4"}
+		List<Long> list = new ArrayList<>();
+		for(int i = 0; i < noticeNoList.length; i++) {
+			list.add(Long.parseLong(noticeNoList[i]));  // list.add(1) -> list.add(4)
+		}
+		return noticeRepository.deleteNoticeList(list);
+	}
+	
 }

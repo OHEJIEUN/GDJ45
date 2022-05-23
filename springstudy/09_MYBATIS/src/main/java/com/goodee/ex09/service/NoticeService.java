@@ -12,5 +12,8 @@ public interface NoticeService {
 	public int save(HttpServletRequest request);
 	public int change(HttpServletRequest request);
 	public int removeOne(HttpServletRequest request);
+	
 	public int removeList(HttpServletRequest request);
+	public int removeList2(HttpServletRequest request);
+	
 }

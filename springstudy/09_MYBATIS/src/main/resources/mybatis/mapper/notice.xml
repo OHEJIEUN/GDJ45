@@ -38,11 +38,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 수정 -->
 	<update id="updateNotice" parameterType="NoticeDTO">
-		UPDATE NOTICE
-		   SET TITLE = #{title}
+		UPDATE
+		       NOTICE
+		   SET
+		       TITLE = #{title}
 		     , CONTENT = #{content}
 		     , LASTMODIFIED = SYSTIMESTAMP
-		 WHERE NOTICE_NO = #{noticeNo}
+		 WHERE
+		   	   NOTICE_NO = #{noticeNo}
 	</update>
 	
 	<!-- 삭제 -->
@@ -50,6 +53,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		DELETE
 		  FROM NOTICE
 		 WHERE NOTICE_NO = #{noticeNo}
+	</delete>
+	
+	<!-- 다중 삭제 -->
+	<!-- DELETE FROM NOTICE WHERE NOTICE_NO IN(1,4) -->
+	<delete id="deleteNoticeList">
+		DELETE
+		  FROM NOTICE
+		<where> 
+		 	<foreach collection="list" item="noticeNo" open="NOTICE_NO IN(" separator="," close=")">
+				#{noticeNo}
+			</foreach>
+		</where>
 	</delete>
 
 </mapper>

@@ -40,4 +40,8 @@ public class NoticeRepository {
 		return sqlSessionTemplate.delete("mybatis.mapper.notice.deleteNotice", noticeNo);
 	}
 	
+	public int deleteNoticeList(List<Long> list) {
+		return sqlSessionTemplate.delete("mybatis.mapper.notice.deleteNoticeList", list);
+	}
+	
 }
