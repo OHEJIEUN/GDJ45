@@ -33,26 +33,32 @@
 	
 	<hr>
 
-	<table border="1">
-		<thead>
-			<tr>
-				<td></td>
-				<td>번호</td>
-				<td>제목</td>
-				<td>작성일</td>
-			</tr>
-		</thead>
-		<tbody>
-			<c:forEach items="${notices}" var="notice">
+	<form action="${contextPath}/notice/removeList">
+
+		<button>선택삭제</button><br>
+	
+		<table border="1">
+			<thead>
 				<tr>
-					<td><input type="checkbox" name="noticeNoList" value="${notice.noticeNo}"></td>
-					<td class="noticeNo">${notice.noticeNo}</td>
-					<td>${notice.title}</td>
-					<td>${notice.created}</td>
+					<td></td>
+					<td>번호</td>
+					<td>제목</td>
+					<td>작성일</td>
 				</tr>
-			</c:forEach>
-		</tbody>
-	</table>
+			</thead>
+			<tbody>
+				<c:forEach items="${notices}" var="notice">
+					<tr>
+						<td><input type="checkbox" name="noticeNoList" value="${notice.noticeNo}"></td>
+						<td class="noticeNo">${notice.noticeNo}</td>
+						<td>${notice.title}</td>
+						<td>${notice.created}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
+		</table>
+
+	</form>
 
 </body>
 </html>

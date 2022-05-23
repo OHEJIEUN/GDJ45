@@ -58,5 +58,16 @@ public class NoticeServiceImpl implements NoticeService {
 		Long noticeNo = Long.parseLong(request.getParameter("noticeNo"));
 		return noticeRepository.deleteNotice(noticeNo);
 	}
+	
+	@Override
+	public int removeList(HttpServletRequest request) {
+		String[] noticeNoList = request.getParameterValues("noticeNoList");  // {"1", "4"}
+		Long res = 0L;
+		for(int i = 0; i < noticeNoList.length; i++) {
+			Long noticeNo = Long.parseLong(noticeNoList[i]);  // Long.parseLong("1") -> Long.parseLong("4")
+			res += noticeRepository.deleteNotice(noticeNo);
+		}
+		return (res == noticeNoList.length) ? 1 : 0;  // 모두 삭제했다면 1 반환 아니면 0 반환
+	}
 
 }

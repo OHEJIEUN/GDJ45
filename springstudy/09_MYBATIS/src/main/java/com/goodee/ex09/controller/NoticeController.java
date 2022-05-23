@@ -1,5 +1,7 @@
 package com.goodee.ex09.controller;
 
+import java.util.Arrays;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -87,7 +89,12 @@ public class NoticeController {
 		return "redirect:/notice/afterDML";
 	}
 	
-	
+	@GetMapping("/notice/removeList")
+	public String removeList(HttpServletRequest request, RedirectAttributes redirectAttributes) {
+		redirectAttributes.addFlashAttribute("kind", "deleteList");
+		redirectAttributes.addFlashAttribute("res", noticeService.removeList(request));
+		return "redirect:/notice/afterDML";
+	}
 	
 	
 	
