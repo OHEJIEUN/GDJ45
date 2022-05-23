@@ -27,9 +27,13 @@ public class NoticeController {
 	@GetMapping("/notice/list")
 	public String list(Model model) {
 		model.addAttribute("notices", noticeService.findNotices());
-		return "notice/list";
+		return "notice/list";  // notice 폴더 아래 list.jsp로 이동
 	}
 	
+	@GetMapping("/notice/savePage")
+	public String savePage() {
+		return "notice/save";  // notice 폴더 아래 save.jsp로 이동
+	}
 	
 	@PostMapping("/notice/save")
 	// public String save(@RequestParam String title, @RequestParam String content)
@@ -39,9 +43,26 @@ public class NoticeController {
 		notice.setTitle(request.getParameter("title"));
 		notice.setContent(request.getParameter("content"));
 		int res = noticeService.save(notice);
+		
+		// 성공/실패 메시지 처리가 없는 경우
+		// return "redirect:/notice/list";  // redirect는 매핑으로 이동한다. 목록보기매핑(/notice/list)
+
+		// 성공/실패 메시지 처리를 담당하는 result.jsp를 만들고, 
+		// result.jsp로 redirect로 이동하는 방법을 사용한다.
+		// result.jsp로 성공/실패 유무, 작업종류를 보내줘야 하는데,
+		// redirect로 이동하는 경우에는 RedirectAttributes에 정의된 addFlashAttribute() 메소드를 
+		// 이용해서 값을 전달할 수 있다.
+		redirectAttributes.addFlashAttribute("kind", "insert");
+		redirectAttributes.addFlashAttribute("res", res);
+		
+		return "redirect:/notice/afterDML";
+		
 	}
 	
-	
+	@GetMapping("/notice/afterDML")
+	public String afterDML() {
+		return "notice/result";   // notice 폴더 아래 result.jsp를 의미한다.
+	}
 	
 	
 	

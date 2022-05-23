@@ -12,7 +12,7 @@
 </head>
 <body>
 
-	<form action="${context}/notice/save" method="post">
+	<form action="${contextPath}/notice/save" method="post">
 	
 		<input type="text" name="title" id="title" placeholder="제목" required><br>
 		<textarea rows="5" cols="30" name="content" id="content"></textarea><br><br>
