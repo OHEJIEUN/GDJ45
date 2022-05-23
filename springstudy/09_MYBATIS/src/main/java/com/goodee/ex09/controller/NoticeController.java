@@ -67,6 +67,26 @@ public class NoticeController {
 		return "notice/detail";  // notice 폴더 아래 detail.jsp로 이동
 	}
 	
+	@GetMapping("/notice/changePage")
+	public String changePage(HttpServletRequest request, Model model) {
+		model.addAttribute("notice", noticeService.findNoticeByNo(request));
+		return "notice/change";  // notice 폴더 아래 change.jsp로 이동
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
