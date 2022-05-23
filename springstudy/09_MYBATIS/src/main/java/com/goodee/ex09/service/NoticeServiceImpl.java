@@ -2,6 +2,8 @@ package com.goodee.ex09.service;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,24 +22,36 @@ public class NoticeServiceImpl implements NoticeService {
 	}
 
 	@Override
-	public NoticeDTO findNoticeByNo(Long noticeNo) {
-		noticeRepository.updateHit(noticeNo);                 // 조회수를 늘리고,
+	public NoticeDTO findNoticeByNo(HttpServletRequest request) {
+
+		String requestURI = request.getRequestURI();  // "/ex09/notice/detail"
+		String[] arr = requestURI.split("/");         // { "", "ex09", "notice", "detail"}
+		
+		Long noticeNo = Long.parseLong(request.getParameter("noticeNo"));
+		
+		if(arr[arr.length - 1].equals("detail")) {            // 상세보기 요청이면,
+			noticeRepository.updateHit(noticeNo);             // 조회수를 늘리고,
+		}
 		return noticeRepository.selectNoticeByNo(noticeNo);   // 정보를 조회한다.
+		
 	}
 
 	@Override
-	public int save(NoticeDTO notice) {
+	public int save(HttpServletRequest request) {
+		NoticeDTO notice = new NoticeDTO();
+		notice.setTitle(request.getParameter("title"));
+		notice.setContent(request.getParameter("content"));
 		return noticeRepository.insertNotice(notice);
 	}
 
 	@Override
-	public int change(NoticeDTO notice) {
+	public int change(HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int remove(Long noticeNo) {
+	public int remove(HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		return 0;
 	}

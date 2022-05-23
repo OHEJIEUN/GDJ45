@@ -39,10 +39,7 @@ public class NoticeController {
 	// public String save(@RequestParam String title, @RequestParam String content)
 	// public String save(NoticeDTO notice)
 	public String save(HttpServletRequest request, RedirectAttributes redirectAttributes) {
-		NoticeDTO notice = new NoticeDTO();
-		notice.setTitle(request.getParameter("title"));
-		notice.setContent(request.getParameter("content"));
-		int res = noticeService.save(notice);
+		int res = noticeService.save(request);
 		
 		// 성공/실패 메시지 처리가 없는 경우
 		// return "redirect:/notice/list";  // redirect는 매핑으로 이동한다. 목록보기매핑(/notice/list)
@@ -65,8 +62,8 @@ public class NoticeController {
 	}
 	
 	@GetMapping("/notice/detail")
-	public String detail(@RequestParam Long noticeNo, Model model) {
-		model.addAttribute("notice", noticeService.findNoticeByNo(noticeNo));
+	public String detail(HttpServletRequest request, Model model) {
+		model.addAttribute("notice", noticeService.findNoticeByNo(request));
 		return "notice/detail";  // notice 폴더 아래 detail.jsp로 이동
 	}
 	
