@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.goodee.ex09.domain.NoticeDTO;
@@ -60,10 +61,14 @@ public class NoticeController {
 	
 	@GetMapping("/notice/afterDML")
 	public String afterDML() {
-		return "notice/result";   // notice 폴더 아래 result.jsp를 의미한다.
+		return "notice/result";   // notice 폴더 아래 result.jsp로 이동
 	}
 	
-	
+	@GetMapping("/notice/detail")
+	public String detail(@RequestParam Long noticeNo, Model model) {
+		model.addAttribute("notice", noticeService.findNoticeByNo(noticeNo));
+		return "notice/detail";  // notice 폴더 아래 detail.jsp로 이동
+	}
 	
 	
 	
