@@ -32,6 +32,12 @@ public class NoticeRepository {
 		return sqlSessionTemplate.update("mybatis.mapper.notice.updateHit", noticeNo);
 	}
 	
+	public int updateNotice(NoticeDTO notice) {
+		return sqlSessionTemplate.update("mybatis.mapper.notice.updateNotice", notice);
+	}
+	
+	
+	
 	
 	
 	

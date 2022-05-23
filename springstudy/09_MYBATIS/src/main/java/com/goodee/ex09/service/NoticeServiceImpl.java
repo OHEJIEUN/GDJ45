@@ -46,8 +46,11 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public int change(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		return 0;
+		NoticeDTO notice = new NoticeDTO();
+		notice.setNoticeNo(Long.parseLong(request.getParameter("noticeNo")));
+		notice.setTitle(request.getParameter("title"));
+		notice.setContent(request.getParameter("content"));
+		return noticeRepository.updateNotice(notice);
 	}
 
 	@Override

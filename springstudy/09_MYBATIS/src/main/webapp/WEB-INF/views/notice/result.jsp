@@ -15,6 +15,16 @@
 			history.back();
 		}
 	}
+	
+	if('${kind}' == 'update'){
+		if(${res} > 0){
+			alert('공지사항이 수정되었습니다.');
+			location.href='${contextPath}/notice/list';
+		} else {
+			alert('공지사항이 수정되지 않았습니다.');
+			history.back();
+		}
+	}
 
 
 

@@ -16,6 +16,7 @@
 	
 		<input type="text" name="title" id="title" value="${notice.title}" required><br>
 		<textarea rows="5" cols="30" name="content" id="content">${notice.content}</textarea><br><br>
+		<input type="hidden" name="noticeNo" value="${notice.noticeNo}">
 		
 		<button>수정완료</button>
 	

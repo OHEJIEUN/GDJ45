@@ -73,7 +73,12 @@ public class NoticeController {
 		return "notice/change";  // notice 폴더 아래 change.jsp로 이동
 	}
 	
-	
+	@PostMapping("/notice/change")
+	public String change(HttpServletRequest request, RedirectAttributes redirectAttributes) {
+		redirectAttributes.addFlashAttribute("kind", "update");
+		redirectAttributes.addFlashAttribute("res", noticeService.change(request));
+		return "redirect:/notice/afterDML";
+	}
 	
 	
 	
