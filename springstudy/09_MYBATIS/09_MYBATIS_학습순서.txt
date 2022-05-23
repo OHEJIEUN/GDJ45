@@ -46,7 +46,7 @@
    1) mybatis-config.xml
    2) mapper.xml
 
-7. SqlSession을 통한 메소드 호출 방식
+7. SqlSessionTemplate(구 SqlSession)을 통한 메소드 호출 방식
    1) selectList()
    2) selectOne()
    3) insert()

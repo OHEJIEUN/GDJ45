@@ -21,4 +21,14 @@ public class NoticeRepository {
 	}
 	
 	
+	public int insertNotice(NoticeDTO notice) {
+		return sqlSessionTemplate.insert("mybatis.mapper.notice.insertNotice", notice);
+	}
+	
+	
+	
+	
+	
+	
+	
 }

@@ -27,8 +27,7 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public int save(NoticeDTO notice) {
-		// TODO Auto-generated method stub
-		return 0;
+		return noticeRepository.insertNotice(notice);
 	}
 
 	@Override

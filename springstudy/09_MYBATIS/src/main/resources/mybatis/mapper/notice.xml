@@ -13,5 +13,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		  FROM NOTICE
 		 ORDER BY NOTICE_NO DESC
 	</select>
+	
+	<!-- 등록 -->
+	<insert id="insertNotice" parameterType="NoticeDTO">
+		INSERT INTO NOTICE
+			(NOTICE_NO, TITLE, CONTENT, HIT, CREATED, LASTMODIFIED)
+		VALUES
+			(NOTICE_SEQ.NEXTVAL, #{title}, #{content}, 0, SYSTIMESTAMP, SYSTIMESTAMP)
+	</insert>
+	
+	
+	
+	
+	
+	
 
 </mapper>
