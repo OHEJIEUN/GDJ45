@@ -92,4 +92,9 @@ public class NoticeController {
 		return "redirect:/notice/afterDML";
 	}
 	
+	@GetMapping("/notice/transaction.test")
+	public void transactionTest() {
+		noticeService.transactionTest();
+	}
+	
 }

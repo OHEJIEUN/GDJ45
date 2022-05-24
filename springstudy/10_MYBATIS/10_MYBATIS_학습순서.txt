@@ -54,4 +54,6 @@
    NoticeMapper.java notice.xml 매퍼가 가지고 있는 쿼리문의 id를 추상메소드로 가진다.
    NoticeMapper.java의 메소드를 호출하면 notice.xml에 연결된 쿼리문이 호출된다.
 
+9. NoticeServiceImpl.java에서 사용하던 NoticeRepository를 NoticeMapper로 교체한다.
 
+10. DBConfig.java에 @MapperScan을 추가 등록한다.

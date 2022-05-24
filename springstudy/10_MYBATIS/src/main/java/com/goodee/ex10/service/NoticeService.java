@@ -15,4 +15,6 @@ public interface NoticeService {
 	
 	public int removeList(HttpServletRequest request);
 	public int removeList2(HttpServletRequest request);
+	
+	public void transactionTest();
 }

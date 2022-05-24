@@ -86,4 +86,10 @@ public class NoticeServiceImpl implements NoticeService {
 		return noticeMapper.deleteNoticeList(list);
 	}
 	
+	@Override
+	public void transactionTest() {
+		noticeMapper.insertNotice(new NoticeDTO(null, "테스트제목", "테스트내용", null, null, null));
+		noticeMapper.insertNotice(new NoticeDTO());
+	}
+	
 }

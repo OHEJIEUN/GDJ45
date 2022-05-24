@@ -45,6 +45,17 @@ public class TransactionConfig {
 	public Advisor advisor() {
 		
 		AspectJExpressionPointcut pointCut = new AspectJExpressionPointcut();
+		
+		// execution(리턴타입 패키지.클래스.메소드(매개변수))
+		
+		// 리턴타입
+		// *, void, !void
+		
+		// 매개변수
+		// (..)                             모든 매개변수
+		// (*)                              1개의 매개변수
+		// (com.goodee.ex08.domain.BookDTO) BookDTO
+		
 		pointCut.setExpression("execution(* com.goodee.ex08.service.*Impl.*(..))");
 		
 		return new DefaultPointcutAdvisor(pointCut, interceptor());
