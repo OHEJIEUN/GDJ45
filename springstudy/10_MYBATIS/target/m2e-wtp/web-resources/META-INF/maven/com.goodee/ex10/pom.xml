@@ -3,8 +3,8 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.goodee</groupId>
-	<artifactId>ex09</artifactId>
-	<name>09_MYBATIS</name>
+	<artifactId>ex10</artifactId>
+	<name>10_MYBATIS</name>
 	<packaging>war</packaging>
 	<version>1.0.0-BUILD-SNAPSHOT</version>
 

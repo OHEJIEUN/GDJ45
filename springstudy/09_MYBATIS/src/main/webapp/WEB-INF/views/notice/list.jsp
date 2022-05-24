@@ -13,6 +13,12 @@
 <script>
 	$(document).ready(function(){
 		
+		$('tbody td:not(td:first-of-type)').on('click', function(){
+			var noticeNo = $(this).parent().data('notice_no');
+		    location.href='${contextPath}/notice/detail?noticeNo=' + noticeNo;
+		})
+		
+		/*
 		$('tbody tr').on('click', function(){
 			// $(this)                          : 클릭한 행을 의미한다.
 			//                                    <tr>...</tr>
@@ -23,6 +29,7 @@
 			var noticeNo = $(this).find('.noticeNo').text();
 			location.href='${contextPath}/notice/detail?noticeNo=' + noticeNo;
 		})
+		*/
 		
 		// 전체 선택 클릭하기
 		// 전체 선택을 체크하면 개별 선택도 모두 체크
@@ -30,10 +37,10 @@
 		var checkAll = $('#checkAll');
 		var checkes = $('.checkes');
 		checkAll.on('click', function(){
-			for(let i = 0; i < check.length; i++) {
-				// check[i].prop('checked', true);  // 전체 선택이 체크된 경우
-				// check[i].prop('checked', false); // 전체 선택이 해제된 경우
-				$(check[i]).prop('checked', checkAll.prop('checked'));
+			for(let i = 0; i < checkes.length; i++) {
+				// checkes[i].prop('checked', true);  // 전체 선택이 체크된 경우
+				// checkes[i].prop('checked', false); // 전체 선택이 해제된 경우
+				$(checkes[i]).prop('checked', checkAll.prop('checked'));
 			}
 			$.each(checkes, function(i, check){
 				$(check).prop('checked', checkAll.prop('checked'));
@@ -59,6 +66,9 @@
 		
 	})
 </script>
+<style>
+	.blind { display: none; }
+</style>
 </head>
 <body>
 
@@ -73,7 +83,10 @@
 		<table border="1">
 			<thead>
 				<tr>
-					<td><input type="checkbox" id="checkAll"></td>
+					<td>
+						<label for="checkAll">전체선택</label>
+						<input type="checkbox" id="checkAll" class="blind">
+					</td>
 					<td>번호</td>
 					<td>제목</td>
 					<td>작성일</td>
@@ -81,9 +94,9 @@
 			</thead>
 			<tbody>
 				<c:forEach items="${notices}" var="notice">
-					<tr>
+					<tr data-notice_no="${notice.noticeNo}">
 						<td><input type="checkbox" name="noticeNoList" value="${notice.noticeNo}" class="checkes"></td>
-						<td class="noticeNo">${notice.noticeNo}</td>
+						<td>${notice.noticeNo}</td>
 						<td>${notice.title}</td>
 						<td>${notice.created}</td>
 					</tr>
