@@ -1,4 +1,4 @@
-package com.goodee.ex09.config;
+package com.goodee.ex10.config;
 
 import java.util.Collections;
 
