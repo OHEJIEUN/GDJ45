@@ -46,6 +46,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		
 		// list.jsp로 forward할 때 가지고 갈 속성 저장하기
 		model.addAttribute("employees", employees);
+		model.addAttribute("paging", "1 2 3 4 5");
 		
 	}
 

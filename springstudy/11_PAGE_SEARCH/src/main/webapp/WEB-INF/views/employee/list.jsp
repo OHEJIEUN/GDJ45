@@ -12,7 +12,40 @@
 </head>
 <body>
 
-	<a href="${contextPath}/employee/searchPage">사원검색</a>
-
+	<table border="1">
+		
+		<thead>
+			<tr>
+				<td>순번</td>
+				<td>사원번호</td>
+				<td>사원명</td>
+				<td>입사일자</td>
+				<td>연봉</td>
+				<td>부서번호</td>
+				<td>부서이름</td>
+			</tr>
+		</thead>
+		<tbody>
+			<c:forEach items="${employees}" var="emp">
+				<tr>
+					<td>순번</td>
+					<td>${emp.employeeId}</td>
+					<td>${emp.firstName}</td>
+					<td>${emp.hireDate}</td>
+					<td>${emp.salary}</td>
+					<td>${emp.departmentId}</td>
+					<td>부서이름</td>
+				</tr>
+			</c:forEach>
+		</tbody>
+		<tfoot>
+			<tr>
+				<td colspan="7">
+					${paging}
+				</td>
+			</tr>
+		</tfoot>
+	</table>
+	
 </body>
 </html>
