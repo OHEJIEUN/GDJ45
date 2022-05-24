@@ -5,6 +5,22 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.goodee.ex11.mapper.EmployeeMapper">
 
+	<!-- 전체 레코드 갯수 -->
+	<select id="selectEmployeeCount" resultType="int">
+		SELECT COUNT(*)
+		  FROM EMPLOYEES
+	</select>
+	
+	<!-- BEGIN~END 사이 목록 반환 -->
+	<select id="selectEmployees" parameterType="Map" resultType="Employee">
+		SELECT A.RANK, A.*
+  			FROM (SELECT RANK() OVER(ORDER BY HIRE_DATE DESC) AS RANK, *
+                    FROM EMPLOYEES) A
+ 		   WHERE A.RANK BETWEEN #{beginRecord} AND #{endRecord}
+	</select>
+	
+	
+	
 	
 
 </mapper>
