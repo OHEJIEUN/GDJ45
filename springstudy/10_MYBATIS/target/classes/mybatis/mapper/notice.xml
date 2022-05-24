@@ -3,9 +3,12 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
-<!-- mybatis.mapper 패키지에 저장된 notice.xml입니다. -->
+<!--
+	중요. mapper namespace가 달라집니다.
+	notice.xml의 쿼리문을 호출할 NoticeMapper.java를 namespace로 작성합니다.
+-->
 
-<mapper namespace="mybatis.mapper.notice">
+<mapper namespace="com.goodee.ex10.mapper.NoticeMapper">
 
 	<!-- 목록 -->
 	<select id="selectNoticeList" resultType="NoticeDTO">
@@ -57,7 +60,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<!-- 다중 삭제 -->
 	<!-- DELETE FROM NOTICE WHERE NOTICE_NO IN(1,4) -->
-	<delete id="deleteNoticeList">
+	<delete id="deleteNoticeList" parameterType="List">
 		DELETE
 		  FROM NOTICE
 		<where> 

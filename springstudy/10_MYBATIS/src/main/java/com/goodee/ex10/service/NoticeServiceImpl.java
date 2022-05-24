@@ -9,17 +9,17 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.goodee.ex10.domain.NoticeDTO;
-import com.goodee.ex10.repository.NoticeRepository;
+import com.goodee.ex10.mapper.NoticeMapper;
 
 @Service
 public class NoticeServiceImpl implements NoticeService {
 
 	@Autowired
-	private NoticeRepository noticeRepository;
+	private NoticeMapper noticeMapper;
 	
 	@Override
 	public List<NoticeDTO> findNotices() {
-		return noticeRepository.selectNoticeList();
+		return noticeMapper.selectNoticeList();
 	}
 
 	@Override
@@ -31,9 +31,9 @@ public class NoticeServiceImpl implements NoticeService {
 		Long noticeNo = Long.parseLong(request.getParameter("noticeNo"));
 		
 		if(arr[arr.length - 1].equals("detail")) {            // 상세보기 요청이면,
-			noticeRepository.updateHit(noticeNo);             // 조회수를 늘리고,
+			noticeMapper.updateHit(noticeNo);             // 조회수를 늘리고,
 		}
-		return noticeRepository.selectNoticeByNo(noticeNo);   // 정보를 조회한다.
+		return noticeMapper.selectNoticeByNo(noticeNo);   // 정보를 조회한다.
 		
 	}
 
@@ -42,7 +42,7 @@ public class NoticeServiceImpl implements NoticeService {
 		NoticeDTO notice = new NoticeDTO();
 		notice.setTitle(request.getParameter("title"));
 		notice.setContent(request.getParameter("content"));
-		return noticeRepository.insertNotice(notice);
+		return noticeMapper.insertNotice(notice);
 	}
 
 	@Override
@@ -51,13 +51,13 @@ public class NoticeServiceImpl implements NoticeService {
 		notice.setNoticeNo(Long.parseLong(request.getParameter("noticeNo")));
 		notice.setTitle(request.getParameter("title"));
 		notice.setContent(request.getParameter("content"));
-		return noticeRepository.updateNotice(notice);
+		return noticeMapper.updateNotice(notice);
 	}
 
 	@Override
 	public int removeOne(HttpServletRequest request) {
 		Long noticeNo = Long.parseLong(request.getParameter("noticeNo"));
-		return noticeRepository.deleteNotice(noticeNo);
+		return noticeMapper.deleteNotice(noticeNo);
 	}
 	
 	@Override
@@ -69,7 +69,7 @@ public class NoticeServiceImpl implements NoticeService {
 		Long res = 0L;
 		for(int i = 0; i < noticeNoList.length; i++) {
 			Long noticeNo = Long.parseLong(noticeNoList[i]);  // Long.parseLong("1") -> Long.parseLong("4")
-			res += noticeRepository.deleteNotice(noticeNo);
+			res += noticeMapper.deleteNotice(noticeNo);
 		}
 		return (res == noticeNoList.length) ? 1 : 0;  // 모두 삭제했다면 1 반환 아니면 0 반환
 	}
@@ -83,7 +83,7 @@ public class NoticeServiceImpl implements NoticeService {
 		for(int i = 0; i < noticeNoList.length; i++) {
 			list.add(Long.parseLong(noticeNoList[i]));  // list.add(1) -> list.add(4)
 		}
-		return noticeRepository.deleteNoticeList(list);
+		return noticeMapper.deleteNoticeList(list);
 	}
 	
 }
