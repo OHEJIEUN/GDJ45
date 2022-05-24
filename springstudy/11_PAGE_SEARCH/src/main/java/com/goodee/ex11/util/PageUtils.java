@@ -49,7 +49,7 @@ public class PageUtils {
 			totalPage++;
 		}
 		
-		// beginRecord, endRecord
+		// beginRecord, endRecord 필드 값 계산
 		beginRecord = (page - 1) * recordPerPage + 1;
 		endRecord = beginRecord + recordPerPage - 1;
 		if(endRecord > totalRecord) {
