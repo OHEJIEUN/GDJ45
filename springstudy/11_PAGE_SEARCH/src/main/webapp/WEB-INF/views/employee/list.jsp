@@ -34,7 +34,7 @@
 					<td>${emp.hireDate}</td>
 					<td>${emp.salary}</td>
 					<td>${emp.departmentId}</td>
-					<td>부서이름</td>
+					<td>${emp.departmentName}</td>
 				</tr>
 			</c:forEach>
 		</tbody>

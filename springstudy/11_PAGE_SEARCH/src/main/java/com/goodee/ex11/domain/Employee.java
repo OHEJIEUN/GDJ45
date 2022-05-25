@@ -22,5 +22,6 @@ public class Employee {
 	private Double commissionPct;
 	private Integer managerId;
 	private Integer departmentId;
+	private String departmentName;
 	
 }
