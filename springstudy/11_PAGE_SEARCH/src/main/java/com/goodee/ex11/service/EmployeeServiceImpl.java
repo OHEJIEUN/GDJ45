@@ -51,6 +51,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		
 	}
 	
+	@Override
 	public void findEmployees(HttpServletRequest request, Model model) {
 		
 		// request에서 page 파라미터 꺼내기
@@ -102,6 +103,49 @@ public class EmployeeServiceImpl implements EmployeeService {
 		}
 		
 	}
+	
+	@Override
+	public Map<String, Object> autoComplete(HttpServletRequest request) {
+		
+		String column = request.getParameter("column");
+		String query = request.getParameter("query");
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("column", column);
+		map.put("query", query);
+		
+		List<Employee> list = employeeMapper.autoComplete(map);
+		
+		Map<String, Object> result = new HashMap<>();
+		if(list.size() == 0) {
+			result.put("status", 400);
+			result.put("list", null);
+		} else {
+			result.put("status", 200);
+			result.put("list", list);
+		}
+		if(column.equals("EMPLOYEE_ID")) {
+			result.put("column", "employeeId");
+		} else if(column.equals("FIRST_NAME")) {
+			result.put("column", "firstName");
+		}
+		
+		return result;
+		
+		/*  
+		    Map result는 jackson에 의해서 아래 JSON으로 변환된다.
+			{
+				"status": 200,
+				"list": [ {}, {}, {} ],
+				"column": "firstName"
+			}
+		*/
+		
+	}
+	
+	
+	
+	
 
 
 }

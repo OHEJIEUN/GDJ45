@@ -1,11 +1,14 @@
 package com.goodee.ex11.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.goodee.ex11.service.EmployeeService;
 
@@ -37,5 +40,10 @@ public class EmployeeController {
 		return "employee/search";
 	}
 	
+	@ResponseBody
+	@GetMapping(value="/employee/autoComplete", produces="application/json")
+	public Map<String, Object> autoComplete(HttpServletRequest request){
+		return employeeService.autoComplete(request);
+	}
 	
 }
