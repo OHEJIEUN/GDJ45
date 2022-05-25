@@ -58,14 +58,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 		Optional<String> opt = Optional.ofNullable(request.getParameter("page"));
 		int page = Integer.parseInt(opt.orElse("1"));
 		
-		// column, query 파라미터 꺼내기
+		// column, query, begin, end 파라미터 꺼내기
 		String column = request.getParameter("column");
 		String query = request.getParameter("query");
+		String begin = request.getParameter("begin");
+		String end = request.getParameter("end");
 		
-		// column + query => Map
+		// column + query + begin + end => Map
 		Map<String, Object> map = new HashMap<>();
 		map.put("column", column);
 		map.put("query", query);
+		map.put("begin", begin);
+		map.put("end", end);
 		
 		// 검색된 레코드 갯수 가져오기
 		int findRecord = employeeMapper.selectFindCount(map);
@@ -90,6 +94,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 		case "EMPLOYEE_ID":
 		case "FIRST_NAME":
 			model.addAttribute("paging", pageUtils.getPaging(request.getContextPath() + "/employee/search?column=" + column + "&query=" + query));
+			break;
+		case "HIRE_DATE":
+		case "SALARY":
+			model.addAttribute("paging", pageUtils.getPaging(request.getContextPath() + "/employee/search?column=" + column + "&begin=" + begin + "&end=" + end));
 			break;
 		}
 		

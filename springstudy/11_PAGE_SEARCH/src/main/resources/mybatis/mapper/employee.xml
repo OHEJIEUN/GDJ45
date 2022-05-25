@@ -27,9 +27,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<where>
 			<choose>
 		 		<when test="column == 'EMPLOYEE_ID'">${column} = TRIM(#{query})</when>
-		 		<when test="column == 'FIRST_NAME'"> ${column} LIKE '%' || #{query} || '%'</when>
+		 		<when test="column == 'FIRST_NAME'">${column} LIKE '%' || #{query} || '%'</when>
+		 		<when test="column == 'HIRE_DATE'">${column} BETWEEN TO_DATE(#{begin}, 'YYYY-MM-DD') AND TO_DATE(#{end}, 'YYYY-MM-DD')</when>
+		 		<when test="column == 'SALARY'">${column} BETWEEN #{begin} AND #{end}</when>
 		 	</choose>
-		</where> 
+		</where>
 	</select>
 	
 	<!-- 검색 -->
@@ -42,6 +44,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 					<choose>
 				 		<when test="column == 'EMPLOYEE_ID'">${column} = TRIM(#{query})</when>
 				 		<when test="column == 'FIRST_NAME'"> ${column} LIKE '%' || #{query} || '%'</when>
+				 		<when test="column == 'HIRE_DATE'">${column} BETWEEN TO_DATE(#{begin}, 'YYYY-MM-DD') AND TO_DATE(#{end}, 'YYYY-MM-DD')</when>
+		 				<when test="column == 'SALARY'">${column} BETWEEN #{begin} AND #{end}</when>
 				 	</choose>
 				</where>) A
          WHERE A.RN BETWEEN #{beginRecord} AND #{endRecord}

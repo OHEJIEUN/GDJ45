@@ -50,6 +50,8 @@
 		
 		var column = $('#column');
 		var query = $('#query');
+		var begin = $('#begin');
+		var end = $('#end');
 		
 		$('#btnSearch').on('click', function(){
 			
@@ -61,11 +63,26 @@
 				return;
 			}
 			
+			// 입사일자 검색
+			var regHireDate = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/;  // 2022-05-25
+			if( column.val() == 'HIRE_DATE' && (!regHireDate.test(begin.val()) || !regHireDate.test(end.val())) ){
+				alert('입사일자가 올바르지 않습니다.');
+				return;
+			}
+			
+			// 연봉 검색
+			if( column.val() == 'SALARY' && (isNaN(begin.val()) || isNaN(end.val())) ) {
+				alert('연봉이 올바르지 않습니다.');
+				return;
+			}
+			
 			// 검색 실행
 			// equalArea 작업은 column, query 파라미터 전송
 			// rangeArea 작업은 column, begin, end 파라미터 전송
 			if( column.val() == 'EMPLOYEE_ID' || column.val() == 'FIRST_NAME' ) {
 				location.href="${contextPath}/employee/search?column=" + column.val() + "&query=" + query.val();
+			} else {
+				location.href="${contextPath}/employee/search?column=" + column.val() + "&begin=" + begin.val() + "&end=" + end.val();
 			}
 			
 		})
