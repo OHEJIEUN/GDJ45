@@ -20,6 +20,18 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
          WHERE A.RN BETWEEN #{beginRecord} AND #{endRecord}
 	</select>
 	
+	<!-- 검색된 레코드 갯수 -->
+	<select id="selectFindCount" parameterType="Map" resultType="Integer">
+		SELECT COUNT(*)
+		  FROM EMPLOYEES
+		<where>
+			<choose>
+		 		<when test="column == 'EMPLOYEE_ID'">${column} = TRIM(#{query})</when>
+		 		<when test="column == 'FIRST_NAME'"> ${column} LIKE '%' || #{query} || '%'</when>
+		 	</choose>
+		</where> 
+	</select>
+	
 	<!-- 검색 -->
 	<select id="selectFindList" parameterType="Map" resultType="Employee">
 		SELECT A.*

@@ -27,15 +27,15 @@ public class EmployeeController {
 	
 	@GetMapping("/employee/list")
 	public String list(HttpServletRequest request, Model model) {
-		employeeService.findEmployees(request, model);
+		employeeService.getEmployees(request, model);
 		return "employee/search";  // search.jsp를 열면 list.jsp가 포함되어 있으므로 search.jsp로 간다.
 	}
 	
-	
-	
-	
-	
-	
+	@GetMapping("/employee/search")
+	public String search(HttpServletRequest request, Model model) {
+		employeeService.findEmployees(request, model);
+		return "employee/search";
+	}
 	
 	
 }

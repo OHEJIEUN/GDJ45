@@ -78,25 +78,38 @@ public class PageUtils {
 		
 		StringBuilder sb = new StringBuilder();
 		
+		// 전달되는 path의 종류
+		
+		// 1. 파라미터가 없는 경우
+		//    /employee/list
+		//    /employee/list ?page=1  (? 사용)
+		
+		// 2. 파라미터가 있는 경우(path에 ?가 포함되어 있다)
+		//    /employee/search?column=값&query=값
+		//    /employee/search?column=값&query=값 &page=1  (& 사용)
+		
+		String concat = path.contains("?") ? "&" : "?";
+		path += concat;
+		
 		// 1페이지로 이동, 1페이지는 <a> 태그가 없다.
 		if(page == 1) {
 			sb.append("1");
 		} else {
-			sb.append("<a href=\"" + path + "?page=1\">1</a>");
+			sb.append("<a href=\"" + path + "page=1\">1</a>");
 		}
 		
 		// 이전 블록으로 이동, 1블록은 <a> 태그가 없다.
 		if(page <= pagePerBlock) {
 			sb.append("prevBlock");
 		} else {
-			sb.append("<a href=\"" + path + "?page=" + (beginPage - 1) + "\">prevBlock</a>");
+			sb.append("<a href=\"" + path + "page=" + (beginPage - 1) + "\">prevBlock</a>");
 		}
 		
 		// 이전 페이지 (prev), 1페이지는 <a> 태그가 없다.
 		if(page == 1) {
 			sb.append("prev");
 		} else {
-			sb.append("<a href=\"" + path + "?page=" + (page - 1) + "\">prev</a>");
+			sb.append("<a href=\"" + path + "page=" + (page - 1) + "\">prev</a>");
 		}
 		
 		// 페이지 번호 (1 2 3 4 5), 현재 페이지는 <a> 태그가 없다.
@@ -104,7 +117,7 @@ public class PageUtils {
 			if(p == page) {
 				sb.append(p);
 			} else {
-				sb.append("<a href=\"" + path + "?page=" + p + "\">" + p + "</a>");
+				sb.append("<a href=\"" + path + "page=" + p + "\">" + p + "</a>");
 			}
 		}
 		
@@ -112,21 +125,21 @@ public class PageUtils {
 		if(page == totalPage) {
 			sb.append("next");
 		} else {
-			sb.append("<a href=\"" + path + "?page=" + (page + 1) + "\">next</a>");
+			sb.append("<a href=\"" + path + "page=" + (page + 1) + "\">next</a>");
 		}
 		
 		// 다음 블록으로 이동, 마지막 블록에는 <a> 태그가 없다.
 		if(endPage == totalPage) {
 			sb.append("nextBlock");
 		} else {
-			sb.append("<a href=\"" + path + "?page=" + (endPage + 1) + "\">nextBlock</a>");
+			sb.append("<a href=\"" + path + "page=" + (endPage + 1) + "\">nextBlock</a>");
 		}
 		
 		// 마지막페이지로 이동, 마지막 페이지는 <a> 태그가 없다.
 		if(page == totalPage) {
 			sb.append(totalPage);
 		} else {
-			sb.append("<a href=\"" + path + "?page=" + totalPage + "\">" + totalPage + "</a>");
+			sb.append("<a href=\"" + path + "page=" + totalPage + "\">" + totalPage + "</a>");
 		}
 		
 		return sb.toString();

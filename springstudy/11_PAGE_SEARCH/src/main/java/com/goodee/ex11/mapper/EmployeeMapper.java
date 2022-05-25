@@ -12,6 +12,8 @@ public interface EmployeeMapper {
 
 	public int selectEmployeeCount();
 	public List<Employee> selectEmployees(Map<String, Object> map);
+	
+	public int selectFindCount(Map<String, Object> map);
 	public List<Employee> selectFindList(Map<String, Object> map);
 	
 }

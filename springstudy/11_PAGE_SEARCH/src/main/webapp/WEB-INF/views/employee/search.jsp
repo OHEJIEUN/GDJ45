@@ -48,14 +48,14 @@
 	
 	function fnSearch(){
 		
-		var columnn = $('#column');
+		var column = $('#column');
 		var query = $('#query');
 		
 		$('#btnSearch').on('click', function(){
 			
 			// 사원번호 검색
 			var regEmpId = /^[0-9]{3}$/;  // 숫자 3자리여야 함.
-			if( columnn.val() == 'EMPLOYEE_ID' && regEmpId.test(query.val()) == false) {
+			if( column.val() == 'EMPLOYEE_ID' && regEmpId.test(query.val()) == false) {
 				alert('사원번호가 올바르지 않습니다.');
 				query.focus();
 				return;
@@ -64,7 +64,7 @@
 			// 검색 실행
 			// equalArea 작업은 column, query 파라미터 전송
 			// rangeArea 작업은 column, begin, end 파라미터 전송
-			if( column.val() == 'EMPLOYEE_ID' && column.val() == 'FIRST_NAME' ) {
+			if( column.val() == 'EMPLOYEE_ID' || column.val() == 'FIRST_NAME' ) {
 				location.href="${contextPath}/employee/search?column=" + column.val() + "&query=" + query.val();
 			}
 			
