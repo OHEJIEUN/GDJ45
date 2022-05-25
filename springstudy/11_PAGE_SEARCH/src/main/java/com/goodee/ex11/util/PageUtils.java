@@ -63,7 +63,8 @@ public class PageUtils {
 		}
 		
 		// beginPage, endPage 필드 값 계산
-		beginPage = (pagePerBlock * (page - 1) / pagePerBlock) + 1;
+		// beginPage = (pagePerBlock * (page - 1) / pagePerBlock) + 1;
+		beginPage = ((page - 1) / pagePerBlock) * pagePerBlock + 1;
 		endPage = beginPage + pagePerBlock - 1;
 		if(endPage > totalPage) {
 			endPage = totalPage;
@@ -77,16 +78,56 @@ public class PageUtils {
 		
 		StringBuilder sb = new StringBuilder();
 		
+		// 1페이지로 이동, 1페이지는 <a> 태그가 없다.
+		if(page == 1) {
+			sb.append("prev");
+		} else {
+			sb.append("<a href=\"" + path + "?page=1\">1</a>");
+		}
+		
+		// 이전 블록으로 이동, 1블록은 <a> 태그가 없다.
+		if(page <= pagePerBlock) {
+			sb.append("prevBlock");
+		} else {
+			sb.append("<a href=\"" + path + "?page=" + (beginPage - 1) + "\">prevBlock</a>");
+		}
+		
+		// 이전 페이지 (prev), 1페이지는 <a> 태그가 없다.
+		if(page == 1) {
+			sb.append("prev");
+		} else {
+			sb.append("<a href=\"" + path + "?page=" + (page - 1) + "\">prev</a>");
+		}
 		
 		// 페이지 번호 (1 2 3 4 5), 현재 페이지는 <a> 태그가 없다.
 		for(int p = beginPage; p <= endPage; p++) {
 			if(p == page) {
-				sb.append(p + "&nbsp;");
+				sb.append(p);
 			} else {
 				sb.append("<a href=\"" + path + "?page=" + p + "\">" + p + "</a>");
 			}
 		}
 		
+		// 다음 페이지 (next), 마지막 페이지는 <a> 태그가 없다.
+		if(page == totalPage) {
+			sb.append("next");
+		} else {
+			sb.append("<a href=\"" + path + "?page=" + (page + 1) + "\">next</a>");
+		}
+		
+		// 다음 블록으로 이동, 마지막 블록에는 <a> 태그가 없다.
+		if(endPage == totalPage) {
+			sb.append("nextBlock");
+		} else {
+			sb.append("<a href=\"" + path + "?page=" + (endPage + 1) + "\">nextBlock</a>");
+		}
+		
+		// 마지막페이지로 이동, 마지막 페이지는 <a> 태그가 없다.
+		if(page == totalPage) {
+			sb.append("next");
+		} else {
+			sb.append("<a href=\"" + path + "?page=" + totalPage + "\">" + totalPage + "</a>");
+		}
 		
 		return sb.toString();
 		
