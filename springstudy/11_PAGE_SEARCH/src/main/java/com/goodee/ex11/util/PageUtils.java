@@ -27,14 +27,20 @@ public class PageUtils {
 	private int endRecord;     // beginRecord와 recordPerPage와 totalPage로 계산한다.
 
 	
+	/***************************************************************************
+		- 전체 12개 페이지를
+		- 한 블록에 5개씩 표시한다면
+		- 각 블록에 표시되는 페이지의 번호는 다음과 같다.
+		block = 1,  1  2  3  4  5   ,  page = 1~5,   beginPage = 1,  endPage = 5
+		block = 2,  6  7  8  9  10  ,  page = 6~10,  beginPage = 6,  endPage = 10
+		block = 3,  11 12           ,  page = 11~15, beginPage = 11, endPage = 12 (endPage = 15가 아님을 주의)
+	*****************************************************************************/
+	private int pagePerBlock = 5;  // 여기서 마음대로 정한다.
+	private int beginPage;         // page와 pagePerBlock으로 계산한다.
+	private int endPage;           // beginPage와 pagePerBlock과 totalPage로 계산한다.
 	
-	private int pagePerBlock;
-	private int beginPage;
-	private int endPage;
 	
-	
-	
-	
+	// 매개변수 2개
 	// totalRecord : DB에서 가져온다.
 	// page : 파라미터로 가져온다.
 	public void setPageEntity(int totalRecord, int page) {
@@ -56,9 +62,35 @@ public class PageUtils {
 			endRecord = totalRecord;
 		}
 		
+		// beginPage, endPage 필드 값 계산
+		beginPage = (pagePerBlock * (page - 1) / pagePerBlock) + 1;
+		endPage = beginPage + pagePerBlock - 1;
+		if(endPage > totalPage) {
+			endPage = totalPage;
+		}
 	}
 
-
+	
+	// 매개변수 1개
+	// path : "/employee/list", "/board/list" 등이 각 ServiceImpl에서 전달된다.
+	public String getPaging(String path) {
+		
+		StringBuilder sb = new StringBuilder();
+		
+		
+		// 페이지 번호 (1 2 3 4 5), 현재 페이지는 <a> 태그가 없다.
+		for(int p = beginPage; p <= endPage; p++) {
+			if(p == page) {
+				sb.append(p + "&nbsp;");
+			} else {
+				sb.append("<a href=\"" + path + "?page=" + p + "\">" + p + "</a>");
+			}
+		}
+		
+		
+		return sb.toString();
+		
+	}
 
 
 	// Getter/Setter

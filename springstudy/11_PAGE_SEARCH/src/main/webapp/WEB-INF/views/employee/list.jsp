@@ -26,9 +26,9 @@
 			</tr>
 		</thead>
 		<tbody>
-			<c:forEach items="${employees}" var="emp">
+			<c:forEach items="${employees}" var="emp" varStatus="vs">
 				<tr>
-					<td>순번</td>
+					<td>${beginNo - vs.index}</td>
 					<td>${emp.employeeId}</td>
 					<td>${emp.firstName}</td>
 					<td>${emp.hireDate}</td>
