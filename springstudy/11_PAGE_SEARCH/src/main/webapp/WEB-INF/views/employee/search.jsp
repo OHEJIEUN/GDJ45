@@ -17,6 +17,7 @@
 		fnAreaChoice();
 		fnSearchAll();
 		fnSearch();
+		fnAutoComplete();
 	})
 	
 	// 함수
@@ -89,6 +90,9 @@
 		
 	}
 	
+	function fnAutoComplete(){
+		
+	}
 	
 </script>
 </head>
