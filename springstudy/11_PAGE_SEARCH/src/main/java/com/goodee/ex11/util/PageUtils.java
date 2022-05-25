@@ -80,7 +80,7 @@ public class PageUtils {
 		
 		// 1페이지로 이동, 1페이지는 <a> 태그가 없다.
 		if(page == 1) {
-			sb.append("prev");
+			sb.append("1");
 		} else {
 			sb.append("<a href=\"" + path + "?page=1\">1</a>");
 		}
@@ -124,7 +124,7 @@ public class PageUtils {
 		
 		// 마지막페이지로 이동, 마지막 페이지는 <a> 태그가 없다.
 		if(page == totalPage) {
-			sb.append("next");
+			sb.append(totalPage);
 		} else {
 			sb.append("<a href=\"" + path + "?page=" + totalPage + "\">" + totalPage + "</a>");
 		}
