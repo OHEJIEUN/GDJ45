@@ -7,7 +7,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 	<!-- 목록(beginRecord - endRecord) -->
 	<select id="selectBoardList" parameterType="Map" resultType="BoardDTO">
-		SELECT A.BOARD_NO, A.WRITER, A.TITLE, A.CONTENT, A.HIT, A.IP, A.CREATED, A.MODIFIED
+		SELECT A.RN, A.BOARD_NO, A.WRITER, A.TITLE, A.CONTENT, A.HIT, A.IP, A.CREATED, A.MODIFIED
 		  FROM (SELECT ROW_NUMBER() OVER(ORDER BY CREATED DESC) AS RN, BOARD_NO, WRITER, TITLE, CONTENT, HIT, IP, CREATED, MODIFIED
 		          FROM BOARD) A
 		 WHERE A.RN BETWEEN #{beginRecord} AND #{endRecord}

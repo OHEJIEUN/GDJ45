@@ -37,7 +37,7 @@
 		<tbody>
 			<c:forEach items="${boards}" var="board">
 				<tr>
-					<td>순번</td>
+					<td>${totalRecord + 1 - board.rn}</td>
 					<td>${board.title}</td>
 					<td>${board.writer}</td>
 					<td>${board.hit}</td>
@@ -53,10 +53,6 @@
 			</tr>
 		</tfoot>
 	</table>
-
-
-
-
 
 </body>
 </html>

@@ -26,8 +26,7 @@ public class UserController {
 		user.put("pw", request.getParameter("pw"));
 		user.put("name", "아무개");
 		session.setAttribute("user", user);
-		session.invalidate();
-		return "board/list";
+		return "index";
 	}
 	
 	@PostMapping("/x/y/z")
@@ -41,13 +40,5 @@ public class UserController {
 		session.setAttribute("user", user);
 		return "board/list";
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 	
 }
