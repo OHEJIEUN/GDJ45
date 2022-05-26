@@ -15,8 +15,8 @@
 	$(function(){
 	
 		// 수정화면으로 이동
-		$('#btnChagePage').on('click', function(){
-			location.href='${contextPath}/board/changePage?boardNo=${board.boardNo}';
+		$('#btnChangePage').on('click', function(){
+			location.href='${contextPath}/board/changePage';
 		})
 		
 		// 삭제

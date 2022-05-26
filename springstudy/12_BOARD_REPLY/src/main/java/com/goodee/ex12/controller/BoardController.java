@@ -8,8 +8,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.goodee.ex12.domain.BoardDTO;
 import com.goodee.ex12.service.BoardService;
 
 @Controller
@@ -20,6 +22,7 @@ public class BoardController {
 
 	@GetMapping("/board/list")
 	public String list(HttpServletRequest request, Model model) {
+		request.getSession().removeAttribute("board");
 		boardService.findBoards(request, model);
 		return "board/list";
 	}
@@ -46,8 +49,22 @@ public class BoardController {
 		return "board/detail";
 	}
 	
+	@GetMapping("/board/changePage")
+	public String changePage() {
+		return "board/change";
+	}
 	
+	@PostMapping("/board/change")
+	public String change(BoardDTO board, RedirectAttributes redirectAttributes) {
+		redirectAttributes.addFlashAttribute("updRes", boardService.change(board));
+		return "redirect:/board/result";
+	}
 	
-	
+	@GetMapping("/board/remove")
+	public String remove(@RequestParam(value="boardNo", required=false, defaultValue="0L") Long boardNo
+					, RedirectAttributes redirectAttributes) {
+		redirectAttributes.addFlashAttribute("delRes", boardService.remove(boardNo));
+		return "redirect:/board/result";
+	}
 	
 }

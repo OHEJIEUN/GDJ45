@@ -74,15 +74,19 @@ public class BoardServiceImpl implements BoardService {
 		// 게시글이 존재하면, 댓글을 가져와야 한다.
 		if(board != null) {
 			
+			// 게시글을 session에 두기(상세보기, 수정할 때 꺼내 보려고)
+			request.getSession().setAttribute("board", board);
+			
 			// 댓글 목록 가져오기
 			List<ReplyDTO> replies = null;
 			
 			// detail.jsp로 보낼 정보
-			model.addAttribute("board", board);
+			// model.addAttribute("board", board);
 			model.addAttribute("replies", replies);
 			
 		} else {
 			try {
+				response.setContentType("text/html");
 				PrintWriter out = response.getWriter();
 				out.println("<script>");
 				out.println("alert('일치하는 게시글이 없습니다.')");
@@ -124,14 +128,12 @@ public class BoardServiceImpl implements BoardService {
 	
 	@Override
 	public int change(BoardDTO board) {
-		// TODO Auto-generated method stub
-		return 0;
+		return boardMapper.updateBoard(board);
 	}
 	
 	@Override
 	public int remove(Long boardNo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return boardMapper.deleteBoard(boardNo);
 	}
 	
 }
