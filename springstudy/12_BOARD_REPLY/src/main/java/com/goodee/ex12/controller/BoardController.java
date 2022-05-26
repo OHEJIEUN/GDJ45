@@ -35,6 +35,7 @@ public class BoardController {
 	@PostMapping("/board/save")
 	public String save(HttpServletRequest request, RedirectAttributes redirectAttributes) {
 		redirectAttributes.addFlashAttribute("insRes", boardService.save(request));
+		redirectAttributes.addFlashAttribute("type", "insert");
 		return "redirect:/board/result";  // 매핑 /board/result로 redirect 하겠다.
 	}
 	
@@ -57,6 +58,7 @@ public class BoardController {
 	@PostMapping("/board/change")
 	public String change(BoardDTO board, RedirectAttributes redirectAttributes) {
 		redirectAttributes.addFlashAttribute("updRes", boardService.change(board));
+		redirectAttributes.addFlashAttribute("type", "update");
 		return "redirect:/board/result";
 	}
 	
@@ -64,6 +66,7 @@ public class BoardController {
 	public String remove(@RequestParam(value="boardNo", required=false, defaultValue="0L") Long boardNo
 					, RedirectAttributes redirectAttributes) {
 		redirectAttributes.addFlashAttribute("delRes", boardService.remove(boardNo));
+		redirectAttributes.addFlashAttribute("type", "delete");
 		return "redirect:/board/result";
 	}
 	
