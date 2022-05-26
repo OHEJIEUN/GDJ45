@@ -1,11 +1,13 @@
 package com.goodee.ex12.service;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,6 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 
 import com.goodee.ex12.domain.BoardDTO;
+import com.goodee.ex12.domain.ReplyDTO;
 import com.goodee.ex12.mapper.BoardMapper;
 import com.goodee.ex12.util.PageUtils;
 
@@ -52,8 +55,44 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	@Override
-	public void findBoardByNo(HttpServletRequest request, Model model) {
-		// TODO Auto-generated method stub
+	public void findBoardByNo(HttpServletRequest request, HttpServletResponse response, Model model) {
+		
+		Optional<String> opt = Optional.ofNullable(request.getParameter("boardNo"));
+		Long boardNo = Long.parseLong(opt.orElse("0"));
+		
+		// 요청 주소
+		// 상세보기 요청               : ${contextPath}/board/detail
+		// 수정화면으로 가기 위한 요청 : ${contextPath}/board/changePage
+		String requestURI = request.getRequestURI();
+		if(requestURI.endsWith("detail")) {
+			boardMapper.updateBoardHit(boardNo);
+		}
+		
+		// 게시글 가져 옴(원글)
+		BoardDTO board = boardMapper.selectBoardByNo(boardNo);
+		
+		// 게시글이 존재하면, 댓글을 가져와야 한다.
+		if(board != null) {
+			
+			// 댓글 목록 가져오기
+			List<ReplyDTO> replies = null;
+			
+			// detail.jsp로 보낼 정보
+			model.addAttribute("board", board);
+			model.addAttribute("replies", replies);
+			
+		} else {
+			try {
+				PrintWriter out = response.getWriter();
+				out.println("<script>");
+				out.println("alert('일치하는 게시글이 없습니다.')");
+				out.println("history.back()");
+				out.println("</script>");
+				out.close();
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
 		
 	}
 	

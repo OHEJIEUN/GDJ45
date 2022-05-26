@@ -1,6 +1,7 @@
 package com.goodee.ex12.controller;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -39,7 +40,11 @@ public class BoardController {
 		return "board/result";  // board/result.jsp로 이동하겠다.
 	}
 	
-	
+	@GetMapping("/board/detail")
+	public String detail(HttpServletRequest request, HttpServletResponse response, Model model) {
+		boardService.findBoardByNo(request, response, model);
+		return "board/detail";
+	}
 	
 	
 	
