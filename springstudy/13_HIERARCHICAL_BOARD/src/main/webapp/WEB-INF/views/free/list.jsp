@@ -15,13 +15,14 @@
 	$(function(){
 	
 		$('.reply_link').on('click', function(){
-	    	$(this).parent().parent().next().toggleClass('reply_form');
+			$('.reply_form').addClass('blind');
+	    	$(this).parent().parent().next().removeClass('blind');
 		})
 	
 	})
 </script>
 <style>
-	.reply_form {
+	.blind {
 		display: none;
 	}
 </style>
@@ -80,7 +81,7 @@
 							<td>${fb.created}</td>
 							<td>내가쓴건삭제버튼보여주기</td>
 						</tr>
-						<tr class="reply_form">
+						<tr class="reply_form blind">
 							<td colspan="5">
 								<form action="${contextPath}/freeBoard/saveReply" method="post">
 									<input type="text" name="writer" placeholder="작성자" size="4">
