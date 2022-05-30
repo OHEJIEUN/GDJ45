@@ -40,6 +40,9 @@
 		// 댓글 삭제
 		fnReplyRemove();
 		
+		// 댓글창 초기화
+		fnInit();
+		
 	})  // 페이지 로드 이벤트
 	
 	// 함수
@@ -82,6 +85,7 @@
 					if(obj.res > 0) {
 						alert('댓글이 등록되었습니다.');
 						fnReplies();
+						fnInit();
 					}
 				}
 			})
@@ -102,6 +106,7 @@
 						if(obj.res > 0) {
 							alert('댓글이 삭제되었습니다.');
 							fnReplies();
+							fnInit();
 						}
 					}
 				})
@@ -109,8 +114,9 @@
 		})
 	}
 	
-	
-	
+	function fnInit(){
+		$('#content').val('');
+	}
 	
 </script>
 <style>
@@ -147,7 +153,7 @@
 	<form id="f">
 		<input type="hidden" name="writer" value="${user.id}">
 		<input type="hidden" name="boardNo" value="${board.boardNo}">
-		<textarea rows="3" cols="30" name="content"></textarea>
+		<textarea rows="3" cols="30" name="content" id="content"></textarea>
 		<c:if test="${user != null}">
 			<input type="button" value="작성완료" id="btnReplySave">
 		</c:if>	
