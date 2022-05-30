@@ -1,5 +1,23 @@
 package com.goodee.ex13.mapper;
 
-public interface FreeBoardMapper {
+import java.util.List;
+import java.util.Map;
 
+import org.apache.ibatis.annotations.Mapper;
+
+import com.goodee.ex13.domain.FreeBoardDTO;
+
+@Mapper
+public interface FreeBoardMapper {
+	
+	public int selectFreeBoardCount();
+	public List<FreeBoardDTO> selectFreeBoardList(Map<String, Object> map);
+	
+	public int insertFreeBoard(FreeBoardDTO freeBoard);
+	
+	public int updatePreviousReply(FreeBoardDTO freeBoard);
+	public int insertReply(FreeBoardDTO freeBoard);
+	
+	public int deleteFreeBoard(Long freeBoardNo);
+	
 }

@@ -12,6 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class FreeBoardDTO {
+	private Long rowNum;
 	private Long freeBoardNo;
 	private String writer;
 	private String content;
