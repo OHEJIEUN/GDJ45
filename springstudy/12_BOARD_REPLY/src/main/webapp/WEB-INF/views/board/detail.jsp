@@ -32,6 +32,15 @@
 		})
 		
 		// 댓글 갯수 + 리스트
+		fnReplies();
+		
+		// 댓글 달기
+		fnReplySave();
+		
+	})  // 페이지 로드 이벤트
+	
+	// 함수
+	function fnReplies(){
 		$.ajax({
 			/* 요청 */
 			url: '${contextPath}/reply/list',
@@ -40,6 +49,7 @@
 			/* 응답 */
 			dataType: 'json',
 			success: function(obj){  // obj = {"replyCount": 갯수, "replies": [{댓글정보}, {댓글정보}, ...]}
+				$('#replies').empty();
 				$('#replyCount').text(obj.replyCount);
 				$.each(obj.replies, function(i, reply){
 					$('<tr>')
@@ -50,9 +60,27 @@
 					.appendTo('#replies');
 				})
 			}
+		})		
+	}
+	
+	function fnReplySave(){
+		$('#btnReplySave').on('click', function(){
+			$.ajax({
+				/* 요청 */
+				url: '${contextPath}/reply/save',
+				type: 'post',
+				data: $('#f').serialize(),
+				/* 응답 */
+				dataType: 'json',
+				success: function(obj) {
+					if(obj.res > 0) {
+						alert('댓글이 등록되었습니다.');
+						fnReplies();
+					}
+				}
+			})
 		})
-		
-	})
+	}	
 	
 </script>
 </head>
@@ -81,7 +109,15 @@
 		댓글 <span id="replyCount"></span>개
 	</div>
 	
-	<textarea rows="3" cols="30" name="content" id="content"></textarea><br><br>
+	<form id="f">
+		<input type="hidden" name="writer" value="${user.id}">
+		<input type="hidden" name="boardNo" value="${board.boardNo}">
+		<textarea rows="3" cols="30" name="content"></textarea>
+		<c:if test="${user != null}">
+			<input type="button" value="작성완료" id="btnReplySave">
+		</c:if>	
+	</form>
+	<br><br>
 	
 	댓글 리스트<br>
 	<table>
