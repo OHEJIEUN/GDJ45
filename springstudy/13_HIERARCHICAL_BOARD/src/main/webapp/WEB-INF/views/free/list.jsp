@@ -10,6 +10,21 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<script src="../resources/js/jquery-3.6.0.js"></script>
+<script>
+	$(function(){
+	
+		$('.reply_link').on('click', function(){
+	    	$(this).parent().parent().next().toggleClass('reply_form');
+		})
+	
+	})
+</script>
+<style>
+	.reply_form {
+		display: none;
+	}
+</style>
 </head>
 <body>
 
@@ -64,6 +79,19 @@
 							</td>
 							<td>${fb.created}</td>
 							<td>내가쓴건삭제버튼보여주기</td>
+						</tr>
+						<tr class="reply_form">
+							<td colspan="5">
+								<form action="${contextPath}/freeBoard/saveReply" method="post">
+									<input type="text" name="writer" placeholder="작성자" size="4">
+									<input type="text" name="content" placeholder="내용" size="40">
+									<!-- 원글의 Depth, GroupNo, GroupOrd -->
+									<input type="hidden" name="depth" value="${fb.depth}">
+									<input type="hidden" name="groupNo" value="${fb.groupNo}">
+									<input type="hidden" name="groupOrd" value="${fb.groupOrd}">
+									<button>답글달기</button>
+								</form>
+							</td>
 						</tr>
 					</c:if>
 				</c:forEach>
