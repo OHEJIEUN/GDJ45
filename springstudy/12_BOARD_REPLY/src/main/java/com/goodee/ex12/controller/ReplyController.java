@@ -31,4 +31,10 @@ public class ReplyController {
 		return replyService.saveReply(request);
 	}
 	
+	@ResponseBody
+	@GetMapping(value="/reply/remove", produces="application/json; charset=UTF-8")
+	public Map<String, Object> remove(@RequestParam Long replyNo) {
+		return replyService.removeReply(replyNo);
+	}
+	
 }

@@ -38,12 +38,11 @@ public class ReplyServiceImpl implements ReplyService {
 		return map;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
+	@Override
+	public Map<String, Object> removeReply(Long replyNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("res", replyMapper.deleteReply(replyNo));
+		return map;
+	}
 	
 }

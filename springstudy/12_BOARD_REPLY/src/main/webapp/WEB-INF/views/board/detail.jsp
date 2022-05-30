@@ -37,6 +37,9 @@
 		// 댓글 달기
 		fnReplySave();
 		
+		// 댓글 삭제
+		fnReplyRemove();
+		
 	})  // 페이지 로드 이벤트
 	
 	// 함수
@@ -52,12 +55,15 @@
 				$('#replies').empty();
 				$('#replyCount').text(obj.replyCount);
 				$.each(obj.replies, function(i, reply){
-					$('<tr>')
+					var tr = $('<tr>')
 					.append($('<td>').text(reply.writer))
 					.append($('<td>').text(reply.content))
 					.append($('<td>').text(reply.ip))
-					.append($('<td>').text(reply.created))
-					.appendTo('#replies');
+					.append($('<td>').text(reply.created));
+					if(reply.writer == '${user.id}'){
+						$(tr).append($('<td>').html('<span class="removeLink" data-reply_no="' + reply.replyNo + '">x</span>'));
+					}
+					$(tr).appendTo('#replies');
 				})
 			}
 		})		
@@ -80,9 +86,38 @@
 				}
 			})
 		})
-	}	
+	}
+	
+	function fnReplyRemove(){
+		$('body').on('click', '.removeLink', function(){
+			if(confirm('삭제할까요?')){
+				$.ajax({
+					/* 요청 */
+					url: '${contextPath}/reply/remove',
+					type: 'get',
+					data: 'replyNo=' + $(this).data('reply_no'),
+					/* 응답 */
+					dataType: 'json',
+					success: function(obj){
+						if(obj.res > 0) {
+							alert('댓글이 삭제되었습니다.');
+							fnReplies();
+						}
+					}
+				})
+			}
+		})
+	}
+	
+	
+	
 	
 </script>
+<style>
+	.removeLink {
+		cursor: pointer;
+	}
+</style>
 </head>
 <body>
 
