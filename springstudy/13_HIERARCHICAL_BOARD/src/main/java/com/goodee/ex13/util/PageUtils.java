@@ -13,9 +13,9 @@ public class PageUtils {
 	   - 한 페이지에 3개씩 표시한다면
 	   - 전체 페이지는 4페이지가 된다.
 	*****************************************************************************/
-	private int totalRecord;        // DB에서 구해온다.
-	private int recordPerPage = 5;  // 여기서 마음대로 정한다.
-	private int totalPage;          // totalRecord와 recordPerPage로 계산한다.
+	private int totalRecord;         // DB에서 구해온다.
+	private int recordPerPage = 10;  // 여기서 마음대로 정한다.
+	private int totalPage;           // totalRecord와 recordPerPage로 계산한다.
 	
 	
 	/***************************************************************************
