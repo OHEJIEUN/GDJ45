@@ -31,6 +31,27 @@
 			location.href='${contextPath}/board/list';
 		})
 		
+		// 댓글 갯수 + 리스트
+		$.ajax({
+			/* 요청 */
+			url: '${contextPath}/reply/list',
+			type: 'get',
+			data: 'boardNo=${board.boardNo}',
+			/* 응답 */
+			dataType: 'json',
+			success: function(obj){  // obj = {"replyCount": 갯수, "replies": [{댓글정보}, {댓글정보}, ...]}
+				$('#replyCount').text(obj.replyCount);
+				$.each(obj.replies, function(i, reply){
+					$('<tr>')
+					.append($('<td>').text(reply.writer))
+					.append($('<td>').text(reply.content))
+					.append($('<td>').text(reply.ip))
+					.append($('<td>').text(reply.created))
+					.appendTo('#replies');
+				})
+			}
+		})
+		
 	})
 	
 </script>
@@ -56,13 +77,15 @@
 	
 	<hr>
 	
-	댓글 몇 개
+	<div>
+		댓글 <span id="replyCount"></span>개
+	</div>
 	
 	<textarea rows="3" cols="30" name="content" id="content"></textarea><br><br>
 	
 	댓글 리스트<br>
 	<table>
-		<tbody>
+		<tbody id="replies">
 			
 		</tbody>
 	</table>
