@@ -88,18 +88,14 @@
 							<td>${fb.created}</td>
 							<td>
 								<c:if test="${member.id eq fb.writer}">
-									<a href="${contextPath}/freeBoard/remove?freeBoardNo=${fb.freeBoardNo}" onclick="fnRemove(this)">
+									<span onclick="fnRemove()">
 										<i class="fa-solid fa-trash-can"></i>
-									</a>
+									</span>
 									<script>
-										function fnRemove(a) {
-											$(a).on('click', function(event){
-												if(confirm('삭제할까요?') == false){
-													event.preventDefault();  // 전달된 <a> 태그의 이벤트 취소
-													return false;
-												}
-												return true;  // 전달된 <a> 태그의 이벤트 진행
-											})
+										function fnRemove() {
+											if(confirm('삭제할까요?')){
+												location.href='${contextPath}/freeBoard/remove?freeBoardNo=${fb.freeBoardNo}';
+											}
 										}
 									</script>
 								</c:if>
