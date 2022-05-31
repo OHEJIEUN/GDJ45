@@ -116,8 +116,7 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 
 	@Override
 	public int removeFreeBoard(Long freeBoardNo) {
-		// TODO Auto-generated method stub
-		return 0;
+		return freeBoardMapper.deleteFreeBoard(freeBoardNo);
 	}
 
 }
