@@ -29,7 +29,12 @@
 </head>
 <body>
 
-	<a href="">새글작성</a>
+	<h3>게시글 작성 화면</h3>
+	<form action="${contextPath}/freeBoard/saveFreeBoard" method="post">
+		<input type="text" name="writer" placeholder="작성자">
+		<input type="text" name="content" placeholder="내용">
+		<button>작성완료</button>
+	</form>
 	
 	<hr>
 	

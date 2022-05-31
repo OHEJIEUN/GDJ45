@@ -51,8 +51,23 @@ public class FreeBoardServiceImpl implements FreeBoardService {
 
 	@Override
 	public int saveFreeBoard(HttpServletRequest request) {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		// 게시글 작성자와 내용
+		String writer = request.getParameter("writer");
+		String content = request.getParameter("content");
+		
+		// 작성 IP
+		Optional<String> opt = Optional.ofNullable(request.getHeader("X-Forwarded-For"));
+		String ip = opt.orElse(request.getRemoteAddr());
+		
+		// 게시글 DTO
+		FreeBoardDTO freeBoard = new FreeBoardDTO();
+		freeBoard.setWriter(writer);
+		freeBoard.setContent(content);
+		freeBoard.setIp(ip);
+		
+		return freeBoardMapper.insertFreeBoard(freeBoard);
+		
 	}
 
 	@Transactional  // saveReply 메소드 내부에서 update + insert 호출하고 있으므로
