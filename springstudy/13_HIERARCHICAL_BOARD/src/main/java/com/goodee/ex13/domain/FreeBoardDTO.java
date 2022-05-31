@@ -21,6 +21,6 @@ public class FreeBoardDTO {
 	private Date modified;
 	private Integer state;
 	private Integer depth;
-	private Integer groupNo;
+	private Long groupNo;
 	private Integer groupOrd;
 }

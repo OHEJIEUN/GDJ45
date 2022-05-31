@@ -34,8 +34,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="updatePreviousReply" parameterType="FreeBoardDTO">
 		UPDATE FREE_BOARD
 		   SET GROUP_ORD = GROUP_ORD + 1
-		 WHERE GROUP_NO = #{groupNo}  <!-- 원글과 같은 그룹이다 -->
-		   AND GROUP_ORD > 0          <!-- 기존의 댓글이다 -->
+		 WHERE GROUP_NO = #{groupNo}    <!-- 원글과 같은 그룹이다 -->
+		   AND GROUP_ORD > #{groupOrd}  <!-- 다단 댓글용. 1단 댓글은 GROUP_ORD > 0 -->
 	</update>
 	
 	<!-- 댓글 삽입 -->

@@ -74,9 +74,9 @@
 									${fb.content}
 								</c:if>
 								<!-- 답글달기(if 있으면 1단 댓글만 허용, if 없으면 다단 댓글 허용) -->
-								<c:if test="${fb.depth eq 0}">
+								<%-- <c:if test="${fb.depth eq 0}"> --%>
 									<a class="reply_link">답글</a>								
-								</c:if>
+								<%-- </c:if> --%>
 							</td>
 							<td>${fb.created}</td>
 							<td>내가쓴건삭제버튼보여주기</td>
