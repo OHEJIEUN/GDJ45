@@ -17,8 +17,6 @@
     첨부   : 첨부번호, 게시글번호(FK), 첨부파일명, 경로
 */
 
-14_GALLERY 프로젝트   com.goodee.ex14     webapp/resources/sql 디렉터리 gallery.sql 저장
-
 DROP TABLE FILE_ATTACH;
 CREATE TABLE FILE_ATTACH
 (
@@ -54,18 +52,3 @@ ALTER TABLE FILE_ATTACH
     ADD CONSTRAINT FILE_ATTACH_GALLERY_FK
         FOREIGN KEY(GALLERY_NO) REFERENCES GALLERY(GALLERY_NO)
             ON DELETE CASCADE;  -- 게시글 삭제하면 첨부 내역이 함께 삭제
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
