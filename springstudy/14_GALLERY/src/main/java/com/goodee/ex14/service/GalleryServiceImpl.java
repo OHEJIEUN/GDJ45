@@ -63,6 +63,11 @@ public class GalleryServiceImpl implements GalleryService {
 	}
 
 	@Override
+	public FileAttachDTO findFileAttachByNo(Long fileAttachNo) {
+		return galleryMapper.selectFileAttachByNo(fileAttachNo);
+	}
+	
+	@Override
 	public GalleryDTO findGalleryByNo(Long galleryNo) {
 		// TODO Auto-generated method stub
 		return null;
