@@ -12,9 +12,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -61,10 +65,36 @@ public class GalleryServiceImpl implements GalleryService {
 		model.addAttribute("paging", pageUtils.getPaging(request.getContextPath() + "/gallery/list"));
 		
 	}
-
+	
 	@Override
-	public FileAttachDTO findFileAttachByNo(Long fileAttachNo) {
-		return galleryMapper.selectFileAttachByNo(fileAttachNo);
+	public ResponseEntity<byte[]> display(Long fileAttachNo, String type) {
+		
+		// 보내줘야 할 이미지 정보(path, saved) 읽기
+		FileAttachDTO fileAttach = galleryMapper.selectFileAttachByNo(fileAttachNo);
+		
+		// 보내줘야 할 이미지
+		File file = null;
+		switch(type) {
+		case "thumb":
+			file = new File(fileAttach.getPath(), "s_" + fileAttach.getSaved());
+			break;
+		case "image":
+			file = new File(fileAttach.getPath(), fileAttach.getSaved());
+			break;
+		}
+		
+		// ResponseEntity
+		ResponseEntity<byte[]> entity = null;
+		try {
+			HttpHeaders headers = new HttpHeaders();
+			headers.add("Content-Type", Files.probeContentType(file.toPath()));
+			entity = new ResponseEntity<>(FileCopyUtils.copyToByteArray(file), headers, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return entity;
+		
 	}
 	
 	@Override
