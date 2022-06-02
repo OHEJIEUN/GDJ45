@@ -10,9 +10,14 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class FileAttachDTO {
+	
 	private Long fileAttachNo;
 	private String path;
 	private String origin;
 	private String saved;
-	private Long galleryNo;
+	private Integer downloadCnt;
+	
+	// private Long galleryNo;
+	private GalleryDTO gallery;
+	
 }

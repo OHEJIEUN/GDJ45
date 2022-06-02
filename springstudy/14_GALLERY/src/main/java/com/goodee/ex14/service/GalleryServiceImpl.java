@@ -3,14 +3,18 @@ package com.goodee.ex14.service;
 import java.io.File;
 import java.io.PrintWriter;
 import java.nio.file.Files;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -18,6 +22,7 @@ import com.goodee.ex14.domain.FileAttachDTO;
 import com.goodee.ex14.domain.GalleryDTO;
 import com.goodee.ex14.mapper.GalleryMapper;
 import com.goodee.ex14.util.MyFileUtils;
+import com.goodee.ex14.util.PageUtils;
 
 import net.coobird.thumbnailator.Thumbnails;
 
@@ -28,9 +33,33 @@ public class GalleryServiceImpl implements GalleryService {
 	private GalleryMapper galleryMapper;
 	
 	@Override
-	public List<GalleryDTO> findGalleries() {
-		// TODO Auto-generated method stub
-		return null;
+	public void findGalleries(HttpServletRequest request, Model model) {
+		
+		// page 파라미터
+		Optional<String> opt = Optional.ofNullable(request.getParameter("page"));
+		int page = Integer.parseInt(opt.orElse("1"));
+		
+		// 전체 갤러리 갯수
+		int totalRecord = galleryMapper.selectGalleryCount();
+		
+		// PageEntity 계산
+		PageUtils pageUtils = new PageUtils();
+		pageUtils.setPageEntity(totalRecord, page);
+		
+		// beginRecord + endRecord => Map
+		Map<String, Object> map = new HashMap<>();
+		map.put("beginRecord", pageUtils.getBeginRecord());
+		map.put("endRecord", pageUtils.getEndRecord());
+		
+		// beginRecord ~ endRecord 목록
+		List<FileAttachDTO> galleries = galleryMapper.selectGalleryList(map);
+		
+		// list.jsp로 보낼 데이터
+		model.addAttribute("totalRecord", totalRecord);
+		model.addAttribute("galleries", galleries);
+		model.addAttribute("beginNo", totalRecord - (page - 1) * pageUtils.getRecordPerPage());
+		model.addAttribute("paging", pageUtils.getPaging(request.getContextPath() + "/gallery/list"));
+		
 	}
 
 	@Override
@@ -118,7 +147,7 @@ public class GalleryServiceImpl implements GalleryService {
 								.path(path)
 								.origin(origin)
 								.saved(saved)
-								.galleryNo(gallery.getGalleryNo())
+								.gallery(new GalleryDTO(gallery.getGalleryNo(), null, null, null, null, null, null, null))
 								.build();
 						
 						// FileAttach INSERT 수행
