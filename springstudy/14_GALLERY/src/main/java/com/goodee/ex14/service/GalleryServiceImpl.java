@@ -98,9 +98,23 @@ public class GalleryServiceImpl implements GalleryService {
 	}
 	
 	@Override
-	public GalleryDTO findGalleryByNo(Long galleryNo) {
-		// TODO Auto-generated method stub
-		return null;
+	public void findGalleryByNo(HttpServletRequest request, Model model) {
+		
+		// galleryNo
+		Long galleryNo = Long.parseLong(request.getParameter("galleryNo"));
+		
+		// 조회수 증가
+		String requestURI = request.getRequestURI();
+		if(requestURI.endsWith("detail")) {
+			galleryMapper.updateGalleryHit(galleryNo);
+		}
+		
+		// 갤러리 정보 가져와서 model에 저장하기
+		model.addAttribute("gallery", galleryMapper.selectGalleryByNo(galleryNo));
+		
+		// 첨부 파일 정보 가져와서 model에 저장하기
+		model.addAttribute("fileAttaches", galleryMapper.selectFileAttachListInTheGallery(galleryNo));
+		
 	}
 
 	@Transactional

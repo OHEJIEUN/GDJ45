@@ -18,4 +18,8 @@ public interface GalleryMapper {
 	public List<FileAttachDTO> selectGalleryList(Map<String, Object> map);
 	public FileAttachDTO selectFileAttachByNo(Long fileAttachNo);
 	
+	public GalleryDTO selectGalleryByNo(Long galleryNo);
+	public List<FileAttachDTO> selectFileAttachListInTheGallery(Long galleryNo);
+	public int updateGalleryHit(Long galleryNo);
+	
 }

@@ -56,7 +56,11 @@ public class GalleryController {
 		return galleryService.display(fileAttachNo, type);		
 	}
 	
-	
+	@GetMapping("/gallery/detail")
+	public String detail(HttpServletRequest request, Model model) {
+		galleryService.findGalleryByNo(request, model);
+		return "gallery/detail";
+	}
 	
 	
 	
