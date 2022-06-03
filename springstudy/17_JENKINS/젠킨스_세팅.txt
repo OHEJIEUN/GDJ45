@@ -73,8 +73,15 @@ Tomcat 설치 및 세팅
     <role rolename="manager-status" />
     <user username="tomcat-manager" password="1111" roles="manager-gui,manager-script,manager-jmx,manager-status" />
  6. 톰캣 아래 lib 디렉터리 아래 ojdbc6.jar를 가져다 둔다.
-
-
+-------------------------
+MAVEN 설치 및 세팅
+ 1. C:\Program Files\apache-maven-3.8.1 경로에 압축 풀기
+    이 경로에 들어가면 bin, boot, conf, lib 디렉터리가 바로 보여야 함.
+ 2. 환경변수
+    1) 이름 : MAVEN_HOME
+    2) 값 :   C:\Program Files\apache-maven-3.8.1
+ 3. 패스추가
+    %MAVEN_HOME%\bin
 
 
 
