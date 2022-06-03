@@ -82,7 +82,86 @@ MAVEN 설치 및 세팅
     2) 값 :   C:\Program Files\apache-maven-3.8.1
  3. 패스추가
     %MAVEN_HOME%\bin
+-------------------------
+프로젝트 세팅
+pom.xml
+<modelVersion>4.0.0</modelVersion>
+<groupId>com.goodee</groupId>
+<artifactId>ex17</artifactId>
+<name>myapp</name>         * 자동으로 빌드되는 war 파일의 이름
+<packaging>war</packaging>
+<version>1.0.0</version>   *  war 파일 이름 뒤에 붙는 버전
+	
+<properties>
+	<java-version>11</java-version>
+	<org.springframework-version>5.3.3</org.springframework-version>
+	<org.aspectj-version>1.9.6</org.aspectj-version>
+	<org.slf4j-version>1.7.30</org.slf4j-version>
+	<maven-version>3.8.1</maven-version>    * maven 버전 추가
+	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>          * 빌드할 때 필요한 인코딩
+	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>  * 빌드할 때 필요한 인코딩
+</properties>
 
+<plugin>
+	<groupId>org.apache.maven.plugins</groupId>
+	<artifactId>maven-compiler-plugin</artifactId>
+	<version>${maven-version}</version>   * maven 버전으로 수정
+	<configuration>
+		<source>${java-version}</source>
+		<target>${java-version}</target>
+		<compilerArgument>-Xlint:all</compilerArgument>
+		<showWarnings>true</showWarnings>
+		<showDeprecation>true</showDeprecation>
+	</configuration>
+</plugin>
+-------------------------
+github에 프로젝트 올리기
+* github 세팅
+ 1. new Repository => 17_JENKINS
+ 2. personal access token 준비
+    1) [계정 아이콘] - [Settings] - [Developer settings] - [Personal access token]
+    2) generate new token
+        (1) Expiration => No expiration(유효기간 제한 없음)
+        (2) Select scopes => repo(필수), admin:repo_hook(github에 push를 하면 자동 빌드를 원하는 경우에 선택)
+* git 로컬 세팅
+ 1. C:\17_JENKINS 경로에 프로젝트 배치
+ 2. 프로젝트 우클릭 - [Git Bash Here]
+ GDJ45@DESKTOP-5O7J493 MINGW64 /c/17_JENKINS
+ $ git init  ## 로컬저장소로 만들기
+ Initialized empty Git repository in C:/17_JENKINS/.git/
+
+ GDJ45@DESKTOP-5O7J493 MINGW64 /c/17_JENKINS (main)
+ $ git config user.name  ## 사용자 확인
+ goodeeit
+
+ GDJ45@DESKTOP-5O7J493 MINGW64 /c/17_JENKINS (main)
+ $ git config user.email  ## 사용자 이메일 확인
+ gt_min@naver.com
+
+ GDJ45@DESKTOP-5O7J493 MINGW64 /c/17_JENKINS (main)
+ $ git config --global user.name '이름'  ## 사용자 등록이 안 되어 있으면 할 것.
+
+ GDJ45@DESKTOP-5O7J493 MINGW64 /c/17_JENKINS (main)
+ $ git config --global user.email '이메일'  ## 이메일 등록이 안 되어 있으면 할 것.
+
+ GDJ45@DESKTOP-5O7J493 MINGW64 /c/17_JENKINS (main)
+ $ git add .  ## 추적 시작(스태이징, 임시 저장의 개념)
+
+ GDJ45@DESKTOP-5O7J493 MINGW64 /c/17_JENKINS (main)
+ $ git commit -m '커밋메시지'  ## 커밋(저장 완료)
+
+ GDJ45@DESKTOP-5O7J493 MINGW64 /c/17_JENKINS (main)
+ $ git remote add origin https://github.com/goodeeit/17_JENKINS.git  ## 원격저장소 등록
+
+ GDJ45@DESKTOP-5O7J493 MINGW64 /c/17_JENKINS (main)
+ $ git pull origin main --allow-unrelated-histories  ## 내려 받기
+
+ vim editor에 진입하면 :wq 누르고 빠져 나오기
+
+ GDJ45@DESKTOP-5O7J493 MINGW64 /c/17_JENKINS (main)
+ $ git push origin main  ## 올리기
+-------------------------
+jenkins 설치 및 세팅
 
 
 
