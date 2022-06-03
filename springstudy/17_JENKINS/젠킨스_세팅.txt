@@ -161,10 +161,26 @@ github에 프로젝트 올리기
  GDJ45@DESKTOP-5O7J493 MINGW64 /c/17_JENKINS (main)
  $ git push origin main  ## 올리기
 -------------------------
-jenkins 설치 및 세팅
-
-
-
+jenkins 설치
+ 1. 톰캣 아래 webapps 디렉터리에 jenkins.war를 가져다 둔다.
+    C:\Program Files\apache-tomcat-9.0.62\webapps\jenkins.war
+ 2. 톰캣 아래 bin 디렉터리에서 톰캣을 구동한다.
+    (1) Windows : startup.bat 파일 (더블 클릭)
+    (2) Linux   : startup.sh  파일
+ 3. http://localhost:9090/jenkins 접속하면 젠킨스가 실행된다.
+ 4. 초기 젠킨스 관리자 계정
+    (1) 이름 : admin
+    (2) 비밀번호 : C:\Users\GDJ45\.jenkins\secrets\initialAdminPassword 열어서 확인
+ 5. 플러그 인 설치
+    Install suggested plugins 선택
+ 6. 젠킨스 관리자 계정 등록
+    아이디 / 비밀번호 / 이름 / 이메일 등 입력하고 등록하고 앞으로 사용하면 됨.
+    건너뛰고, 초기 젠킨스 관리자 계정을 써도 됨.
+ 7. Jenkins URL
+    http://localhost:9090/jenkins 입력
+-------------------------
+jenkins 세팅
+ 
 
 
 
