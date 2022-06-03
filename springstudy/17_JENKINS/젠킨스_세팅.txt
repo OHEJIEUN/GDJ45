@@ -213,6 +213,7 @@ jenkins 세팅
 
  3. System Configuration - 플러그인 관리
     [설치 가능] 탭으로 이동해서 "Deploy to container" 검색 후 설치 (향후 시스템 재시작이 필요함)
+    재시작 없이 Install without restart 선택 가능
 
  4. Security - Manage Credentials
 
@@ -220,13 +221,13 @@ jenkins 세팅
 
         * Tomcat 접속용 사용자 등록하기(톰캣의 conf 폴더 아래 tomcat-users.xml에 적어둔 사용자임.)
         (1) Username
-            => tomcat-manager
+            => tomcat-manager (ID에 적는 것이 아님)
         (2) Password
             => 1111
 
         * Github 접속용 사용자 등록하기
         (1) Username
-            => 자신의 github 아이디
+            => 자신의 github 아이디 (ID에 적는 것이 아님)
         (2) Password
             => 자신의 github Personal access token
 -------------------------
