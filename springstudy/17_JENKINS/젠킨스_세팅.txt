@@ -87,45 +87,55 @@ MAVEN 설치 및 세팅
 pom.xml
 <modelVersion>4.0.0</modelVersion>
 <groupId>com.goodee</groupId>
-<artifactId>ex17</artifactId>
-<name>myapp</name>         * 자동으로 빌드되는 war 파일의 이름
+<artifactId>ex17</artifactId>   ** 자동으로 빌드되는 war 파일의 이름
+<name>17_JENKINS</name>
 <packaging>war</packaging>
-<version>1.0.0</version>   *  war 파일 이름 뒤에 붙는 버전
+<version>1.0.0</version>   ** war 파일 이름 뒤에 붙는 버전
 	
 <properties>
 	<java-version>11</java-version>
 	<org.springframework-version>5.3.3</org.springframework-version>
 	<org.aspectj-version>1.9.6</org.aspectj-version>
 	<org.slf4j-version>1.7.30</org.slf4j-version>
-	<maven-version>3.8.1</maven-version>    * maven 버전 추가
-	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>          * 빌드할 때 필요한 인코딩
-	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>  * 빌드할 때 필요한 인코딩
+	<maven-version>3.8.1</maven-version>    ** maven 버전 추가
+	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>          ** 빌드할 때 필요한 인코딩
+	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>  ** 빌드할 때 필요한 인코딩
 </properties>
 
-<plugin>
-	<groupId>org.apache.maven.plugins</groupId>
-	<artifactId>maven-compiler-plugin</artifactId>
-	<version>${maven-version}</version>   * maven 버전으로 수정
-	<configuration>
-		<source>${java-version}</source>
-		<target>${java-version}</target>
-		<compilerArgument>-Xlint:all</compilerArgument>
-		<showWarnings>true</showWarnings>
-		<showDeprecation>true</showDeprecation>
-	</configuration>
-</plugin>
+<build>
+	<finalName>${artifactId}</finalName>  ** war 파일명에서 버전 빼려고 추가
+	<plugins>
+		<plugin>
+			<groupId>org.apache.maven.plugins</groupId>
+			<artifactId>maven-compiler-plugin</artifactId>
+			<version>${maven-version}</version>   ** maven 버전으로 수정
+			<configuration>
+				<source>${java-version}</source>
+				<target>${java-version}</target>
+				<compilerArgument>-Xlint:all</compilerArgument>
+				<showWarnings>true</showWarnings>
+				<showDeprecation>true</showDeprecation>
+			</configuration>
+		</plugin>
+	</plugins>
+</build>
 -------------------------
 github에 프로젝트 올리기
+
 * github 세팅
+
  1. new Repository => 17_JENKINS
  2. personal access token 준비
     1) [계정 아이콘] - [Settings] - [Developer settings] - [Personal access token]
     2) generate new token
-        (1) Expiration => No expiration(유효기간 제한 없음)
-        (2) Select scopes => repo(필수), admin:repo_hook(github에 push를 하면 자동 빌드를 원하는 경우에 선택)
+        (1) Expiration    => No expiration(유효기간 제한 없음)
+        (2) Select scopes => repo(필수)
+                             admin:repo_hook(github에 push를 하면 자동 빌드를 원하는 경우에 선택)
+
 * git 로컬 세팅
  1. C:\17_JENKINS 경로에 프로젝트 배치
- 2. 프로젝트 우클릭 - [Git Bash Here]
+ 2. C:\17_JENKINS 폴더에서 우클릭 - [Git Bash Here]
+
  GDJ45@DESKTOP-5O7J493 MINGW64 /c/17_JENKINS
  $ git init  ## 로컬저장소로 만들기
  Initialized empty Git repository in C:/17_JENKINS/.git/
@@ -181,7 +191,7 @@ jenkins 설치
 -------------------------
 jenkins 세팅
 
- - [좌측] Jenkins 관리
+ - [좌측] - [Jenkins 관리]
 
  1. System Configuration - 시스템 설정
     Jenkins URL을 
@@ -214,6 +224,9 @@ jenkins 세팅
  3. System Configuration - 플러그인 관리
     [설치 가능] 탭으로 이동해서 "Deploy to container" 검색 후 설치 (향후 시스템 재시작이 필요함)
     재시작 없이 Install without restart 선택 가능
+    * Deploy to container
+      Jenkins가 war를 만드는데 이걸 Tomcat에 두지는 않는다.
+      Deploy to container 플러그인을 설치하면 Jenkins가 war를 만들어서 Tomcat에 두는 것까지 한다.
 
  4. Security - Manage Credentials
 
@@ -231,14 +244,62 @@ jenkins 세팅
         (2) Password
             => 자신의 github Personal access token
 -------------------------
+ jenkins 프로젝트 생성
 
+  - [좌측] - [새로운 Item]
 
+  - Enter an item name => 17_JENKINS (github에 올린 프로젝트명), 종류 Freestyle project
 
+    1) 소스 코드 관리
+        => Git
+        => Repository URL => https://github.com/goodeeit/17_JENKINS.git
+        => Credentials    => github 접속용 Credentials 선택
+        => Branch Specifier (blank for 'any')
+           main   브랜치이면  */main
+           master 브랜치이면  */master
+    2) Build
+        => Invoke top-level Maven targets
+        => Maven Version  => Maven3.8.1
+        => Goals          => clean package 입력
+    3) 빌드 후 조치
+       * Deploy to container 플러그인이 있는 경우에만 할 수 있음. 없으면 넘어가도 됨.
+        => Deploy war/ear to a container
+        => WAR/EAR files  => **/*.war
+        => Context path   => 비워둠.
+        => Containers
+           => Tomcat 9.x Remote
+           => Credentials => tomcat-manager/****** (tomcat 접속용 Credentials)
+           => Tomcat URL  => http://localhost:9090 (https 안 됨)
+-------------------------
+ jenkins 프로젝트 빌드
 
+ 1. Deploy to container 플러그인이 없어서 빌드 후 조치를 못한 경우
+    Build Now 클릭
+    => C:\Users\사용자계정\.jenkins\jobs\17_JENKINS\workspace\target\ex17-1.0.0.war 생김.
+    => 이걸 톰캣으로 직접 옮기면 됨.
 
+ 2. Deploy to container 플러그인 사용
+    Build Now 클릭
+    => C:\Users\사용자계정\.jenkins\jobs\17_JENKINS\workspace\target\ex17-1.0.0.war 생김.
+    => 빌드 후 조치로 인해서 최종적으로 톰캣\webapp\ex17-1.0.0.war 생김.
 
+ 3. 빌드 성공하면
+    http://localhost:9090/ex17-1.0.0  입력 후 동작 확인하면 끝.
+    만약, pom.xml에 다음 태그를 추가해 두었다면, war 이름이 ex17.war 로 버전 없이 생성되므로
+    http://localhost:9090/ex17  입력 후 동작 확인하면 끝.
+    <build>
+        <finalName>${artifactId}</finalName>
+    </build>
 
+ 4. 빌드 실패하면
+    console output 통해서 오류 확인 후 수정하고 다시 빌드해야 함.
 
-
-
-
+ 5. 톰캣에 배포된 ex17-1.0.0.war 이름을 임의로(예를 들어) myapp.war로 변경하면
+    myapp 폴더가 새로 생기게 됨. 그럼 이제부터는 http://localhost:9090/myapp 으로 접속해야 함.
+    즉 war 파일명으로 접속하면 된다는 이야기.
+-------------------------
+반복연습하기
+ 1. Tomcat 지움 : C:\Program Files\apache-tomcat-9.0.62 폴더 삭제
+ 2. Maven  지움 : C:\Program Files\apache-maven-3.8.1 폴더 삭제
+ 3. Tomcat 설치 및 세팅부터 다시 연습하면 됨.
+    많이 연습하세요!
