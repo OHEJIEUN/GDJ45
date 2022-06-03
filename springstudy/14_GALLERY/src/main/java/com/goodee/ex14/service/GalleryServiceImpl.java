@@ -2,6 +2,7 @@ package com.goodee.ex14.service;
 
 import java.io.File;
 import java.io.PrintWriter;
+import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.util.HashMap;
 import java.util.List;
@@ -12,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.FileSystemResource;
+import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -117,6 +120,55 @@ public class GalleryServiceImpl implements GalleryService {
 		
 	}
 
+	@Override
+	public ResponseEntity<Resource> download(String userAgent, Long fileAttachNo) {
+		
+		// 다운로드 해야 할 첨부 파일 정보
+		FileAttachDTO fileAttach = galleryMapper.selectFileAttachByNo(fileAttachNo);
+		File file = new File(fileAttach.getPath(), fileAttach.getSaved());
+		
+		// 이게 반환할 데이터
+		Resource resource = new FileSystemResource(file);
+		
+		// 다운로드 할 파일이 없으면 곧바로 종료
+		if(resource.exists() == false) {  // if(file.exists() == false) {
+			return new ResponseEntity<Resource>(HttpStatus.NOT_FOUND);
+		}
+		
+		// 다운로드 횟수 증가
+		galleryMapper.updateDownloadCnt(fileAttachNo);
+		
+		// 다운로드 헤더
+		HttpHeaders headers = new HttpHeaders();
+		
+		// 다운로드 되는 파일명(브라우저마다 세팅이 다름)
+		String origin = fileAttach.getOrigin();
+		try {			
+			
+			// IE(userAgent에 Trident가 포함)
+			if(userAgent.contains("Trident")) {
+				origin = URLEncoder.encode(origin, "UTF-8").replaceAll("\\+", " ");
+			}
+			// Edge(userAgent에 Edg가 포함)
+			else if(userAgent.contains("Edg")) {
+				origin = URLEncoder.encode(origin, "UTF-8");
+			}
+			// 나머지
+			else {
+				origin = new String(origin.getBytes("UTF-8"), "ISO-8859-1");
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		headers.add("Content-Disposition", "attachment; filename=" + origin);
+		headers.add("Content-Length", file.length() + "");
+		
+		return new ResponseEntity<Resource>(resource, headers, HttpStatus.OK);
+		
+	}
+	
 	@Transactional
 	@Override
 	public void save(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) {

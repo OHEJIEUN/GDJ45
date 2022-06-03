@@ -4,11 +4,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.Resource;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -62,7 +64,11 @@ public class GalleryController {
 		return "gallery/detail";
 	}
 	
-	
+	@ResponseBody
+	@GetMapping("/gallery/download")
+	public ResponseEntity<Resource> download(@RequestHeader("User-Agent") String userAgent, @RequestParam Long fileAttachNo) {
+		return galleryService.download(userAgent, fileAttachNo);
+	}
 	
 	
 	

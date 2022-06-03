@@ -17,6 +17,7 @@ public interface GalleryMapper {
 	public int selectGalleryCount();
 	public List<FileAttachDTO> selectGalleryList(Map<String, Object> map);
 	public FileAttachDTO selectFileAttachByNo(Long fileAttachNo);
+	public int updateDownloadCnt(Long fileAttachNo);
 	
 	public GalleryDTO selectGalleryByNo(Long galleryNo);
 	public List<FileAttachDTO> selectFileAttachListInTheGallery(Long galleryNo);

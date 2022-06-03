@@ -69,6 +69,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE FILE_ATTACH_NO = #{fileAttachNo}
 	</select>
 	
+	<!-- 다운로드 횟수 증가 -->
+	<update id="updateDownloadCnt" parameterType="Long">
+		UPDATE FILE_ATTACH
+		   SET DOWNLOAD_CNT = DOWNLOAD_CNT + 1
+		 WHERE FILE_ATTACH_NO = #{fileAttachNo}
+	</update>
+	
 	<!-- 갤러리 상세보기 -->
 	<select id="selectGalleryByNo" parameterType="Long" resultType="GalleryDTO">
 		SELECT GALLERY_NO, WRITER, TITLE, CONTENT, IP, HIT, CREATED, MODIFIED

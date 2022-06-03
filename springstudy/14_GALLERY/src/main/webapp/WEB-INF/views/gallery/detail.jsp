@@ -27,7 +27,7 @@
 	
 	<div>첨부목록</div>
 	<c:forEach var="fileAttach" items="${fileAttaches}">
-		<div><a href="">${fileAttach.origin}</a></div>
+		<div><a href="${contextPath}/gallery/download?fileAttachNo=${fileAttach.fileAttachNo}">${fileAttach.origin}</a></div>
 	</c:forEach>
 	
 	<hr>
