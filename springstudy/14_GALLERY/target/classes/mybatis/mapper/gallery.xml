@@ -27,6 +27,55 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<collection resultMap="GalleryMap" property="gallery" />
 	</resultMap>
 
+
+	<!-- 갤러리 목록 -->
+	<!-- 전체 갤러리 갯수 -->
+	<select id="selectGalleryCount" resultType="Integer">
+		SELECT COUNT(GALLERY_NO)
+		  FROM GALLERY
+	</select>
+	<!-- 갤러리 목록 -->
+	<select id="selectGalleryList" parameterType="Map" resultType="GalleryDTO">
+	  SELECT A.GALLERY_NO, A.WRITER, A.TITLE, A.CONTENT, A.IP, A.HIT, A.CREATED, A.MODIFIED
+		FROM (SELECT ROW_NUMBER() OVER(ORDER BY GALLERY_NO DESC) AS ROW_NUM, GALLERY_NO, WRITER, TITLE, CONTENT, IP, HIT, CREATED, MODIFIED
+		        FROM GALLERY) A
+	   WHERE A.ROW_NUM BETWEEN #{beginRecord} AND #{endRecord}
+	</select>
+
+
+	<!-- 갤러리 상세 보기 -->
+	<!-- 갤러리 정보 -->
+	<select id="selectGalleryByNo" parameterType="Long" resultType="GalleryDTO">
+		SELECT GALLERY_NO, WRITER, TITLE, CONTENT, IP, HIT, CREATED, MODIFIED
+		  FROM GALLERY
+		 WHERE GALLERY_NO = #{galleryNo}
+	</select>
+	<!-- 갤러리에 첨부된 첨부 파일 목록 -->
+	<select id="selectFileAttachListInTheGallery" parameterType="Long" resultType="FileAttachDTO">
+		SELECT FILE_ATTACH_NO, PATH, ORIGIN, SAVED, DOWNLOAD_CNT
+		  FROM FILE_ATTACH
+		 WHERE GALLERY_NO = #{galleryNo}
+	</select>
+	<!-- 갤러리 조회수 증가 -->
+	<update id="updateGalleryHit" parameterType="Long">
+		UPDATE GALLERY
+		   SET HIT = HIT + 1
+		 WHERE GALLERY_NO = #{galleryNo}
+	</update>
+	<!-- 첨부파일 정보 -->
+	<select id="selectFileAttachByNo" parameterType="Long" resultType="FileAttachDTO">
+		SELECT FILE_ATTACH_NO, PATH, ORIGIN, SAVED, DOWNLOAD_CNT
+		  FROM FILE_ATTACH
+		 WHERE FILE_ATTACH_NO = #{fileAttachNo}
+	</select>
+	<!-- 다운로드 횟수 증가 -->
+	<update id="updateDownloadCnt" parameterType="Long">
+		UPDATE FILE_ATTACH
+		   SET DOWNLOAD_CNT = DOWNLOAD_CNT + 1
+		 WHERE FILE_ATTACH_NO = #{fileAttachNo}
+	</update>
+
+	
 	<!-- 갤러리 추가 -->
 	<!-- selectKey : GALLERY_SEQ.NEXTVAL 값을 INSERT문 실행 전에 GalleryDTO의 galleryNo에 넣어둔다. -->
 	<insert id="insertGallery" parameterType="GalleryDTO">
@@ -47,57 +96,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES
 			(FILE_ATTACH_SEQ.NEXTVAL, #{path}, #{origin}, #{saved}, 0, #{gallery.galleryNo})
 	</insert>
-	
-	<!-- 전체 갤러리 갯수 -->
-	<select id="selectGalleryCount" resultType="Integer">
-		SELECT COUNT(GALLERY_NO)
-		  FROM GALLERY
-	</select>
-	
-	<!-- 갤러리 목록 -->
-	<select id="selectGalleryList" parameterType="Map" resultType="GalleryDTO">
-	  SELECT A.GALLERY_NO, A.WRITER, A.TITLE, A.CONTENT, A.IP, A.HIT, A.CREATED, A.MODIFIED
-		FROM (SELECT ROW_NUMBER() OVER(ORDER BY GALLERY_NO DESC) AS ROW_NUM, GALLERY_NO, WRITER, TITLE, CONTENT, IP, HIT, CREATED, MODIFIED
-		        FROM GALLERY) A
-	   WHERE A.ROW_NUM BETWEEN #{beginRecord} AND #{endRecord}
-	</select>
-	
-	<!-- 첨부파일 반환 -->
-	<select id="selectFileAttachByNo" parameterType="Long" resultType="FileAttachDTO">
-		SELECT FILE_ATTACH_NO, PATH, ORIGIN, SAVED, DOWNLOAD_CNT
-		  FROM FILE_ATTACH
-		 WHERE FILE_ATTACH_NO = #{fileAttachNo}
-	</select>
-	
-	<!-- 다운로드 횟수 증가 -->
-	<update id="updateDownloadCnt" parameterType="Long">
-		UPDATE FILE_ATTACH
-		   SET DOWNLOAD_CNT = DOWNLOAD_CNT + 1
-		 WHERE FILE_ATTACH_NO = #{fileAttachNo}
-	</update>
-	
-	<!-- 갤러리 상세보기 -->
-	<select id="selectGalleryByNo" parameterType="Long" resultType="GalleryDTO">
-		SELECT GALLERY_NO, WRITER, TITLE, CONTENT, IP, HIT, CREATED, MODIFIED
-		  FROM GALLERY
-		 WHERE GALLERY_NO = #{galleryNo}
-	</select>
-	
-	<!-- 갤러리에 첨부된 첨부 파일 목록 -->
-	<select id="selectFileAttachListInTheGallery" parameterType="Long" resultType="FileAttachDTO">
-		SELECT FILE_ATTACH_NO, PATH, ORIGIN, SAVED, DOWNLOAD_CNT
-		  FROM FILE_ATTACH
-		 WHERE GALLERY_NO = #{galleryNo}
-	</select>
-	
-	<!-- 갤러리 조회수 증가 -->
-	<update id="updateGalleryHit" parameterType="Long">
-		UPDATE GALLERY
-		   SET HIT = HIT + 1
-		 WHERE GALLERY_NO = #{galleryNo}
-	</update>
-	
-	
 	
 	
 

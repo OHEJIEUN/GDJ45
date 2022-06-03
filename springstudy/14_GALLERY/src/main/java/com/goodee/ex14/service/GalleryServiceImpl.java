@@ -39,6 +39,7 @@ public class GalleryServiceImpl implements GalleryService {
 	@Autowired
 	private GalleryMapper galleryMapper;
 	
+	// 갤러리 목록
 	@Override
 	public void findGalleries(HttpServletRequest request, Model model) {
 		
@@ -68,7 +69,27 @@ public class GalleryServiceImpl implements GalleryService {
 		model.addAttribute("paging", pageUtils.getPaging(request.getContextPath() + "/gallery/list"));
 		
 	}
-	
+
+	// 갤러리 상세 보기
+	@Override
+	public void findGalleryByNo(HttpServletRequest request, Model model) {
+		
+		// galleryNo
+		Long galleryNo = Long.parseLong(request.getParameter("galleryNo"));
+		
+		// 조회수 증가
+		String requestURI = request.getRequestURI();
+		if(requestURI.endsWith("detail")) {
+			galleryMapper.updateGalleryHit(galleryNo);
+		}
+		
+		// 갤러리 정보 가져와서 model에 저장하기
+		model.addAttribute("gallery", galleryMapper.selectGalleryByNo(galleryNo));
+		
+		// 첨부 파일 정보 가져와서 model에 저장하기
+		model.addAttribute("fileAttaches", galleryMapper.selectFileAttachListInTheGallery(galleryNo));
+		
+	}
 	@Override
 	public ResponseEntity<byte[]> display(Long fileAttachNo, String type) {
 		
@@ -99,27 +120,6 @@ public class GalleryServiceImpl implements GalleryService {
 		return entity;
 		
 	}
-	
-	@Override
-	public void findGalleryByNo(HttpServletRequest request, Model model) {
-		
-		// galleryNo
-		Long galleryNo = Long.parseLong(request.getParameter("galleryNo"));
-		
-		// 조회수 증가
-		String requestURI = request.getRequestURI();
-		if(requestURI.endsWith("detail")) {
-			galleryMapper.updateGalleryHit(galleryNo);
-		}
-		
-		// 갤러리 정보 가져와서 model에 저장하기
-		model.addAttribute("gallery", galleryMapper.selectGalleryByNo(galleryNo));
-		
-		// 첨부 파일 정보 가져와서 model에 저장하기
-		model.addAttribute("fileAttaches", galleryMapper.selectFileAttachListInTheGallery(galleryNo));
-		
-	}
-
 	@Override
 	public ResponseEntity<Resource> download(String userAgent, Long fileAttachNo) {
 		
@@ -169,6 +169,7 @@ public class GalleryServiceImpl implements GalleryService {
 		
 	}
 	
+	// 갤러리 삽입
 	@Transactional
 	@Override
 	public void save(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) {
@@ -287,12 +288,14 @@ public class GalleryServiceImpl implements GalleryService {
 		
 	}
 
+	// 갤러리 수정
 	@Override
 	public void change(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 
 	}
 
+	// 갤러리 삭제
 	@Override
 	public void remove(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) {
 		// TODO Auto-generated method stub

@@ -1,0 +1,38 @@
+빌드와 배포
+1. 빌드 : war를 만드는 것
+2. 배포 : war를 톰캣에 두는 것
+
+* 최근엔 war 대신 jar를 배포
+
+-------------------------
+수동 작업
+
+1. 빌드
+   프로젝트 우클릭 - Export - 17_JENKINS.war (Export source files 체크 필수)
+2. 배포
+   1) 톰캣 아래 conf 디렉터리 아래 server.xml을 열고, 포트번호를 수정한다.
+      메모장으로 열고, Ctrl + F 눌러서 8080 검색함.
+      <Connector port="9090" protocol="HTTP/1.1"
+               connectionTimeout="20000"
+               redirectPort="8443" />
+   2) 톰캣 아래 webapps 디렉터리에 war를 가져다 둔다.
+   3) 톰캣 아래 bin 디렉터리에서 톰캣을 구동한다.
+      (1) Windows : startup.bat 파일 (더블 클릭)
+      (2) Linux   : startup.sh  파일
+3. 확인
+   http://localhost:9090/17_JENKINS
+4. 재배포
+   1) 빌드가 잘못된 경우
+      (1) 17_JENKINS.war 파일과 17_JENKINS 디렉터리를 모두 지운다.
+      (2) 톰캣 아래 bin 디렉터리에서 톰캣을 끈다.
+          ① Windows : shutdown.bat 파일 (더블 클릭)
+          ② Linux   : shutdown.sh  파일
+      (3) 톰캣 아래 bin 디렉터리에서 톰캣을 구동한다.
+          ① Windows : startup.bat 파일 (더블 클릭)
+          ② Linux   : startup.sh  파일
+
+
+
+
+
+
