@@ -180,8 +180,56 @@ jenkins 설치
     http://localhost:9090/jenkins 입력
 -------------------------
 jenkins 세팅
- 
 
+ - [좌측] Jenkins 관리
+
+ 1. System Configuration - 시스템 설정
+    Jenkins URL을 
+    http://localhost:9090/jenkins/ 에서
+    http://127.0.0.1:9090/jenkins/ 로 수정하기 (젠킨스에서는 localhost 사용이 안 됨.)
+
+ 2. System Configuration - Global Tool Configuration
+    1) Maven Configuration
+        (1) Default settings provider
+            => Settings file in filesystem
+            => File path
+            => C:\Program Files\apache-maven-3.8.1\conf\settings.xml
+        (2) Default global settings provider
+            => Global settings file on filesystem
+            => File path
+            => C:\Program Files\apache-maven-3.8.1\conf\settings.xml
+    2) Git
+        (1) Name
+            => MyGit (아무거나 정하면 됨)
+        (2) Path to Git executable
+            => C:\Program Files\Git\bin\git.exe
+    3) Maven
+        (1) Add Maven
+            * Name
+              => Maven3.8.1 (아무거나 정하면 되지만 버전으로 정했음)
+            * Install automatically 선택 해제
+              => MAVEN_HOME
+              => C:\Program Files\apache-maven-3.8.1
+
+ 3. System Configuration - 플러그인 관리
+    [설치 가능] 탭으로 이동해서 "Deploy to container" 검색 후 설치 (향후 시스템 재시작이 필요함)
+
+ 4. Security - Manage Credentials
+
+    1) Domains 아래 (global) 선택하면 목록(▼) 나오면 그거 클릭 - [Add Credentials] 선택
+
+        * Tomcat 접속용 사용자 등록하기(톰캣의 conf 폴더 아래 tomcat-users.xml에 적어둔 사용자임.)
+        (1) Username
+            => tomcat-manager
+        (2) Password
+            => 1111
+
+        * Github 접속용 사용자 등록하기
+        (1) Username
+            => 자신의 github 아이디
+        (2) Password
+            => 자신의 github Personal access token
+-------------------------
 
 
 
