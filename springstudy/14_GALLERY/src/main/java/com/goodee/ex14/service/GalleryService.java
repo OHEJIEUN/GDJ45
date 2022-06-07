@@ -22,9 +22,12 @@ public interface GalleryService {
 	public void save(MultipartHttpServletRequest multipartRequest, HttpServletResponse response);
 	
 	// 갤러리 삭제
-	public void remove(HttpServletRequest request, HttpServletResponse response);
+	public void removeGallery(HttpServletRequest request, HttpServletResponse response);
 	
 	// 갤러리 수정
 	public void change(MultipartHttpServletRequest multipartRequest, HttpServletResponse response);
+	
+	// 첨부 파일 삭제
+	public void removeFileAttach(Long fileAttachNo);
 	
 }

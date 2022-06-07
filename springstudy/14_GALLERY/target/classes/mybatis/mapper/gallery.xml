@@ -30,7 +30,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 	<!-- 갤러리에 첨부된 첨부 파일 목록 -->
 	<select id="selectFileAttachListInTheGallery" parameterType="Long" resultType="FileAttachDTO">
-		SELECT FILE_ATTACH_NO, PATH, ORIGIN, SAVED, DOWNLOAD_CNT
+		SELECT FILE_ATTACH_NO, PATH, ORIGIN, SAVED, GALLERY_NO, DOWNLOAD_CNT
 		  FROM FILE_ATTACH
 		 WHERE GALLERY_NO = #{galleryNo}
 	</select>
@@ -42,7 +42,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</update>
 	<!-- 첨부 파일 정보 -->
 	<select id="selectFileAttachByNo" parameterType="Long" resultType="FileAttachDTO">
-		SELECT FILE_ATTACH_NO, PATH, ORIGIN, SAVED, DOWNLOAD_CNT
+		SELECT FILE_ATTACH_NO, PATH, ORIGIN, SAVED, GALLERY_NO, DOWNLOAD_CNT
 		  FROM FILE_ATTACH
 		 WHERE FILE_ATTACH_NO = #{fileAttachNo}
 	</select>

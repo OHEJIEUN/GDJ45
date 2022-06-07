@@ -72,7 +72,7 @@ public class GalleryController {
 	
 	@GetMapping("/gallery/remove")
 	public void remove(HttpServletRequest request, HttpServletResponse response) {
-		galleryService.remove(request, response);
+		galleryService.removeGallery(request, response);
 	}
 	
 	@GetMapping("/gallery/changePage")
@@ -86,7 +86,11 @@ public class GalleryController {
 		galleryService.change(multipartRequest, response);
 	}
 	
-	
+	@GetMapping("/gallery/removeFileAttach")
+	public String removeFileAttach(@RequestParam Long fileAttachNo, @RequestParam Long galleryNo) {
+		galleryService.removeFileAttach(fileAttachNo);
+		return "redirect:/gallery/detail?galleryNo=" + galleryNo;
+	}
 	
 	
 	

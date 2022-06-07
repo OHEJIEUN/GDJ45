@@ -290,7 +290,7 @@ public class GalleryServiceImpl implements GalleryService {
 
 	// 갤러리 삭제
 	@Override
-	public void remove(HttpServletRequest request, HttpServletResponse response) {
+	public void removeGallery(HttpServletRequest request, HttpServletResponse response) {
 		
 		// 파라미터 galleryNo
 		Optional<String> opt = Optional.ofNullable(request.getParameter("galleryNo"));
@@ -468,6 +468,44 @@ public class GalleryServiceImpl implements GalleryService {
 			e.printStackTrace();
 		}
 
+	}
+	
+	@Override
+	public void removeFileAttach(Long fileAttachNo) {
+		
+		// fileAttachNo가 일치하는 FileAttachDTO 정보를 DB에서 가져오면
+		// 삭제할 파일의 경로와 이름이 있다.
+		FileAttachDTO fileAttach = galleryMapper.selectFileAttachByNo(fileAttachNo);
+		
+		// 첨부 파일 알아내기
+		File file = new File(fileAttach.getPath(), fileAttach.getSaved());
+
+		try {
+			
+			// 첨부 파일이 이미지가 맞는지 확인
+			String contentType = Files.probeContentType(file.toPath());
+			if(contentType.startsWith("image")) {
+			
+				// 원본 이미지 삭제
+				if(file.exists()) {
+					file.delete();
+				}
+				
+				// 썸네일 이미지 삭제
+				File thumbnail = new File(fileAttach.getPath(), "s_" + fileAttach.getSaved());
+				if(thumbnail.exists()) {
+					thumbnail.delete();
+				}
+				
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		// FILE_ATTACH 테이블의 ROW 삭제
+		galleryMapper.deleteFileAttach(fileAttachNo);
+		
 	}
 
 }

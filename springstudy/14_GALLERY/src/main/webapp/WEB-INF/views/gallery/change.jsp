@@ -77,7 +77,7 @@
 	
 	<div>첨부목록삭제</div>
 	<c:forEach var="fileAttach" items="${fileAttaches}">
-		<div>${fileAttach.origin}<a href="${contextPath}/gallery/removeFileAttach?fileAttachNo=${fileAttach.fileAttachNo}"><i class="fa-solid fa-circle-xmark"></i></a></div>
+		<div>${fileAttach.origin}<a href="${contextPath}/gallery/removeFileAttach?fileAttachNo=${fileAttach.fileAttachNo}&galleryNo=${fileAttach.galleryNo}"><i class="fa-solid fa-circle-xmark"></i></a></div>
 	</c:forEach>
 	
 	<hr>
