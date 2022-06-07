@@ -75,7 +75,12 @@ public class GalleryController {
 		galleryService.remove(request, response);
 	}
 	
-	
+	@GetMapping("/gallery/changePage")
+	public String changePage(HttpServletRequest request, Model model) {
+		galleryService.findGalleryByNo(request, model);
+		return "gallery/change";
+	}
+
 	
 	
 	

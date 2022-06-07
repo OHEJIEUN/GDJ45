@@ -21,6 +21,11 @@
 			}
 		})
 		
+		// 수정페이지
+		$('#btnChangePage').on('click', function(){
+			location.href='${contextPath}/gallery/changePage?galleryNo=${gallery.galleryNo}';
+		})
+		
 	})
 
 </script>
@@ -39,6 +44,7 @@
 	수정일 ${gallery.modified}<br><br>
 	
 	<input type="button" value="삭제" id="btnRemove">
+	<input type="button" value="수정페이지" id="btnChangePage">
 	
 	<hr>
 	
