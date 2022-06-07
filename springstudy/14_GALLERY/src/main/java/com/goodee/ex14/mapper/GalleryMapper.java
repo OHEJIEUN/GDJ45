@@ -35,4 +35,7 @@ public interface GalleryMapper {
 	// 첨부 파일 삭제
 	public int deleteFileAttach(Long fileAttachNo);
 	
+	// 어제 저장된 첨부 파일 목록
+	public List<FileAttachDTO> selectFileAttachListAtYesterday();
+	
 }

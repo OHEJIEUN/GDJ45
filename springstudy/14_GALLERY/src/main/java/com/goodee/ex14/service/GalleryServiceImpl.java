@@ -198,13 +198,14 @@ public class GalleryServiceImpl implements GalleryService {
 
 		// 결론. FILE_ATTACH 테이블에 INSERT할 galleryNo 정보는 gallery에 저장되어 있다.
 		
-		// 파일 첨부
-		
-		int fileAttachResult = 0;
+		// 파일 첨부 결과
+		int fileAttachResult = 1;
 		
 		// 첨부된 모든 파일들
 		List<MultipartFile> files = multipartRequest.getFiles("files");  // 파라미터 files
-		
+		System.out.println(files.size());
+		System.out.println(files.get(0).getOriginalFilename());
+		System.out.println(files.get(0).getName());
 		for (MultipartFile multipartFile : files) {
 			
 			// 예외 처리는 기본으로 필요함.
@@ -381,11 +382,15 @@ public class GalleryServiceImpl implements GalleryService {
 		// Gallery UPDATE 수행
 		int galleryResult = galleryMapper.updateGallery(gallery);  // UPDATE 수행
 
-		// 파일 첨부		
-		int fileAttachResult = 0;
+		// 파일 첨부 결과
+		int fileAttachResult = 1;
 		
 		// 첨부된 모든 파일들
 		List<MultipartFile> files = multipartRequest.getFiles("files");  // 파라미터 files
+		
+		System.out.println(files.size());
+		System.out.println(files.get(0).getOriginalFilename());
+		System.out.println(files.get(0).getName());
 		
 		for (MultipartFile multipartFile : files) {
 			

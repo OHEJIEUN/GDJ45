@@ -49,6 +49,11 @@
 			}
 		})
 		
+		// 목록
+		$('#btnList').on('click', function(){
+			location.href='${contextPath}/gallery/list';
+		})
+		
 	})
 
 </script>
