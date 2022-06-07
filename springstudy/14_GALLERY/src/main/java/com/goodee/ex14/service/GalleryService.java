@@ -21,10 +21,10 @@ public interface GalleryService {
 	// 갤러리 삽입
 	public void save(MultipartHttpServletRequest multipartRequest, HttpServletResponse response);
 	
+	// 갤러리 삭제
+	public void remove(HttpServletRequest request, HttpServletResponse response);
+	
 	// 갤러리 수정
 	public void change(MultipartHttpServletRequest multipartRequest, HttpServletResponse response);
-	
-	// 갤러리 삭제
-	public void remove(MultipartHttpServletRequest multipartRequest, HttpServletResponse response);
 	
 }

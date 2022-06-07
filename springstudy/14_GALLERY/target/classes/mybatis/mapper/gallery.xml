@@ -88,7 +88,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES
 			(#{galleryNo}, #{writer}, #{title}, #{content}, #{ip}, 0, SYSDATE, SYSDATE)
 	</insert>
-	
 	<!-- 파일 첨부 추가 -->
 	<insert id="insertFileAttach" parameterType="FileAttachDTO">
 		INSERT INTO FILE_ATTACH
@@ -96,6 +95,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		VALUES
 			(FILE_ATTACH_SEQ.NEXTVAL, #{path}, #{origin}, #{saved}, 0, #{gallery.galleryNo})
 	</insert>
+	
+	
+	<!-- 갤러리 삭제 -->
+	<!-- GALLERY 테이블의 ROW가 삭제되면, FILE_ATTACH 테이블의 ROW도 함께 삭제됨. -->
+	<delete id="deleteGallery" parameterType="Long">
+		DELETE
+		  FROM GALLERY
+		 WHERE GALLERY_NO = #{galleryNo}
+	</delete>
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 

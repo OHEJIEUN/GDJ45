@@ -288,16 +288,82 @@ public class GalleryServiceImpl implements GalleryService {
 		
 	}
 
+	// 갤러리 삭제
+	@Override
+	public void remove(HttpServletRequest request, HttpServletResponse response) {
+		
+		// 파라미터 galleryNo
+		Optional<String> opt = Optional.ofNullable(request.getParameter("galleryNo"));
+		Long galleryNo = Long.parseLong(opt.orElse("0"));
+		
+		// 저장되어 있는 첨부 파일 목록 가져오기
+		List<FileAttachDTO> attaches = galleryMapper.selectFileAttachListInTheGallery(galleryNo);
+		
+		// 저장되어 있는 첨부 파일이 있는지 확인
+		if(attaches != null && attaches.isEmpty() == false) {
+			
+			// 하나씩 삭제
+			for(FileAttachDTO attach : attaches) {
+			
+				// 첨부 파일 알아내기
+				File file = new File(attach.getPath(), attach.getSaved());
+
+				try {
+					
+					// 첨부 파일이 이미지가 맞는지 확인
+					String contentType = Files.probeContentType(file.toPath());
+					if(contentType.startsWith("image")) {
+					
+						// 원본 이미지 삭제
+						if(file.exists()) {
+							file.delete();
+						}
+						
+						// 썸네일 이미지 삭제
+						File thumbnail = new File(attach.getPath(), "s_" + attach.getSaved());
+						if(thumbnail.exists()) {
+							thumbnail.delete();
+						}
+						
+					}
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+				
+			}
+			
+		}
+		
+		// GALLERY 테이블의 ROW 삭제
+		int res = galleryMapper.deleteGallery(galleryNo);
+		
+		// 응답
+		try {
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			if(res == 1) {
+				out.println("<script>");
+				out.println("alert('갤러리가 삭제되었습니다.')");
+				out.println("location.href='" + request.getContextPath() + "/gallery/list'");
+				out.println("</script>");
+				out.close();
+			} else {
+				out.println("<script>");
+				out.println("alert('갤러리가 삭제되지 않았습니다.')");
+				out.println("history.back()");
+				out.println("</script>");
+				out.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+
 	// 갤러리 수정
 	@Override
 	public void change(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) {
-		// TODO Auto-generated method stub
-
-	}
-
-	// 갤러리 삭제
-	@Override
-	public void remove(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 
 	}

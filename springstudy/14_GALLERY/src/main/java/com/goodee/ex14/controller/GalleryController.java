@@ -70,6 +70,12 @@ public class GalleryController {
 		return galleryService.download(userAgent, fileAttachNo);
 	}
 	
+	@GetMapping("/gallery/remove")
+	public void remove(HttpServletRequest request, HttpServletResponse response) {
+		galleryService.remove(request, response);
+	}
+	
+	
 	
 	
 	

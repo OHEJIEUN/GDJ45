@@ -26,4 +26,7 @@ public interface GalleryMapper {
 	public int insertGallery(GalleryDTO gallery);
 	public int insertFileAttach(FileAttachDTO fileAttach);
 	
+	// 갤러리 삭제
+	public int deleteGallery(Long galleryNo);
+	
 }

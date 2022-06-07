@@ -9,6 +9,21 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="../resources/js/jquery-3.6.0.js"></script>
+<script type="text/javascript">
+
+	$(function(){
+		
+		// 삭제
+		$('#btnRemove').on('click', function(){
+			if(confirm('삭제할까요?')){
+				location.href='${contextPath}/gallery/remove?galleryNo=${gallery.galleryNo}';
+			}
+		})
+		
+	})
+
+</script>
 </head>
 <body>
 	
@@ -21,7 +36,9 @@
 	IP ${gallery.ip}<br>
 	조회수 ${gallery.hit}<br>
 	작성일 ${gallery.created}<br>
-	수정일 ${gallery.modified}<br>
+	수정일 ${gallery.modified}<br><br>
+	
+	<input type="button" value="삭제" id="btnRemove">
 	
 	<hr>
 	
