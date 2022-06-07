@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.nio.file.Files;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -198,14 +199,17 @@ public class GalleryServiceImpl implements GalleryService {
 
 		// 결론. FILE_ATTACH 테이블에 INSERT할 galleryNo 정보는 gallery에 저장되어 있다.
 		
-		// 파일 첨부 결과
-		int fileAttachResult = 1;
-		
 		// 첨부된 모든 파일들
 		List<MultipartFile> files = multipartRequest.getFiles("files");  // 파라미터 files
-		System.out.println(files.size());
-		System.out.println(files.get(0).getOriginalFilename());
-		System.out.println(files.get(0).getName());
+		
+		// 파일 첨부 결과
+		int fileAttachResult;
+		if(files.get(0).getOriginalFilename().isEmpty()) {  // 첨부가 없으면 files.size() == 1임. [MultipartFile[field="files", filename=, contentType=application/octet-stream, size=0]] 값을 가짐.
+			fileAttachResult = 1;  
+		} else {  // 첨부가 있으면 "files.size() == 첨부파일갯수"이므로 fileAttachResult = 0으로 시작함.
+			fileAttachResult = 0;
+		}
+		
 		for (MultipartFile multipartFile : files) {
 			
 			// 예외 처리는 기본으로 필요함.
@@ -381,16 +385,17 @@ public class GalleryServiceImpl implements GalleryService {
 		
 		// Gallery UPDATE 수행
 		int galleryResult = galleryMapper.updateGallery(gallery);  // UPDATE 수행
-
-		// 파일 첨부 결과
-		int fileAttachResult = 1;
 		
 		// 첨부된 모든 파일들
 		List<MultipartFile> files = multipartRequest.getFiles("files");  // 파라미터 files
-		
-		System.out.println(files.size());
-		System.out.println(files.get(0).getOriginalFilename());
-		System.out.println(files.get(0).getName());
+
+		// 파일 첨부 결과
+		int fileAttachResult;
+		if(files.get(0).getOriginalFilename().isEmpty()) {  // 첨부가 없으면 files.size() == 1임. [MultipartFile[field="files", filename=, contentType=application/octet-stream, size=0]] 값을 가짐.
+			fileAttachResult = 1;  
+		} else {  // 첨부가 있으면 "files.size() == 첨부파일갯수"이므로 fileAttachResult = 0으로 시작함.
+			fileAttachResult = 0;
+		}
 		
 		for (MultipartFile multipartFile : files) {
 			
