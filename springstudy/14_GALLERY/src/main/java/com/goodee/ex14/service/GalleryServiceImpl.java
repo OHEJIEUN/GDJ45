@@ -4,7 +4,6 @@ import java.io.File;
 import java.io.PrintWriter;
 import java.net.URLEncoder;
 import java.nio.file.Files;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -12,6 +11,7 @@ import java.util.Optional;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.FileSystemResource;
@@ -43,6 +43,12 @@ public class GalleryServiceImpl implements GalleryService {
 	// 갤러리 목록
 	@Override
 	public void findGalleries(HttpServletRequest request, Model model) {
+		
+		// 목록 보기로 왔으니, 조회수 증가가 가능하도록 session에 저장해 둔 updateHit를 제거함.
+		HttpSession session = request.getSession();
+		if(session.getAttribute("updateHit") != null) {
+			session.removeAttribute("updateHit");
+		}
 		
 		// page 파라미터
 		Optional<String> opt = Optional.ofNullable(request.getParameter("page"));
@@ -78,12 +84,25 @@ public class GalleryServiceImpl implements GalleryService {
 		// galleryNo
 		Long galleryNo = Long.parseLong(request.getParameter("galleryNo"));
 		
-		// 조회수 증가
-		String requestURI = request.getRequestURI();
-		if(requestURI.endsWith("detail")) {
-			galleryMapper.updateGalleryHit(galleryNo);
-		}
+		// 조회수 증가(수정페이지로 갈 때, 수정 후 상세보기로 돌아올 때, 상세보기에서 새로고침할 때 모두 조회수가 증가되는 문제가 발생)
+//		String requestURI = request.getRequestURI();
+//		if(requestURI.endsWith("detail")) {
+//			galleryMapper.updateGalleryHit(galleryNo);
+//		}
 		
+		// referer 이해하기
+		// 목록 보기에서 제목을 클릭하면, referer == http://localhost:9090/ex14/gallery/list
+		// 수정페이지 버튼을 클릭하면,    referer == http://localhost:9090/ex14/gallery/detail?galleryNo=1
+		// 수정완료 버튼을 클릭하면,      referer == http://localhost:9090/ex14/gallery/change
+		
+		// 조회수 증가
+		String referer = request.getHeader("referer");
+		HttpSession session = request.getSession();
+		if(referer.endsWith("list") && session.getAttribute("updateHit") == null) {  // 목록 보기에서 제목을 클릭했고, session에 updateHit 속성이 없다면
+			galleryMapper.updateGalleryHit(galleryNo);  // 조회수 증가
+			session.setAttribute("updateHit", "done");  // 조회수 증가를 했다는 의미로 session에 updateHit 속성을 저장해 둠. 목록 보기로 이동하면 조회가 끝난 것으로 보고 제거해야 함.
+		}
+
 		// 갤러리 정보 가져와서 model에 저장하기
 		model.addAttribute("gallery", galleryMapper.selectGalleryByNo(galleryNo));
 		
@@ -205,7 +224,7 @@ public class GalleryServiceImpl implements GalleryService {
 		// 파일 첨부 결과
 		int fileAttachResult;
 		if(files.get(0).getOriginalFilename().isEmpty()) {  // 첨부가 없으면 files.size() == 1임. [MultipartFile[field="files", filename=, contentType=application/octet-stream, size=0]] 값을 가짐.
-			fileAttachResult = 1;  
+			fileAttachResult = 1; 
 		} else {  // 첨부가 있으면 "files.size() == 첨부파일갯수"이므로 fileAttachResult = 0으로 시작함.
 			fileAttachResult = 0;
 		}
