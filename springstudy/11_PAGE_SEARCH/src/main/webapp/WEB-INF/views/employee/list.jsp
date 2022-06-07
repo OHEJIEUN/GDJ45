@@ -72,8 +72,8 @@
 					<td>${emp.firstName}</td>
 					<td>${emp.hireDate}</td>
 					<td>${emp.salary}</td>
-					<td>${emp.departmentId}</td>
-					<td>${emp.departmentName}</td>
+					<td>${emp.department.departmentId}</td>
+					<td>${emp.department.departmentName}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
