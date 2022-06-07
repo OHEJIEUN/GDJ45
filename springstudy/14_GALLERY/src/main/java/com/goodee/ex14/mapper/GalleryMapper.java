@@ -29,4 +29,10 @@ public interface GalleryMapper {
 	// 갤러리 삭제
 	public int deleteGallery(Long galleryNo);
 	
+	// 갤러리 수정
+	public int updateGallery(GalleryDTO gallery);
+	
+	// 첨부 파일 삭제
+	public int deleteFileAttach(Long fileAttachNo);
+	
 }

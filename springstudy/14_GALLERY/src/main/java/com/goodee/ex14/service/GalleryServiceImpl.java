@@ -249,7 +249,7 @@ public class GalleryServiceImpl implements GalleryService {
 								.path(path)
 								.origin(origin)
 								.saved(saved)
-								.gallery(new GalleryDTO(gallery.getGalleryNo(), null, null, null, null, null, null, null))
+								.galleryNo(gallery.getGalleryNo())
 								.build();
 						
 						// FileAttach INSERT 수행
@@ -362,9 +362,111 @@ public class GalleryServiceImpl implements GalleryService {
 	}
 
 	// 갤러리 수정
+	@Transactional
 	@Override
 	public void change(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) {
-		// TODO Auto-generated method stub
+		
+		// 전달된 파라미터
+		Long galleryNo = Long.parseLong(multipartRequest.getParameter("galleryNo"));
+		String title = multipartRequest.getParameter("title");
+		String content = multipartRequest.getParameter("content");
+		
+		// GalleryDTO
+		GalleryDTO gallery = GalleryDTO.builder()
+				.galleryNo(galleryNo)
+				.title(title)
+				.content(content)
+				.build();
+		
+		// Gallery UPDATE 수행
+		int galleryResult = galleryMapper.updateGallery(gallery);  // UPDATE 수행
+
+		// 파일 첨부		
+		int fileAttachResult = 0;
+		
+		// 첨부된 모든 파일들
+		List<MultipartFile> files = multipartRequest.getFiles("files");  // 파라미터 files
+		
+		for (MultipartFile multipartFile : files) {
+			
+			// 예외 처리는 기본으로 필요함.
+			try {
+				
+				// 첨부가 없을 수 있으므로 점검해야 함.
+				if(multipartFile != null && multipartFile.isEmpty() == false) {  // 첨부가 있다.(둘 다 필요함)
+					
+					// 첨부파일의 본래 이름(origin)
+					String origin = multipartFile.getOriginalFilename();
+					origin = origin.substring(origin.lastIndexOf("\\") + 1);  // IE는 본래 이름에 전체 경로가 붙어서 파일명만 빼야 함.
+					
+					// 첨부파일의 저장된 이름(saved)
+					String saved = MyFileUtils.getUuidName(origin);
+					
+					// 첨부파일의 저장 경로(디렉터리)
+					String path = MyFileUtils.getTodayPath();
+					
+					// 저장 경로(디렉터리) 없으면 만들기
+					File dir = new File(path);
+					if(dir.exists() == false) {
+						dir.mkdirs();
+					}
+					
+					// 첨부파일
+					File file = new File(dir, saved);
+					
+					// 첨부파일 확인
+					String contentType = Files.probeContentType(file.toPath());  // 이미지의 Content-Type(image/jpeg, image/png, image/gif)
+					if(contentType.startsWith("image")) {
+						
+						// 첨부파일 서버에 저장(업로드)
+						multipartFile.transferTo(file);
+						
+						// 썸네일 서버에 저장(썸네일 정보는 DB에 저장되지 않음)
+						Thumbnails.of(file)
+							.size(100, 100)
+							.toFile(new File(dir, "s_" + saved));
+						
+						// FileAttachDTO
+						FileAttachDTO fileAttach = FileAttachDTO.builder()
+								.path(path)
+								.origin(origin)
+								.saved(saved)
+								.galleryNo(galleryNo)
+								.build();
+						
+						// FileAttach INSERT 수행
+						fileAttachResult += galleryMapper.insertFileAttach(fileAttach);
+						
+					}
+
+				}
+				
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+			
+		}
+		
+		// 응답
+		try {
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			if(galleryResult == 1 && fileAttachResult == files.size()) {
+				out.println("<script>");
+				out.println("alert('갤러리가 수정되었습니다.')");
+				out.println("location.href='" + multipartRequest.getContextPath() + "/gallery/detail?galleryNo=" + galleryNo + "'");
+				out.println("</script>");
+				out.close();
+			} else {
+				out.println("<script>");
+				out.println("alert('갤러리가 수정되지 않았습니다.')");
+				out.println("history.back()");
+				out.println("</script>");
+				out.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 
 	}
 

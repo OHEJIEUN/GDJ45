@@ -5,28 +5,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 
 <mapper namespace="com.goodee.ex14.mapper.GalleryMapper">
 
-	<!--
-		FileAttachDTO에 GalleryDTO를 넣은 resultMap 처리(조인에서 활용)
-	-->
-	<resultMap type="GalleryDTO" id="GalleryMap">
-		<result column="GALLERY_NO" property="galleryNo" />
-		<result column="WRITER" property="writer" />
-		<result column="TITLE" property="title" />
-		<result column="CONTENT" property="content" />
-		<result column="IP" property="ip" />
-		<result column="HIT" property="hit" />
-		<result column="CREATED" property="created" />
-		<result column="MODIFIED" property="modified" />
-	</resultMap>
-	<resultMap type="FileAttachDTO" id="FileAttachMap">
-		<result column="FILE_ATTACH_NO" property="fileAttachNo" />
-		<result column="PATH" property="path" />
-		<result column="ORIGIN" property="origin" />
-		<result column="SAVED" property="saved" />
-		<result column="DOWNLOAD_CNT" property="downloadCnt" />
-		<collection resultMap="GalleryMap" property="gallery" />
-	</resultMap>
-
 
 	<!-- 갤러리 목록 -->
 	<!-- 전체 갤러리 갯수 -->
@@ -62,7 +40,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		   SET HIT = HIT + 1
 		 WHERE GALLERY_NO = #{galleryNo}
 	</update>
-	<!-- 첨부파일 정보 -->
+	<!-- 첨부 파일 정보 -->
 	<select id="selectFileAttachByNo" parameterType="Long" resultType="FileAttachDTO">
 		SELECT FILE_ATTACH_NO, PATH, ORIGIN, SAVED, DOWNLOAD_CNT
 		  FROM FILE_ATTACH
@@ -91,9 +69,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<!-- 파일 첨부 추가 -->
 	<insert id="insertFileAttach" parameterType="FileAttachDTO">
 		INSERT INTO FILE_ATTACH
-			(FILE_ATTACH_NO, PATH, ORIGIN, SAVED, DOWNLOAD_CNT, GALLERY_NO)
+			(FILE_ATTACH_NO, PATH, ORIGIN, SAVED, GALLERY_NO, DOWNLOAD_CNT)
 		VALUES
-			(FILE_ATTACH_SEQ.NEXTVAL, #{path}, #{origin}, #{saved}, 0, #{gallery.galleryNo})
+			(FILE_ATTACH_SEQ.NEXTVAL, #{path}, #{origin}, #{saved}, #{galleryNo}, 0)
 	</insert>
 	
 	
@@ -106,9 +84,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</delete>
 	
 	
+	<!-- 갤러리 수정 -->
+	<update id="updateGallery" parameterType="GalleryDTO">
+		UPDATE GALLERY
+		   SET TITLE = #{title}, CONTENT = #{content}, MODIFIED = SYSDATE
+		 WHERE GALLERY_NO = #{galleryNo}
+	</update>
 	
 	
-	
+	<!-- 첨부 파일 삭제 -->
+	<delete id="deleteFileAttach" parameterType="Long">
+		DELETE
+		  FROM FILE_ATTACH
+		 WHERE FILE_ATTACH_NO = #{fileAttachNo}
+	</delete>
 	
 	
 	

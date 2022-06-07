@@ -80,6 +80,21 @@ public class GalleryController {
 		galleryService.findGalleryByNo(request, model);
 		return "gallery/change";
 	}
+	
+	@PostMapping("/gallery/change")
+	public void change(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) {
+		galleryService.change(multipartRequest, response);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 	
 	
