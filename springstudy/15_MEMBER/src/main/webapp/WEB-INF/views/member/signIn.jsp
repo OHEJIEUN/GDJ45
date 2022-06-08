@@ -123,6 +123,13 @@
 			<input type="password" id="pwConfirm"><br>
 			<span id="pwConfirmMsg"></span>
 		</label><br><br>
+		
+		<label for="name">
+			이름<br>
+			<input type="text" name="name" id="name"><br>
+		</label><br><br>
+		
+		
 	
 	</form>
 	
