@@ -5,8 +5,12 @@ import java.util.Map;
 import java.util.Properties;
 
 import javax.mail.Authenticator;
+import javax.mail.Message;
 import javax.mail.PasswordAuthentication;
 import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -58,7 +62,34 @@ public class MemberServiceImpl implements MemberService {
 			}
 		});
 		
-		return null;
+		/*
+			이메일 보내기
+			1. 사용자 정보는 구글 메일만 가능합니다.
+			2. 가급적 구글 부계정을 만들어서 사용하세요.
+			3. 구글에서 '보안 수준이 낮은 앱 허용'을 해야 합니다.
+			   https://support.google.com/accounts/answer/6010255
+		*/
+		
+		// 이메일 전송하기
+		try {
+			
+			Message message = new MimeMessage(session);
+			
+			message.setHeader("Content-Type", "text/plain; charset=UTF-8");
+			message.setFrom(new InternetAddress(USERNAME, "인증코드관리자"));
+			message.setRecipient(Message.RecipientType.TO, new InternetAddress(email));
+			message.setSubject("인증 요청 메일입니다.");
+			message.setText("인증번호는 " + authCode + "입니다.");
+			
+			Transport.send(message);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("authCode", authCode);
+		return map;
 		
 	}
 	

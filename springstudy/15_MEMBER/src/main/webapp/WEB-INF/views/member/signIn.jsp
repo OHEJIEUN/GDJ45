@@ -26,29 +26,32 @@
 		fnPwCheck();
 		fnPwConfirm();
 		fnEmailAuth();
+		fnToUpperCase();
 	})
 	
 	/* 함수 */
 	
-	// 5. 이메일 중복체크
-	//    1) 이메일 중복을 체크하는 ajax를 동작시킨다.
-	//    2) ajax의 처리 결과에 따라서 이후 동작이 달라진다.
-	//       (1) 중복이 없는 경우 : fnAuthCodeSuccess => 이메일 인증 진행(이메일을 보내는 Service를 동작시킬 ajax 처리가 필요함.)
-	//       (2) 중복이 있는 경우 : fnAuthCodeFail    => 오류 처리
+	// 7. 입력을 무조건 대문자로 처리
+	function fnToUpperCase(){
+		$('#authCode').on('keyup', function(){
+			$('#authCode').val($('#authCode').val().toUpperCase());
+		})
+	}
 	
-	// ※ ajax 처리 결과를 이용해서 또 다른 ajax 처리가 필요한 상황
-	//   Promise 처리를 해야 한다.
+	// 6. 인증코드 검증
+	let authCodePass = false;
+	function fnVerifyAuthCode(authCode){  // 이메일로 전송한 인증코드
+		$('#btnVerifyAuthCode').on('click', function(){
+			if($('#authCode').val() == authCode){
+				alert('인증되었습니다.');
+				authCodePass = true;
+			} else {
+				alert('인증에 실패했습니다.');
+				authCodePass = false;
+			}
+		})
+	}
 	
-	
-	new Promise(function(resolve, reject){
-		resolve();
-		reject(1000);
-	}).then(
-		function(){  }
-	).catch(
-		function(code){ }	
-	)
-
 	/*
 	function fnEmailCheck(){
 		return new Promise(function(resolve, reject){
@@ -74,6 +77,15 @@
 		)
 	}
 	*/
+	
+	// 5. 이메일 중복체크
+	//    1) 이메일 중복을 체크하는 ajax를 동작시킨다.
+	//    2) ajax의 처리 결과에 따라서 이후 동작이 달라진다.
+	//       (1) 중복이 없는 경우 : fnAuthCodeSuccess => 이메일 인증 진행(이메일을 보내는 Service를 동작시킬 ajax 처리가 필요함.)
+	//       (2) 중복이 있는 경우 : fnAuthCodeFail    => 오류 처리
+	
+	// ※ ajax 처리 결과를 이용해서 또 다른 ajax 처리가 필요한 상황
+	//   Promise 처리를 해야 한다.
 	
 	function fnEmailCheck(){
 		return new Promise(function(resolve, reject) {
@@ -111,9 +123,9 @@
 					type: 'get',
 					data: 'email=' + $('#email').val(),
 					dataType: 'json',
-					success: function(obj){  // obj에는 발송한 인증코드가 저장되어 있음.
+					success: function(obj){  // obj에는 발송한 인증코드(authCode)가 저장되어 있음.
 						alert('인증코드를 발송했습니다. 이메일을 확인하세요.');
-						
+						fnVerifyAuthCode(obj.authCode);  // 발송한 인증코드와 사용자가 입력한 인증코드가 일치하는지 점검.
 					},
 					error: function(jqXHR){
 						alert('인증코드 발송이 실패했습니다.');
@@ -132,7 +144,6 @@
 			}
 		)
 	}
-	
 	
 	// 3. 비밀번호 입력확인
 	let rePwPass = false;
