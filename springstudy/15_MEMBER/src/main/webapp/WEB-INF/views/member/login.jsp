@@ -31,8 +31,11 @@
 	
 	</form>
 	
-	
-	
+	<div>
+		<a href="${contextPath}/member/findIdPage">아이디 찾기</a> | 
+		<a href="${contextPath}/member/findPwPage">비밀번호 찾기</a> | 
+		<a href="${contextPath}/member/agreePage">회원가입</a>
+	</div>
 	
 </body>
 </html>

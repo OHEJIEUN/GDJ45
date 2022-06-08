@@ -11,4 +11,9 @@ public class MemberController {
 		return "index";
 	}
 	
+	@GetMapping("/member/agreePage")
+	public String agreePage() {
+		return "member/agree";
+	}
+	
 }
