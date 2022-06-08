@@ -224,7 +224,7 @@ public class GalleryServiceImpl implements GalleryService {
 		// 파일 첨부 결과
 		int fileAttachResult;
 		if(files.get(0).getOriginalFilename().isEmpty()) {  // 첨부가 없으면 files.size() == 1임. [MultipartFile[field="files", filename=, contentType=application/octet-stream, size=0]] 값을 가짐.
-			fileAttachResult = 1; 
+			fileAttachResult = 1;
 		} else {  // 첨부가 있으면 "files.size() == 첨부파일갯수"이므로 fileAttachResult = 0으로 시작함.
 			fileAttachResult = 0;
 		}

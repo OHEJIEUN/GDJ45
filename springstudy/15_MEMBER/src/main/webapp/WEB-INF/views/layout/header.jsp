@@ -12,9 +12,12 @@
 </head>
 <body>
 	
-	<jsp:include page="./layout/header.jsp"></jsp:include>
+	<h1>로고</h1>
 	
-	<h1>MAIN PAGE</h1>
+	<a href="${contextPath}/member/loginPage">로그인페이지</a>
+	<a href="${contextPath}/member/agreePage">회원가입페이지</a>
+	
+	<hr>
 	
 </body>
 </html>
