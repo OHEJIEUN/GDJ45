@@ -52,7 +52,7 @@ public class MemberServiceImpl implements MemberService {
 		
 		// 메일을 보내는 사용자 정보
 		final String USERNAME = "forspringlec@gmail.com";
-		final String PASSWORD = "asdf1234!@#$";
+		final String PASSWORD = "ukpiajijxfirdgcz";
 		
 		// 사용자 정보 javax.mail.Session에서 저장
 		Session session = Session.getInstance(props, new Authenticator() {

@@ -116,33 +116,35 @@
 	
 	// 4. 이메일 인증
 	function fnEmailAuth(){
-		fnEmailCheck().then(
-			function(){
-				$.ajax({
-					url: '{contextPath}/member/sendAuthCode',
-					type: 'get',
-					data: 'email=' + $('#email').val(),
-					dataType: 'json',
-					success: function(obj){  // obj에는 발송한 인증코드(authCode)가 저장되어 있음.
-						alert('인증코드를 발송했습니다. 이메일을 확인하세요.');
-						fnVerifyAuthCode(obj.authCode);  // 발송한 인증코드와 사용자가 입력한 인증코드가 일치하는지 점검.
-					},
-					error: function(jqXHR){
-						alert('인증코드 발송이 실패했습니다.');
-					}
-				})
-			}
-		).catch(
-			function(code){
-				if(code == 1000){
-					$('#emailMsg').text('이메일 형식이 올바르지 않습니다.').addClass('dont').removeClass('ok');
-					$('#authCode').prop('readonly', true);
-				} else if(code == 2000){
-					$('#emailMsg').text('이미 사용 중인 이메일입니다.').addClass('dont').removeClass('ok');
-					$('#authCode').prop('readonly', true);
+		$('#btnGetAuthCode').on('click', function(){
+			fnEmailCheck().then(
+				function(){
+					$.ajax({
+						url: '${contextPath}/member/sendAuthCode',
+						type: 'get',
+						data: 'email=' + $('#email').val(),
+						dataType: 'json',
+						success: function(obj){  // obj에는 발송한 인증코드(authCode)가 저장되어 있음.
+							alert('인증코드를 발송했습니다. 이메일을 확인하세요.');
+							fnVerifyAuthCode(obj.authCode);  // 발송한 인증코드와 사용자가 입력한 인증코드가 일치하는지 점검.
+						},
+						error: function(jqXHR){
+							alert('인증코드 발송이 실패했습니다.');
+						}
+					})
 				}
-			}
-		)
+			).catch(
+				function(code){
+					if(code == 1000){
+						$('#emailMsg').text('이메일 형식이 올바르지 않습니다.').addClass('dont').removeClass('ok');
+						$('#authCode').prop('readonly', true);
+					} else if(code == 2000){
+						$('#emailMsg').text('이미 사용 중인 이메일입니다.').addClass('dont').removeClass('ok');
+						$('#authCode').prop('readonly', true);
+					}
+				}
+			)
+		})
 	}
 	
 	// 3. 비밀번호 입력확인
