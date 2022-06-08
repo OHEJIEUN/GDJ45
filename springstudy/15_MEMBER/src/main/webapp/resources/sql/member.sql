@@ -8,7 +8,7 @@ CREATE TABLE MEMBER
     PW VARCHAR2(64 BYTE) NOT NULL,  -- 암호화된 비번 최대 64바이트
     NAME VARCHAR2(100 BYTE),
     EMAIL VARCHAR2(200 BYTE) NOT NULL UNIQUE,  -- 이메일 인증 때문에 UNIQUE
-    AGREE_STATE NUMBER,  -- 동의 여부
+    AGREE_STATE NUMBER,  -- 동의 여부(1:필수, 2:필수+위치, 3:필수+프로모션, 4:필수+위치+프로모션)
     SIGN_IN DATE,  -- 가입일
     PW_MODIFIED DATE,    -- 비번 수정일
     INFO_MODIFIED DATE,  -- 회원정보 수정일

@@ -71,6 +71,16 @@
 			$(this).toggleClass('check');
 		})
 		
+		// 다음 버튼
+		$('#f').on('submit', function(event){
+			if($('#service').is(':checked') == false || $('#privacy').is(':checked') == false){
+				alert('필수 약관에 모두 동의하세요.');
+				event.preventDefault();
+				return false;
+			}
+			return true;
+		})
+		
 	})
 	
 </script>
@@ -79,35 +89,35 @@
 	
 	<h3>약관 동의하기</h3>
 	
-	<form action="">
+	<form id="f" action="${contextPath}/member/signInPage">
 		
 		<input type="checkbox" id="checkAll" class="blind checkAll">
 		<label for="checkAll" class="items">모두 동의합니다.</label>
 		
 		<hr>
 		
-		<input type="checkbox" name="agreements" value="" id="service" class="blind checkOne">
+		<input type="checkbox" id="service" class="blind checkOne">
 		<label for="service" class="item">이용약관에 동의합니다.(필수)</label><br>
 		<textarea>본 약관은 ...</textarea>
 		<br><br>
 		
-		<input type="checkbox" name="agreements" value="" id="privacy" class="blind checkOne">
+		<input type="checkbox" id="privacy" class="blind checkOne">
 		<label for="privacy" class="item">개인정보 수집에 동의합니다.(필수)</label><br>
 		<textarea>개인정보보호법에 따라 ...</textarea>
 		<br><br>
 		
-		<input type="checkbox" name="agreements" value="" id="location" class="blind checkOne">
+		<input type="checkbox" name="agreements" value="location" id="location" class="blind checkOne">
 		<label for="location" class="item">위치정보 수집에 동의합니다.(선택)</label><br>
 		<textarea>위치정보 이용약관 ...</textarea>
 		<br><br>
 		
-		<input type="checkbox" name="agreements" value="" id="promotion" class="blind checkOne">
+		<input type="checkbox" name="agreements" value="promotion" id="promotion" class="blind checkOne">
 		<label for="promotion" class="item">프로모션 정보 수신에 동의합니다.(선택)</label><br>
 		<textarea>각종 이벤트 ...</textarea>
 		<br><br>
 		
 		<input type="button" value="취소" onclick="history.back()">
-		<input type="button" value="다음" id="btnNext">
+		<input type="submit" value="다음">
 			
 	</form>
 	
