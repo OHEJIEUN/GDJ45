@@ -41,8 +41,19 @@ public class MemberController {
 		// {"res": {"memberNo":1, ...}}
 	}
 	
+	@ResponseBody
+	@GetMapping(value="/member/emailCheck", produces="application/json")
+	public Map<String, Object> emailCheck(@RequestParam String email) {
+		return memberService.emailCheck(email);
+		// {"res": null}
+		// {"res": {"memberNo":1, ...}}
+	}
 	
-	
+	@ResponseBody
+	@GetMapping(value="/member/sendAuthCode", produces="application/json")
+	public Map<String, Object> sendAuthCode(@RequestParam String email) {
+		return memberService.sendAuthCode(email);
+	}
 	
 	
 	

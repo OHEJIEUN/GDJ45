@@ -30,8 +30,6 @@
 	
 	/* 함수 */
 	
-	// 6. 이메일 인증 성공/실패 처리
-	
 	// 5. 이메일 중복체크
 	//    1) 이메일 중복을 체크하는 ajax를 동작시킨다.
 	//    2) ajax의 처리 결과에 따라서 이후 동작이 달라진다.
@@ -40,7 +38,43 @@
 	
 	// ※ ajax 처리 결과를 이용해서 또 다른 ajax 처리가 필요한 상황
 	//   Promise 처리를 해야 한다.
+	
+	
+	new Promise(function(resolve, reject){
+		resolve();
+		reject(1000);
+	}).then(
+		function(){  }
+	).catch(
+		function(code){ }	
+	)
 
+	/*
+	function fnEmailCheck(){
+		return new Promise(function(resolve, reject){
+			이메일 형식이 틀리면     reject(1000);
+			$.ajax({
+				이메일 중복이 없으면 resolve();
+				이메일 중복이 있으면 reject(2000); 
+			})
+		});
+	}
+	
+	function fnEmailAuth(){
+		fnEmailCheck().then(
+			function(){
+				$.ajax({
+					인증코드 전송하는 ajax 처리
+				})
+			}
+		).catch(
+			function(code){
+				code에 따른 alert 처리
+			}
+		)
+	}
+	*/
+	
 	function fnEmailCheck(){
 		return new Promise(function(resolve, reject) {
 			// 1) 이메일 정규식 체크
@@ -65,11 +99,39 @@
 					}
 				}
 			})
-			
 		});
 	}
 	
 	// 4. 이메일 인증
+	function fnEmailAuth(){
+		fnEmailCheck().then(
+			function(){
+				$.ajax({
+					url: '{contextPath}/member/sendAuthCode',
+					type: 'get',
+					data: 'email=' + $('#email').val(),
+					dataType: 'json',
+					success: function(obj){  // obj에는 발송한 인증코드가 저장되어 있음.
+						alert('인증코드를 발송했습니다. 이메일을 확인하세요.');
+						
+					},
+					error: function(jqXHR){
+						alert('인증코드 발송이 실패했습니다.');
+					}
+				})
+			}
+		).catch(
+			function(code){
+				if(code == 1000){
+					$('#emailMsg').text('이메일 형식이 올바르지 않습니다.').addClass('dont').removeClass('ok');
+					$('#authCode').prop('readonly', true);
+				} else if(code == 2000){
+					$('#emailMsg').text('이미 사용 중인 이메일입니다.').addClass('dont').removeClass('ok');
+					$('#authCode').prop('readonly', true);
+				}
+			}
+		)
+	}
 	
 	
 	// 3. 비밀번호 입력확인
