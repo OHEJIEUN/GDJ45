@@ -75,11 +75,12 @@ public class MemberController {
 		return "member/login";
 	}
 	
+	// login() 메소드 수행 전에 LoginInterceptor의 preHandle() 메소드가 호출
 	@PostMapping("/member/login")
 	public void login(HttpServletRequest request) {
 		memberService.login(request);
 	}
-	
+	// login() 메소드 수행 후에 LoginInterceptor의 postHandle() 메소드가 호출
 	
 	
 	
