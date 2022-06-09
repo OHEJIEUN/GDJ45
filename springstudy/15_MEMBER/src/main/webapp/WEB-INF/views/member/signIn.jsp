@@ -238,8 +238,6 @@
 </head>
 <body>
 	
-	<jsp:include page="../layout/header.jsp"></jsp:include>
-	
 	<h3>회원 가입</h3>
 	
 	<form id="f" action="${contextPath}/member/signIn" method="post">

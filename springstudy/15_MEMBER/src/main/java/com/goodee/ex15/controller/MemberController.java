@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.goodee.ex15.domain.MemberDTO;
 import com.goodee.ex15.service.MemberService;
 
 @Controller
@@ -64,7 +65,20 @@ public class MemberController {
 		memberService.signIn(request, response);
 	}
 	
+	@GetMapping("/member/signOut")
+	public void signOut(HttpServletRequest request, HttpServletResponse response) {
+		memberService.signOut(request, response);
+	}
 	
+	@GetMapping("/member/loginPage")
+	public String loginPage() {
+		return "member/login";
+	}
+	
+	@PostMapping("/member/login")
+	public void login(HttpServletRequest request) {
+		memberService.login(request);
+	}
 	
 	
 	

@@ -10,4 +10,6 @@ public interface MemberService {
 	public Map<String, Object> emailCheck(String email);
 	public Map<String, Object> sendAuthCode(String email);
 	public void signIn(HttpServletRequest request, HttpServletResponse response);
+	public void signOut(HttpServletRequest request, HttpServletResponse response);
+	public void login(HttpServletRequest request);
 }

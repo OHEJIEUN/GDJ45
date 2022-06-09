@@ -9,4 +9,7 @@ public interface MemberMapper {
 	public MemberDTO selectMemberById(String id);
 	public MemberDTO selectMemberByEmail(String email);
 	public int insertMember(MemberDTO member);
+	public int deleteMember(Long memberNo);
+	public MemberDTO selectMemberByIdPw(MemberDTO member);
+	public int insertMemberLog(String id);
 }

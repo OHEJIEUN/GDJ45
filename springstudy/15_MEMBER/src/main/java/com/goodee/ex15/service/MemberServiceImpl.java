@@ -3,6 +3,7 @@ package com.goodee.ex15.service;
 import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Properties;
 
 import javax.mail.Authenticator;
@@ -156,6 +157,69 @@ public class MemberServiceImpl implements MemberService {
 		}
 		
 	}
+	
+	@Override
+	public void signOut(HttpServletRequest request, HttpServletResponse response) {
+		
+		// 파라미터
+		Optional<String> opt = Optional.ofNullable(request.getParameter("memberNo"));
+		Long memberNo = Long.parseLong(opt.orElse("0"));
+		
+		// MEMBER 테이블에서 member 삭제
+		int res = memberMapper.deleteMember(memberNo);
+		
+		// 응답
+		try {
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			if(res == 1) {
+				out.println("<script>");
+				out.println("alert('Good Bye!')");
+				out.println("location.href='" + request.getContextPath() + "'");
+				out.println("</script>");
+				out.close();
+			} else {
+				out.println("<script>");
+				out.println("alert('회원 탈퇴가 실패했습니다.')");
+				out.println("history.back()");
+				out.println("</script>");
+				out.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
+	
+	@Override
+	public void login(HttpServletRequest request) {
+		
+		// 파라미터
+		String id = SecurityUtils.xss(request.getParameter("id"));
+		String pw = SecurityUtils.sha256(request.getParameter("pw"));
+		
+		// MemberDTO
+		MemberDTO member = MemberDTO.builder()
+				.id(id)
+				.pw(pw)
+				.build();
+		
+		// ID/Password가 일치하는 회원 조회
+		MemberDTO login = memberMapper.selectMemberByIdPw(member);
+		
+		// ID/Password가 일치하는 회원을 session에 저장 & 로그인 기록 남기기
+		if(login != null) {
+			request.getSession().setAttribute("login", login);
+			memberMapper.insertMemberLog(id);
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	
