@@ -65,7 +65,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 		}
 		// loginMember가 없다면 로그인 실패
 		else {
-			response.sendRedirect(request.getContentType() + "/member/loginPage");
+			response.sendRedirect(request.getContextPath() + "/member/loginPage");
 		}
 		
 	}

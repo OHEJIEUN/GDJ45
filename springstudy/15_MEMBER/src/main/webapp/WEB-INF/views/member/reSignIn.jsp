@@ -19,6 +19,7 @@
 	function fnReSignIn(){
 		$('#f').on('submit', function(event){
 			// 비밀번호 정규식 검사
+			let regPw = /^[0-9]{1,4}$/;
 			if(regPw.test($('#pw').val())==false){
 				alert('8~16자 영문 대 소문자, 숫자, 특수문자를 사용하세요.');
 				event.preventDefault();
