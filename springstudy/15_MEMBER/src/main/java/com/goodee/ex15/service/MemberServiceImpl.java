@@ -16,6 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.goodee.ex15.mapper.MemberMapper;
+import com.goodee.ex15.util.SecurityUtils;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -41,7 +42,8 @@ public class MemberServiceImpl implements MemberService {
 	public Map<String, Object> sendAuthCode(String email) {
 		
 		// 인증코드
-		String authCode = "111111";
+		String authCode = SecurityUtils.authCode(6);    // 6자리 인증코드
+		System.out.println(authCode);
 		
 		// 필수 속성
 		Properties props = new Properties();
@@ -52,7 +54,7 @@ public class MemberServiceImpl implements MemberService {
 		
 		// 메일을 보내는 사용자 정보
 		final String USERNAME = "forspringlec@gmail.com";
-		final String PASSWORD = "ukpiajijxfirdgcz";
+		final String PASSWORD = "ukpiajijxfirdgcz";     // 발급 받은 앱 비밀번호
 		
 		// 사용자 정보 javax.mail.Session에서 저장
 		Session session = Session.getInstance(props, new Authenticator() {
@@ -66,8 +68,12 @@ public class MemberServiceImpl implements MemberService {
 			이메일 보내기
 			1. 사용자 정보는 구글 메일만 가능합니다.
 			2. 가급적 구글 부계정을 만들어서 사용하세요.
-			3. 구글에서 '보안 수준이 낮은 앱 허용'을 해야 합니다.
-			   https://support.google.com/accounts/answer/6010255
+			3. 구글 로그인 - Google 계정 - 보안
+			    1) 2단계 인증 - 사용
+			    2) 앱 비밀번호
+			        (1) 앱 선택 - 기타 (앱 이름은 마음대로)
+			        (2) 기기 선택 - Windows 컴퓨터
+			        (3) 생성 버튼 - 16자리 비밀번호를 생성해 줌
 		*/
 		
 		// 이메일 전송하기
