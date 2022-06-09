@@ -20,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.goodee.ex15.domain.MemberDTO;
+import com.goodee.ex15.domain.SignOutMemberDTO;
 import com.goodee.ex15.mapper.MemberMapper;
 import com.goodee.ex15.util.SecurityUtils;
 
@@ -215,7 +216,10 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 	
-	
+	@Override
+	public SignOutMemberDTO findSignOutMember(String id) {
+		return memberMapper.selectSignOutMemberById(id);
+	}
 	
 	
 	

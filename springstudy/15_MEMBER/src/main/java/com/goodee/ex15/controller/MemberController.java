@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.goodee.ex15.domain.MemberDTO;
 import com.goodee.ex15.service.MemberService;
 
 @Controller
@@ -81,6 +80,23 @@ public class MemberController {
 		memberService.login(request);
 	}
 	// login() 메소드 수행 후에 LoginInterceptor의 postHandle() 메소드가 호출
+	
+	// LoginInterceptor의 preHandle() 메소드에서 탈퇴자 조회 후 탈퇴자인 경우 처리
+	@PostMapping("/member/reSignInPage")
+	public String reSignInPage() {
+		return "member/reSignIn";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

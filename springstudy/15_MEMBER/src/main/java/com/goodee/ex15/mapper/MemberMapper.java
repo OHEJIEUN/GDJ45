@@ -3,6 +3,7 @@ package com.goodee.ex15.mapper;
 import org.apache.ibatis.annotations.Mapper;
 
 import com.goodee.ex15.domain.MemberDTO;
+import com.goodee.ex15.domain.SignOutMemberDTO;
 
 @Mapper
 public interface MemberMapper {
@@ -12,4 +13,5 @@ public interface MemberMapper {
 	public int deleteMember(Long memberNo);
 	public MemberDTO selectMemberByIdPw(MemberDTO member);
 	public int insertMemberLog(String id);
+	public SignOutMemberDTO selectSignOutMemberById(String id);
 }

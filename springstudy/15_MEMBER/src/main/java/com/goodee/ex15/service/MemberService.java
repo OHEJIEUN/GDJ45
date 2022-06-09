@@ -5,6 +5,8 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.goodee.ex15.domain.SignOutMemberDTO;
+
 public interface MemberService {
 	public Map<String, Object> idCheck(String id);
 	public Map<String, Object> emailCheck(String email);
@@ -12,4 +14,5 @@ public interface MemberService {
 	public void signIn(HttpServletRequest request, HttpServletResponse response);
 	public void signOut(HttpServletRequest request, HttpServletResponse response);
 	public void login(HttpServletRequest request);
+	public SignOutMemberDTO findSignOutMember(String id);
 }
