@@ -18,6 +18,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.goodee.ex15.domain.MemberDTO;
 import com.goodee.ex15.domain.SignOutMemberDTO;
@@ -174,6 +175,7 @@ public class MemberServiceImpl implements MemberService {
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
 			if(res == 1) {
+				request.getSession().invalidate();  // session 초기화
 				out.println("<script>");
 				out.println("alert('Good Bye!')");
 				out.println("location.href='" + request.getContextPath() + "'");
@@ -193,7 +195,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 	
 	@Override
-	public void login(HttpServletRequest request) {
+	public MemberDTO login(HttpServletRequest request) {
 		
 		// 파라미터
 		String id = SecurityUtils.xss(request.getParameter("id"));
@@ -206,13 +208,14 @@ public class MemberServiceImpl implements MemberService {
 				.build();
 		
 		// ID/Password가 일치하는 회원 조회
-		MemberDTO login = memberMapper.selectMemberByIdPw(member);
+		MemberDTO loginMember = memberMapper.selectMemberByIdPw(member);
 		
-		// ID/Password가 일치하는 회원을 session에 저장 & 로그인 기록 남기기
-		if(login != null) {
-			request.getSession().setAttribute("login", login);
+		// 로그인 기록 남기기
+		if(loginMember != null) {
 			memberMapper.insertMemberLog(id);
 		}
+		
+		return loginMember;
 		
 	}
 	
@@ -221,7 +224,47 @@ public class MemberServiceImpl implements MemberService {
 		return memberMapper.selectSignOutMemberById(id);
 	}
 	
-	
+	@Transactional
+	@Override
+	public void reSignIn(HttpServletRequest request, HttpServletResponse response) {
+		
+		// 파라미터
+		Long memberNo = Long.parseLong(request.getParameter("memberNo"));
+		String id = request.getParameter("id");
+		String pw = SecurityUtils.sha256(request.getParameter("pw"));
+		String name = request.getParameter("name");
+		String email = request.getParameter("email");
+		Integer agreeState = Integer.parseInt(request.getParameter("agreeState"));
+		
+		// MemberDTO
+		MemberDTO member = new MemberDTO(memberNo, id, pw, name, email, agreeState, null, null, null, null, null);
+		
+		// MEMBER 테이블에 member 저장
+		int res1 = memberMapper.reInsertMember(member);
+		int res2 = memberMapper.deleteSignOutMember(id);
+		
+		// 응답
+		try {
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			if(res1 == 1 && res2 == 1) {
+				out.println("<script>");
+				out.println("alert('다시 모든 서비스를 이용할 수 있습니다.')");
+				out.println("location.href='" + request.getContextPath() + "'");
+				out.println("</script>");
+				out.close();
+			} else {
+				out.println("<script>");
+				out.println("alert('회원 재가입에 실패했습니다.')");
+				out.println("history.back()");
+				out.println("</script>");
+				out.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 	
 	

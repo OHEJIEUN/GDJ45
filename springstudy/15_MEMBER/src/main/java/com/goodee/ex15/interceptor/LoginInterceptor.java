@@ -1,5 +1,7 @@
 package com.goodee.ex15.interceptor;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -52,8 +54,20 @@ public class LoginInterceptor implements HandlerInterceptor {
 	@Override
 	public void postHandle(HttpServletRequest request, HttpServletResponse response, Object handler,
 			ModelAndView modelAndView) throws Exception {
-		// TODO Auto-generated method stub
-		HandlerInterceptor.super.postHandle(request, response, handler, modelAndView);
+		
+		// ModelAndView를 Map으로 변환하고 loginMember를 추출
+		Map<String, Object> map = modelAndView.getModel();
+		Object loginMember = map.get("loginMember");
+		
+		// loginMember가 있다면(로그인 성공) session에 저장
+		if(loginMember != null) {
+			request.getSession().setAttribute("loginMember", loginMember);
+		}
+		// loginMember가 없다면 로그인 실패
+		else {
+			response.sendRedirect(request.getContentType() + "/member/loginPage");
+		}
+		
 	}
 	
 }

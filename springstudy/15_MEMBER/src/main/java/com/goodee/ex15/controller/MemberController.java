@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.goodee.ex15.domain.MemberDTO;
 import com.goodee.ex15.service.MemberService;
 
 @Controller
@@ -76,8 +77,11 @@ public class MemberController {
 	
 	// login() 메소드 수행 전에 LoginInterceptor의 preHandle() 메소드가 호출
 	@PostMapping("/member/login")
-	public void login(HttpServletRequest request) {
-		memberService.login(request);
+	public void login(HttpServletRequest request, Model model) {
+		MemberDTO loginMember = memberService.login(request);
+		if(loginMember != null) {
+			model.addAttribute("loginMember", loginMember);  // Model에 저장된 속성은 LoginInterceptor의 postHandle() 메소드의 ModelAndView 매개변수가 받는다.
+		}
 	}
 	// login() 메소드 수행 후에 LoginInterceptor의 postHandle() 메소드가 호출
 	
@@ -87,6 +91,10 @@ public class MemberController {
 		return "member/reSignIn";
 	}
 	
+	@PostMapping("/member/reSignIn")
+	public void reSignIn(HttpServletRequest request, HttpServletResponse response) {
+		memberService.reSignIn(request, response);
+	}
 	
 	
 	

@@ -57,9 +57,20 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE ID = #{id}
 	</select>
 	
+	<!-- 탈퇴한 회원 재가입 -->
+	<insert id="reInsertMember" parameterType="MemberDTO">
+		INSERT INTO MEMBER
+			(MEMBER_NO, ID, PW, NAME, EMAIL, AGREE_STATE, SIGN_IN, PW_MODIFIED, INFO_MODIFIED)
+		VALUES
+			(#{memberNo}, #{id}, #{pw}, #{name}, #{email}, #{agreeState}, SYSDATE, SYSDATE, SYSDATE)
+	</insert>
 	
-	
-
+	<!-- 탈퇴한 회원 명단에서 제거 -->
+	<delete id="deleteSignOutMember" parameterType="String">
+		DELETE
+		  FROM SIGN_OUT_MEMBER
+		 WHERE ID = #{id}
+	</delete>
 
 
 
