@@ -2,10 +2,14 @@ package com.goodee.ex15.controller;
 
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -28,7 +32,7 @@ public class MemberController {
 	}
 	
 	@GetMapping("/member/signInPage")
-	public String signInPage(@RequestParam String[] agreements, Model model) {
+	public String signInPage(@RequestParam(required=false) String[] agreements, Model model) {
 		model.addAttribute("agreements", agreements);
 		return "member/signIn";
 	}
@@ -55,7 +59,10 @@ public class MemberController {
 		return memberService.sendAuthCode(email);
 	}
 	
-	
+	@PostMapping("/member/signIn")
+	public void signIn(HttpServletRequest request, HttpServletResponse response) {
+		memberService.signIn(request, response);
+	}
 	
 	
 	

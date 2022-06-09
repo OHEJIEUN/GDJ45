@@ -27,9 +27,32 @@
 		fnPwConfirm();
 		fnEmailAuth();
 		fnToUpperCase();
+		fnSignIn();
 	})
 	
 	/* 함수 */
+	
+	// 8. 회원가입
+	function fnSignIn(){
+		$('#f').on('submit', function(event){
+			if(idPass == false){
+				alert('아이디를 확인하세요.');
+				event.preventDefault();
+				return false;
+			}
+			else if(pwPass == false || rePwPass == false){
+				alert('비밀번호를 확인하세요.');
+				event.preventDefault();
+				return false;
+			}
+			else if(authCodePass == false){
+				alert('이메일 인증을 받아야 합니다.');
+				event.preventDefault();
+				return false;
+			}
+			return true;
+		})
+	}
 	
 	// 7. 입력을 무조건 대문자로 처리
 	function fnToUpperCase(){
@@ -221,7 +244,8 @@
 	
 	<form id="f" action="${contextPath}/member/signIn" method="post">
 	
-		<input type="hidden" name="agreements" value="${agreements}">
+		<input type="hidden" name="location" value="${agreements[0]}">
+		<input type="hidden" name="promotion" value="${agreements[1]}">
 		
 		<label for="id">
 			아이디<br>
@@ -253,19 +277,12 @@
 			<span id="emailMsg"></span><br>
 			<input type="text" name="authCode" id="authCode" placeholder="인증코드 입력">
 			<input type="button" value="인증하기" id="btnVerifyAuthCode"><br><br>
-		</label>
+		</label><br><br>
+		
+		<button>가입하기</button>
+		<input type="button" value="취소하기" onclick="location.href='${contextPath}'">
 	
 	</form>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 </body>
 </html>

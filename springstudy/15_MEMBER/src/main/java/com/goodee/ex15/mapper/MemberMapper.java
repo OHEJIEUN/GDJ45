@@ -8,4 +8,5 @@ import com.goodee.ex15.domain.MemberDTO;
 public interface MemberMapper {
 	public MemberDTO selectMemberById(String id);
 	public MemberDTO selectMemberByEmail(String email);
+	public int insertMember(MemberDTO member);
 }

@@ -1,5 +1,6 @@
 package com.goodee.ex15.service;
 
+import java.io.PrintWriter;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -11,10 +12,13 @@ import javax.mail.Session;
 import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.goodee.ex15.domain.MemberDTO;
 import com.goodee.ex15.mapper.MemberMapper;
 import com.goodee.ex15.util.SecurityUtils;
 
@@ -56,7 +60,7 @@ public class MemberServiceImpl implements MemberService {
 		final String USERNAME = "forspringlec@gmail.com";
 		final String PASSWORD = "ukpiajijxfirdgcz";     // 발급 받은 앱 비밀번호
 		
-		// 사용자 정보 javax.mail.Session에서 저장
+		// 사용자 정보를 javax.mail.Session에 저장
 		Session session = Session.getInstance(props, new Authenticator() {
 			@Override
 			protected PasswordAuthentication getPasswordAuthentication() {
@@ -99,7 +103,59 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 	
-	
+	@Override
+	public void signIn(HttpServletRequest request, HttpServletResponse response) {
+		
+		// 파라미터
+		String id = SecurityUtils.xss(request.getParameter("id"));        // 크로스 사이트 스크립팅
+		String pw = SecurityUtils.sha256(request.getParameter("pw"));     // SHA-256 암호화
+		String name = SecurityUtils.xss(request.getParameter("name"));    // 크로스 사이트 스크립팅
+		String email = SecurityUtils.xss(request.getParameter("email"));  // 크로스 사이트 스크립팅
+		String location = request.getParameter("location");
+		String promotion = request.getParameter("promotion");
+		int agreeState = 1;  // 필수 동의
+		if(location.equals("location") && promotion.equals("promotion")) {
+			agreeState = 4;  // 필수 + 위치 + 프로모션 동의
+		} else if(location.equals("location") && promotion.isEmpty()) {
+			agreeState = 2;  // 필수 + 위치 동의
+		} else if(location.isEmpty() && promotion.equals("promotion")) {
+			agreeState = 3;  // 필수 + 프로모션 동의
+		}
+		
+		// MemberDTO
+		MemberDTO member = MemberDTO.builder()
+				.id(id)
+				.pw(pw)
+				.name(name)
+				.email(email)
+				.agreeState(agreeState)
+				.build();
+		
+		// MEMBER 테이블에 member 저장
+		int res = memberMapper.insertMember(member);
+		
+		// 응답
+		try {
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			if(res == 1) {
+				out.println("<script>");
+				out.println("alert('회원 가입되었습니다.')");
+				out.println("location.href='" + request.getContextPath() + "'");
+				out.println("</script>");
+				out.close();
+			} else {
+				out.println("<script>");
+				out.println("alert('회원 가입에 실패했습니다.')");
+				out.println("history.back()");
+				out.println("</script>");
+				out.close();
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 	
 	
