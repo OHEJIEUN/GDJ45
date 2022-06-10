@@ -30,8 +30,8 @@ public class LoginInterceptor implements HandlerInterceptor {
 		
 		// 로그인 된 정보가 있다면 기존 로그인 정보를 제거
 		HttpSession session = request.getSession();
-		if(session.getAttribute("login") != null) {
-			session.removeAttribute("login");
+		if(session.getAttribute("loginMember") != null) {
+			session.removeAttribute("loginMember");
 		}
 		
 		// 탈퇴한 회원인지 확인
