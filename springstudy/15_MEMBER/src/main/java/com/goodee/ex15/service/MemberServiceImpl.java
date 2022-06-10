@@ -287,7 +287,10 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 	
-	
+	@Override
+	public MemberDTO getMemberBySessionId(String sessionId) {
+		return memberMapper.selectMemberBySessionId(sessionId);
+	}
 	
 	
 	

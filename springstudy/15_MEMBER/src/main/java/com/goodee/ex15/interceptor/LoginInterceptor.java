@@ -63,9 +63,11 @@ public class LoginInterceptor implements HandlerInterceptor {
 		
 		// loginMember가 있다면(로그인 성공) session에 저장
 		if(loginMember != null) {
+			
 			// session에 loginMember 저장
 			HttpSession session = request.getSession();
 			session.setAttribute("loginMember", loginMember);
+			
 			// 로그인 유지를 체크한 사용자는 "keepLogin"이라는 쿠키이름으로
 			// session_id 값을 저장해 둔다.
 			String keepLogin = request.getParameter("keepLogin");
@@ -77,13 +79,23 @@ public class LoginInterceptor implements HandlerInterceptor {
 				// keepLogin 쿠키 저장하기
 				response.addCookie(cookie);
 			}
+			// 로그인 유지를 체크하지 않은 사용자는 "keepLogin" 쿠키를 제거한다.
+			else {
+				// keepLogin 쿠키 제거하기
+				Cookie cookie = new Cookie("keepLogin", "");
+				cookie.setMaxAge(0);
+				response.addCookie(cookie);
+			}
+			
 			// 로그인 이후 이동
 			if(url.toString().isEmpty()) {  // 로그인 이전 화면 정보가 없으면 contextPath 이동
 				response.sendRedirect(request.getContextPath());
 			} else {  // 로그인 이전 화면 정보가 있으면 해당 화면으로 이동
 				response.sendRedirect(url.toString());
 			}
+			
 		}
+		
 		// loginMember가 없다면 로그인 실패(로그인 페이지로 돌려 보내기)
 		else {
 			if(url.toString().isEmpty()) {

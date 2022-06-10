@@ -17,4 +17,5 @@ public interface MemberMapper {
 	public int reInsertMember(MemberDTO member);
 	public int deleteSignOutMember(String id);
 	public int updateSessionInfo(MemberDTO member);
+	public MemberDTO selectMemberBySessionId(String sessionId);
 }
