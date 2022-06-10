@@ -97,7 +97,7 @@ public class MemberController {
 		// 2) uncheck 상태 : 파라미터 keepLogin 자체가 없다. 따라서 null.
 		String keepLogin = request.getParameter("keepLogin");
 		if(keepLogin != null && keepLogin.equals("keep")) {
-			System.out.println("세션아이디 : " + request.getSession().getId());
+			memberService.keepLogin(request);
 		}
 		
 	}
