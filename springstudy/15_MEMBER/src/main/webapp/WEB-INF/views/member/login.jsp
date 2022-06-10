@@ -53,6 +53,8 @@
 	
 	<form id="f" action="${contextPath}/member/login" method="post">
 		
+		<input type="hidden" name="url" value="${url}">
+		
 		아이디<br>
 		<input type="text" name="id" id="id"><br><br>
 		

@@ -58,14 +58,27 @@ public class LoginInterceptor implements HandlerInterceptor {
 		// ModelAndView를 Map으로 변환하고 loginMember를 추출
 		Map<String, Object> map = modelAndView.getModel();
 		Object loginMember = map.get("loginMember");
+		Object url = map.get("url");
 		
 		// loginMember가 있다면(로그인 성공) session에 저장
 		if(loginMember != null) {
+			// session에 loginMember 저장
 			request.getSession().setAttribute("loginMember", loginMember);
+			
+			// 로그인 이후 이동
+			if(url.toString().isEmpty()) {  // 로그인 이전 화면 정보가 없으면 contextPath 이동
+				response.sendRedirect(request.getContextPath());
+			} else {  // 로그인 이전 화면 정보가 있으면 해당 화면으로 이동
+				response.sendRedirect(url.toString());
+			}
 		}
-		// loginMember가 없다면 로그인 실패
+		// loginMember가 없다면 로그인 실패(로그인 페이지로 돌려 보내기)
 		else {
-			response.sendRedirect(request.getContextPath() + "/member/loginPage");
+			if(url.toString().isEmpty()) {
+				response.sendRedirect(request.getContextPath() + "/member/loginPage");				
+			} else {
+				response.sendRedirect(request.getContextPath() + "/member/loginPage?url=" + url.toString());
+			}
 		}
 		
 	}

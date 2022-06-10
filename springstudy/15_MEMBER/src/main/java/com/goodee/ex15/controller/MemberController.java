@@ -71,7 +71,8 @@ public class MemberController {
 	}
 	
 	@GetMapping("/member/loginPage")
-	public String loginPage() {
+	public String loginPage(@RequestParam(required=false) String url, Model model) {
+		model.addAttribute("url", url);  // member/login.jsp로 url 속성값을 전달한다. 
 		return "member/login";
 	}
 	
@@ -80,8 +81,9 @@ public class MemberController {
 	public void login(HttpServletRequest request, Model model) {
 		MemberDTO loginMember = memberService.login(request);
 		if(loginMember != null) {
-			model.addAttribute("loginMember", loginMember);  // Model에 저장된 속성은 LoginInterceptor의 postHandle() 메소드의 ModelAndView 매개변수가 받는다.
+			model.addAttribute("loginMember", loginMember);     // Model에 저장된 속성은 LoginInterceptor의 postHandle() 메소드의 ModelAndView 매개변수가 받는다.
 		}
+		model.addAttribute("url", request.getParameter("url"));
 	}
 	// login() 메소드 수행 후에 LoginInterceptor의 postHandle() 메소드가 호출
 	
@@ -96,7 +98,11 @@ public class MemberController {
 		memberService.reSignIn(request, response);
 	}
 	
-	
+	// 실제 구현에서는 BoardController에 있음
+	@GetMapping("/board/savePage")
+	public String savePage() {
+		return "board/save";
+	}
 	
 	
 	
