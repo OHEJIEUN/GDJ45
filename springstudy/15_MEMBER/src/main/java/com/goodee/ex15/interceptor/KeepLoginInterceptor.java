@@ -20,8 +20,6 @@ public class KeepLoginInterceptor implements HandlerInterceptor {
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler)
 			throws Exception {
 	
-		System.out.println("keep login");
-		
 		// 쿠키로 저장된 keepLogin 정보를 확인해서
 		// 해당 정보를 가진 사용자 정보를 DB에서 가져온 뒤 session에 loginMember 이름으로 올림
 		

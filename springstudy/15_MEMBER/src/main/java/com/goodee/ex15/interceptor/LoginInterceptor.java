@@ -74,7 +74,6 @@ public class LoginInterceptor implements HandlerInterceptor {
 			if(keepLogin != null && keepLogin.equals("keep")) {
 				// keepLogin 쿠키 만들기
 				Cookie cookie = new Cookie("keepLogin", session.getId()); 
-				cookie.setPath(request.getContextPath());
 				cookie.setMaxAge(60 * 60 * 24 * 7);  // 초 단위로 지정(7일)
 				// keepLogin 쿠키 저장하기
 				response.addCookie(cookie);
