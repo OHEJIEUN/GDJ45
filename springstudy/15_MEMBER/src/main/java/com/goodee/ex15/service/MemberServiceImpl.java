@@ -292,7 +292,13 @@ public class MemberServiceImpl implements MemberService {
 		return memberMapper.selectMemberBySessionId(sessionId);
 	}
 	
-	
+	/* 아이디 찾기 */
+	@Override
+	public Map<String, Object> findId(MemberDTO member) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("findMember", memberMapper.selectMemberByNameEmail(member));
+		return map;
+	}
 	
 	
 	

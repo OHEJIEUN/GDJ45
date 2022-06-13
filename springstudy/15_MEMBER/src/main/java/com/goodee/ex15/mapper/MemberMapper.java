@@ -18,4 +18,6 @@ public interface MemberMapper {
 	public int deleteSignOutMember(String id);
 	public int updateSessionInfo(MemberDTO member);
 	public MemberDTO selectMemberBySessionId(String sessionId);
+	/* 아이디 찾기 */
+	public MemberDTO selectMemberByNameEmail(MemberDTO member);
 }

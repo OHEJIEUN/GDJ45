@@ -19,4 +19,6 @@ public interface MemberService {
 	public void reSignIn(HttpServletRequest request, HttpServletResponse response);
 	public void keepLogin(HttpServletRequest request);
 	public MemberDTO getMemberBySessionId(String sessionId);
+	/* 아이디 찾기 */
+	public Map<String, Object> findId(MemberDTO member);
 }
