@@ -14,19 +14,29 @@
 
 	/* 페이지 로드 */
 	$(function(){
-		fnInit();
+		$('#btnInit').on('click', function(){	
+			fnInit();
+		})
+		fnCheckAll();
 		fnAdd();
 		fnList();
 	})
 
 	/* 함수 */
 	
-	// 3. 회원목록
+	// 4. 회원목록
 	function fnList(){
-		
+		let members = '';
+		members += '<tr><td><input type="checkbox" class="checkOnes" value="1"></td></tr>';
+		members += '<tr><td><input type="checkbox" class="checkOnes" value="2"></td></tr>';
+		members += '<tr><td><input type="checkbox" class="checkOnes" value="3"></td></tr>';
+		members += '<tr><td><input type="checkbox" class="checkOnes" value="4"></td></tr>';
+		members += '<tr><td><input type="checkbox" class="checkOnes" value="5"></td></tr>';
+		$('#members').empty();
+		$('#members').html(members);
 	}
 	
-	// 2. 회원추가
+	// 3. 회원추가
 	function fnAdd(){
 		$('#btnAdd').on('click', function(){
 			// 추가할 회원 정보를 JSON으로 만든다.
@@ -67,14 +77,20 @@
 		})
 	}
 	
+	// 2. 전체 선택 / 개별 선택
+	function fnCheckAll(){
+		$('#checkAll').on('click', function(){
+			$('.checkOne').prop('checked', $('#checkAll').prop('checked'));
+		})
+	}
+	
+	
 	// 1. 초기화
 	function fnInit(){
-		$('#btnInit').on('click', function(){			
-			$('#id').val('').prop('readonly', false);
-			$('#name').val('');
-			$(':radio[name="gender"]').prop('checked', false);
-			$('#address').val('');
-		})
+		$('#id').val('').prop('readonly', false);
+		$('#name').val('');
+		$(':radio[name="gender"]').prop('checked', false);
+		$('#address').val('');
 	}
 	
 </script>
@@ -88,7 +104,8 @@
 		이름   <input type="text" name="name" id="name"><br>
 		성별
 		<label for="male"><input type="radio" name="gender" value="M" id="male">남</label>
-		<label for="female"><input type="radio" name="gender" value="F" id="female">여</label><br>
+		<label for="female"><input type="radio" name="gender" value="F" id="female">여</label>
+		<label for="none"><input type="radio" name="gender" value="NONE" id="none" checked>선택</label><br>
 		주소   <input type="text" name="address" id="address"><br><br>
 		<input type="button" value="초기화" id="btnInit">
 		<input type="button" value="등록" id="btnAdd">
@@ -101,7 +118,7 @@
 		<caption id="paging"></caption>
 		<thead>
 			<tr>
-				<td><input type="checkbox"></td>
+				<td><input type="checkbox" id="checkAll"></td>
 				<td>아이디</td>
 				<td>이름</td>
 				<td>성별</td>
