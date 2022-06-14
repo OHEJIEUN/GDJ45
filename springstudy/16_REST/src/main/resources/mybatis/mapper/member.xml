@@ -14,7 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<select id="selectMemberCount" resultType="Long">
 		SELECT COUNT(*)
-		  FROM MEMBER;
+		  FROM MEMBER
 	</select>
 	
 	<select id="selectMemberList" parameterType="Map" resultType="MemberDTO">

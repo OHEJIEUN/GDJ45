@@ -33,9 +33,31 @@
 			type: 'GET',
 			dataType: 'json',
 			success: function(obj){
-				
+				fnPrintMemberList(obj.members);
+				fnPrintPaging(obj.p);
 			}
 		})
+	}
+	
+	// 4-1) 회원 목록 출력
+	function fnPrintMemberList(members){
+		$('#members').empty();
+		$.each(members, function(i, member){
+			var tr = '<tr>';
+			tr += '<td><input type="checkbox" class="checkOne" value="' + member.memberNo + '"></td>';
+			tr += '<td>' + member.id + '</td>';
+			tr += '<td>' + member.name + '</td>';
+			tr += '<td>' + member.gender + '</td>';
+			tr += '<td>' + member.address + '</td>';
+			tr += '<td><input type="button" value="조회" class="btnDetail" data-member_no="' + member.memberNo + '"></td>';
+			tr += '</tr>';
+			$('#members').append(tr);
+		})
+	}
+	
+	// 4-2) 페이징 정보 출력
+	function fnPrintPaging(p){
+		
 	}
 	
 	// 3. 회원추가
