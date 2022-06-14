@@ -8,4 +8,5 @@ import com.goodee.ex16.domain.MemberDTO;
 
 public interface MemberService {
 	public Map<String, Object> addMember(MemberDTO member, HttpServletResponse response);
+	public Map<String, Object> getMembers(int page);
 }

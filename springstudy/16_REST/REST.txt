@@ -6,6 +6,8 @@ REST : REpresentational State Transfer
 2. URL과 Method을 결합해서 동작이 결정된다.
 
 3. URL에 파라미터가 경로처럼 포함되어 사용된다.
+   기존 : /members?page=1
+   REST : /members/page/1
 
 4. CRUD 처리
               URL           Method

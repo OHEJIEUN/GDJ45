@@ -25,9 +25,17 @@
 
 	/* 함수 */
 	
-	// 4. 회원목록
+	// 4. 회원목록 + page 전역변수
+	var page = 1;
 	function fnList(){
-		
+		$.ajax({
+			url: '${contextPath}/members/page/' + page,
+			type: 'GET',
+			dataType: 'json',
+			success: function(obj){
+				
+			}
+		})
 	}
 	
 	// 3. 회원추가
