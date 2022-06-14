@@ -58,6 +58,30 @@
 	// 4-2) 페이징 정보 출력
 	function fnPrintPaging(p){
 		
+		$('#paging').empty();
+		
+		var paging = '';
+		
+		// ◀◀ : 이전 블록으로 이동
+		if(page <= p.pagePerBlock){
+			paging += '<div class="disable_link">◀◀</div>';
+		} else {
+			paging += '<div class="enable_link" data-page="' + (p.beginPage - 1) + '">◀◀</div>';
+		}
+		
+		// ◀  : 이전 페이지로 이동
+		
+		// 1 2 3 4 5 : 페이지 번호
+		
+		// ▶  : 다음 페이지로 이동
+		
+		// ▶▶ : 다음 블록으로 이동
+		if(p.endPage == p.totalPage){
+			paging += '<div class="disable_link">▶▶</div>';
+		} else {
+			paging += '<div class="enable_link" data-page="' + (p.endPage + 1) + '">▶▶</div>';
+		}
+		
 	}
 	
 	// 3. 회원추가
