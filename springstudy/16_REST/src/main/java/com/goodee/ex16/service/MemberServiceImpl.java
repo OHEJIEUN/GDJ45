@@ -53,7 +53,7 @@ public class MemberServiceImpl implements MemberService {
 				System.out.println(e.getClass().getName());
 				PrintWriter out = response.getWriter();
 				response.setContentType("text/plain");
-				response.setStatus(502);
+				response.setStatus(503);
 				out.println("잘못된 데이터가 전달되었습니다.");
 				out.close();
 			} catch (Exception e2) {

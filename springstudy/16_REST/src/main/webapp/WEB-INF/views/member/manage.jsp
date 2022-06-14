@@ -91,11 +91,7 @@
 					}
 				},
 				error: function(jqXHR){
-					if(jqXHR.status == 501){  // 아이디 중복 코드
-						alert(jqXHR.responseText);
-					} else if(jqXHR.status == 502){  // 필수 정보 누락 코드
-						alert(jqXHR.responseText);
-					}
+					alert('예외코드[' + jqXHR.status + '] ' + jqXHR.responseText);
 				}
 			})
 		})
