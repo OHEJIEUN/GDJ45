@@ -18,6 +18,7 @@
 			fnInit();
 		})
 		fnCheckAll();
+		fnCheckOne();
 		fnAdd();
 		fnList();
 	})
@@ -26,14 +27,7 @@
 	
 	// 4. 회원목록
 	function fnList(){
-		let members = '';
-		members += '<tr><td><input type="checkbox" class="checkOnes" value="1"></td></tr>';
-		members += '<tr><td><input type="checkbox" class="checkOnes" value="2"></td></tr>';
-		members += '<tr><td><input type="checkbox" class="checkOnes" value="3"></td></tr>';
-		members += '<tr><td><input type="checkbox" class="checkOnes" value="4"></td></tr>';
-		members += '<tr><td><input type="checkbox" class="checkOnes" value="5"></td></tr>';
-		$('#members').empty();
-		$('#members').html(members);
+		
 	}
 	
 	// 3. 회원추가
@@ -83,7 +77,15 @@
 			$('.checkOne').prop('checked', $('#checkAll').prop('checked'));
 		})
 	}
-	
+	function fnCheckOne(){
+		$(document).on('click', '.checkOne', function(){
+			let checkCount = 0;
+			for(let i = 0; i < $('.checkOne').length; i++){
+				checkCount += $($('.checkOne')[i]).prop('checked');				
+			}
+			$('#checkAll').prop('checked', checkCount == $('.checkOne').length);
+		})
+	}
 	
 	// 1. 초기화
 	function fnInit(){
