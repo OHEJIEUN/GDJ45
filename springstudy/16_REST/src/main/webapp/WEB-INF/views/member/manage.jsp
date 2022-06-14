@@ -21,12 +21,21 @@
 		fnCheckOne();
 		fnAdd();
 		fnList();
+		fnPagingLink();
 	})
 
 	/* 함수 */
 	
+	// 5. 페이징 링크 처리(page 전역변수 값을 링크의 data-page값으로 바꾸고 fnList() 호출)
+	function fnPagingLink(){
+		$(document).on('click', '.enable_link', function(){
+			page = $(this).data('page');
+			fnList();
+		})
+	}
+	
 	// 4. 회원목록 + page 전역변수
-	var page = 1;
+	var page = 1;  // 초기화
 	function fnList(){
 		$.ajax({
 			url: '${contextPath}/members/page/' + page,
@@ -70,10 +79,27 @@
 		}
 		
 		// ◀  : 이전 페이지로 이동
+		if(page == 1){
+			paging += '<div class="disable_link">◀</div>';
+		} else {
+			paging += '<div class="enable_link" data-page="' + (page - 1) + '">◀</div>';
+		}
 		
 		// 1 2 3 4 5 : 페이지 번호
+		for(let i = p.beginPage; i <= p.endPage; i++){
+			if(i == page){
+				paging += '<div class="disable_link now_page">' + i + '</div>';
+			} else {
+				paging += '<div class="enable_link" data-page="' + i + '">' + i + '</div>';
+			}
+		}
 		
 		// ▶  : 다음 페이지로 이동
+		if(page == p.totalPage){
+			paging += '<div class="disable_link">▶</div>';
+		} else {
+			paging += '<div class="enable_link" data-page="' + (page + 1) + '">▶</div>';
+		}
 		
 		// ▶▶ : 다음 블록으로 이동
 		if(p.endPage == p.totalPage){
@@ -81,6 +107,8 @@
 		} else {
 			paging += '<div class="enable_link" data-page="' + (p.endPage + 1) + '">▶▶</div>';
 		}
+		
+		$('#paging').append(paging);
 		
 	}
 	
@@ -146,6 +174,28 @@
 	}
 	
 </script>
+<style>
+	#paging {
+		display: flex;
+		justify-content: center;
+	}
+	#paging div {
+		width: 32px;
+		height: 20px;
+		text-align: center;
+	}
+	.disable_link {
+		color: lightgray;
+	}
+	.enable_link {
+		cursor: pointer;
+	}
+	.now_page {
+		border: 1px solid gray;
+		color: limegreen;
+		font-weight: 900;
+	}
+</style>
 </head>
 <body>
 	
@@ -167,7 +217,6 @@
 	<hr>
 	
 	<table border="1">
-		<caption id="paging"></caption>
 		<thead>
 			<tr>
 				<td><input type="checkbox" id="checkAll"></td>
@@ -182,11 +231,15 @@
 		<tfoot>
 			<tr>
 				<td colspan="6">
-					<input type="button" value="선택삭제" id="btnRemove">
+					<div id="paging"></div>
 				</td>
 			</tr>
 		</tfoot>
 	</table>
+	
+	<br>
+	
+	<input type="button" value="선택삭제" id="btnRemove">
 	
 </body>
 </html>
