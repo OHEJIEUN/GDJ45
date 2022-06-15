@@ -55,7 +55,9 @@ public class MemberController {
 	
 	@ResponseBody
 	@PutMapping(value="/members", produces="application/json")
-	public Map<String, Object> changeMember(@RequestBody MemberDTO member)
+	public Map<String, Object> changeMember(@RequestBody MemberDTO member, HttpServletResponse response){
+		return memberService.changeMember(member, response);
+	}
 	
 	
 	

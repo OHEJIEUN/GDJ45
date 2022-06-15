@@ -53,6 +53,9 @@
 					} else {
 						alert('회원 정보가 수정되지 않았습니다.');
 					}
+				},
+				error: function(jqXHR){
+					alert('예외코드[' + jqXHR.status + '] ' + jqXHR.responseText);
 				}
 			})
 		})

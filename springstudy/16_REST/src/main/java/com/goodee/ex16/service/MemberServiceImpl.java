@@ -91,6 +91,25 @@ public class MemberServiceImpl implements MemberService {
 		return map;
 	}
 	
+	@Override
+	public Map<String, Object> changeMember(MemberDTO member, HttpServletResponse response) {
+		try {
+			Map<String, Object> map = new HashMap<>();
+			map.put("res", memberMapper.updateMember(member));
+			return map;
+		} catch (Exception e) {
+			try {
+				response.setContentType("text/plain");
+				PrintWriter out = response.getWriter();
+				response.setStatus(503);  // ajax의 error의 jqXHR의 status가 된다.
+				out.println("잘못된 데이터가 전달되었습니다.");  // ajax의 error의 jqXHR의 responseText가 된다.
+				out.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return null;
+	}
 	
 	
 	

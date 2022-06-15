@@ -13,4 +13,5 @@ public interface MemberMapper {
 	public long selectMemberCount();
 	public List<MemberDTO> selectMemberList(Map<String, Object> m);
 	public MemberDTO selectMemberByNo(Long memberNo);
+	public int updateMember(MemberDTO member);
 }
