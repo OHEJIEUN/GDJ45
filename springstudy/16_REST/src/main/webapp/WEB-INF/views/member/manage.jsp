@@ -24,9 +24,39 @@
 		fnPagingLink();
 		fnDetail();
 		fnUpdate();
+		fnRemove();
 	})
 
 	/* 함수 */
+	
+	// 8. 회원삭제
+	function fnRemove(){
+		$('#btnRemove').on('click', function(){
+			let deleteCount = 0;
+			let checkedCount = 0;
+			for(let i = 0; i < $('.checkOne').length; i++){
+				/*
+					$('.checkOne')[i].value;
+					$($('.checkOne')[i]).val();
+				*/
+				if($($('.checkOne')[i]).is(':checked')){
+					checkedCount += 1;
+					$.ajax({
+						url: '${contextPath}/members/' + $('.checkOne')[i].value,
+						type: 'DELETE',
+						dataType: 'json',
+						success: function(obj){
+							deleteCount += obj.res;
+						}
+					})
+				}
+			}
+			if(deleteCount == checkedCount){
+				alert('모든 회원이 삭제되었습니다.');
+			}
+			fnList();
+		})
+	}
 	
 	// 7. 회원수정
 	function fnUpdate(){

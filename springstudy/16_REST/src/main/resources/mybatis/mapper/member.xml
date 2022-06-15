@@ -38,10 +38,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE MEMBER_NO = #{memberNo}
 	</update>
 	
+	<delete id="deleteMember" parameterType="Long">
+		DELETE
+		  FROM MEMBER
+		 WHERE MEMBER_NO = #{memberNo}
+	</delete>
 	
-	
-	
-	
-	
-
 </mapper>

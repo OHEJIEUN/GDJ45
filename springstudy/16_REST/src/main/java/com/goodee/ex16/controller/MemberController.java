@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -59,6 +60,12 @@ public class MemberController {
 		return memberService.changeMember(member, response);
 	}
 	
+	
+	@ResponseBody
+	@DeleteMapping(value="/members/{memberNo}", produces="application/json")
+	public Map<String, Object> removeMember(@PathVariable Long memberNo){
+		return memberService.removeMember(memberNo);
+	}
 	
 	
 	

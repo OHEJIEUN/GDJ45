@@ -111,13 +111,11 @@ public class MemberServiceImpl implements MemberService {
 		return null;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	@Override
+	public Map<String, Object> removeMember(Long memberNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("res", memberMapper.deleteMember(memberNo));
+		return map;
+	}
 	
 }
