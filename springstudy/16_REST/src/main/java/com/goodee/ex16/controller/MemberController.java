@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -44,6 +45,19 @@ public class MemberController {
 		int page = Integer.parseInt(opt.orElse("1"));
 		return memberService.getMembers(page);
 	}
+	
+	@ResponseBody
+	@GetMapping(value="/members/{memberNo}", produces="application/json")
+	public Map<String, Object> getMember(@PathVariable(value="memberNo", required=false) Optional<String> opt){
+		Long memberNo = Long.parseLong(opt.orElse("0"));
+		return memberService.getMember(memberNo);
+	}
+	
+	@ResponseBody
+	@PutMapping(value="/members", produces="application/json")
+	public Map<String, Object> changeMember(@RequestBody MemberDTO member)
+	
+	
 	
 	
 	

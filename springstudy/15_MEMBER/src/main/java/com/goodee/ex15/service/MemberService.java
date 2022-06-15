@@ -21,4 +21,6 @@ public interface MemberService {
 	public MemberDTO getMemberBySessionId(String sessionId);
 	/* 아이디 찾기 */
 	public Map<String, Object> findId(MemberDTO member);
+	/* 비밀번호 찾기 */
+	
 }

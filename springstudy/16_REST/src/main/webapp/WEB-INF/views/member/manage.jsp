@@ -22,9 +22,63 @@
 		fnAdd();
 		fnList();
 		fnPagingLink();
+		fnDetail();
+		fnUpdate();
 	})
 
 	/* 함수 */
+	
+	// 7. 회원수정
+	function fnUpdate(){
+		$('#btnChange').on('click', function(){
+			// 수정할 회원 정보 JSON
+			let member = JSON.stringify(
+				{
+					memberNo: $('#memberNo').val(),
+					name: $('#name').val(),
+					gender: $(':radio[name="gender"]:checked').val(),
+					address: $('#address').val()
+				}
+			);
+			$.ajax({
+				url: '${contextPath}/members',
+				type: 'PUT',
+				data: member,
+				contentType: 'application/json',
+				dataType: 'json',
+				success: function(obj){
+					if(obj.res > 0){
+						alert('회원 정보가 수정되었습니다.');
+						fnList();
+					} else {
+						alert('회원 정보가 수정되지 않았습니다.');
+					}
+				}
+			})
+		})
+	}
+	
+	// 6. 회원조회
+	function fnDetail(){
+		$(document).on('click', '.btnDetail', function(){
+			$.ajax({
+				url: '${contextPath}/members/' + $(this).data('member_no'),
+				type: 'GET',
+				dataType: 'json',
+				success: function(obj){
+					if(obj.member == null){
+						alert('해당 회원의 정보가 없습니다.');
+					} else {
+						$('#memberNo').val(obj.member.memberNo);
+						$('#id').val(obj.member.id).prop('readonly', true);
+						$('#name').val(obj.member.name);
+						$(':radio[name="gender"][value="' + obj.member.gender + '"]').prop('checked', true);
+						$('#address').val(obj.member.address);
+					}
+				}
+			})
+		})
+	}
 	
 	// 5. 페이징 링크 처리(page 전역변수 값을 링크의 data-page값으로 바꾸고 fnList() 호출)
 	function fnPagingLink(){
@@ -202,6 +256,7 @@
 	<h1>회원관리</h1>
 	
 	<div>
+		<input type="hidden" name="memberNo" id="memberNo">
 		아이디 <input type="text" name="id" id="id"><br>
 		이름   <input type="text" name="name" id="name"><br>
 		성별

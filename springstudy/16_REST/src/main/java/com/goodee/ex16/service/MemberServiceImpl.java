@@ -84,6 +84,14 @@ public class MemberServiceImpl implements MemberService {
 		
 	}
 	
+	@Override
+	public Map<String, Object> getMember(Long memberNo) {
+		Map<String, Object> map = new HashMap<>();
+		map.put("member", memberMapper.selectMemberByNo(memberNo));
+		return map;
+	}
+	
+	
 	
 	
 	
