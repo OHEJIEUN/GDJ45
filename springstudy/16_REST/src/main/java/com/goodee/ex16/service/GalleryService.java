@@ -1,5 +1,9 @@
 package com.goodee.ex16.service;
 
-public interface GalleryService {
+import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.web.multipart.MultipartHttpServletRequest;
+
+public interface GalleryService {
+	public void save(MultipartHttpServletRequest multipartRequest, HttpServletResponse response);
 }

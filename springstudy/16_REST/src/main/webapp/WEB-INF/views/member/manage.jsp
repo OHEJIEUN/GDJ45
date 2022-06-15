@@ -35,10 +35,7 @@
 			let deleteCount = 0;
 			let checkedCount = 0;
 			for(let i = 0; i < $('.checkOne').length; i++){
-				/*
-					$('.checkOne')[i].value;
-					$($('.checkOne')[i]).val();
-				*/
+				/* $('.checkOne')[i].value == $($('.checkOne')[i]).val() */
 				if($($('.checkOne')[i]).is(':checked')){
 					checkedCount += 1;
 					$.ajax({
@@ -47,10 +44,13 @@
 						dataType: 'json',
 						success: function(obj){
 							deleteCount += obj.res;
+							console.log(i, deleteCount);
 						}
 					})
 				}
 			}
+			console.log('삭제: ' + deleteCount);
+			console.log('체크: ' + checkedCount);
 			if(deleteCount == checkedCount){
 				alert('모든 회원이 삭제되었습니다.');
 			}
