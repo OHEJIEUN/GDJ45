@@ -51,6 +51,7 @@
 		})
 	}
 	function fnAdd(){
+		
 		$('#btnAdd').on('click', function(){
 			
 			// ajax 방식에서 파일 업로드 처리는 FormData 객체 사용
@@ -98,7 +99,7 @@
 		$('#attached').empty();
 		let result = '';
 		for(let i = 0; i < obj.thumbnails.length; i++){
-			result += '<div><img src="?"></div>';
+			result += '<div><img src="${contextPath}/galleries/display?path=' + encodeURIComponent(obj.path) + '&thumbnail=' + obj.thumbnails[i] + '"></div>';
 		}
 		$('#attached').append(result);  // $('#attached').html(result);
 	}

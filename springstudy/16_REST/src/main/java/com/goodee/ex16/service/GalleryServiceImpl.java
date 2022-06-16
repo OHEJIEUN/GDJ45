@@ -7,11 +7,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.regex.Matcher;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
@@ -146,6 +149,24 @@ public class GalleryServiceImpl implements GalleryService {
 		map.put("thumbnails", thumbnails);  // 썸네일 이름 목록
 		map.put("path", path);  // 썸네일이 저장된 경로
 		return map;
+		
+	}
+	
+	@Override
+	public ResponseEntity<byte[]> display(String path, String thumbnail) {
+		
+		File file = new File(path, thumbnail);
+		
+		ResponseEntity<byte[]> result = null;
+		try {
+			HttpHeaders headers = new HttpHeaders();
+			headers.add("Content-Type", Files.probeContentType(file.toPath()));
+			result = new ResponseEntity<byte[]>(FileCopyUtils.copyToByteArray(file), null, HttpStatus.OK);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 		
 	}
 	
