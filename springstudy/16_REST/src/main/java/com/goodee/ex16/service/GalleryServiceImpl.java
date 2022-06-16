@@ -1,12 +1,11 @@
 package com.goodee.ex16.service;
 
 import java.io.File;
-import java.io.PrintWriter;
 import java.nio.file.Files;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
-
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,7 +29,7 @@ public class GalleryServiceImpl implements GalleryService {
 	// 갤러리 삽입
 	@Transactional
 	@Override
-	public void save(MultipartHttpServletRequest multipartRequest, HttpServletResponse response) {
+	public Map<String, Object> save(MultipartHttpServletRequest multipartRequest) {
 		
 		// 전달된 파라미터
 		String writer = multipartRequest.getParameter("writer");
@@ -127,26 +126,12 @@ public class GalleryServiceImpl implements GalleryService {
 			
 		}
 		
-		// 응답
-		try {
-			response.setContentType("text/html");
-			PrintWriter out = response.getWriter();
-			if(galleryResult == 1 && fileAttachResult == files.size()) {
-				out.println("<script>");
-				out.println("alert('갤러리가 등록되었습니다.')");
-				out.println("location.href='" + multipartRequest.getContextPath() + "/gallery/list'");
-				out.println("</script>");
-				out.close();
-			} else {
-				out.println("<script>");
-				out.println("alert('갤러리가 등록되지 않았습니다.')");
-				out.println("history.back()");
-				out.println("</script>");
-				out.close();
-			}
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+		// 응답할 데이터
+		Map<String, Object> map = new HashMap<>();
+		map.put("galleryResult", galleryResult == 1);  // 갤러리 성공 유무
+		map.put("fileAttachResult", fileAttachResult == files.size());  // 첨부 성공 유무
+		
+		return map;
 		
 	}
 	

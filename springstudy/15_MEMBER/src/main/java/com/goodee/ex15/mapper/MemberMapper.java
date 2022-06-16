@@ -20,4 +20,7 @@ public interface MemberMapper {
 	public MemberDTO selectMemberBySessionId(String sessionId);
 	/* 아이디 찾기 */
 	public MemberDTO selectMemberByNameEmail(MemberDTO member);
+	/* 비밀번호 찾기 */
+	public MemberDTO selectMemberByIdEmail(MemberDTO member);
+	public int updatePw(MemberDTO member);
 }

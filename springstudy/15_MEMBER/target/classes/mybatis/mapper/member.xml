@@ -95,5 +95,24 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 WHERE EMAIL = #{email}
 		   AND NAME = #{name}
 	</select>
+	
+	<!-- 비밀번호 찾기 -->
+	<select id="selectMemberByIdEmail" parameterType="MemberDTO" resultType="MemberDTO">
+		SELECT MEMBER_NO, ID, PW, NAME, EMAIL, AGREE_STATE, SIGN_IN, PW_MODIFIED, INFO_MODIFIED, SESSION_ID, SESSION_LIMIT
+		  FROM MEMBER
+		 WHERE ID = #{id}
+		   AND EMAIL = #{email}
+	</select>
+	<update id="updatePw" parameterType="MemberDTO">
+		UPDATE MEMBER
+		   SET PW = #{pw}
+		 WHERE ID = #{id}
+	</update>
+	
+	
+	
+	
+	
+	
 
 </mapper>

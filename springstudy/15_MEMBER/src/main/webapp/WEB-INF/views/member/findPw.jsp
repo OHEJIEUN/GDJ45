@@ -9,10 +9,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<!-- jquery -->
-<script src="../resources/jquery-3.6.0.js"></script>
-<!-- moment(날짜/시간 format) -->
-<script src="https://momentjs.com/downloads/moment-with-locales.js"></script>
+<script src="../resources/js/jquery-3.6.0.js"></script>
 <script>
 
 	/* 페이지 로드 이벤트 */
@@ -62,12 +59,22 @@
 			// 1) 이메일 정규식 체크
 			let regEmail = /^[a-zA-Z0-9-_]+@[a-zA-Z0-9]+(\.[a-zA-Z]{2,}){1,2}$/;  // 실제 서비스에서 그대로 사용 가능.
 			if(regEmail.test($('#email').val())==false){
-				alert('이메일 형식을 확인하세요.');
+				alert('잘못된 형식의 이메일입니다.');
 				return;
 			}
 			// 2) 아이디와 이메일이 일치하는 회원 정보 확인
 			$.ajax({
-				url: '${contextPath}/'
+				url: '${contextPath}/member/idEmailCheck',
+				type: 'get',
+				data: 'id=' + $('#id').val() + '&email=' + $('#email').val(),
+				dataType: 'json',
+				success: function(obj){
+					if(obj.findMember != null){  // 아이디와 이메일이 일치하는 회원이 있으면 정상 진행(resolve)
+						resolve();
+					} else {
+						reject(401);  // 아이디와 이메일이 일치하는 회원이 없으면 401 반환
+					}
+				}
 			})
 		})
 	}
@@ -75,21 +82,24 @@
 	// 4. 이메일 인증
 	function fnEmailAuth(){
 		$('#btnGetAuthCode').on('click', function(){
-			
-			
-			$.ajax({
-				url: '${contextPath}/member/sendAuthCode',
-				type: 'post',
-				data: 'id=' + $('#id').val() + '&email=' + $('#email').val(),
-				dataType: 'json',
-				success: function(obj){  // obj에는 발송한 인증코드(authCode)가 저장되어 있음.
-					alert('인증코드를 발송했습니다. 이메일을 확인하세요.');
-					fnVerifyAuthCode(obj.authCode);  // 발송한 인증코드와 사용자가 입력한 인증코드가 일치하는지 점검.
-				},
-				error: function(jqXHR){
-					alert('인증코드 발송이 실패했습니다.');
-				}
-			})
+			fnIdEmailCheck()
+				.then(function(){
+					$.ajax({
+						url: '${contextPath}/member/sendAuthCode',
+						type: 'get',
+						data: 'email=' + $('#email').val(),
+						dataType: 'json',
+						success: function(obj){  // obj에는 발송한 인증코드(authCode)가 저장되어 있음.
+							alert('인증코드를 발송했습니다. 이메일을 확인하세요.');
+							fnVerifyAuthCode(obj.authCode);  // 발송한 인증코드와 사용자가 입력한 인증코드가 일치하는지 점검.
+						},
+						error: function(){
+							alert('인증코드 발송이 실패했습니다.');
+						}
+					})
+				}).catch(function(errorCode){
+					alert('예외코드[' + errorCode + '] 회원 정보를 찾을 수 없습니다.');
+				})
 		})
 	}
 	
@@ -150,40 +160,32 @@
 
 	<jsp:include page="../layout/header.jsp"></jsp:include>
 
-	<h3>비밀번호 찾기</h3>
 	
-	<div class="authArea">
+	<form id="f" action="${contextPath}/member/changePw" method="post">
 	
-		아이디<br>
-		<input type="text" name="id" id="id"><br><br>
-		가입 당시 이메일<br>
-		<input type="text" name="email" id="email">
-		<input type="button" value="인증번호받기" id="btnGetAuthCode"><br>
-		<span id="emailMsg"></span><br>
-		<input type="text" name="authCode" id="authCode" placeholder="인증코드 입력">
-		<input type="button" value="인증하기" id="btnVerifyAuthCode"><br><br>
-			
-	</div>
+		<h3>비밀번호 찾기</h3>
 	
-	<div class="changeArea">
-
-		<h3>새로운 비밀번호를 설정하세요</h3>
+		<div class="authArea">	
+			아이디<br>
+			<input type="text" name="id" id="id"><br><br>
+			가입 당시 이메일<br>
+			<input type="text" id="email">
+			<input type="button" value="인증번호받기" id="btnGetAuthCode"><br>
+			<span id="emailMsg"></span><br>
+			<input type="text" id="authCode" placeholder="인증코드 입력">
+			<input type="button" value="인증하기" id="btnVerifyAuthCode"><br><br>
+		</div>
 	
-		<form id="f" action="${contextPath}/member/changePw" method="post">
-			
-			<input type="hidden" id="id">
-			
+		<div class="changeArea">
+			<h3>새로운 비밀번호를 설정하세요</h3>
 			<input type="password" name="pw" id="pw" placeholder="새 비밀번호">
 			<span id="pwMsg"></span><br><br>
-			
-			<input type="password" name="rePw" id="rePw" placeholder="새 비밀번호 확인">
+			<input type="password" id="rePw" placeholder="새 비밀번호 확인">
 			<span id="rePwMsg"></span><br><br>
-			
-			<input type="button" value="비밀번호 변경하기" id="btnChangePw">
-			
-		</form>
-	
-	</div>
+			<button>비밀번호 변경하기</button>
+		</div>
+		
+	</form>
 	
 </body>
 </html>

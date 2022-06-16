@@ -153,7 +153,15 @@ public class MemberController {
 	public String findPwPage() {
 		return "member/findPw";
 	}
-	
+	@ResponseBody
+	@GetMapping("/member/idEmailCheck")
+	public Map<String, Object> idEmailCheck(MemberDTO member){
+		return memberService.idEmailCheck(member);
+	}
+	@PostMapping("/member/changePw")
+	public void changePw(HttpServletRequest request, HttpServletResponse response) {
+		memberService.changePw(request, response);
+	}
 
 	
 	

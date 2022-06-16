@@ -22,5 +22,6 @@ public interface MemberService {
 	/* 아이디 찾기 */
 	public Map<String, Object> findId(MemberDTO member);
 	/* 비밀번호 찾기 */
-	
+	public Map<String, Object> idEmailCheck(MemberDTO member);
+	public void changePw(HttpServletRequest request, HttpServletResponse response);
 }
