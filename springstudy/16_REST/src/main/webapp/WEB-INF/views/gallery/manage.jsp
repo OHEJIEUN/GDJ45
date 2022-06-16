@@ -17,7 +17,6 @@
 		fnInit();
 		fnFileCheck();
 		fnAdd();
-		fnAttached();
 	})
 	
 	/* 함수 */
@@ -85,6 +84,7 @@
 					}
 					if(obj.fileAttachResult) {
 						alert('파일이 첨부되었습니다.');
+						fnAttached(obj);
 					} else {
 						alert('파일 첨부가 실패했습니다.');
 					}
@@ -94,8 +94,13 @@
 			
 		})
 	}
-	function fnAttached(){
-		
+	function fnAttached(obj){
+		$('#attached').empty();
+		let result = '';
+		for(let i = 0; i < obj.thumbnails.length; i++){
+			result += '<div><img src="?"></div>';
+		}
+		$('#attached').append(result);  // $('#attached').html(result);
 	}
 	
 </script>
