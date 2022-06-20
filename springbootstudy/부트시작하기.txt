@@ -29,7 +29,7 @@ Spring Boot
     - Spring Web : spring-boot-starter, spring-boot-starter-tomcat, jackson, spring-core, spring-mvc
     - Lombok
     - Oracle Driver
-    - Mybatis Framework
+    - MyBatis Framework
   2) Generate 버튼 눌러서 프로젝트 다운로드(ex01.zip)
   3) ex01.zip 압축 풀어서 springboot 디렉터리에 가져다 놓기
   4) SprintToolSuite4.exe 실행하고 ex01 프로젝트 import 하기
