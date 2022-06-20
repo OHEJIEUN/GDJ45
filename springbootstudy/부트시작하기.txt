@@ -35,6 +35,32 @@ Project
       src/main/webapp/WEB-INF/views
    2) application.properties 작업하기
       src/main/resources/application.properties
+# server port 변경
+server.port=9999
+
+# servlet-context.xml
+spring.web.resources.static-locations=/resources/**
+spring.mvc.view.prefix=/WEB-INF/
+spring.mvc.view.suffix=.jsp
+
+# web.xml
+server.servlet.encoding.charset=UTF-8
+server.servlet.encoding.enabled=true
+server.servlet.encoding.force=true
+
+# session(1800초==30분)
+server.servlet.session.timeout=1800
+
+# db.properties
+spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
+spring.datasource.url=jdbc:oracle:thin:@localhost:1521:xe
+spring.datasource.username=scott
+spring.datasource.password=1111
+
+# mybatis
+mybatis.config-location=mybatis/config/mybatis-config.xml
+mybatis.mapper-locations=mybatis/mapper/*.xml
+
    3) pom.xml 작업하기
       (1) tomcat-embed-jasper
       (2) jstl
