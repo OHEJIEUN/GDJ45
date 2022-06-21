@@ -10,8 +10,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 	</settings>
 	
 	<typeAliases>
-		<typeAlias type="com.goodee.ex18.domain.NoticeDTO" alias="NoticeDTO" />
-		<typeAlias type="com.goodee.ex18.domain.MemberDTO" alias="MemberDTO" />
+		<typeAlias type="com.goodee.ex01.domain.BbsDTO" alias="BbsDTO" />
 	</typeAliases>
 	
 </configuration>
