@@ -23,7 +23,7 @@
 			</tr>
 		</thead>
 		<tbody>
-			<!-- Value Expression : ${...} -->
+			<!-- Variable Expression : ${...} -->
 			<tr th:each="gallery,rowStat:${galleries}">
 				<td th:text="${beginNo - rowStat.index}"></td>
 				<td><a th:href="@{/gallery/detail(galleryNo=${gallery.galleryNo})}" th:text="${gallery.title}"></a></td>
