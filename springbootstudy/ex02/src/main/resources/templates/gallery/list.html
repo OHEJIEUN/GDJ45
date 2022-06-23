@@ -29,9 +29,21 @@
 				<td><a th:href="@{/gallery/detail(galleryNo=${gallery.galleryNo})}" th:text="${gallery.title}"></a></td>
 				<td th:text="${gallery.writer}"></td>
 				<td th:text="${gallery.hit}"></td>
-				<td th:text="${gallery.created}"></td>
+				<td th:text="${#dates.format(gallery.created,'yyyy-MM-dd HH:mm:ss')}"></td>
+				<!--
+					Calendar 타입 : ${#calendars.format(날짜, '형식')}
+					Date 타입     : ${#dates.format(날짜, '형식')}
+					String 타입   : ${#temporals.format(날짜, '형식')}
+					'형식'은 SimpleDateFormat의 pattern 작성법을 따름.
+				-->
 			</tr>
 		</tbody>
+		<tfoot>
+			<tr>
+				<!-- th:utext="HTML태그포함텍스트" -->
+				<td colspan="5" th:utext="${paging}"></td>
+			</tr>
+		</tfoot>
 	</table>
 	
 </body>
