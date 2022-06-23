@@ -7,7 +7,7 @@ function getContextPath(){
 	// host - localhost:9999
 	// href - http://localhost:9999/contextPath/mapping
 	var beginIndex = location.href.indexOf(location.host) + location.host.length;
-	var endIndex = location.href.indexOf(location.href.indexOf("/"), beginIndex + 1);
+	var endIndex = location.href.indexOf("/", beginIndex + 1);
 	var contextPath = location.href.substring(beginIndex, endIndex);
 	alert(beginIndex + ', ' + endIndex + ', ' + contextPath);
 	return contextPath;
