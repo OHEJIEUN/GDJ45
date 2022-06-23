@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" th:href="@{/css/list.css}"/>
+</head>
+<body>
+	
+	<a th:href="@{/gallery/savePage}">새글작성</a>
+	
+	<hr>
+	
+	<table>
+		<thead>
+			<tr>
+				<td>번호</td>
+				<td>제목</td>
+				<td>작성자</td>
+				<td>조회수</td>
+				<td>작성일</td>
+			</tr>
+		</thead>
+		<tbody>
+			<!-- Value Expression : ${...} -->
+			<tr th:each="gallery,rowStat:${galleries}">
+				<td th:text="${beginNo - rowStat.index}"></td>
+				<td><a th:href="@{/gallery/detail(galleryNo=${gallery.galleryNo})}" th:text="${gallery.title}"></a></td>
+				<td th:text="${gallery.writer}"></td>
+				<td th:text="${gallery.hit}"></td>
+				<td th:text="${gallery.created}"></td>
+			</tr>
+		</tbody>
+	</table>
+	
+</body>
+</html>
