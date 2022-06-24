@@ -54,6 +54,24 @@
 	
 	<hr>
 	
+	<!-- th:object 사용을 위해서 th:block을 추가. 타임리프 랜더링 이후 사라짐. -->
+	<th:block th:object="${gallery}">
+		<div th:text="|번호 *{galleryNo}|"></div>  <!-- <div th:text="'번호 ' + ${gallery.galleryNo}"></div> -->
+		<div th:text="|작성자 *{writer}|"></div>
+		<div th:text="|IP *{ip}|"></div>
+		<div th:text="|조회수 *{hit}|"></div>
+		<div th:text="|작성일 *{#dates.format(created,'yyyy-MM-dd a hh:mm:ss')}|"></div>
+		<div th:text="|수정일 *{#dates.format(modified,'yyyy-MM-dd HH:mm:ss')}|"></div>
+		<div th:text="|제목 *{title}|"></div>
+		<div>내용</div>
+		<div th:utext="*{content}"></div>
+	</th:block>
+	<input type="button" value="삭제" id="btnRemove">
+	<input type="button" value="수정페이지" id="btnChangePage">
+	<input type="button" value="목록" id="btnList">
+	
+	<hr>
+	
 	<div>첨부목록</div>
 	<div th:each="fileAttach:${fileAttaches}">
 		<a th:href="@{/gallery/download(fileAttachNo=${fileAttach.fileAttachNo})}" th:text="${fileAttach.origin}"></a>
